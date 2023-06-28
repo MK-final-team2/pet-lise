@@ -11,5 +11,7 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="/css/style.css" />
     <title>Pet LiSe</title>
   </head>
-  <body></body>
+  <body>
+  <p>하이</p>
+  </body>
 </html>
