@@ -1,0 +1,235 @@
+@charset "UTF-8";
+.table {
+	margin: 0 20px;
+}
+
+.table_Header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 950px;
+	height: 35px;
+	border-radius: 8px;
+	background: var(--light-sub, #FBC252);
+	text-align: center;
+	font: var(--highlight16);
+	line-height: 35px;
+}
+
+#table_Header_Product {
+	min-width: 550px;
+	width: 550px;
+	height: 35px;
+	border-right: 1px solid var(--gray-gray-4, #BDBDBD);
+}
+
+#table_Header_Quantity {
+	min-width: 135px;
+	width: 100%;
+	height: 35px;
+	border-right: 1px solid var(--gray-gray-4, #BDBDBD);
+}
+
+#table_Header_Price {
+	min-width: 135px;
+	width: 135px;
+	height: 35px;
+	border-right: 1px solid var(--gray-gray-4, #BDBDBD);
+}
+
+#table_Header_Total {
+	min-width: 135px;
+	width: 135px;
+	height: 35px;
+}
+
+.table_Column {
+	width: 950px;
+	height: 120px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 10px 0 10px 40px;
+	border-bottom: 1px solid var(--light-sub, #FBC252);
+}
+
+.table_Column > div {
+	height: 120px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font: var(--body14);
+}
+
+.table_Column > div:last-of-type {
+	border-right: 0;
+}
+
+#table_Product_Img {
+	min-width: 200px;
+	width: 200px;
+	flex-direction: column;
+	align-items: start;
+}
+
+#table_Product_Img > p > a > img {
+	width: 110px;
+	height: 110px;
+	border: 1px solid var(--gray-gray4, #BDBDBD);
+	transform: translate(50px);
+}
+
+#table_Product_Info a {
+	width: 100%;
+	padding: 0 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	justify-contents: center;
+}
+
+#table_Product_Info {
+	min-width: 350px;
+	width: 350px;
+	border-right: 1px solid var(--gray-gray-4, #BDBDBD);
+	flex-direction: column;
+	align-items: start;
+}
+
+#table_Product_Summary {
+	text-align: left;
+	font: var(--highlight16);
+}
+
+#table_Quantity {
+	min-width: 135px;
+	width: 135px;
+	border-right: 1px solid var(--gray-gray-4, #BDBDBD);
+}
+
+#table_Price {
+	min-width: 135px;
+	width: 135px;
+	border-right: 1px solid var(--gray-gray-4, #BDBDBD);
+}
+
+#table_Total {
+	min-width: 135px;
+	width: 135px;
+}
+
+#point_Icon {
+	width: 13px;
+	height: 13px;
+}
+
+.order_Detail {
+	width: 950px;
+	height: 400px;
+	border-top: 2px solid var(--light-main, #FFB100);
+	border-bottom: 2px solid var(--light-main, #FFB100);
+	padding: 20px 0;
+	margin: 30px 0 0 40px;
+	display: flex;
+}
+
+#receipt_Icon {
+	width: 25px;
+	height: 25px;
+	transform: translate(-5px, 5px);
+}
+
+.order_Info, .receipt {
+	display: inline-block;
+}
+
+.order_Info {
+	margin-right: 130px;
+}
+
+.member_Info_Title, .delivery_Info_Title {
+	font: var(--highlight16);
+}
+
+.member_Info {
+	width: 500px;
+	height: 90px;
+	border-top: 2px solid var(--light-sub, #FBC252);
+	border-bottom: 2px solid var(--light-sub, #FBC252);
+	margin: 10px 0;
+	border-collapse: collapse;
+	font: var(--body14);
+}
+
+.member_Info tr {
+	margin: 10px 0;
+}
+
+.delivery_Info {
+	width: 500px;
+	height: 150px;
+	border-top: 2px solid var(--light-sub, #FBC252);
+	border-bottom: 2px solid var(--light-sub, #FBC252);
+	margin: 10px 0;
+	border-collapse: collapse;
+	font: var(--body14);
+}
+
+#delivery_Caption {
+	font: var(--caption12);
+}
+
+.col_1 {
+	width: 100px;
+	border-bottom: 1px solid var(--gray-gray-4, #BDBDBD);
+	border-right: 1px solid var(--gray-gray-4, #BDBDBD);
+}
+
+.col_2 {
+	border-bottom: 1px solid var(--gray-gray-4, #BDBDBD);
+	padding-left: 10px;
+}
+
+.receipt {
+	width: 290px;
+	height: 352.7px;
+	background-image: url('/images/mypage/receipt.png');
+}
+
+.receipt_Detail {
+	width: 280px;
+	height: 350px;
+	display: inherit;
+}
+
+.receipt_Title, #logo {
+	text-align: center;
+	width: 100%;
+	margin: 20px 0;
+	font: var(--body16);
+}
+
+.receipt_Col_1, .receipt_Col_2 {
+	display: inline-block;
+}
+
+#receipt_Col_1 {
+	width: 200px;
+	height: 250px;
+}
+
+#receipt_Col_2 {
+	width: 70px;
+	height: 250px;
+}
+
+#orderList_Btn, #cancel_Btn {
+	width: 200px;
+	height: 45px;
+	border-radius: 5px;
+	border: 1px solid var(--light-main, #FFB100);
+	font: var(--highlight16);
+	margin-top: 20px;	
+}

@@ -1,5 +1,4 @@
 @charset "UTF-8";
-
 .table {
 	margin: 0 20px;
 }
@@ -18,8 +17,8 @@
 }
 
 #table_Header_Date {
-	min-width: 200px;
-	width: 200px;
+	min-width: 150px;
+	width: 150px;
 	height: 35px;
 	border-right: 1px solid var(--gray-gray-4, #BDBDBD);
 }
@@ -30,21 +29,21 @@
 	border-right: 1px solid var(--gray-gray-4, #BDBDBD);
 }
 
-#table_Header_Price {
+#table_Header_Star {
 	min-width: 100px;
 	width: 100px;
 	height: 35px;
 	border-right: 1px solid var(--gray-gray-4, #BDBDBD);
 }
 
-#table_Header_Status {
-	min-width: 100px;
-	width: 100px;
+#table_Header_Comment {
+	min-width: 350px;
+	width: 350px;
 	height: 35px;
 	border-right: 1px solid var(--gray-gray-4, #BDBDBD);
 }
 
-#table_Header_Review {
+#table_Header_Edit {
 	min-width: 100px;
 	width: 100px;
 	height: 35px;
@@ -56,7 +55,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 10px 0;
+	padding: 10px 0 10px 40px;
 	border-bottom: 1px solid var(--light-sub, #FBC252);
 }
 
@@ -75,8 +74,8 @@
 }
 
 #table_Date {
-	min-width: 200px;
-	width: 200px;
+	min-width: 150px;
+	width: 150px;
 	border-right: 1px solid var(--gray-gray-4, #BDBDBD);
 }
 
@@ -85,19 +84,8 @@
 	margin: 0;
 }
 
-#table_Date > input {
-	width: 80px;
-	height: 25px;
-	border-radius: 5px;
-	border: 1px solid var(--light-main, #FFB100);
-}
-
-#table_Date > input:hover {
-	background: var(--light-sub, #FBC252);
-	font-weight: 700;
-}
-
 #table_Product {
+	min-width: 250px;
 	width: 100%;
 	text-align: left;
 	padding: 0 10px;
@@ -121,27 +109,45 @@
 	font: var(--highlight16);
 }
 
-#table_Price,
-#table_Status {
+#table_Star {
 	min-width: 100px;
 	width: 100px;
 	border-right: 1px solid var(--gray-gray-4, #BDBDBD);
 }
 
-#table_Review {
+#table_Star > p {
+	margin-right: 10px;	
+}
+
+#table_Star > p > span {
+	padding: 0;
+	margin: 0;
+	width: 15px;
+	height: 15px;
+	color: var(--light-sub, #FBC252);
+}
+
+#table_Comment {
+	min-width: 350px;
+	width: 100%;
+	text-align: left;
+	padding: 0 10px;
+	border-right: 1px solid var(--gray-gray-4, #BDBDBD);
+}
+
+#table_Edit {
 	min-width: 100px;
 	width: 100px;
 }
 
-#table_Review {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+#table_Edit > p {
+	padding: 0;
+	margin: 0;
 }
 
-#review_Img {
-	width: 23px;
-	height: 23px;
-	color: #FFB100;
+#table_Edit > p > a {
+	width: 20px;
+	height: 20px;
+	color: var(--light-main, #FFB100);
 }
+

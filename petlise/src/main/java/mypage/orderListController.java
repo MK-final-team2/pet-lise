@@ -5,8 +5,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class orderListController {
-	@RequestMapping("/")
+	@RequestMapping("/orderList")
 	public String test() {
-		return "orderList";
+		return "/mypage/orderList";
 	}
+	
+	@RequestMapping("/myReview")
+	public String test2() {
+		return "/mypage/myReview";
+	}
+	
+	@RequestMapping("/orderDetail")
+	public String test3() {
+		return "/mypage/orderDetail";
+	}
+
 }
