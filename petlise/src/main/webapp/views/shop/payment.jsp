@@ -4,51 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>주문상세</title>
-<link rel="stylesheet" href="/css/mypage/orderDetail.css">
-<link rel="stylesheet" href="/css/mypage/myPageForm.css">
+<title>주문/결제</title>
+<link rel="stylesheet" href="/css/shop/payment.css">
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-	<div class="myPage">마이페이지</div>
-		<div class="menu">
-			<div class="menu_List">
-				<div class="menu_MemberInfo">
-					<div><span class="material-symbols-outlined">person</span> 회원정보</div>
-						<ul>
-							<li><a href="#">회원정보 수정</a></li>
-							<li><a href="#">회원 탈퇴</a></li>
-						</ul>
-				</div>
-				<div class="menu_Community">
-					<div><span class="material-symbols-outlined">pets</span> Pet LiSe</div>
-						<ul>
-							<li><a href="#">찜 레시피</a></li>
-							<li><a href="#">좋아요 레시피</a></li>
-							<li><a href="#">내가 쓴 레시피</a></li>
-							<li><a href="#">내가 쓴 게시글</a></li>
-							<li><a href="#">내가 쓴 댓글</a></li>
-						</ul>
-				</div>
-				<div class="menu_Shop">
-					<div><span class="material-symbols-outlined">shopping_cart</span> Pet LiSe Shop</div>
-						<ul>
-							<li><a href="#">주문목록</a></li>
-							<li><a href="#">내가 쓴 후기</a></li>
-						</ul>
-				</div>
-				<div class="menu_QnA">
-					<div><span class="material-symbols-outlined">forum</span> 문의사항</div>
-						<ul>
-							<li><a href="#">내가 남긴 문의</a></li>
-							<li><a href="#">상품 문의</a></li>
-						</ul>
-				</div>
-			</div>			
-		</div>
-		
+	<div class="payment"><span class="material-symbols-outlined" id="cart_Icon">shopping_cart</span>주문 / 결제</div>
 		<div class="contents">
-			<div class="contents_Title">주문상세</div>
 			<div class="contents_Table">
 				<div class="table">
 					<div class="table_Header">
@@ -111,7 +73,7 @@
 						</tr>
 					</table>
 					
-					<div class="delivery_Info_Title">배송 정보</div>
+					<div class="delivery_Info_Title">배송 정보<span id="address_Check"><input type="checkbox" id="address_CheckBox"><label for="address_CheckBox">배송 정보 동일</label></span></div>
 					<table class="delivery_Info">
 						<tr id="delivery_Name">
 							<td class="col_1">받는분 성함</td>
@@ -144,7 +106,7 @@
 							<div class="receipt_Col_1">
 								<div class="receipt_Row_0">
 									<p>주문날짜</p>
-								</div>
+								</div>							
 								<div class="receipt_Row_1">
 									<p>상품 전체 Point</p>
 									<p>배송 Point</p>
@@ -160,7 +122,7 @@
 							<div class="receipt_Col_2">
 								<div class="receipt_Row_0">
 									<p>2023.06.30</p>
-								</div>	
+								</div>							
 								<div class="receipt_Row_1">
 									<p><img src="/images/mypage/coin2.svg" id="point_Icon"> 2,500</p>
 									<p><img src="/images/mypage/coin2.svg" id="point_Icon"> 30,000</p>
@@ -173,14 +135,19 @@
 									<p><img src="/images/mypage/coin2.svg" id="point_Icon"> 12,500</p>
 								</div>
 							</div>
-							<div id="logo"><img src="/images/logo.png"></div>
+							<div class="receipt_Check">
+								<input type="checkbox" id="check_Delivery"><label for="check_Delivery">배송지 정보를 확인하였습니다.</label>
+							</div>
+							<div class="receipt_Check">
+								<input type="checkbox" id="check_Order"><label for="check_Order">위 주문 내용을 확인 하였으며,<br>&nbsp;&nbsp;&nbsp;&nbsp; 회원 본인은 개인정보 이용 및 결제에 동의합니다.</label>
+							</div>
 						</div>
+						<div id="logo"><img src="/images/logo.png"></div>
 					</div>
 				</div>
 			</div>
 			<div class="Btn">
-				<input type=button value="주문목록" id="orderList_Btn" onclick="#">
-				<input type=button value="주문취소" id="cancel_Btn" onclick="#">
+				<input type=button value="결제하기" id="orderList_Btn" onclick="#">
 			</div>
 			
 		</div>			
