@@ -1,7 +1,7 @@
 ---
 name: "✨ Feature"
 about: Feature 작업 사항 작성
-title: ''
+title: 'Feature: [#이슈번호]'
 labels: ''
 assignees: ''
 
