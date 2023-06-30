@@ -6,7 +6,6 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {"mypage", "shop"})
-
 public class PetliseApplication {
 
 	public static void main(String[] args) {

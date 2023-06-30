@@ -1,0 +1,46 @@
+.tabMenu {
+  position: relative;
+  width: 100%;
+}
+.tabWrap {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+.tabMenu .list {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin-bottom: 15px;
+}
+.tabMenu .list li {
+  min-width: 80px;
+  padding: 8px 15px;
+  border: 1px solid var(--light-point);
+  border-radius: 20px;
+  margin-right: 5px;
+  text-align: center;
+}
+.tabMenu .list li.isOn {
+  background-color: var(--light-stroke);
+}
+.tabMenu .list li.isOn .btn {
+  font-weight: bold;
+}
+.tabMenu .list .btn {
+  font: var(--body16);
+}
+.tabMenu .tabWrap .editButton {
+  display: inline-block;
+  min-width: 100px;
+  width: 100px;
+  height: 40px;
+  padding: 8px 15px;
+  text-align: center;
+  border: 1px solid var(--light-point);
+  border-radius: 20px;
+}
+.tabMenu .tabWrap .editButton:hover {
+  background-color: var(--light-stroke);
+}
