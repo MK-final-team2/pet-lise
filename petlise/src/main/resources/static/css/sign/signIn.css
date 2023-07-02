@@ -23,7 +23,7 @@
 }
 
 .loginWrapper {
-  font: var(--headding34);
+  font: var(--heading34);
   min-width: 500px;
   width: 500px;
   padding: 35px 50px;
@@ -32,7 +32,7 @@
 }
 .loginWrapper .loginform > p {
   text-align: center;
-  font: var(--headding24);
+  font: var(--heading24);
   color: var(--light-point);
   margin-bottom: 30px;
 }
