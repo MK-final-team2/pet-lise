@@ -47,7 +47,7 @@ main::-webkit-scrollbar {
   width: 0;
 }
 main > p {
-  font: var(--headding24);
+  font: var(--heading24);
   padding: 25px 30px;
 }
 main > div:first-of-type {

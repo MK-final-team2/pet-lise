@@ -1,5 +1,5 @@
 .dataWrapper > p {
-  font: var(--headding18);
+  font: var(--heading18);
   margin-bottom: 25px;
 }
 
@@ -24,11 +24,11 @@
   margin-bottom: 20px;
 }
 .dataWrapper .totalWrapper div p:nth-of-type(2) {
-  font: var(--headding34);
+  font: var(--heading34);
 }
 .dataWrapper .totalWrapper div p > span {
   display: inline-block;
-  font: var(--headding24);
+  font: var(--heading24);
   margin-left: 5px;
 }
 
