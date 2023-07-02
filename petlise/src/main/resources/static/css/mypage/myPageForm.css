@@ -12,6 +12,7 @@
 .container {
   width: 1240px;
   margin: 0 auto;
+  padding-bottom: 60px;
   display: flex;
   justify-content: left;
   align-items: start;
@@ -36,7 +37,7 @@
   height: 750px;
   border-radius: 10px;
   border: 0.5px #fbc252 solid;
-  margin-left: 5px;
+  margin-left: 16px;
 }
 
 .menu_List {
