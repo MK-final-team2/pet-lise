@@ -1,31 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="../../../resources/static/images/favicon.ico" />
-    <link
-      rel="apple-touch-icon"
-      href="../../../resources/static/images/favicon.ico"
-    />
-    <link rel="stylesheet" href="../../../resources/static/css/style.css" />
-    <link
-      rel="stylesheet"
-      href="../../../resources/static/css/admin/aside.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../../../resources/static/css/pagination.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../../../resources/static/css/admin/payDelivery.css"
-    />
+    <link rel="icon" href="/images/favicon.ico" />
+    <link rel="apple-touch-icon" href="/images/favicon.ico" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/admin/aside.css" />
+    <link rel="stylesheet" href="/css/admin/pagination.css" />
+    <link rel="stylesheet" href="/css/admin/payDelivery.css" />
     <title>Pet LiSe</title>
   </head>
   <body>
     <div class="container">
-      <div id="menu"></div>
+      <div id="asideMenu"></div>
       <main>
         <p>결제/배송 관리</p>
         <div>
@@ -63,7 +53,7 @@
       </main>
     </div>
 
-    <script src="../../../resources/static/js/aside.js"></script>
-    <script src="../../../resources/static/js/pagination.js"></script>
+    <script src="/js/admin/aside.js"></script>
+    <script src="/js/admin/pagination.js"></script>
   </body>
 </html>

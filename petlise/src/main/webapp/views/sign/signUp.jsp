@@ -1,28 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="../../../resources/static/images/favicon.ico" />
-    <link
-      rel="apple-touch-icon"
-      href="../../../resources/static/images/favicon.ico"
-    />
-    <link rel="stylesheet" href="../../../resources/static/css/style.css" />
-    <link
-      rel="stylesheet"
-      href="../../../resources/static/css/sign/signUp.css"
-    />
+    <link rel="icon" href="/images/favicon.ico" />
+    <link rel="apple-touch-icon" href="/images/favicon.ico" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/sign/signUp.css" />
     <title>Pet LiSe</title>
-    <script src="../../../resources/static/js/text.js"></script>
+    <script src="/js/text.js"></script>
   </head>
   <body>
     <main class="container">
-      <a href="signIn.html">
-        <img
-          src="../../../resources/static/images/login-logo.png"
-          alt="로고아이콘"
-        />
+      <a href="/signin">
+        <img src="/images/login-logo.png" alt="로고아이콘" />
       </a>
       <form class="signupForm">
         <div class="emailWrapper">
@@ -63,14 +56,14 @@
             <label>
               <input type="checkbox" name="animal" id="animal1" value="dog" />
               <label for="animal1"></label> 댕댕이<img
-                src="../../../resources/static/images/dog-icon.svg"
+                src="/images/dog-icon.svg"
                 alt="강아지"
               />
             </label>
             <label>
               <input type="checkbox" name="animal" id="animal2" value="cat" />
               <label for="animal2"></label> 냥냥이<img
-                src="../../../resources/static/images/cat-icon.svg"
+                src="/images/cat-icon.svg"
                 alt="고양이"
               />
             </label>

@@ -6,7 +6,7 @@
   align-items: start;
 }
 
-#menu {
+#asideMenu {
   min-width: 250px;
   width: 250px;
   min-height: 100%;
@@ -14,7 +14,7 @@
   background-color: var(--gray1);
   color: var(--dark-text);
 }
-#menu > img {
+#asideMenu > img {
   height: 40px;
   margin: 20px;
 }
@@ -22,18 +22,46 @@
   border-top: 1px solid var(--gray2);
   padding-top: 10px;
 }
-.menuWrapper li {
+.menuWrapper > * {
   height: 50px;
   line-height: 50px;
   padding-left: 28px;
   cursor: pointer;
 }
+.menuWrapper > *:hover {
+  background-color: #3c3c3c;
+}
+.menuWrapper .ul {
+  padding-left: 0;
+}
+.menuWrapper .ul:hover {
+  height: 140px;
+  transition: all 0.15s linear;
+}
+.menuWrapper .ul:hover li {
+  display: block !important;
+}
+.menuWrapper .ul li:first-of-type {
+  padding-left: 28px;
+}
+.menuWrapper .ul li:nth-of-type(2),
+.menuWrapper .ul li:nth-of-type(3) {
+  display: none;
+  line-height: 40px;
+  padding-left: 50px;
+  margin: 0 20px;
+}
+.menuWrapper .ul li:nth-of-type(2):hover,
+.menuWrapper .ul li:nth-of-type(3):hover {
+  background-color: var(--gray1);
+}
+
+.menuWrapper .ul li:first-of-type {
+  line-height: 50px;
+}
 .menuWrapper li embed {
   width: 16px;
   margin-right: 20px;
-}
-.menuWrapper li:hover {
-  background-color: #3c3c3c;
 }
 
 main {
