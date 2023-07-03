@@ -86,12 +86,75 @@
         </div>
 
         <div id="product_review">
-            <h4>상품후기</h4>
-            <p>
-                이 상품을 구매한 회원님들의 후기입니다.<br>
-                구매한 제품에 대한 리뷰는 마이페이지 구매내역에서 남기실 수 있습니다.
-            </p>
+            <div id="review_title">
+                <div>
+                    <h4>상품후기</h4>
+                    <p>
+                        이 상품을 구매한 회원님들의 후기입니다.<br>
+                        구매한 제품에 대한 후기는 마이페이지 구매목록에서 남기실 수 있습니다.
+                    </p>
+                </div>
+                <button>구매목록가기</button>
+            </div>
 
+            <div id="review_statistic">
+                <div id="score">
+                    <span>구매고객 만족도</span>
+                    <span>4.5점</span>
+                    <div>
+                        <img src="/images/shop/shopdetail/borns5_line.svg"/>
+                        <span id="fillscore" style="width: 90%;">
+                            <img src="/images/shop/shopdetail/borns5_fill.svg"/>
+                        </span>
+                    </div>
+                </div>
+                <div id="count">
+                    <span>작성 후기 건수</span>
+                    <span>10건</span>
+                </div>
+                
+                <div id="score_count">
+                    <div id="score_box">
+                        <div class="scores">
+                            <div class="score_score">5점</div>
+                            <div class="graph_back">
+                                <div class="graph_color" style="width:50%;"></div>
+                            </div>
+                            <div class="score_cnt">5건 (50%)</div>
+                        </div>
+                        <div class="scores">
+                            <div class="score_score">4점</div>
+                            <div class="graph_back">
+                                <div class="graph_color" style="width:30%;"></div>
+                            </div>
+                            <div class="score_cnt">3건 (30%)</div>
+                        </div>
+                        <div class="scores">
+                            <div class="score_score">3점</div>
+                            <div class="graph_back">
+                                <div class="graph_color" style="width:20%;"></div>
+                            </div>
+                            <div class="score_cnt">2건 (20%)</div>
+                        </div>
+                        <div class="scores">
+                            <div class="score_score">2점</div>
+                            <div class="graph_back">
+                                <div class="graph_color" style="width:0%;"></div>
+                            </div>
+                            <div class="score_cnt">0건 (0%)</div>
+                        </div>
+                        <div class="scores">
+                            <div class="score_score">1점</div>
+                            <div class="graph_back">
+                                <div class="graph_color" style="width:0%;"></div>
+                            </div>
+                            <div class="score_cnt">0건 (0%)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- review_statistic end -->
+            
             <div class="review_container" style="border-top: 1px solid var(--light-sub, #FBC252);">
                 <div class="review_info">
                     <div class="user_info">
@@ -149,6 +212,18 @@
                         </div>
                         <div class="contents">
                             <p>
+                                주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
+                                주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
+                                주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
+                                주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
+                                주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
+                                주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
+                                주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
+                                주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
+                                주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
+                                주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
+                                주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
+                                주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
                                 주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
                             </p>
                         </div><!--후기내용-->
