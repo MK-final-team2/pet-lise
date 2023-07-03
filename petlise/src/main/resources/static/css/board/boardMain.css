@@ -1,0 +1,373 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+* {
+  box-sizing: border-box;
+ 
+  
+  padding: 0;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ol,
+li,
+ul {
+  list-style: none;
+}
+
+textarea {
+  resize: none;
+  outline: none;
+}
+
+input,
+select,
+button {
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  background: none;
+}
+
+button {
+  background: none;
+  cursor: pointer;
+}
+
+
+#container {
+  margin: 0 auto;
+  position: relative;
+  width: 1240px;
+}
+
+
+
+
+.board_title {
+  /* Heading 24 */
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center; /* 가로 가운데 정렬 */
+  margin: 0 auto;
+ 
+  width: 300px;
+    
+}
+
+
+.search-container {
+  margin-left: 1000px;
+  border-radius: 40px;
+  border: 1px solid var(--light-stroke, #DED4C7);
+  width: 240px;
+  height: 40px;
+  flex-shrink: 0;
+  
+  margin-right: auto;
+  margin-top: 30px;
+}
+
+.searchbox button {
+  margin-left: 10px;
+  margin-top: 10px;
+  
+width: 17.5px;
+height: 17.5px;
+}
+
+.searchbox input {
+  margin-left: 10px;
+  margin-top: 10px;
+  display: inline-block;
+  color: var(--gray-gray-4, #BDBDBD);
+  /* Body 14 */
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.board_main_category_btn1,
+.board_main_category_btn2 {
+  padding: 8px 30px;
+  gap: 10px;
+  display: inline-block;
+  border-radius: 25px;
+
+  border: 1px solid var(--light-sub, #FBC252);
+  transition: background-color 0.5s ease;
+}
+
+.board_main_category_btn1 a,
+.board_main_category_btn2 a{
+
+font-size: 14px;
+font-family: Noto Sans KR;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+} 
+
+
+.board_main_category_btn1:hover,
+.board_main_category_btn2:hover {
+  background-color: var(--light-sub-hover, #F7A400);
+}
+
+.board_main_category_btn1 {
+  background-color: var(--light-sub-hover, #F7A400);
+
+}
+
+.board_main_category_btn2 {
+  margin-left: 30px;
+}
+
+.bt_wrap {
+  margin-left: 1120px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 106px;
+  height: 37px;
+  border-radius: 5px;
+  border: 1px solid var(--light-sub, #FBC252);
+  transition: background-color 0.5s ease;
+}
+
+.bt_wrap:hover {
+  background-color: var(--light-sub-hover, #F7A400);
+}
+
+.bt_wrap a {
+  color: var(--light-text, #1F1F1F);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 37px;
+}
+
+.board_list {
+  margin: 20 auto;
+  width: 1240px;
+  height: 60px;
+  border-radius: 10px;
+  background: var(--dark-point, #FFD369);
+  
+}
+
+.board_list > div {
+  font-size: 0;
+  
+}
+
+.board_list > div:not(.top) {
+  border-bottom: 1px solid #9A9EA6;
+}
+
+/*보드리스트 탑*/
+.board_list > div.top > div {
+  font-weight: 600;
+  font-size: 16px;
+font-family: Noto Sans KR;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+.board_list > div > div {
+  display: inline-block;
+  padding: 20px 20px;
+  
+ 
+}
+
+
+
+
+.board_list .top .title {
+  text-align: center;
+}
+
+
+
+.board_list .title {
+  width: 590px;
+  height: 50px;
+ /* Heading 18 */
+ font-size: 14px;
+ font-family: Noto Sans KR;
+ font-style: normal;
+ font-weight: 400;
+ line-height: normal;
+  
+
+}
+
+.board_list .writer {
+  text-align: center;
+  width: 200px;
+  height: 50px;
+  flex-shrink: 0;
+  /* Body 16 */
+font-size: 16px;
+font-family: Noto Sans KR;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.board_list .date {
+  text-align: center;
+  width: 150px;
+  height: 50px;
+  flex-shrink: 0;
+  /* Body 16 */
+font-size: 16px;
+font-family: Noto Sans KR;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.board_list .view {
+  text-align: center;
+  width: 150px;
+height: 50px;
+flex-shrink: 0;
+/* Body 16 */
+font-size: 16px;
+font-family: Noto Sans KR;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+.board_list .like {
+  text-align: center;
+  width: 150px;
+height: 50px;
+flex-shrink: 0;
+/* Body 16 */
+font-size: 16px;
+font-family: Noto Sans KR;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+
+.board_list .comment-count {
+  display: inline-block;
+  color: #FF0808;
+  font-size: 12px;
+  
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.board_page {
+ position: relative;
+ top: 50px;
+margin-top: 480px;
+  text-align: center;
+}
+
+.board_page a {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  vertical-align: middle;
+  line-height: 100%;
+}
+
+.board_page a.num {
+  display: inline-block;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.board_page a.num.on {
+    
+  display: inline-block;
+  background: var(--light-sub, #FBC252);
+  padding: 5px 10px;
+  border-radius: 20px;
+  text-align: center;
+  position: relative;
+  bottom: 4px;
+}
+
+.bt.first {
+  display: inline-block;
+  
+  margin-bottom: 7px;
+  width: 20px;
+  height: 20px;
+  background-image: url('/images/board/left.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bt.next {
+  display: inline-block;
+  margin-left: 22px;
+  margin-right: 5px;
+  margin-bottom: 7px;
+  width: 20px;
+  height: 20px;
+  background-image: url('/images/board/right.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* 이미지 추가 */
+
+
+.dogImg_F {
+  position: relative; /* 상대적인 위치 설정 */
+  top: -535px;
+  left: -137px; /* 좌측 위치를 0으로 설정 */
+  
+}
+
+
+.dogImg_F img {
+  width: 150px;
+  height: 150px;
+}
+.dogImg_S {
+
+  position: relative;
+  top: -565px;
+  left: -137px;
+}
+
+.dogImg_S img {
+  width: 150px;
+  height: 150px;
+}
+
+.dogImg_Up {
+
+  position: absolute;
+  left: 1100px;
+  top: -30px;
+}
+
+.dogImg_Up img {
+  width: 150px;
+  height: 150px;
+}
+
+
+
+
+
+  
