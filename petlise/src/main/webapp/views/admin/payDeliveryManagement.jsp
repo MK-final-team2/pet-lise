@@ -22,6 +22,7 @@ pageEncoding="UTF-8"%>
           <table>
             <thead>
               <tr>
+                <th>주문코드</th>
                 <th>상품명</th>
                 <th>구매자</th>
                 <th>결제금액</th>
@@ -32,6 +33,7 @@ pageEncoding="UTF-8"%>
             </thead>
             <tbody>
               <tr>
+                <td>20230704001</td>
                 <td>
                   레시피 제목인듯 아닌듯 맞는듯 함 레시피 제목인듯 아닌듯 맞는듯
                   함
