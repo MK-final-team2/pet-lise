@@ -13,7 +13,6 @@ pageEncoding="UTF-8"%>
     <p class="title">마이페이지</p>
     <div class="container">
       <div id="mypageMenu" class="menu"></div>
-
       <div class="contents">
         <div class="contents_Title">주문상세</div>
         <div class="contents_Table">
@@ -38,8 +37,7 @@ pageEncoding="UTF-8"%>
           <div id="table_Product_Info">
             <p>
               <a href="#">
-                <span id="table_Product_Summary">상품 A</span>
-                <span id="table_Product_Detail">옵션설명옵션설명옵션설명</span>
+                <span>상품 A</span>
               </a>
             </p>
           </div>
@@ -173,6 +171,6 @@ pageEncoding="UTF-8"%>
       </div>
     </div>
 
-    <script src="../../../resources/static/js/mypageMenu.js"></script>
+    <script src="/js/mypageMenu.js"></script>
   </body>
 </html>

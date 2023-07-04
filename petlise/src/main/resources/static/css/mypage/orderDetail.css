@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .table {
-	margin: 0 20px;
+	margin-left: 10px;
 }
 
 .table_Header {
@@ -42,11 +42,11 @@
 
 .table_Column {
 	width: 950px;
-	height: 120px;
+	height: 130px;
+	margin-left: 10px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-left: 20px;
 	border-bottom: 1px solid var(--light-sub, #FBC252);
 }
 
@@ -75,6 +75,8 @@
 	width: 110px;
 	height: 110px;
 	border: 1px solid var(--gray-gray4, #BDBDBD);
+	margin-left: 30px;
+	border-radius: 10px;
 }
 
 #table_Product_Info a {
@@ -91,9 +93,6 @@
 	width: 350px;
 	flex-direction: column;
 	align-items: start;
-}
-
-#table_Product_Summary {
 	text-align: left;
 	font: var(--highlight16);
 }
@@ -105,7 +104,7 @@
 
 #table_Price {
 	min-width: 135px;
-	width: 135px;
+	width: 135px;	
 }
 
 #table_Total {
@@ -116,6 +115,8 @@
 #point_Icon {
 	width: 13px;
 	height: 13px;
+	float: left;
+	transform: translateY(3px);
 }
 
 .order_Detail {
@@ -124,7 +125,7 @@
 	border-top: 2px solid var(--light-main, #FFB100);
 	border-bottom: 2px solid var(--light-main, #FFB100);
 	padding: 20px 0;
-	margin: 30px 10px 0 20px;
+	margin: 30px 10px 0 10px;
 	display: flex;
 }
 
@@ -134,15 +135,18 @@
 	transform: translate(-5px, 5px);
 }
 
-.order_Info, .receipt {
+.order_Info,
+.receipt {
 	display: inline-block;
 }
 
 .order_Info {
 	margin-right: 100px;
+	margin-left: 30px;
 }
 
-.member_Info_Title, .delivery_Info_Title {
+.member_Info_Title,
+.delivery_Info_Title {
 	font: var(--highlight16);
 }
 
@@ -176,6 +180,7 @@
 
 .col_1 {
 	width: 100px;
+	text-align: left;
 	border-bottom: 1px solid var(--gray-gray-4, #BDBDBD);
 	border-right: 1px solid var(--gray-gray-4, #BDBDBD);
 }
@@ -209,7 +214,8 @@
 	font: var(--body14);
 }
 
-.receipt_Col_1, .receipt_Col_2 {
+.receipt_Col_1,
+.receipt_Col_2 {
 	display: inline-block;
 	vertical-align: top;
 }
@@ -244,7 +250,12 @@
 	padding: 5px 0;
 }
 
-#orderList_Btn, #cancel_Btn {
+.receipt_Col_2 > div > p {
+  	text-align: right;
+}
+
+#orderList_Btn,
+#cancel_Btn {
 	width: 200px;
 	height: 45px;
 	border-radius: 5px;

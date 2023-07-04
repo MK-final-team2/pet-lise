@@ -51,7 +51,7 @@ $(document).ready(function(){
 				<div style="width: 460px;" class="cart_info">
 					<img src="" alt="product_img">
 					<div>
-						<a href="#">상품명</a> <a href="#">옵션설명</a>
+						<a href="#">상품명</a>
 					</div>
 				</div>
 				<div style="width: 130px;">1개</div>
