@@ -88,12 +88,12 @@
         }
 
         >tbody>tr>td:nth-child(1) {
-            width: 70px;
+            width: 100px;
             height: 20px;
         }
         
         >tbody>tr>td:nth-last-child(1) {
-            width: 620px;
+            width: 580px;
             padding: 10px;
 
             display: flex;
@@ -125,37 +125,30 @@
         margin-top: 40px;
         display: flex;
         justify-content: flex-end;
-    }
 
-    #cartbtn{
-        width: 200px;
-        height: 50px;
-        border-radius: 8px;
-        border: 1px solid var(--light-sub, #FBC252);
-        color: var(--light-text, #1F1F1F);
-        font-size: 16px;
-        font-weight: 700;
-        padding: 10px;
-        background-color: transparent;
-        margin-left: 15px;
-    }
-    #buybtn{
-        width: 200px;
-        height: 50px;
-        border-radius: 8px;
-        border-width: 0;
-        background-color: var(--light-sub, #FBC252);
-        color: var(--light-text, #1F1F1F);
-        font-size: 16px;
-        font-weight: 700;
-        padding: 10px;
-        margin-left: 15px;
+        >button {
+            width: 200px;
+            height: 50px;
+            border-radius: 8px;
+            border: 1px solid var(--light-sub, #FBC252);
+            color: var(--light-text, #1F1F1F);
+            font-size: 16px;
+            font-weight: 700;
+            padding: 10px;
+            background-color: transparent;
+            margin-left: 15px;
+            cursor: pointer;
+        }
+
+        >button:hover {
+            background-color: var(--light-sub, #FBC252);
+        }
     }
 }
 
 .detail_tab {
     width: 1240px;
-    margin: 20px auto;
+    margin: 0px auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -187,7 +180,7 @@
 }
 
 #product_detail {
-    width: 1240px;
+    width: 1200px;
     height: 1000px;
     margin: 20px auto;
     background-color: #BDBDBD;
@@ -196,17 +189,20 @@
 #product_infomation {
     width: 1240px;
     margin: 20px auto;
+    margin-top: 0px;
     color: var(--light-text, #1F1F1F);
 
     >h4 {
         margin-left: 20px;
-        font-size: 16px;
+        font-size: 18px;
         font-weight: 700;
+        margin-bottom: 15px;
     }
     >p {
         margin-left: 20px;
         font-size: 14px;
         line-height: 25px;
+        margin-bottom: 15px;
 
         .tab { white-space: pre; }
     }
@@ -215,23 +211,169 @@
 #product_review {
     width: 1240px;
     height: auto;
+    margin: 0px auto;
+}
+
+#review_title {
+    width: 1240px;
     margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    >div {
+        >h4 {
+            margin-top: 0px;
+            margin-left: 20px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        >p {
+            font-size: 14px; 
+            font-weight: 400; 
+            line-height: 25px; 
+            margin: 0px;
+            margin-left: 20px;
+        }
+    }
+
+    >button{
+        width: 180px;
+        height: 50px;
+        margin-right: 20px;
+        border-radius: 8px;
+        border: 1px solid var(--light-sub, #FBC252);
+        color: var(--light-text, #1F1F1F);
+        font-size: 14px;
+        font-weight: 700;
+        padding: 10px;
+        background-color: transparent;
+        cursor: pointer;
+    }
+
+    >button:hover{
+        background-color: var(--light-sub, #FBC252);
+    }
+}
+
+#review_statistic {
+    border-top: 1px solid var(--light-sub, #FBC252);
+    margin: 0px auto;
+    width: 1200px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
-    >h4 {
-        margin-left: 20px;
-        font-size: 16px;
+    >div {
+        height: 230px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
         font-weight: 700;
     }
-    >p {
-        margin-left: 20px;
-        font-size: 14px;
-        line-height: 25px;
+}
+
+#score{
+    width: 400px;
+    border-right: 1px solid #FFB100;
+
+    >span{
+        margin-bottom: 10px;
+    }
+    >span:nth-child(2){
+        font-size: 24px;
+        color: var(--light-main, #FFB100);
+    }
+
+    >div{
+        position: relative;
+        
+        #fillscore{
+            overflow: hidden;
+            position: absolute;
+            left: 0;
+            top:0;
+        }
+    }
+}
+
+
+#count{
+    width: 200px;
+
+    >span {
+        margin-bottom: 5px;
+    }
+
+    >span:nth-child(2){
+        font-size: 24px;
+        color: var(--light-main, #FFB100);
+    }
+}
+
+#score_count {
+    width: 550px;
+    
+    #score_box{
+        height: 230px;
+        gap: 10px;
+        
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        .scores{
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        
+            width: 500px;
+            height: 25px;
+
+            .score_score{
+                color: #1F1F1F; 
+                font-size: 16px; 
+                font-weight: 700;
+                margin-top: -2px;
+                margin-right: 10px;
+            }
+
+            .graph_back {
+                width: 350px; 
+                height: 20px; 
+                background: #E0E0E0; 
+                border-radius: 10px;
+            }
+            
+            .graph_color {
+                height: 20px; 
+                background: #FFB100; 
+                border-radius: 10px;
+            }
+
+            .score_cnt{
+                width: 100px;
+                color: #1F1F1F; 
+                font-size: 16px; 
+                font-weight: 700;
+                margin-top: -2px;
+                margin-left: 10px;
+            }
+        }
+
+
     }
 }
 
 .review_container {
     width: 1200px;
-    height: 160px;
+    height: auto;
+    padding: 10px 0px;
     margin: 0 auto;
     border-bottom: 1px solid var(--light-sub, #FBC252);
     display: flex;
@@ -240,7 +382,7 @@
 
     .review_info{
         width: 980px;
-        height: 150px;
+        height: auto;
         display: flex;
         flex-direction: column;
         
@@ -276,28 +418,33 @@
         }
         .review_contents{
             display: flex;
-            height: 100px;
-
+            height: auto;
+            
             .score{
-                width: 300px;
+                width: 250px;
                 padding:0px 10px;
                 display: flex;
                 align-items: center;
                 justify-content: space-evenly;
 
+                >img {
+                    margin: 0px -5px;
+                }
+                
                 >span {
                     margin-left:10px;
                     color: var(--light-main, #FFB100);
-                    font-size: 32px;
+                    font-size: 28px;
                     font-weight: 700;
                 }
             }
-
+            
             .contents{
-                width: 640px;
+                width: 700px;
                 padding:10px;
                 display: flex;
                 align-items: center;
+                min-height: 80px;
                 
                 >p {
                     margin: 0;
