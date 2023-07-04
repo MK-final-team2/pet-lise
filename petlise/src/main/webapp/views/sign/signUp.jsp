@@ -11,57 +11,124 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="/css/sign/signUp.css" />
     <title>Pet LiSe</title>
     <script src="/js/text.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <%--
+    <script type="text/javascript">
+      let my_id = "<%=session.getAttribute("my_user_id")%>";
+
+      if(my_id !== "null"){
+      	location.href = "/";
+      }
+    </script>
+    --%>
   </head>
   <body>
     <main class="container">
       <a href="/signin">
         <img src="/images/login-logo.png" alt="로고아이콘" />
       </a>
-      <form class="signupForm">
+      <form method="post" action="/signup" class="signupForm" name="signupForm">
         <div class="emailWrapper">
           <p>이메일</p>
-          <div class="checkEmail">
-            <input type="email" />
-            <button type="button">중복확인</button>
+          <div class="checkEmailWrap">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              oninput="regEmail()"
+              placeholder="이메일 입력"
+            />
+            <button type="button" id="emailCheckButton" value="false">
+              중복확인
+            </button>
           </div>
+          <span id="emailRequired"></span>
           <div class="CertificationEmail">
-            <input type="text" />
-            <button type="button">인증번호 발송</button>
+            <input type="text" placeholder="인증번호 입력" id="number" />
+            <button type="button" onclick="sendNumber()" id="sendNum">
+              인증번호 발송
+            </button>
+            <button
+              type="button"
+              onclick="confirmNumber()"
+              style="display: none"
+              id="checkNum"
+              value="false"
+            >
+              인증번호 확인
+            </button>
           </div>
         </div>
         <div class="passwordWrapper">
           <p>비밀번호</p>
-          <p>영문, 숫자를 포함한 8자리 이상의 비밀번호를 입력해주세요.</p>
-          <input type="password" />
+          <p>영문, 숫자를 포함한 6~12자리의 비밀번호를 입력해주세요.</p>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            maxlength="12"
+            oninput="regPw()"
+            placeholder="비밀번호 입력"
+          />
+          <span id="pwRequired"></span>
           <p>비밀번호 확인</p>
-          <input type="password" class="checkPassword" />
+          <input
+            type="password"
+            id="checkPassword"
+            maxlength="12"
+            oninput="checkPw()"
+            placeholder="비밀번호 확인 입력"
+          />
+          <span id="checkPwRequired"></span>
         </div>
         <div class="nameWrapper">
           <p>이름</p>
-          <input type="text" />
+          <input type="text" placeholder="이름 입력" id="name" name="name" oninput="regName()" />
+          <span id="nameRequired"></span>
         </div>
         <div class="addressWrapper">
           <p>주소</p>
           <div class="post">
-            <input type="text" readonly />
-            <button>우표번호 검색</button>
+            <input
+              type="text"
+              id="sample6_postcode"
+              placeholder="우편번호"
+              name="address"
+              readonly
+            />
+            <button type="button" onclick="sample6_execDaumPostcode()">
+              우표번호 검색
+            </button>
           </div>
-          <input type="text" class="address1" />
-          <input type="text" class="address2" />
+          <input
+            type="text"
+            class="address1"
+            id="sample6_address"
+            name="address"
+            placeholder="주소"
+            readonly
+          />
+          <input
+            type="text"
+            class="address2"
+            id="sample6_detailAddress"
+            name="address"
+            placeholder="상세주소"
+          />
         </div>
         <div class="chooseAnimal">
           <p>어떤 동물과 함께 하시나요? (선택)</p>
-          <input type="checkbox" name="animal" value="default" checked />
+          <input type="radio" name="pet_type" value=null checked />
           <div class="inputWrapper">
             <label>
-              <input type="checkbox" name="animal" id="animal1" value="dog" />
+              <input type="radio" name="pet_type" id="animal1" value="dog" />
               <label for="animal1"></label> 댕댕이<img
                 src="/images/dog-icon.svg"
                 alt="강아지"
               />
             </label>
             <label>
-              <input type="checkbox" name="animal" id="animal2" value="cat" />
+              <input type="radio" name="pet_type" id="animal2" value="cat" />
               <label for="animal2"></label> 냥냥이<img
                 src="/images/cat-icon.svg"
                 alt="고양이"
@@ -70,15 +137,15 @@ pageEncoding="UTF-8"%>
           </div>
         </div>
         <div class="petWrapper">
-          <p>반려동물 이름</p>
-          <input type="text" class="petName" />
-          <p>반려동물 나이</p>
-          <input type="text" class="petAge" />
+          <p>반려동물 이름 (선택)</p>
+          <input type="text" class="petName" name="pet_name" maxlength="20" value="" />
+          <p>반려동물 나이 (선택)</p>
+          <input type="number" class="petAge" name="pet_age" maxlength="2" value=null />
         </div>
         <ul>
           <li class="list">
             <label>
-              <input type="checkbox" id="text1" />
+              <input type="radio" id="text1" required />
               <label for="text1"></label>
               <p>이용약관 (필수)</p>
             </label>
@@ -86,15 +153,21 @@ pageEncoding="UTF-8"%>
           </li>
           <li class="list">
             <label>
-              <input type="checkbox" id="text2" />
+              <input type="radio" id="text2" required />
               <label for="text2"></label>
               <p>개인정보 수집 및 이용에 대한 동의 (필수)</p>
             </label>
             <div id="textBorder2"></div>
           </li>
         </ul>
-        <button class="submit">회원 가입</button>
+        <button class="submit" onClick="return check()">회원 가입</button>
       </form>
     </main>
+
+    <script src="/js/sign/checkInput.js"></script>
+    <script src="/js/sign/sendEmail.js"></script>
+    <script src="/js/postcode.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/js/sign/checkForm.js"></script>
   </body>
 </html>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user.UserDAO">
+
+	<resultMap type="user.UserDTO" id="userMap">
+		<id property="user_id" column="user_id" />
+		<result column="name" property="name" />
+		<result column="email" property="email" />
+		<result column="password" property="password" />
+		<result column="address" property="address" />
+		<result column="point" property="point" />
+		<result column="created_at" property="created_at" />
+		<result column="deleted_at" property="deleted_at" />
+		<result column="pet_type" property="pet_type" />
+		<result column="profile_image" property="profile_image" />
+		<result column="pet_name" property="pet_name" />
+		<result column="pet_age" property="pet_age" />
+		<result column="role" property="role" />
+	</resultMap>
+
+	<insert id="insertUser" parameterType="userdto">
+		insert into user(email, password, name, address, point, pet_type, pet_name, pet_age, role)
+		values(#{email}, #{password}, #{name}, #{address}, 1000, #{pet_type}, #{pet_name}, #{pet_age}, 'user')
+	</insert>
+	
+	<select id="checkEmail" resultType="int" parameterType="string">
+		select count(email) from user where email=#{email}
+	</select>
+
+</mapper>
+
+
+
+
+
+
