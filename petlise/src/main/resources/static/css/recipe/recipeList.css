@@ -2,18 +2,27 @@
 .wrap {
     width: 1440px;
     margin: 0 auto;
+    padding: 90px 0 0;
 }
 
 .pet_icon {
-  padding: 90px 0 0;
-  text-align: center;
+	display: flex;
+  justify-content: center;
+}
+.dog_icon img {
+  width: 75px;
+  height: 60px;
+}
+.cat_icon img {
+  width: 75px;
+  height: 60px;
 }
 
 .title_recipe {   
     text-align: center;  
     margin-top: -10px;
     >span {
-      font: var(--headding24)
+      font: var(--heading24);
     }
 }
 
@@ -22,7 +31,7 @@
     margin-top: 10px;
     margin-bottom: 50px;
     >span {
-      font: var(--headding18)
+      font: var(--heading18);
     }
 }
 
@@ -70,7 +79,7 @@
     border-color: var(--light-main);
 }
 
-img {
+.search img {
   position : absolute;
   width: 17px;
   top: 8px;
@@ -107,7 +116,7 @@ img {
       border-radius: 10px;
       border: 1px solid var(--light-point);
       margin: -1px -1px;
-      background-image: url("sample.jpg");
+      background-image: url("/images/recipe/sample.jpg");
       background-size: contain;
       background-repeat: no-repeat;
       }
@@ -125,7 +134,7 @@ img {
           height: 50px;
           border-radius: 40px;
           background-color: var(--dark-point);
-          background-image: url("hit.svg");
+          background-image: url("/images/recipe/hit.svg");
           background-repeat: no-repeat;
           background-position: center;
           left: 218px;
@@ -138,7 +147,7 @@ img {
             }
       }
       > button.active, button:hover {
-          background-image: url("hit_f.svg");
+          background-image: url("/images/recipe/hit_f.svg");
       }
   }
 }
@@ -154,7 +163,7 @@ img {
     background: var(--light-sub, #FBC252);
 
     .recipe_cover{            
-      visibility:visible
+      visibility:visible;
       }
 }
 
@@ -226,7 +235,7 @@ img {
       .precious {
         width: 20px;
         height: 20px;
-        background-image: url("page_back.svg");
+        background-image: url("/images/recipe/page_back.svg");
         background-repeat: no-repeat;
         background-position: center;
         margin-top: 3px;
@@ -236,7 +245,7 @@ img {
       .next {
         width: 20px;
         height: 20px;
-        background-image: url("page_next.svg");
+        background-image: url("/images/recipe/page_next.svg");
         background-repeat: no-repeat;
         background-position: center;
         margin-top: 3px;
@@ -248,14 +257,14 @@ img {
       }
       
       .number a:hover {
-        background-image: url("page_hover.svg");
+        background-image: url("/images/recipe/page_hover.svg");
         background-repeat: no-repeat;
         background-position: center;
        
       }     
       
       .pagination a[aria-current="page"] {
-        background-image: url("page_hover.svg");
+        background-image: url("/images/recipe/page_hover.svg");
         background-repeat: no-repeat;
         background-position: center;
       }
