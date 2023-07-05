@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 .table {
-	margin: 0 20px;
+	margin: 0 10px;
 }
 
 .table_Header {
@@ -48,7 +48,7 @@
 
 .table_Column {
 	width: 950px;
-	height: 80px;
+	height: 90px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -111,7 +111,7 @@
 	text-align: left;
 }
 
-#table_Product_Summary {
+#table_Product {
 	font: var(--highlight16);
 }
 
@@ -124,9 +124,6 @@
 #table_Review {
 	min-width: 100px;
 	width: 100px;
-}
-
-#table_Review {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
