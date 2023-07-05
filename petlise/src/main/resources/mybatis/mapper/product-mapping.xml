@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="shop.editProduct.ProductDAO">
+
+	<insert id="insertProduct" parameterType="productdto">
+	<!-- product_id / pet_type / category / product_num / reg_date -->
+	<!-- product_name / price / quatity / image_main / image_detail -->
+		insert into products(
+		product_id,pet_type,category,product_num,reg_date,
+		product_name,price,quatity,image_main,image_detail
+		)
+		values(
+		#{product_id},#{pet_type},#{category},#{product_num},#{reg_date},
+		#{product_name},#{price},#{quatity},#{image_main},#{image_detail}
+		)
+	</insert>
+
+	<select id="maxProductNum" resultType="int">
+		select max(product_num) from products;
+	</select>
+
+	<select id="countTotalProductNum" resultType="int">
+		select count(*) from products;
+	</select>
+	
+</mapper>

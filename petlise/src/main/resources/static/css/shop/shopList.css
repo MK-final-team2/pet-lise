@@ -50,6 +50,7 @@
         border: 2px solid var(--light-sub, #FBC252);
 
         > div {
+        	
             > img {
                 width: 70px;
             }
@@ -66,6 +67,7 @@
         }
 
         > div:hover{
+        	cursor: pointer;
             > img {
                 filter: invert(72%) sepia(19%) saturate(1271%) hue-rotate(355deg) brightness(107%) contrast(97%);
             }

@@ -5,6 +5,7 @@
 
 	<typeAliases>
 		<typeAlias type="user.UserDTO" alias="userdto" />
+		<typeAlias type="shop.editProduct.ProductDTO" alias="productdto" />
 	</typeAliases>
 
 </configuration>

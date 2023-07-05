@@ -1,8 +1,8 @@
 document.getElementById('dropdown').innerHTML += `
   <div class="select">
-    <span>카테고리 선택</span>
+    <span>동물 카테고리 선택</span>
   </div>
-  <input type="hidden" />
+  <input type="hidden" id="pet_type" />
   <ul class="dropdown-menu">
     <li>강아지</li>
     <li>고양이</li>
@@ -25,6 +25,7 @@ $('#dropdown .dropdown-menu li').click(function (e) {
   let value = $(this).text();
   $(this).parents('.dropdown').find('span').text(value);
   $(this).parents('.dropdown').find('input').val(value);
+  $(this).parents('.dropdown').find('.dropdown-menu').slideUp(300);
 
     $('#smallCategory').css('display', 'block');
     $('#dropdown2 .dropdown-menu').html(`
@@ -54,4 +55,6 @@ $('#dropdown .dropdown-menu li').click(function (e) {
     $(this).parents('.dropdown-menu').slideUp(300);
     $(this).parents('.dropdown').removeClass('active');
   });
+  
+  
 });
