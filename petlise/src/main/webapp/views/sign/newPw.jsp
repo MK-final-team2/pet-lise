@@ -8,22 +8,22 @@ pageEncoding="UTF-8"%>
     <link rel="icon" href="/images/favicon.ico" />
     <link rel="apple-touch-icon" href="/images/favicon.ico" />
     <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/sign/findPw.css" />
+    <link rel="stylesheet" href="/css/sign/findpw.css" />
     <title>Pet LiSe</title>
   </head>
   <body>
     <main class="container">
       <div class="dogImage">
-        <a href="#">
+        <a href="/signin">
           <img src="/images/login-logo.png" alt="로고" />
         </a>
         <img src="/images/dogs.svg" alt="강아지" />
       </div>
       <div class="loginWrapper">
         <div class="tabMenu">
-          <a href="/findId">아이디 찾기</a>
+          <a href="/findid">아이디 찾기</a>
           <span></span>
-          <a href="/findPw">비밀번호 찾기</a>
+          <a href="/findpw">비밀번호 찾기</a>
         </div>
         <form class="loginform">
           <div class="divWrapper">
