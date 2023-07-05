@@ -8,7 +8,7 @@ table thead {
 }
 table thead tr {
   display: grid;
-  grid-template-columns: auto 70px 90px 100px auto 120px;
+  grid-template-columns: 150px auto 70px 90px 100px auto 120px;
 }
 table thead th {
   font: var(--highlight16);
@@ -21,7 +21,7 @@ table tbody {
 }
 table tbody tr {
   display: grid;
-  grid-template-columns: auto 70px 90px 100px auto 120px;
+  grid-template-columns: 150px auto 70px 90px 100px auto 120px;
   border-bottom: 1px solid var(--light-point);
 }
 table tbody td {

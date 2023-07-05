@@ -36,8 +36,7 @@ pageEncoding="UTF-8"%>
           </div>
           <div id="table_Product">
             <a href="#">
-              <span id="table_Product_Summary">상품 A</span>
-              <span id="table_Product_Detail">옵션설명옵션설명옵션설명</span>
+              <span>상품 A</span>
             </a>
           </div>
           <div id="table_Star">
@@ -69,6 +68,6 @@ pageEncoding="UTF-8"%>
       </div>
     </div>
 
-    <script src="../../../resources/static/js/mypageMenu.js"></script>
+    <script src="/js/mypageMenu.js"></script>
   </body>
 </html>

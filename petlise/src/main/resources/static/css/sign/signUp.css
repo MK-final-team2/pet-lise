@@ -52,13 +52,20 @@
   align-items: center;
   justify-content: center;
 }
-.emailWrapper .checkEmail {
+.emailWrapper .checkEmailWrap {
   margin-bottom: 5px;
 }
-.emailWrapper .checkEmail button {
+.emailWrapper .checkEmailWrap button {
   min-width: 125px;
   width: 125px;
   margin-left: 5px;
+}
+.required {
+	position: relative;
+	top: -3px;
+	padding-left: 5px;
+	color: red;
+	font: var(--body14);
 }
 .emailWrapper .CertificationEmail button {
   min-width: 190px;
@@ -97,7 +104,7 @@
 .chooseAnimal > p {
   margin-bottom: 15px !important;
 }
-.chooseAnimal input[type='checkbox'] {
+.chooseAnimal input[type='radio'] {
   display: none;
 }
 .chooseAnimal .inputWrapper {
@@ -113,7 +120,7 @@
   justify-content: center;
   font: var(--body14);
 }
-.chooseAnimal .inputWrapper label input[type='checkbox'] + label {
+.chooseAnimal .inputWrapper label input[type='radio'] + label {
   position: relative;
   min-width: 12px;
   width: 13px;
@@ -150,6 +157,10 @@ input[id='animal2']:checked + label::before {
 .petWrapper .petName {
   margin-bottom: 5px;
 }
+.petWrapper .petAge::-webkit-outer-spin-button,
+.petWrapper .petAge::-webkit-inner-spin-button  {
+  -webkit-appearance: none;
+}
 
 ul .list:first-of-type {
   margin-bottom: 25px;
@@ -159,10 +170,10 @@ ul .list label {
   align-items: center;
   justify-content: left;
 }
-ul .list label input[type='checkbox'] {
+ul .list label input[type='radio'] {
   display: none;
 }
-ul .list label input[type='checkbox'] + label {
+ul .list label input[type='radio'] + label {
   position: relative;
   width: 20px;
   height: 20px;

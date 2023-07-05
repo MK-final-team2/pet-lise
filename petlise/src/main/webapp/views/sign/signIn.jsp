@@ -14,7 +14,7 @@ pageEncoding="UTF-8"%>
   <body>
     <main class="container">
       <div class="dogImage">
-        <a href="#">
+        <a href="/signin">
           <img src="/images/login-logo.png" alt="로고" />
         </a>
         <img src="/images/dogs.svg" alt="강아지" />
@@ -33,9 +33,9 @@ pageEncoding="UTF-8"%>
           <button>이메일로 로그인하기</button>
         </form>
         <div class="findlink">
-          <a href="/findId">아이디 찾기</a>
+          <a href="/findid">아이디 찾기</a>
           <span></span>
-          <a href="/findPw">비밀번호 찾기</a>
+          <a href="/findpw">비밀번호 찾기</a>
         </div>
         <div class="line"></div>
         <div class="snsWrapper">

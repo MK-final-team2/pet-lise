@@ -9,7 +9,18 @@
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-	<div class="payment"><span class="material-symbols-outlined" id="cart_Icon">shopping_cart</span>주문 / 결제</div>
+	<div id="layout">
+     <div id="title">
+         <div id="first">
+             <img src="/images/shop/shoplist/cart_yellow.svg" alt="cart"/>
+             <span>주문/결제</span>
+         </div>
+         <div id="second">
+         	<span> 01 장바구니 >&nbsp; </span>
+             <span class="second_active">02 주문/결제</span>
+             <span>&nbsp; > 03 주문완료</span>
+         </div>
+     </div><!--title end-->
 		<div class="contents">
 			<div class="contents_Table">
 				<div class="table">
@@ -33,8 +44,7 @@
 					<div id="table_Product_Info">
 						<p>
 							<a href="#">
-								<span id="table_Product_Summary">상품 A</span>
-								<span id="table_Product_Detail">옵션설명옵션설명옵션설명</span>				
+								<span>상품 A</span>				
 							</a>
 						</p>
 					</div>
@@ -52,7 +62,7 @@
 						</p>
 				    </div>
 	   			</div>			
-	<!-- 		</c:forEach> -->
+<!-- 		</c:forEach> -->
 			
 
 			<div class="order_Detail">
@@ -101,7 +111,7 @@
 			
 				<div class="receipt">
 					<div class="receipt_Detail">
-						<div class="receipt_Title"><img src="/images/mypage/coin2.svg" id="receipt_Icon">포인트 영수증</div>
+						<div class="receipt_Title"><img src="/images/mypage/coin2.svg" id="receipt_Icon">주문내역</div>
 						<div class="receipt_Contents">
 							<div class="receipt_Col_1">
 								<div class="receipt_Row_0">
@@ -149,7 +159,7 @@
 			<div class="Btn">
 				<input type=button value="결제하기" id="orderList_Btn" onclick="#">
 			</div>
-			
-		</div>			
+		</div>
+	</div>				
 </body>
 </html>

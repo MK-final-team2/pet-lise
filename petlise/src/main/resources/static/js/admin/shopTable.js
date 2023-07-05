@@ -5,6 +5,7 @@ for (let i = 0; i < table.length; i++) {
   <thead>
     <tr>
       <th>카테고리</th>
+      <th>상품코드</th>
       <th>상품명</th>
       <th>판매가능갯수</th>
       <th>금액</th>
@@ -16,6 +17,7 @@ for (let i = 0; i < table.length; i++) {
   <tbody>
     <tr>
       <td>사료</td>
+      <td>D01_001</td>
       <td>레시피 제목인듯 아닌듯 맞는듯 함 레시피 제목인듯 아닌듯 맞는듯 함 레시피 제목인듯 아닌듯 맞는듯 함</td>
       <td>100</td>
       <td>10,000원</td>
