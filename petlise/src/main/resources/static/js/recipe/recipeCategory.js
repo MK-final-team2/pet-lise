@@ -38,6 +38,7 @@ $('#dropdown .dropdown-menu li').click(function (e) {
   let value = $(this).text();
   $(this).parents('.dropdown').find('span').text(value);
   $(this).parents('.dropdown').find('input').val(value);
+  $(this).parents('.dropdown').find('.dropdown-menu').slideUp(300);
 
   if (value === '일반식') {
     $('#smallCategory').css('display', 'block');

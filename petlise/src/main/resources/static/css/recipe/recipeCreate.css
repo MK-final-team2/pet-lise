@@ -1,6 +1,7 @@
 .wrap {
     width: 1440px;
     margin: 0 auto;
+    padding: 60px 0 0;
 }
 
 .title_recipe {   
@@ -133,14 +134,13 @@
             padding: 0 0 0 20px;    
      >option{
         border: 2px solid var(--light-stroke);
-
      }
 }
 
 .ql-toolbar {
   width: 85%;
-  border: 2px solid var(--light-stroke) !important;
-  border-bottom: 0.5px solid var(--light-stroke) !important;
+  border: 2px solid var(--light-stroke);
+  border-bottom: 0.5px solid var(--light-stroke);
   border-radius: 10px 10px 0 0;
   margin-left: 105px;
   margin-top: -15px;
@@ -169,12 +169,9 @@
   color: var(--light-text);
   background: var(--light-stroke);
   margin-bottom: 130px;
-  
 }
 
 .editButton:hover {
   color: var(--dark-text);
   background: var(--light-point);
 }
-
-
