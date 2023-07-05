@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"mypage", "shop", "user", "recipe"}})
+@ComponentScan(basePackages = {"mypage", "shop", "user", "recipe"})
 @MapperScan(basePackages = {"mypage", "shop","user", "shop.editProduct","shop.admin"})
 public class PetliseApplication {
 
