@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="shop.editProduct.ProductDAO">
+<mapper namespace="admin.shop.ProductDAO">
 
 	<insert id="insertProduct" parameterType="productdto">
 	<!-- product_id / pet_type / category / product_num / reg_date -->
@@ -22,6 +22,14 @@
 
 	<select id="countTotalProductNum" resultType="int">
 		select count(*) from products;
+	</select>
+	
+	<select id="getAllProduct" resultType="productdto">
+		select * from products where isvisible=true order by product_num;
+	</select>
+
+	<select id="getAllByPetType" resultType="productdto" parameterType="String">
+		select * from products where pet_type=#{pet} and isvisible=true order by product_num;
 	</select>
 	
 </mapper>

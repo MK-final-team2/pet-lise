@@ -1,4 +1,4 @@
-package shop.editProduct;
+package admin.shop;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +11,7 @@ public class EditShopProductController {
 	@Autowired
 	ProductService service;
 	
-	@GetMapping("/editproductform")
+	@GetMapping("/editproduct")
 	public String editProduct() {
 		return "admin/editShopProduct";
 	}
@@ -45,11 +45,13 @@ public class EditShopProductController {
 		int product_nextnum = 0;
 		if(service.countTotalProductNum()!=0) {
 			product_nextnum = service.maxProductNum()+1;
+		}else {
+			product_nextnum = 1;
 		}
 		
 		if(product_nextnum<10) {
 			productId += "00"+product_nextnum;
-		} else if(product_nextnum>10 && product_nextnum<100) {
+		} else if(product_nextnum>=10 && product_nextnum<100) {
 			productId += "0"+product_nextnum;			
 		} else {
 			productId += product_nextnum;						

@@ -1,7 +1,7 @@
 table {
   display: none;
   min-width: calc(100% - 250px - 60px);
-  width: 100%;
+  width: 950px;
   margin-bottom: 50px;
 }
 table thead {
@@ -10,7 +10,7 @@ table thead {
 }
 table thead tr {
   display: grid;
-  grid-template-columns: 100px 120px auto 110px 90px 110px 80px 90px;
+  grid-template-columns: 120px 120px 100px 185px 90px 90px 100px 85px 85px;
 }
 table thead th {
   font: var(--highlight16);
@@ -23,7 +23,7 @@ table tbody {
 }
 table tbody tr {
   display: grid;
-  grid-template-columns: 100px 120px auto 110px 90px 110px 80px 90px;
+  grid-template-columns: 120px 120px 100px 185px 90px 90px 100px 85px 85px;
   border-bottom: 1px solid var(--light-point);
 }
 table tbody td {

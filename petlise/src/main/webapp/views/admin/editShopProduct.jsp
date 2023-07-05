@@ -91,15 +91,16 @@
 					
 					<div class="Wrapper">
 						<p>상품 등록일</p>
-						<input type="date" id="product_regtime" min="<%=today%>"/>
-						<p style="font: var(--body14);">* 상품은 등록일 이후부터 상품목록에 노출됩니다.</p>
+						<input type="date" id="product_regtime" min="<%=today%>" style="margin-bottom:5px"/>
+						<p style="font: var(--body14); margin-top:0px">* 상품은 등록일 이후부터 상품목록에 노출됩니다.</p>
 					</div>
 				</div>
 			</div>
 			<!-- layout end -->
 
 			<div id="btndiv">
-				<button id="editButton">등록하기</button>
+				<button id="cancelButton">취소</button>
+				<button id="editButton">등록</button>
 			</div>
 			
 			
@@ -133,7 +134,7 @@
 	
 
 	<script src="/js/admin/aside.js"></script>
-	<script src="/js/shop/shopCategory.js"></script>
-	<script src="/js/shop/shopFileSend.js"></script>
+	<script src="/js/admin/shop/shopCategory.js"></script>
+	<script src="/js/admin/shop/editShopProduct.js"></script>
 </body>
 </html>

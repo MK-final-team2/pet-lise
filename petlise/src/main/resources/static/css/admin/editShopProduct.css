@@ -67,8 +67,16 @@
 	margin-bottom:50px;
 }
 
+#cancelButton {
+	width: 200px;
+	height: 55px;
+	border-radius: 8px;
+	font: var(--button16);
+	border: 1px solid var(--light-stroke);
+	margin-right: 10px;
+}
 #editButton {
-	width: 250px;
+	width: 200px;
 	height: 55px;
 	border-radius: 8px;
 	font: var(--button16);
