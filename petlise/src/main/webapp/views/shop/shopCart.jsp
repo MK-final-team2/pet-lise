@@ -12,13 +12,95 @@
 <title> Pet LiSe </title>
 <script src="/js/jquery-3.6.4.min.js"></script>
 <script>
-$(document).ready(function(){
+	$(document).ready(function(){
+		
+		$('#allcheck').click(function(){
+			$('.product_check').prop('checked', $(this).prop('checked'));
+		}); // allcheck
+		
+	    $('#all_check_button').click(function(){
+	        var allChecked = $(this).prop('checked');
+	        if (allChecked) {
+	            $(this).prop('checked', false);
+	            $('.product_check').prop('checked', false);
+	            $('#allcheck').prop('checked', false);
+	        } else {
+	            $(this).prop('checked', true);
+	            $('.product_check').prop('checked', true);
+	            $('#allcheck').prop('checked', true);
+	        }
+	    }); // all_check_button
+		
+	    $('.each_delete').click(function(){
+	    	var container = $(this).closest('.cart_product_container');
+	        var productName = $(this).data('product_name');
+	        
+	        $.ajax({
+	            url: 'deletecartlist',
+	            type: 'GET',
+	            data: { product_name: productName },
+	            success: function(response) {
+	                container.remove();
+	                location.href = "/shopcart";
+	            },
+	            error: function(xhr, status, error) {
+	                console.error(error);
+	            }
+	    	}); // ajax
+	    }); // each_delete
+	    
+	    $('#checked_delete_button').click(function() {
+	        var checkedItems = $('.product_check:checked');
+	        checkedItems.each(function() {
+	            var container = $(this).closest('.cart_product_container');
+	            
+	            $.ajax({
+	                url: 'deletecartlist',
+	                type: 'GET',
+	                data: { product_name: container.find('.cart_info a').text().trim() },
+	                success: function(response) {
+	                    container.remove();
+	                    location.href = "/shopcart";
+	                },
+	                error: function(xhr, status, error) {
+	                    console.error(error);
+	                }
+	            }); // ajax
+	        }); // each
+	    }); // checked_delete
+	    
+	    var price = 0;
+	    $('.cart_product_container').each(function(){
+	        var productPrice = parseInt($(this).find('[data-product_price]').data('product_price'));
+	        price += productPrice;
+	    }); 
 
-});
+	    var formatPrice = price.toLocaleString();
+	    var payment = '상품가격 ' + formatPrice + ' point + 배송비 3,000 point =&nbsp;&nbsp;';
+	    $('#payment').html(payment);
+
+	    var subTotal = 0;
+	    var total = 0;
+	    $('.cart_product_container').each(function(){
+	        var priceTotal = parseInt($(this).find('[data-price_total]').data('price_total'));
+	        subTotal += priceTotal;
+	        total = subTotal + 3000;
+	    });
+
+	    var formattedPriceTotal = total.toLocaleString();
+	    var totalPrice = '총 합계 ' + formattedPriceTotal + ' point';
+	    $('#totalPrice').html(totalPrice);
+	    
+	    if (price === 0 && subTotal === 0) {
+	        $('#payment').empty();
+	        $('#totalPrice').empty();
+	    }
+	    
+	}); // ready
 </script>
 </head>
 <body>
-    <div id='layout'>
+    <div id="layout">
         <div id="title">
             <div id="first">
                 <img src="/images/shop/shoplist/cart_yellow.svg" alt="cart"/>
@@ -43,45 +125,50 @@ $(document).ready(function(){
         </div><!--cart_title end-->
 
 		<!-- 장바구니 상품목록 -->
-		<c:forEach begin="1" end="3" varStatus="vs">
-			<div class="cart_product_container">
-				<div style="width: 100px;">
-					<!-- ★★★목록 불러올때 아이디값 각각 넣기★★★ -->
-					<input type="checkbox" id="product_check${vs.count}" class="product_check">
-					<label for="product_check${vs.count}"></label>
-				</div>
-				<div style="width: 460px;" class="cart_info">
-					<img src="" alt="product_img">
-					<div>
-						<a href="#">상품명</a>
+		<div>
+			<c:forEach var="cart" items="${cart }" begin="0" end="2">
+				<div class="cart_product_container">
+					<div style="width: 100px;">
+						<input type="checkbox" id="product_check_${cart }" class="product_check">
+						<label for="product_check_${cart }"></label>
+					</div>
+					<div style="width: 460px;" class="cart_info">
+						<img src="${cart.product_image }" alt="product_img">
+						<div>
+							<a href="#">${cart.product_name }</a>
+						</div>
+					</div>
+					<div style="width: 130px;">${cart.quantity }</div>
+					<div style="width: 130px;" data-product_price="${cart.product_price }">
+						<img src="/images/shop/shopdetail/coin2.svg" alt="cart"
+							style="width: 20px; margin-top: 2px; margin-right: 5px;" /> ${cart.product_price }
+					</div>
+					<div style="width: 130px;" data-price_total="${cart.price_total }">
+						<img src="/images/shop/shopdetail/coin2.svg" alt="cart"
+							style="width: 20px; margin-top: 2px; margin-right: 5px;"/> ${cart.price_total }
+					</div>
+					<div style="width: 100px;">
+						<button class="each_delete" data-product_name="${cart.product_name }"></button>
 					</div>
 				</div>
-				<div style="width: 130px;">1개</div>
-				<div style="width: 130px;">
-					<img src="/images/shop/shopdetail/coin2.svg" alt="cart"
-						style="width: 20px; margin-top: 2px; margin-right: 5px;" /> 10,000
-				</div>
-				<div style="width: 130px;">
-					<img src="/images/shop/shopdetail/coin2.svg" alt="cart"
-						style="width: 20px; margin-top: 2px; margin-right: 5px;" /> 10,000
-				</div>
-				<div style="width: 100px;">
-					<button></button>
-				</div>
+				<!-- 상품1개 -->
+			</c:forEach>
+			<div class="check_delete_button">
+				<button id="checked_delete_button" class="checked_delete">선택삭제</button>
+				<button id="all_check_button" class="all_check">모두선택</button>
 			</div>
-			<!-- 상품1개 -->
-		</c:forEach>
-
+		</div>
+		
 
 		<div id="cart_total">
             <span>총 차감 포인트</span>
-            <span>상품가격 20,000 point + 배송비 3,000 point =&nbsp;</span>
-            <span>총 합계 23,000 point</span>
+            <span id="payment"></span>
+            <span id="totalPrice"></span>
             <button>주문하러가기
                 <img src="/images/shop/shopdetail/pawprint_black.svg" style="width: 25px;">
             </button>
         </div>
 
     </div><!--layout end-->
-</body>
+</body>    
 </html>

@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 public class ProductDTO {
 	String product_id, pet_type, category, reg_date, product_name, image_main, image_detail;
 	int product_num, price, quatity;
-	
-	
+
+
 	public int getProduct_num() {
 		return product_num;
 	}
@@ -68,6 +68,6 @@ public class ProductDTO {
 	public void setQuatity(int quatity) {
 		this.quatity = quatity;
 	}
-	
-	
+
+
 }
