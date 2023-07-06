@@ -7,9 +7,10 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <link rel="stylesheet" href="css/shop/shopCart.css" />
+<link rel="stylesheet" href="css/style.css" />
 <link rel="icon" href="/images/favicon.ico" />
 <link rel="apple-touch-icon" href="/images/favicon.ico" />
-<title> Pet LiSe </title>
+<title> 장바구니 </title>
 <script src="/js/jquery-3.6.4.min.js"></script>
 <script>
 	$(document).ready(function(){
@@ -97,6 +98,11 @@
 	    }
 	    
 	}); // ready
+	
+    function redirectToLink(){
+    	location.href = '#';
+    } // empty_shop 버튼
+    
 </script>
 </head>
 <body>
@@ -126,6 +132,15 @@
 
 		<!-- 장바구니 상품목록 -->
 		<div>
+			<c:if test="${empty cart }">
+				<div class="cart_empty">장바구니를 담아주세요 
+					<button class="empty_shop" onclick="redirectToLink()">쇼핑하기</button>
+				</div>
+				<script>
+		            document.getElementById("checked_delete_button").style.display = "none";
+		            document.getElementById("all_check_button").style.display = "none";
+        		</script>
+			</c:if>		
 			<c:forEach var="cart" items="${cart }" begin="0" end="2">
 				<div class="cart_product_container">
 					<div style="width: 100px;">
@@ -154,12 +169,13 @@
 				<!-- 상품1개 -->
 			</c:forEach>
 			<div class="check_delete_button">
-				<button id="checked_delete_button" class="checked_delete">선택삭제</button>
-				<button id="all_check_button" class="all_check">모두선택</button>
+				<c:if test="${not empty cart}">
+					<button id="checked_delete_button" class="checked_delete">선택삭제</button>
+					<button id="all_check_button" class="all_check">모두선택</button>
+				</c:if>
 			</div>
 		</div>
 		
-
 		<div id="cart_total">
             <span>총 차감 포인트</span>
             <span id="payment"></span>
