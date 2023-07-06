@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface UserDAO {
 	public int insertUser(UserDTO userDTO);
 	public int checkEmail(String email);
-	
+
 }

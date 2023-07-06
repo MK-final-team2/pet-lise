@@ -41,7 +41,7 @@ public class EmailService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return number;
 	}
 }

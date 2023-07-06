@@ -8,7 +8,7 @@ public class UserDTO {
 	Date created_at, deleted_at;
 	String pet_type, profile_image, pet_name, pet_age;
 	String role;
-	
+
 	public String getUser_id() {
 		return user_id;
 	}
@@ -87,7 +87,7 @@ public class UserDTO {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "user_id=" + user_id + ", 이름=" + name + ", 이메일=" + email

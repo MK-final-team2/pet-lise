@@ -43,4 +43,5 @@
 }
 .tabMenu .tabWrap .editButton:hover {
   background-color: var(--light-stroke);
+  font-weight: bold;
 }
