@@ -12,8 +12,8 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/admin/aside.css" />
     <link rel="stylesheet" href="/css/admin/pagination.css" />
-    <link rel="stylesheet" href="/css/admin/tabMenu.css" />
     <link rel="stylesheet" href="/css/admin/shopManagement.css" />
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <title>Pet LiSe</title>
   </head>
   <body>
@@ -25,24 +25,46 @@ pageEncoding="UTF-8"%>
 
         <div class="tabMenu">
           <div class="tabWrap">
-            <ul class="list">
-            <c:if test="${petType eq 'all'}">
-              <li class="isOn"><a href="/adminshoplist" class="btn">전체</a></li>            
-              <li><a href="/adminshoplist?petType=dog" class="btn">강아지</a></li>
-              <li><a href="/adminshoplist?petType=cat" class="btn">고양이</a></li>
-            </c:if>
-            <c:if test="${petType eq 'dog'}">
-              <li><a href="/adminshoplist" class="btn">전체</a></li>            
-              <li class="isOn"><a href="/adminshoplist?petType=dog" class="btn">강아지</a></li>
-              <li><a href="/adminshoplist?petType=cat" class="btn">고양이</a></li>
-            </c:if>
-            <c:if test="${petType eq 'cat'}">
-              <li><a href="/adminshoplist" class="btn">전체</a></li>            
-              <li><a href="/adminshoplist?petType=dog" class="btn">강아지</a></li>
-              <li class="isOn"><a href="/adminshoplist?petType=cat" class="btn">고양이</a></li>
-            </c:if>
-            </ul>
-            <a href="/editproduct" class="editButton" style="width:150px">신규 상품 등록</a>
+            <div class="categoryWrap">
+	            <div class="category">
+	              <div id="dropdown" class="dropdown">
+	              	<div class="select">
+					    <span>전체</span>
+					</div>
+					<input type="hidden" id="pet_type" />
+					<ul class="dropdown-menu">
+						<li>전체</li>
+						<li>강아지</li>
+						<li>고양이</li>
+					</ul>
+	              </div>
+		        </div>
+	
+	            <div class="category" id="smallCategory">
+	              <div id="dropdown2" class="dropdown">
+	                <div class="select">
+	                  <span>전체</span>
+	                </div>
+	                <input type="hidden" />
+	                <ul id="dropdown-menu" class="dropdown-menu">
+						<li>전체</li>
+	                	<li>사료</li>
+					    <li>간식</li>
+					    <li>영양제</li>
+					    <li>장난감</li>
+	                </ul>
+	              </div>
+	            </div>
+	            
+	            <div id="searchdiv" >
+		            <input type="text" id="keyword" placeholder="상품명 검색"/>
+		            <button id="searchbtn"><img src="/images/admin/search.svg"></button>
+	            </div><!-- searchdiv -->
+	            
+         	 </div><!-- categoryWrap -->
+         	
+         	 
+            <a href="/editproduct" class="editButton">신규 상품 등록</a>
           </div>
 
           <div class="tableWrap">
@@ -91,5 +113,6 @@ pageEncoding="UTF-8"%>
     <script src="/js/admin/aside.js"></script>
     <script src="/js/admin/pagination.js"></script>
     <script src="/js/admin/shop/shopManagement.js"></script>
+    <script src="/js/admin/shop/shopCategory_list.js"></script>
   </body>
 </html>
