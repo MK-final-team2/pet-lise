@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -156,11 +157,11 @@
 					<div style="width: 130px;">${cart.quantity }</div>
 					<div style="width: 130px;" data-product_price="${cart.product_price }">
 						<img src="/images/shop/shopdetail/coin2.svg" alt="cart"
-							style="width: 20px; margin-top: 2px; margin-right: 5px;" /> ${cart.product_price }
+							style="width: 20px; margin-top: 2px; margin-right: 5px;" /><fmt:formatNumber value="${cart.product_price }" pattern="#,###" />
 					</div>
 					<div style="width: 130px;" data-price_total="${cart.price_total }">
 						<img src="/images/shop/shopdetail/coin2.svg" alt="cart"
-							style="width: 20px; margin-top: 2px; margin-right: 5px;"/> ${cart.price_total }
+							style="width: 20px; margin-top: 2px; margin-right: 5px;"/><fmt:formatNumber value="${cart.price_total }" pattern="#,###" />
 					</div>
 					<div style="width: 100px;">
 						<button class="each_delete" data-product_name="${cart.product_name }"></button>
