@@ -9,15 +9,15 @@ import org.springframework.stereotype.Service;
 public class ProductService {
 	@Autowired
 	ProductDAO dao;
-	
+
 	int insertProduct(ProductDTO dto) {
 		return dao.insertProduct(dto);
 	}
-	
+
 	int maxProductNum() {
 		return dao.maxProductNum();
 	}
-	
+
 	int countTotalProductNum() {
 		return dao.countTotalProductNum();
 	}
