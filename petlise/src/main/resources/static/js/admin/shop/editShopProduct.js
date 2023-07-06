@@ -23,6 +23,11 @@ $("#file2").change(function() {
 	}
 });
 
+$("#cancelButton").on("click",function(){
+	location.href = "/adminshoplist";
+});
+
+
 $("#editButton").on("click",function(){
 	if($("#pet_type").val()==""){		
 		$("#alertmodal .modal_text").html("동물 카테고리를 확인해 주세요.");
@@ -58,6 +63,7 @@ $("#editButton").on("click",function(){
 });
 
 $(".createbtn").on('click', function(){
+	$(this).parents(".modal").css('display', 'none');
 	$.ajax({
 		type : 'post',
 		url : '/productsave',
@@ -75,16 +81,18 @@ $(".createbtn").on('click', function(){
     	},
 	    error : function(request, status, error) { // 결과 에러 콜백함수
 	        console.log(error)
-	    },
-	    complete : function(){
-            $("#confirm_modal").css('display', 'none');
-        }
+	    }
 	});
 });
 $(".cancelbtn").on('click', function(){
 	$(this).parents(".modal").css('display', 'none');
 });
-$(".okaybtn").on('click', function(){
+
+$("#okaymodal .okaybtn").on('click', function(){
 	$(this).parents(".modal").css('display', 'none');
-	location.href = "/adminproductlist";
+	location.href = "/adminshoplist";
+});
+
+$("#alertmodal .okaybtn").on('click', function(){
+	$(this).parents(".modal").css('display', 'none');
 });
