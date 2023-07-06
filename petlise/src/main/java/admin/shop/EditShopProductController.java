@@ -51,13 +51,8 @@ public class EditShopProductController {
 
 		if(product_nextnum<10) {
 			productId += "00"+product_nextnum;
-<<<<<<< HEAD:petlise/src/main/java/admin/shop/EditShopProductController.java
 		} else if(product_nextnum>=10 && product_nextnum<100) {
 			productId += "0"+product_nextnum;			
-=======
-		} else if(product_nextnum>10 && product_nextnum<100) {
-			productId += "0"+product_nextnum;
->>>>>>> a6c72842b5762105538200bd4ae05d2a9a7caff0:petlise/src/main/java/shop/editProduct/EditShopProductController.java
 		} else {
 			productId += product_nextnum;
 		}
