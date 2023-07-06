@@ -10,10 +10,10 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <link rel="stylesheet" href="/css/board/boardMain.css">
     <link rel="stylesheet" href="/css/style.css" />  
     <title>자유게시판메인</title>
-    <!--  <script src="/js/jquery-3.6.4.min.js"></script>
+    <script src="/js/jquery-3.6.4.min.js"></script>
         <script>
       $(document).ready(function () {});
-    </script>  -->
+    </script>  
 </head>
 <body>
     
@@ -32,15 +32,15 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               </div>
             
                 <div class="board_main_category_btn1">
-                    <button><a href="boardMain.jsp">자유게시판</a></button>
+                    <button><a href="boardMain">자유게시판</a></button>
                 </div>
                 <div class="board_main_category_btn2">
-                    <button><a href="petplaceMain.jsp"> 펫플레이스</a></button>
+                    <button><a href="petplaceMain"> 펫플레이스</a></button>
                 
             </div>
             
             <div class="bt_wrap">
-                <a href="boardPost.html" class="on">글쓰기</a>
+                <a href="boardWrite" class="on">글쓰기</a>
             </div>
 
            

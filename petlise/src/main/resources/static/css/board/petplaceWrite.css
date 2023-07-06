@@ -1,0 +1,105 @@
+
+#container {
+  margin: 0 auto;
+  position: relative;
+  width: 1240px;
+  
+}
+
+.board_title{
+	color: var(--light-text);
+	font:var(--heading24);
+	text-align: center;
+	margin-bottom: 93px;
+	}
+
+.contents p{
+	font:var(--body16);
+}
+
+.write_title {
+  width: 1240px;
+ height: 50px;
+ padding: 0 25px;
+  border: 2px solid var(--light-stroke);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.categoryWrap {
+  width: 100%;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  
+}
+
+
+
+#dropdown {
+  position: relative;
+  width: 292px;
+ height: 46px;
+
+  border: 1.5px solid var(--light-stroke);
+  border-radius: 10px;
+  transition: all 0.5s ease;
+  font: var(--body16);
+  padding-left: 23px;
+}
+
+.adressWrap {
+  width: 1240px;
+height: 140px;
+
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  
+}
+
+#sample6_postcode{
+width: 187px;
+height: 50px;
+
+border-radius: 10px;
+border: 1px solid var(--light-stroke);
+	
+}
+
+#sample6_detailAddress{
+width: 1240px;
+height: 50px;
+border-radius: 10px;
+border: 1px solid var(--light-stroke, #DED4C7);
+margin-bottom: 30px;
+}
+
+#adressBtn{
+	border-radius: 10px;
+border: 1px solid var(--light-stroke, #DED4C7);
+width: 125px;
+height: 50px;
+font:var(--button14);
+margin-left: 10px;
+
+}
+
+
+.writeButton{
+	
+display: flex;
+justify-content: center;
+align-items:center;
+
+width: 250px;
+padding: 16px 96px;
+border-radius: 8px;
+background: var(--light-point);
+font:var(--button14);
+margin: 0 auto;
+}
+
+

@@ -7,127 +7,54 @@
 }
 
 
-.board_title {
+.notice_title {
  
 font: var(--heading24);
   text-align: center; /* 가로 가운데 정렬 */
   margin: 0 auto;
- 
+ margin-bottom: 50px;
   width: 300px;
     
 }
-
   
-  
-  .search-container {
-    margin-left: 1000px;
-    border-radius: 40px;
-    border: 1px solid var(--light-stroke);
-    width: 240px;
-    height: 40px;
-    flex-shrink: 0;
-    
-    margin-right: auto;
-    margin-top: 30px;
-  }
-  
-  .searchbox button {
-    margin-left: 10px;
-    margin-top: 10px;
-    
-  width: 17.5px;
-  height: 17.5px;
-  }
-  
-  .searchbox input {
-    margin-left: 10px;
-    margin-top: 10px;
-    display: inline-block;
-    color: var(--gray4);
-    /* Body 14 */
-    font-size: 14px;
-    font-weight: 400;
-    line-height: normal;
-  }
-  
-  .board_main_category_btn1,
-  .board_main_category_btn2 {
+  .notice_main_category_btn1,
+  .notice_main_category_btn2
+  ,.notice_main_category_btn3
+  ,.notice_main_category_btn4 {
     padding: 8px 30px;
-    gap: 10px;
-    display: inline-block;
+    
+    display : inline-block;
     border-radius: 25px;
   
-    border: 1px solid var(--light-sub);
-    transition: background-color 0.5s ease;
+    border: 1px solid var(--gray4);
+    transition: background-color 0.3s ease;
   }
 
-  .board_main_category_btn1 a,
-.board_main_category_btn2 a{
+  .notice_main_category_btn1 a,
+.notice_main_category_btn2 a,
+.notice_main_category_btn3 a,
+.notice_main_category_btn4 a{
 
 font: var(--button14);
 } 
 
 
-  .board_main_category_btn1:hover,
-  .board_main_category_btn2:hover {
-    background-color: var(--light-sub-hover, #F7A400);
+  .notice_main_category_btn1:hover,
+  .notice_main_category_btn2:hover,
+  .notice_main_category_btn3:hover,
+  .notice_main_category_btn4:hover {
+    background-color: var(--gray4);
   }
   
-  .board_main_category_btn1 {
-    background-color: var(--light-sub-hover, #F7A400);
+  .notice_main_category_btn1 {
+    background-color: var(--gray4);
   
   }
   
-  .board_main_category_btn2 {
-    margin-left: 30px;
-  }
-  
-  .bt_wrap {
-    margin-left: 1120px;
-    margin-top: 20px;
-    width: 106px;
-    height: 37px;
-    border-radius: 5px;
-    border: 1px solid var(--light-sub);
-    transition: background-color 0.5s ease;
-  }
-  
-  .bt_wrap:hover {
-    background-color: #F7A400;
-  }
-  
-  .bt_wrap a {
-    color: var(--light-text);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font: var(--button14);
-    line-height: 37px;
-  }
-
-  .petplace_category{
-    display: flex;
-    margin: 0 auto;
-    margin-top: 30px;
-    margin-left: 415px;
-
-
-  }
-  .petplace_category a{
-font: var(--highlight16);
-
-  }
-
-.petplace_category a.on{
-    
-    text-decoration: underline;
-    text-decoration-color: var(--light-point);
-   text-underline-offset: 5px;
-    text-decoration-thickness: 1.5px;
-   
-  }
-  .petplace_category div {
-    margin-right: 50px; /* 요소 사이의 간격 조정 */
+  .notice_main_category_btn2,
+   .notice_main_category_btn3,
+    .notice_main_category_btn4 {
+    margin-left: 20px;
   }
   
   .board_list {
@@ -276,44 +203,8 @@ font: var(--body16);
     background-size: cover;
   }
   
-  /* 이미지 추가 */
-
- 
-.dogImg_F {
-  position: relative; /* 상대적인 위치 설정 */
-  top: -535px;
-  left: -137px; /* 좌측 위치를 0으로 설정 */
   
-}
 
-
-.dogImg_F img {
-  width: 150px;
-  height: 150px;
-}
-.dogImg_S {
-
-  position: relative;
-  top: -575px;
-  left: -137px;
-}
-
-.dogImg_S img {
-  width: 150px;
-  height: 150px;
-}
-
-.dogImg_Up {
-
-  position: relative;
-  left: 1100px;
-  top: -1134px;
-}
-
-.dogImg_Up img {
-  width: 150px;
-  height: 150px;
-}
 
   
   

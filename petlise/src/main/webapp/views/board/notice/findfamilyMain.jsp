@@ -7,66 +7,48 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/images/favicon.ico" />
-<link rel="apple-touch-icon" href="/images/favicon.ico" />
-
-    
-    <link rel="stylesheet" href="/css/board/petplaceMain.css">
-   <link rel="stylesheet" href="/css/style.css" />  
-    <title>펫플레이스메인</title>
-      <script src="/js/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="/css/board/noticeMain.css">
+    <link rel="stylesheet" href="/css/style.css" />  
+    <title>공지사항메인</title>
+    <script src="/js/jquery-3.6.4.min.js"></script>
         <script>
       $(document).ready(function () {});
     </script>  
 </head>
 <body>
- 
- 
-    <div class = "container">
-        
-
+    
+    <div id = "container">
         <!-- 본문 -->
         <div class="board_wrap">
-            <div class="board_title">
-                펫플레이스
-                <img src="/images/board/petplaceLogo.png" style="margin-left: -7px;" alt="펫플레이스이미지">
-
-                
+            <div class="notice_title">
+                공지사항	  
             </div> 
             
-            <div class="search-container">
-                <div class="searchbox">
-                    <button type="submit"><img src="/images/board/Vector.png" alt="검색"></button>
-                    <input type="text" placeholder="검색">
-                </div>
+           
               </div>
             
-                <div class="board_main_category_btn1">
-                    <button><a href="boardMain">자유게시판</a></button>
+                <div class="notice_main_category_btn1">
+                    <button><a href="noticeMain.jsp">공지사항</a></button>
                 </div>
-                <div class="board_main_category_btn2">
-                    <button><a href="petplaceMain"> 펫플레이스</a></button>
+                <div class="notice_main_category_btn2">
+                    <button><a href="inquireMain.jsp"> 문의사항</a></button>  
+            </div>
+               <div class="notice_main_category_btn3">
+                    <button><a href="eventMain.jsp"> 이벤트<a></button>
                 
             </div>
-            <div class="petplace_category">
-            <div>
-                <a class="on" href="카페 링크">동반카페</a>
-              </div>
-              <div>
-                <a href="식당 링크">동반식당</a>
-              </div>
-              <div>
-                <a href="산책 링크">동반산책</a>
-              </div>
-              <div>
-                <a href="숙소 링크">동반숙소</a>
-              </div>
-            </div>
-            <div class="bt_wrap">
-                <a href="petplaceWrite" class="on">글쓰기</a>
+               <div class="notice_main_category_btn4">
+                    <button><a href="findfamilyMain.jsp"> 가족찾기</a></button>
             </div>
             
+            
+         
+           
+            <div class="board_list_wrap">
+                
                 <div class="board_list">
+                  
+        
                     <div class="top">
                         <div class="title">제목</div>
                         <div class="writer">작성자</div>
@@ -75,19 +57,20 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                         <div class="like">추천</div>
                     </div>
                     <div>
-                        <div class="title"><a href="#">라떼와 산책중에 바닐라라떼가 맛있는 카페 발견!
-                        </a>
+                      
+                        <div class="title"><a href="#">펫라이스 오픈 기념 이벤트!!! [ 결과발표 ]
+                        </a> 
                         <div class="comment-count">[13]</div></div> <!-- 댓글 수 추가 -->
-                        <div class="writer">라뗴눈나 </div>
-                        <div class="date">2021.10.22</div>
+                        <div class="writer">자몽옵하 </div>
+                        <div class="date">2023.7.22</div>
                         <div class="view">999</div>
                         <div class="like">1120</div>
                     </div>
                     <div>
-                        <div class="title"><a href="#">선선한 카페 테라스에서 반려견과 함께 여유 즐기고 왔습니다.
+                        <div class="title"><a href="#">펫라이스 이용 규칙_Ver 1.0 
                         </a>
                         <div class="comment-count">[200]</div></div> <!-- 댓글 수 추가 -->
-                        <div class="writer">아아메독 </div>
+                        <div class="writer">오은영 </div>
                         <div class="date">2023.2.22</div>
                         <div class="view">1999</div>
                         <div class="like">11120</div>
@@ -100,8 +83,39 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                         <div class="date">2021.10.22</div>
                         <div class="view">999</div>
                         <div class="like">1120</div>
-                    </div>
-                    <div>
+                    </div><div>
+                        <div class="title"><a href="#">제목이 공백2개포함38개까지 들어갑니다짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱
+                        </a>
+                        <div class="comment-count">[5]</div></div> <!-- 댓글 수 추가 -->
+                        <div class="writer">강형욱 </div>
+                        <div class="date">2021.10.22</div>
+                        <div class="view">999</div>
+                        <div class="like">1120</div>
+                    </div><div>
+                        <div class="title"><a href="#">제목이 공백2개포함38개까지 들어갑니다짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱
+                        </a>
+                        <div class="comment-count">[5]</div></div> <!-- 댓글 수 추가 -->
+                        <div class="writer">강형욱 </div>
+                        <div class="date">2021.10.22</div>
+                        <div class="view">999</div>
+                        <div class="like">1120</div>
+                    </div><div>
+                        <div class="title"><a href="#">제목이 공백2개포함38개까지 들어갑니다짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱
+                        </a>
+                        <div class="comment-count">[5]</div></div> <!-- 댓글 수 추가 -->
+                        <div class="writer">강형욱 </div>
+                        <div class="date">2021.10.22</div>
+                        <div class="view">999</div>
+                        <div class="like">1120</div>
+                    </div><div>
+                        <div class="title"><a href="#">제목이 공백2개포함38개까지 들어갑니다짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱
+                        </a>
+                        <div class="comment-count">[5]</div></div> <!-- 댓글 수 추가 -->
+                        <div class="writer">강형욱 </div>
+                        <div class="date">2021.10.22</div>
+                        <div class="view">999</div>
+                        <div class="like">1120</div>
+                    </div><div>
                         <div class="title"><a href="#">제목이 공백2개포함38개까지 들어갑니다짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱
                         </a>
                         <div class="comment-count">[5]</div></div> <!-- 댓글 수 추가 -->
@@ -110,44 +124,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                         <div class="view">999</div>
                         <div class="like">1120</div>
                     </div>
-                    <div>
-                        <div class="title"><a href="#">제목이 공백2개포함38개까지 들어갑니다짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱
-                        </a>
-                        <div class="comment-count">[5]</div></div> <!-- 댓글 수 추가 -->
-                        <div class="writer">강형욱 </div>
-                        <div class="date">2021.10.22</div>
-                        <div class="view">999</div>
-                        <div class="like">1120</div>
-                    </div>
-                    <div>
-                        <div class="title"><a href="#">제목이 공백2개포함38개까지 들어갑니다짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱
-                        </a>
-                        <div class="comment-count">[5]</div></div> <!-- 댓글 수 추가 -->
-                        <div class="writer">강형욱 </div>
-                        <div class="date">2021.10.22</div>
-                        <div class="view">999</div>
-                        <div class="like">1120</div>
-                    </div>
-                    <div>
-                        <div class="title"><a href="#">제목이 공백2개포함38개까지 들어갑니다짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱
-                        </a>
-                        <div class="comment-count">[5]</div></div> <!-- 댓글 수 추가 -->
-                        <div class="writer">강형욱 </div>
-                        <div class="date">2021.10.22</div>
-                        <div class="view">999</div>
-                        <div class="like">1120</div>
-                    </div>
-                    <div>
-                        <div class="title"><a href="#">제목이 공백2개포함38개까지 들어갑니다짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱짱
-                        </a>
-                        <div class="comment-count">[5]</div></div> <!-- 댓글 수 추가 -->
-                        <div class="writer">강형욱 </div>
-                        <div class="date">2021.10.22</div>
-                        <div class="view">999</div>
-                        <div class="like">1120</div>
-                    </div>
-                    
-                    
                 </div>
                 
                 <div class="board_page">
@@ -163,31 +139,20 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                     <a href="#" class="num">8</a>
                     <a href="#" class="num">9</a>
                     <a href="#" class="num">10</a>
+                 
                     <a href="#" class="bt next"></a>
                     <a href="#" class="bt last"></a>
                 </div>
         
                 <div></div>
             </div>
-        
-
-
-
-
-        <!-- 강아지 이미지 부분-->
-        <div class="dogImg_F">
-            <img src="/images/board/dogthird.png" alt="dogImg_F">
         </div>
-        <div class="dogImg_S">
-            <img src="/images/board/dogfourth.png" alt="dogImg_S">
-        </div>
-        <div class="dogImg_Up">
-            <img src="/images/board/searchdog.png" alt="dogImg_up">
-        </div>
-        
 
-        
-        
-    </div>
+
+
+
+ 
+      
+  
 </body>
 </html>
