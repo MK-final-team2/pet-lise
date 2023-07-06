@@ -62,7 +62,7 @@ function checkPw() {
 	let checkpw = $('#checkPassword').val()
 
 	if (pw !== checkpw) {
-		$("#checkPwRequired").text("비밀번호가 동일하지 않습니다.");
+		$("#checkPwRequired").text("비밀번호가 일치하지 않습니다.");
 		$("#checkPwRequired").addClass("required");
 	}
 	else {

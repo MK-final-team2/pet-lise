@@ -24,9 +24,21 @@
 		values(#{email}, #{password}, #{name}, #{address}, 1000, #{pet_type}, #{pet_name}, #{pet_age}, 'user')
 	</insert>
 	
-	<select id="checkEmail" resultType="int" parameterType="string">
+	<select id="checkEmail" parameterType="string" resultType="int">
 		select count(email) from user where email=#{email}
 	</select>
+	
+	<select id="loginUser" parameterType="string" resultType="userdto">
+  		select * from user where email=#{email}
+  	</select>
+  	
+	<select id="searchUser" parameterType="string" resultType="string">
+  		select email from user where name=#{name} and email=#{email}
+  	</select>
+  	
+	<update id="newPassword" parameterType="string">
+		update user set password=#{password} where email=#{email} 
+	</update>
 
 </mapper>
 

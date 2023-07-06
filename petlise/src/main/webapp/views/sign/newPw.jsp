@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -8,8 +8,12 @@ pageEncoding="UTF-8"%>
     <link rel="icon" href="/images/favicon.ico" />
     <link rel="apple-touch-icon" href="/images/favicon.ico" />
     <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/sign/findpw.css" />
+    <link rel="stylesheet" href="/css/sign/searchUser.css" />
     <title>Pet LiSe</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript">
+    	let emp = ${userInfo};
+    </script>
   </head>
   <body>
     <main class="container">
@@ -21,23 +25,26 @@ pageEncoding="UTF-8"%>
       </div>
       <div class="loginWrapper">
         <div class="tabMenu">
-          <a href="/findid">아이디 찾기</a>
-          <span></span>
-          <a href="/findpw">비밀번호 찾기</a>
+          <a href="/searchuser">비밀번호 찾기</a>
         </div>
-        <form class="loginform">
+        <form method="post" action="newpw" class="searchform" name="searchform">
           <div class="divWrapper">
             <div class="inputWrapper">
+              <input type="hidden" name="email" value="${userInfo}" />
               <p>새 비밀번호</p>
-              <input type="password" />
-
+              <input type="password" maxlength="12" oninput="regPw()" id="password" name="password" />
+              <span id="pwRequired"></span>
+              <div class="emp"></div>
               <p>새 비밀번호 확인</p>
-              <input type="password" />
+              <input type="password" maxlength="12" oninput="checkPw()" id="checkPassword" />
+              <span id="checkPwRequired"></span>
             </div>
           </div>
-          <button>확인</button>
+          <button onclick="return check()">확인</button>
         </form>
       </div>
     </main>
+
+    <script src="/js/sign/checkPw.js"></script>
   </body>
 </html>

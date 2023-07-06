@@ -23,15 +23,13 @@ pageEncoding="UTF-8"%>
       </div>
       <div class="loginWrapper">
         <div class="tabMenu">
-          <a href="/searchUser">아이디 찾기</a>
-          <span></span>
-          <a href="/findpw">비밀번호 찾기</a>
+          <a href="/searchuser">비밀번호 찾기</a>
         </div>
         <div class="searchform">
           <div class="divWrapper">
-            <p>일치하는 아이디가 없습니다.</p>
+            <p>일치하는 이메일이 없습니다.</p>
           </div>
-          <button onClick="location.href='/searchuser'">아이디 찾기</button>
+          <button onClick="location.href='/searchuser'">확인</button>
         </div>
       </div>
     </main>
