@@ -9,6 +9,7 @@
 <link rel="apple-touch-icon" href="/images/favicon.ico" />
 <link rel="stylesheet" href="/css/recipe/recipeList.css" />
 <link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/recipe/recipePage.css" />
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>PetLiSe</title>
 </head>
@@ -236,6 +237,7 @@
             </div>
 			
 	            </div>
+					
 				<div class="page">
 					<div class="pagination">
 						<a href="#"><div class="precious"></div></a>
