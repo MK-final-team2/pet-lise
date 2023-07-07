@@ -1,28 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/images/favicon.ico" />
-    <link rel="apple-touch-icon" href="/images/favicon.ico" />
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/admin/aside.css" />
-    <link rel="stylesheet" href="/css/admin/pagination_new.css" />
-    <link rel="stylesheet" href="/css/admin/shopManagement.css" />
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <title>Pet LiSe</title>
-  </head>
-  <body>
-    <div class="container">
-      <div id="asideMenu"></div>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="/images/favicon.ico" />
+<link rel="apple-touch-icon" href="/images/favicon.ico" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/admin/aside.css" />
+<link rel="stylesheet" href="/css/admin/pagination_new.css" />
+<link rel="stylesheet" href="/css/admin/shopManagement.css" />
+<link rel="stylesheet" href="/css/shop/modal.css" />
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<title>Pet LiSe</title>
+</head>
+<body>
+	<div class="container">
+		<div id="asideMenu"></div>
 
-      <main>
-        <p>라이스샵 등록상품관리</p>
+		<main>
+			<p id="listhome">라이스샵 등록상품관리</p>
 
 			<div class="tabMenu">
 				<div class="tabWrap">
@@ -30,9 +31,12 @@ pageEncoding="UTF-8"%>
 						<div class="category">
 							<div id="dropdown" class="dropdown">
 								<div class="select">
-									<span>전체</span>
+									<span> <c:if
+											test="${param.searchType1 == '' || param.searchType1 eq null}">전체</c:if>
+										${param.searchType1}
+									</span>
 								</div>
-								<input type="hidden" id="pet_type" />
+								<input type="hidden" id="petType" value="${param.searchType1}" />
 								<ul class="dropdown-menu">
 									<li>전체</li>
 									<li>강아지</li>
@@ -44,9 +48,13 @@ pageEncoding="UTF-8"%>
 						<div class="category" id="smallCategory">
 							<div id="dropdown2" class="dropdown">
 								<div class="select">
-									<span>전체</span>
+									<span> <c:if
+											test="${param.searchType2 == '' || param.searchType2 eq null }">전체</c:if>
+										${param.searchType2}
+									</span>
 								</div>
-								<input type="hidden" />
+								<input type="hidden" id="productType"
+									value="${param.searchType2}" />
 								<ul id="dropdown-menu" class="dropdown-menu">
 									<li>전체</li>
 									<li>사료</li>
@@ -58,43 +66,59 @@ pageEncoding="UTF-8"%>
 						</div>
 
 						<div id="searchdiv">
-							<input type="text" id="keyword" placeholder="상품명 검색" />
+							<c:choose>
+								<c:when test="${param.keyword == '' || param.keyword eq null}">
+									<input type="text" id="keyword" placeholder="상품명 검색" />
+								</c:when>
+								<c:otherwise>
+									<input type="text" id="keyword" value="${param.keyword}" />
+								</c:otherwise>
+							</c:choose>
 							<button id="searchbtn">
 								<img src="/images/admin/search.svg">
 							</button>
 						</div>
 						<!-- searchdiv -->
-
 					</div>
 					<!-- categoryWrap -->
 
-
-					<a href="/editproduct" class="editButton">신규 상품 등록</a>
+					<a href="/shopproductregister" class="createbtn">신규 상품 등록</a>
 				</div>
 
 				<div class="tableWrap">
 					<table class="table" style="display: block">
 						<thead>
 							<tr>
-								<th>동물카테고리</th>
-								<th>상품카테고리</th>
+								<th>동물구분</th>
+								<th>상품구분</th>
 								<th>상품코드</th>
 								<th>상품명</th>
 								<th>상품재고</th>
 								<th>금액</th>
 								<th>등록일</th>
+								<th>판매구분</th>
 								<th>정보수정</th>
 								<th>상품삭제</th>
 							</tr>
 						</thead>
 
 						<tbody>
+							<c:if test="${fn:length(response.list) == 0}">
+								<tr>
+									<td colspan="9" class="no_data_msg">
+										<div>
+											검색된 결과가 없습니다.<br> 카테고리 및 상품명을 확인해 주세요.
+										</div>
+									</td>
+								</tr>
+							</c:if>
+
 							<c:forEach var="product" items="${response.list}">
 								<tr>
 									<td>${product.pet_type}</td>
 									<td>${product.category}</td>
-									<td>${product.product_id}</td>
-									<td>${product.product_name}</td>
+									<td class="productid">${product.product_id}</td>
+									<td class="productname">${product.product_name}</td>
 									<td><fmt:formatNumber value="${product.quatity}"
 											pattern="#,###" />개</td>
 									<td><fmt:formatNumber value="${product.price}"
@@ -102,8 +126,12 @@ pageEncoding="UTF-8"%>
 									<td><fmt:parseDate value="${product.reg_date}" var="reg"
 											pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate
 											value="${reg}" pattern="yyyy-MM-dd" /></td>
-									<td>수정</td>
-									<td>삭제</td>
+									<td>
+									<c:if test="${product.isvisible}">판매중</c:if>
+									<c:if test="${!product.isvisible}">품절</c:if>									
+									</td>
+									<td class="table_btnbox"><button class="editbtn">수정</button></td>
+									<td class="table_btnbox"><button class="deletebtn">삭제</button></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -112,41 +140,87 @@ pageEncoding="UTF-8"%>
 
 
 				<div id="pagination">
-					<c:if test="${response.pagination.existPrevPage}">
-					<div class="pagefirst">
-						<div class="prevArrow"></div>
-						<div class="prevArrow" style="margin-left:-3px"></div>
-					</div>
-					<div class="prev" id="${response.pagination.endPage-10}">
-						<div class="prevArrow"></div>
-					</div>
-					 </c:if>
-					 
-					 <c:forEach begin="${response.pagination.startPage}" end="${response.pagination.endPage}" varStatus="vs">
-        				<c:if test="${vs.index == param.page}">
-							<div class="pageNumber active">${vs.index}</div>
-        				</c:if>
-        				<c:if test="${vs.index != param.page}">
-        					<div class="pageNumber">${vs.index}</div>
-        				</c:if>
-	                </c:forEach>
-					
-					<c:if test="${response.pagination.existNextPage}">
-					<div class="next" id="${response.pagination.startPage+10}">
-						<div class="nextArrow"></div>
-					</div>
-					<div class="pagelast" id="${response.pagination.totalPageCount}">
-						<div class="nextArrow"></div>
-						<div class="nextArrow" style="margin-left:-6px"></div>
-					</div>
+					<c:if test="${fn:length(response.list) != 0}">
+						<div class="pagefirst"
+							<c:if test="${!response.pagination.existPrevPage}"> style="visibility: hidden;" </c:if>>
+							<div class="prevArrow"></div>
+							<div class="prevArrow" style="margin-left: -3px"></div>
+						</div>
+						<div class="prev" id="${response.pagination.endPage-10}"
+							<c:if test="${!response.pagination.existPrevPage}"> style="visibility: hidden;" </c:if>>
+							<div class="prevArrow"></div>
+						</div>
+
+						<c:choose>
+							<c:when test="${param.page eq null}">
+								<c:forEach begin="1" end="10" varStatus="vs">
+									<c:if test="${vs.index == 1}">
+										<div class="pageNumber active">${vs.index}</div>
+									</c:if>
+									<c:if test="${vs.index != 1}">
+										<div class="pageNumber">${vs.index}</div>
+									</c:if>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<c:forEach begin="${response.pagination.startPage}"
+									end="${response.pagination.endPage}" varStatus="vs">
+									<c:if test="${vs.index == param.page}">
+										<div class="pageNumber active">${vs.index}</div>
+									</c:if>
+									<c:if test="${vs.index != param.page}">
+										<div class="pageNumber">${vs.index}</div>
+									</c:if>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+
+						<div class="next" id="${response.pagination.startPage+10}"
+							<c:if test="${!response.pagination.existNextPage}"> style="visibility: hidden;" </c:if>>
+							<div class="nextArrow"></div>
+						</div>
+						<div class="pagelast" id="${response.pagination.totalPageCount}"
+							<c:if test="${!response.pagination.existNextPage}"> style="visibility: hidden;" </c:if>>
+							<div class="nextArrow"></div>
+							<div class="nextArrow" style="margin-left: -6px"></div>
+						</div>
 					</c:if>
 				</div>
 			</div>
 		</main>
-    </div>
+	</div>
+	
+	<div class="modal" id="edit_modal">
+		<div class="modal_contents">
+			<input type="hidden" value="" />
+			<div class="modal_text"></div>
+			<div class="modal_btn">
+				<button class="modal_cancelbtn">취소</button>
+				<button class="modal_editbtn">수정하기</button>
+			</div>
+		</div>
+	</div>
+	<div class="modal" id="delete_modal">
+		<div class="modal_contents">
+			<input type="hidden" value="" />
+			<div class="modal_text"></div>
+			<div class="modal_btn">
+				<button class="modal_cancelbtn">취소</button>
+				<button class="modal_deletebtn">삭제</button>
+			</div>
+		</div>
+	</div>
+	<div class="modal" id="delete_okay_modal">
+		<div class="modal_contents">
+			<div class="modal_text"></div>
+			<div class="modal_btn">
+				<button class="modal_okaybtn">확인</button>
+			</div>
+		</div>
+	</div>
 
-    <script src="/js/admin/aside.js"></script>
-    <script src="/js/admin/shop/shopManagement.js"></script>
-    <script src="/js/admin/shop/shopCategory_list.js"></script>
-  </body>
+	<script src="/js/admin/aside.js"></script>
+	<script src="/js/admin/shop/shopManagement.js"></script>
+	<script src="/js/admin/shop/shopCategory_list.js"></script>
+</body>
 </html>

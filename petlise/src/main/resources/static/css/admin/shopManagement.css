@@ -1,3 +1,7 @@
+#listhome {
+	cursor: pointer;
+}
+
 .tabMenu {
   position: relative;
   width: 100%;
@@ -8,7 +12,7 @@
   justify-content: space-between;
   align-items: start;
 }
-.tabMenu .tabWrap .editButton {
+.tabMenu .tabWrap .createbtn {
   display: inline-block;
   min-width: 100px;
   width: 150px;
@@ -18,11 +22,12 @@
   border: 1px solid var(--light-point);
   border-radius: 20px;
 }
-.tabMenu .tabWrap .editButton:hover {
+.tabMenu .tabWrap .createbtn:hover {
   background-color: var(--light-stroke);
   font-weight: bold;
 }
 
+/* --------- 테이블 ----------- */
 table {
   display: none;
   min-width: calc(100% - 250px - 60px);
@@ -35,7 +40,7 @@ table thead {
 }
 table thead tr {
   display: grid;
-  grid-template-columns: 120px 120px 100px auto 90px 90px 100px 85px 85px;
+  grid-template-columns: 90px 90px 100px 296px 90px 90px 100px 100px 85px 85px;
 }
 table thead th {
   font: var(--highlight16);
@@ -48,7 +53,7 @@ table tbody {
 }
 table tbody tr {
   display: grid;
-  grid-template-columns: 120px 120px 100px auto 90px 90px 100px 85px 85px;
+  grid-template-columns: 90px 90px 100px 296px 90px 90px 100px 100px 85px 85px;
   border-bottom: 1px solid var(--light-point);
 }
 table tbody td {
@@ -65,12 +70,34 @@ table tbody td:last-of-type {
   padding: 0 10px;
 }
 
-table tbody td:nth-child(4) {
-	min-width: 336px;	
+.no_data_msg {
+	grid-column-start : 1;
+	grid-column-end : 11;
+	height:200px;
+}
+
+.no_data_msg>div {
+	width:100%;
+	height:200px;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.table_btnbox button {
+	width:100%;
+	height: 100%;
+	padding: 10px 15px;
+	text-align: center;
+}
+
+.table_btnbox button:hover {
+	color: var(--light-point);
+	font-weight: 700;
+	text-decoration: underline;
 }
 
 /* --------- 카테고리 드롭다운 ----------- */
-
 .categoryWrap {
   width: 100%;
   margin-bottom: 15px;
