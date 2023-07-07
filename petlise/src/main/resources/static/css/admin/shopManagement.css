@@ -1,8 +1,33 @@
+.tabMenu {
+  position: relative;
+  width: 100%;
+}
+.tabWrap {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+.tabMenu .tabWrap .editButton {
+  display: inline-block;
+  min-width: 100px;
+  width: 150px;
+  height: 45px;
+  padding: 10px 15px;
+  text-align: center;
+  border: 1px solid var(--light-point);
+  border-radius: 20px;
+}
+.tabMenu .tabWrap .editButton:hover {
+  background-color: var(--light-stroke);
+  font-weight: bold;
+}
+
 table {
   display: none;
   min-width: calc(100% - 250px - 60px);
   width: 950px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 table thead {
   width: 100%;
@@ -10,7 +35,7 @@ table thead {
 }
 table thead tr {
   display: grid;
-  grid-template-columns: 120px 120px 100px 185px 90px 90px 100px 85px 85px;
+  grid-template-columns: 120px 120px 100px auto 90px 90px 100px 85px 85px;
 }
 table thead th {
   font: var(--highlight16);
@@ -23,7 +48,7 @@ table tbody {
 }
 table tbody tr {
   display: grid;
-  grid-template-columns: 120px 120px 100px 185px 90px 90px 100px 85px 85px;
+  grid-template-columns: 120px 120px 100px auto 90px 90px 100px 85px 85px;
   border-bottom: 1px solid var(--light-point);
 }
 table tbody td {
@@ -38,4 +63,111 @@ table tbody td {
 table tbody td:first-of-type,
 table tbody td:last-of-type {
   padding: 0 10px;
+}
+
+table tbody td:nth-child(4) {
+	min-width: 336px;	
+}
+
+/* --------- 카테고리 드롭다운 ----------- */
+
+.categoryWrap {
+  width: 100%;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+.category > p {
+  margin-bottom: 8px;
+}
+#smallCategory {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.dropdown {
+  position: relative;
+  width: 100px;
+  height:45px;
+  border: 1.5px solid var(--light-stroke);
+  border-radius: 5px;
+  font: var(--body14);
+  color: var(--gray2);
+}
+.dropdown:hover{
+  border-color: var(--light-point);
+  background-color: var(--light-stroke);
+}
+
+.dropdown .select {
+  cursor: pointer;
+  padding: 10px 15px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.dropdown.active:hover,
+.dropdown.active {
+  box-shadow: var(--shadow100);
+  border-radius: 5px;
+}
+
+.dropdown.active:focus-within{
+	outline:none;
+	border: 1.5px solid var(--light-point);
+}
+
+.dropdown .dropdown-menu {
+  z-index: 10;
+  position: absolute;
+  background-color: #fff;
+  width: 100%;
+  top: 50px;
+  left: 0;
+  box-shadow: var(--shadow100);
+  border: 1.5px solid var(--light-point);
+  border-radius: 5px;
+  display: none;
+}
+.dropdown .dropdown-menu > li {
+  padding: 10px 15px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.dropdown .dropdown-menu > li:hover {
+  background-color: var(--light-stroke);
+}
+
+/* --------- 검색 div ----------- */
+
+#searchdiv {
+	border: 1.5px solid var(--light-stroke);
+	border-radius: 5px;
+	width: 250px;
+	height: 45px;
+	display:flex;
+	align-items: center;
+}
+
+#searchdiv:click {
+	border: 1.5px solid var(--light-point);
+}
+
+#keyword{
+	width: 205px;
+	height: 45px;
+	padding: 10px 15px;
+}
+
+#searchbtn{
+	width: 40px;
+	height: 40px;
+	display:flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#searchbtn img{
+	width:60%;
 }
