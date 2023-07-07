@@ -5,10 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import pagination.PagingResponse;
+import pagination.SearchDTO;
 
 @Controller
 public class AdminShopController {
@@ -16,22 +20,13 @@ public class AdminShopController {
 	ProductService service;
 	
 	@GetMapping("/adminshoplist")
-	public ModelAndView adminproductlist(@RequestParam(value="petType",required=false, defaultValue="all")String petType) 
+	public ModelAndView adminproductlist(@ModelAttribute SearchDTO searchdto) 
 	{
-		List<ProductDTO> productlist = null;
-		if(petType.equals("all")) {
-			productlist = service.getAllProduct();
-		}else {
-			String type = "";
-			if(petType.equals("dog")) { type = "강아지"; }
-			else if(petType.equals("cat")) { type = "고양이"; }
-			productlist = service.getAllByPetType(type);
-		}
-		
+		PagingResponse<ProductDTO> productlist = service.getAllProductPaging(searchdto);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("productlist",productlist);
-		mv.addObject("petType", petType);
+		mv.addObject("response", productlist);
 		mv.setViewName("admin/shopManagement");
+		
 		return mv;
 	}
 	

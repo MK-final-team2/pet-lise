@@ -4,8 +4,8 @@
 <mapper namespace="admin.shop.ProductDAO">
 
 	<insert id="insertProduct" parameterType="productdto">
-	<!-- product_id / pet_type / category / product_num / reg_date -->
-	<!-- product_name / price / quatity / image_main / image_detail -->
+		<!-- product_id / pet_type / category / product_num / reg_date -->
+		<!-- product_name / price / quatity / image_main / image_detail -->
 		insert into products(
 		product_id,pet_type,category,product_num,reg_date,
 		product_name,price,quatity,image_main,image_detail
@@ -17,19 +17,92 @@
 	</insert>
 
 	<select id="maxProductNum" resultType="int">
-		select max(product_num) from products;
+		select max(product_num)
+		from products;
 	</select>
 
 	<select id="countTotalProductNum" resultType="int">
-		select count(*) from products;
-	</select>
-	
-	<select id="getAllProduct" resultType="productdto">
-		select * from products where isvisible=true order by product_num;
+		select count(*)
+		from products;
 	</select>
 
-	<select id="getAllByPetType" resultType="productdto" parameterType="String">
-		select * from products where pet_type=#{pet} and isvisible=true order by product_num;
+	<select id="getAllProduct" resultType="productdto">
+		select * from products
+		where isvisible=true order by product_num;
+	</select>
+
+	<select id="getAllByPetType" resultType="productdto"
+		parameterType="String">
+		select * from products where pet_type=#{pet} and
+		isvisible=true order by product_num;
 	</select>
 	
+	<!-- ▼▼▼▼Pagination▼▼▼▼ -->
+	<select id="getAllProductPaging" resultType="productdto"
+		parameterType="pagination.SearchDTO">
+		select *
+		from products
+		<!-- <if test="keyword != null and keyword != ''">
+			where
+			<choose>
+				검색 유형이 있을 때
+				<when test="searchType != null and searchType != ''">
+					<choose>
+						<when test="'title'.equals( searchType )">
+							title LIKE CONCAT('%', #{keyword}, '%')
+						</when>
+						<when test="'content'.equals( searchType )">
+							contents LIKE CONCAT('%', #{keyword}, '%')
+						</when>
+						<when test="'writer'.equals( searchType )">
+							writer LIKE CONCAT('%', #{keyword}, '%')
+						</when>
+					</choose>
+				</when>
+
+				전체 검색일 때
+				<otherwise>
+					title LIKE CONCAT('%', #{keyword}, '%')
+					OR contents LIKE CONCAT('%', #{keyword}, '%')
+					OR writer LIKE CONCAT('%', #{keyword}, '%')
+				</otherwise>
+			</choose>
+		</if> -->
+		order by product_num
+		limit #{pagination.limitStart}, #{recordSize}
+	</select>
+
+	<select id="getCount" resultType="int"
+		parameterType="pagination.SearchDTO">
+		select count(*)
+		from products
+		<!-- <if test="keyword != null and keyword != ''">
+			where
+			<choose>
+				검색 유형이 있을 때
+				<when test="searchType != null and searchType != ''">
+					<choose>
+						<when test="'title'.equals( searchType )">
+							title LIKE CONCAT('%', #{keyword}, '%')
+						</when>
+						<when test="'content'.equals( searchType )">
+							contents LIKE CONCAT('%', #{keyword}, '%')
+						</when>
+						<when test="'writer'.equals( searchType )">
+							writer LIKE CONCAT('%', #{keyword}, '%')
+						</when>
+					</choose>
+				</when>
+
+				전체 검색일 때
+				<otherwise>
+					title LIKE CONCAT('%', #{keyword}, '%')
+					OR contents LIKE CONCAT('%', #{keyword}, '%')
+					OR writer LIKE CONCAT('%', #{keyword}, '%')
+				</otherwise>
+			</choose>
+		</if> -->
+	</select>
+	<!-- ▲▲▲▲Pagination▲▲▲▲ -->
+
 </mapper>
