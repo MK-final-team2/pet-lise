@@ -27,7 +27,7 @@ pageEncoding="UTF-8"%>
       <a href="/signin">
         <img src="/images/login-logo.png" alt="로고아이콘" />
       </a>
-      <form method="post" action="/signup" class="signupForm" name="signupForm">
+      <form method="post" action="signup" class="signupForm" name="signupForm">
         <div class="emailWrapper">
           <p>이메일</p>
           <div class="checkEmailWrap">
@@ -168,6 +168,6 @@ pageEncoding="UTF-8"%>
     <script src="/js/sign/sendEmail.js"></script>
     <script src="/js/postcode.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script src="/js/sign/checkForm.js"></script>
+    <script src="/js/sign/checkSignupForm.js"></script>
   </body>
 </html>

@@ -10,6 +10,9 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/sign/signIn.css" />
     <title>Pet LiSe</title>
+    <script>
+      let my_id = "<%=session.getAttribute("user_id")%>"
+    </script>
   </head>
   <body>
     <main class="container">
@@ -20,22 +23,20 @@ pageEncoding="UTF-8"%>
         <img src="/images/dogs.svg" alt="강아지" />
       </div>
       <div class="loginWrapper">
-        <form class="loginform">
+        <form method="post" class="loginform" name="loginform">
           <p>로그인</p>
           <div class="emailWrapper">
             <p>E-mail</p>
-            <input type="email" />
+            <input type="email" id="email" name="email" />
           </div>
           <div class="passwordWrapper">
             <p>Password</p>
-            <input type="password" />
+            <input type="password" id="password" name="password" />
           </div>
-          <button>이메일로 로그인하기</button>
+          <button onclick="return checkLogin()">이메일로 로그인하기</button>
         </form>
         <div class="findlink">
-          <a href="/findid">아이디 찾기</a>
-          <span></span>
-          <a href="/findpw">비밀번호 찾기</a>
+          <a href="/searchuser">비밀번호 찾기</a>
         </div>
         <div class="line"></div>
         <div class="snsWrapper">
@@ -55,5 +56,7 @@ pageEncoding="UTF-8"%>
         </div>
       </div>
     </main>
+
+    <script src="/js/sign/checkLoginForm.js"></script>
   </body>
 </html>
