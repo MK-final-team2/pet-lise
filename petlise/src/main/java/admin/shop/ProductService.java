@@ -15,26 +15,31 @@ public class ProductService {
 	@Autowired
 	ProductDAO dao;
 
-	int insertProduct(ProductDTO dto) {
+	public int insertProduct(ProductDTO dto) {
 		return dao.insertProduct(dto);
 	}
 
-	int maxProductNum() {
+	public int maxProductNum() {
 		return dao.maxProductNum();
 	}
 
-	int countTotalProductNum() {
+	public int countTotalProductNum() {
 		return dao.countTotalProductNum();
 	}
 	
-	List<ProductDTO> getAllProduct() {
+	public List<ProductDTO> getAllProduct() {
 		return dao.getAllProduct();
 	}
 	
-	List<ProductDTO> getAllByPetType(String petType) {
+	public List<ProductDTO> getAllByPetType(String petType) {
 		return dao.getAllByPetType(petType);
 	}
 	
+	public int deleteProduct(String product_id) {
+		return dao.deleteProduct(product_id);
+	};
+	
+	//Pagination
 	public PagingResponse<ProductDTO> getAllProductPaging(SearchDTO dto) {
 
         // 조건에 해당하는 데이터가 없는 경우, 응답 데이터에 비어있는 리스트와 null을 담아 반환

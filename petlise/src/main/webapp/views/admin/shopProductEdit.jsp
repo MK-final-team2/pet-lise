@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="/css/shop/modal.css" />
 <link rel="stylesheet" href="/css/admin/aside.css" />
 <link rel="stylesheet" href="/css/admin/editShopProduct.css" />
-<link rel="stylesheet" href="/css/admin/expertRecipeCategory.css" />
+<link rel="stylesheet" href="/css/admin/shop_dropdown.css" />
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
 	rel="stylesheet" />
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
@@ -25,7 +25,7 @@
 		<div id="asideMenu"></div>
 
 		<main>
-			<p>라이스샵 상품등록</p>
+			<p>라이스샵 상품수정</p>
 			<div id="layout">
 				<div class="edit_images">
 					<div class="fileWrap">
@@ -52,7 +52,7 @@
 	
 						<div class="categoryWrap">
 							<div class="category">
-								<div id="dropdown" class="dropdown" style="width:240px;"></div>
+								<div id="dropdown" class="dropdown" style="width:240px; margin-right:10px"></div>
 							</div><!-- 대분류 -->
 	
 							<div class="category" id="smallCategory">
@@ -107,9 +107,29 @@
 		</main>
 	</div>
 
+	<!-- 등록취소창 -->
+	<div class="modal" id="cancel_modal">
+		<div class="modal_contents">
+			<div class="modal_text">
+				<div>
+				상품등록이 진행중입니다.<br>
+				작성중인 내용은 저장되지 않습니다.<br>
+				상품목록으로 돌아가시겠습니까?
+				</div>
+			</div>
+			<div class="modal_btn">
+			<button class="cancelbtn">취소</button>
+			<button class="golisthomebtn">목록가기</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- 등록확인창 -->
 	<div class="modal" id="confirm_modal">
 		<div class="modal_contents">
-			<div class="modal_text"></div>
+			<div class="modal_text">
+				<div></div>
+			</div>
 			<div class="modal_btn">
 			<button class="cancelbtn">취소</button>
 			<button class="createbtn">등록</button>
@@ -117,17 +137,23 @@
 		</div>
 	</div>
 
+	<!-- 등록완료창 -->
 	<div class="modal" id="okaymodal">
 		<div class="modal_contents">
-			<div class="modal_text">상품이 등록되었습니다.<br>
-			라이스샵 관리페이지로 이동합니다.</div>
+			<div class="modal_text">
+				<div>상품이 등록되었습니다.<br>
+				라이스샵 관리페이지로 이동합니다.</div>
+			</div>
 			<div class="modal_btn"><button class="okaybtn">확인</button></div>
 		</div>
 	</div>
 
+	<!-- 경고창 -->
 	<div class="modal" id="alertmodal">
 		<div class="modal_contents">
-			<div class="modal_text"></div>
+			<div class="modal_text">
+				<div></div>
+			</div>
 			<div class="modal_btn"><button class="okaybtn">확인</button></div>
 		</div>
 	</div>

@@ -23,11 +23,6 @@ $("#file2").change(function() {
 	}
 });
 
-$("#cancelButton").on("click",function(){
-	location.href = "/adminshoplist";
-});
-
-
 $("#editButton").on("click",function(){
 	if($("#pet_type").val()==""){		
 		$("#alertmodal .modal_text").html("동물 카테고리를 확인해 주세요.");
@@ -49,14 +44,11 @@ $("#editButton").on("click",function(){
 		$("#alertmodal").css('display', 'block');
 	}else{
 		$("#confirm_modal .modal_text").html(
-			"카테고리 : "+$("#pet_type").val()+" / "+$("#product_categpry").val()+"<br>"
+			"<div>카테고리 : "+$("#pet_type").val()+" / "+$("#product_categpry").val()+"<br>"
 			+"상품명 : "+$("#product_name").val()+"<br>"
 			+"상품가격 : "+$("#product_price").val()+"Point <br>"
-			+"상품을 등록하시겠습니까?"
+			+"상품을 등록하시겠습니까?</div>"
 		);
-		$("#confirm_modal .modal_text").css("margin-top","35px");
-		/*$("#confirm_modal .modal_text").css("text-align","left");
-		$("#confirm_modal .modal_text").width(200);*/
 		$("#confirm_modal").css('display', 'block');
 	}
 	
@@ -82,17 +74,30 @@ $(".createbtn").on('click', function(){
 	    error : function(request, status, error) { // 결과 에러 콜백함수
 	        console.log(error)
 	    }
+	});//ajax end
+});
+
+//등록취소버튼
+$("#cancelButton").on("click",function(){
+	$("#cancel_modal").css('display', 'block');
+	
+	$(".golisthomebtn").on("click",function(){
+		location.href = "/adminshoplist";
 	});
 });
+
+//모달창 내의 취소버튼
 $(".cancelbtn").on('click', function(){
 	$(this).parents(".modal").css('display', 'none');
 });
 
+//등록 후 완료 버튼
 $("#okaymodal .okaybtn").on('click', function(){
 	$(this).parents(".modal").css('display', 'none');
 	location.href = "/adminshoplist";
 });
 
+//경고창 확인 버튼
 $("#alertmodal .okaybtn").on('click', function(){
 	$(this).parents(".modal").css('display', 'none');
 });

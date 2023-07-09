@@ -37,37 +37,96 @@
 		isvisible=true order by product_num;
 	</select>
 	
+	<delete id="deleteProduct" parameterType="String">
+		delete from products where product_id = #{product_id};
+	</delete>
+	
 	<!-- ▼▼▼▼Pagination▼▼▼▼ -->
 	<select id="getAllProductPaging" resultType="productdto"
 		parameterType="pagination.SearchDTO">
 		select *
 		from products
-		<!-- <if test="keyword != null and keyword != ''">
-			where
-			<choose>
-				검색 유형이 있을 때
-				<when test="searchType != null and searchType != ''">
-					<choose>
-						<when test="'title'.equals( searchType )">
-							title LIKE CONCAT('%', #{keyword}, '%')
-						</when>
-						<when test="'content'.equals( searchType )">
-							contents LIKE CONCAT('%', #{keyword}, '%')
-						</when>
-						<when test="'writer'.equals( searchType )">
-							writer LIKE CONCAT('%', #{keyword}, '%')
-						</when>
-					</choose>
-				</when>
+		<choose>
+			<!-- 검색어가 있을때 -->
+			<when test="keyword != null and keyword != ''">
+				<choose>
+					<!-- 카테고리1값이 '전체'이거나 공백일때 -->
+					<when test="'전체'.equals( searchType1 ) or searchType1 == null or searchType1 == ''">
+						<choose>
+							<!-- 카테고리2값이 '전체'or 공백일때 -->
+							<when test="'전체'.equals( searchType2 ) or searchType2 == null or searchType2 == ''">
+								where product_name LIKE CONCAT('%', #{keyword}, '%')
+							</when>
 
-				전체 검색일 때
-				<otherwise>
-					title LIKE CONCAT('%', #{keyword}, '%')
-					OR contents LIKE CONCAT('%', #{keyword}, '%')
-					OR writer LIKE CONCAT('%', #{keyword}, '%')
-				</otherwise>
-			</choose>
-		</if> -->
+							<!-- 카테고리2값이 '전체'아닐때 -->
+							<otherwise>
+								where
+								category = #{searchType2}
+								and product_name LIKE CONCAT('%', #{keyword}, '%')
+							</otherwise>
+						</choose>
+					</when>
+					
+					<!-- 카테고리1값이 '전체' 아닐때 -->
+					<otherwise>
+						<choose>
+							<!-- 카테고리2값이 '전체'or 공백일때 -->
+							<when test="'전체'.equals( searchType2 ) or searchType2 == null or searchType2 == ''">
+								where
+								pet_type = #{searchType1}
+								and product_name LIKE CONCAT('%', #{keyword}, '%')
+							</when>
+
+							<!-- 카테고리2값이 '전체'아닐때 -->
+							<otherwise>
+								where
+								category = #{searchType2}
+								and pet_type = #{searchType1}
+								and product_name LIKE CONCAT('%', #{keyword}, '%')
+							</otherwise>
+						</choose>
+					</otherwise>
+				</choose>
+			</when>
+
+			<!-- 검색어 없을때 -->
+			<otherwise>
+				<choose>
+					<!-- 카테고리1값이 '전체'일때 -->
+					<when test="'전체'.equals( searchType1 ) or searchType1 == null or searchType1 == ''">
+						<choose>
+							<!-- 카테고리2값이 '전체'일때 -->
+							<when test="'전체'.equals( searchType2 ) or searchType2 == null or searchType2 == ''">
+							</when>
+
+							<!-- 카테고리2값이 '전체' 아닐때 -->
+							<otherwise>
+								where
+								category = #{searchType2}							
+							</otherwise>
+						</choose>
+					</when>
+
+					<!-- 카테고리1값이 '전체' 아닐때 -->
+					<otherwise>
+						<choose>
+							<!-- 카테고리2값이 '전체' 아닐때 -->
+							<when test="'전체'.equals( searchType2 ) or searchType2 == null or searchType2 == ''">
+								where
+								pet_type = #{searchType1}
+							</when>
+
+							<!-- 카테고리2값이 '전체'일때 -->
+							<otherwise>
+								where
+								category = #{searchType2}
+								and pet_type = #{searchType1}
+							</otherwise>
+						</choose>
+					</otherwise>
+				</choose>
+			</otherwise>
+		</choose>
 		order by product_num
 		limit #{pagination.limitStart}, #{recordSize}
 	</select>
@@ -76,32 +135,87 @@
 		parameterType="pagination.SearchDTO">
 		select count(*)
 		from products
-		<!-- <if test="keyword != null and keyword != ''">
-			where
-			<choose>
-				검색 유형이 있을 때
-				<when test="searchType != null and searchType != ''">
-					<choose>
-						<when test="'title'.equals( searchType )">
-							title LIKE CONCAT('%', #{keyword}, '%')
-						</when>
-						<when test="'content'.equals( searchType )">
-							contents LIKE CONCAT('%', #{keyword}, '%')
-						</when>
-						<when test="'writer'.equals( searchType )">
-							writer LIKE CONCAT('%', #{keyword}, '%')
-						</when>
-					</choose>
-				</when>
+		<choose>
+			<!-- 검색어가 있을때 -->
+			<when test="keyword != null and keyword != ''">
+				<choose>
+					<!-- 카테고리1값이 '전체'이거나 공백일때 -->
+					<when test="'전체'.equals( searchType1 ) or searchType1 == null or searchType1 == ''">
+						<choose>
+							<!-- 카테고리2값이 '전체'or 공백일때 -->
+							<when test="'전체'.equals( searchType2 ) or searchType2 == null or searchType2 == ''">
+								where product_name LIKE CONCAT('%', #{keyword}, '%')
+							</when>
 
-				전체 검색일 때
-				<otherwise>
-					title LIKE CONCAT('%', #{keyword}, '%')
-					OR contents LIKE CONCAT('%', #{keyword}, '%')
-					OR writer LIKE CONCAT('%', #{keyword}, '%')
-				</otherwise>
-			</choose>
-		</if> -->
+							<!-- 카테고리2값이 '전체'아닐때 -->
+							<otherwise>
+								where
+								category = #{searchType2}
+								and product_name LIKE CONCAT('%', #{keyword}, '%')
+							</otherwise>
+						</choose>
+					</when>
+					
+					<!-- 카테고리1값이 '전체' 아닐때 -->
+					<otherwise>
+						<choose>
+							<!-- 카테고리2값이 '전체'or 공백일때 -->
+							<when test="'전체'.equals( searchType2 ) or searchType2 == null or searchType2 == ''">
+								where
+								pet_type = #{searchType1}
+								and product_name LIKE CONCAT('%', #{keyword}, '%')
+							</when>
+
+							<!-- 카테고리2값이 '전체'아닐때 -->
+							<otherwise>
+								where
+								category = #{searchType2}
+								and pet_type = #{searchType1}
+								and product_name LIKE CONCAT('%', #{keyword}, '%')
+							</otherwise>
+						</choose>
+					</otherwise>
+				</choose>
+			</when>
+
+			<!-- 검색어 없을때 -->
+			<otherwise>
+				<choose>
+					<!-- 카테고리1값이 '전체'일때 -->
+					<when test="'전체'.equals( searchType1 ) or searchType1 == null or searchType1 == ''">
+						<choose>
+							<!-- 카테고리2값이 '전체'일때 -->
+							<when test="'전체'.equals( searchType2 ) or searchType2 == null or searchType2 == ''">
+							</when>
+
+							<!-- 카테고리2값이 '전체' 아닐때 -->
+							<otherwise>
+								where
+								category = #{searchType2}							
+							</otherwise>
+						</choose>
+					</when>
+
+					<!-- 카테고리1값이 '전체' 아닐때 -->
+					<otherwise>
+						<choose>
+							<!-- 카테고리2값이 '전체' 아닐때 -->
+							<when test="'전체'.equals( searchType2 ) or searchType2 == null or searchType2 == ''">
+								where
+								pet_type = #{searchType1}
+							</when>
+
+							<!-- 카테고리2값이 '전체'일때 -->
+							<otherwise>
+								where
+								category = #{searchType2}
+								and pet_type = #{searchType1}
+							</otherwise>
+						</choose>
+					</otherwise>
+				</choose>
+			</otherwise>
+		</choose>
 	</select>
 	<!-- ▲▲▲▲Pagination▲▲▲▲ -->
 
