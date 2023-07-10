@@ -32,7 +32,7 @@
 							<div id="dropdown" class="dropdown">
 								<div class="select">
 									<span> <c:if
-											test="${param.searchType1 == '' || param.searchType1 eq null}">전체</c:if>
+											test="${param.searchType1 == '' || param.searchType1 eq null}">동물구분</c:if>
 										${param.searchType1}
 									</span>
 								</div>
@@ -49,7 +49,7 @@
 							<div id="dropdown2" class="dropdown">
 								<div class="select">
 									<span> <c:if
-											test="${param.searchType2 == '' || param.searchType2 eq null }">전체</c:if>
+											test="${param.searchType2 == '' || param.searchType2 eq null }">상품구분</c:if>
 										${param.searchType2}
 									</span>
 								</div>
@@ -61,6 +61,22 @@
 									<li>간식</li>
 									<li>영양제</li>
 									<li>장난감</li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="category" id="Category3">
+							<div id="dropdown3" class="dropdown">
+								<div class="select">
+									<span> <c:if test="${param.searchType3 == '' || param.searchType3 eq null }">판매구분</c:if>
+										${param.searchType3}
+									</span>
+								</div>
+								<input type="hidden" id="saleType" value="${param.searchType3}" />
+								<ul id="dropdown-menu" class="dropdown-menu">
+									<li>전체</li>
+									<li>판매중</li>
+									<li>품절</li>
 								</ul>
 							</div>
 						</div>
@@ -89,6 +105,7 @@
 					<table class="table" style="display: block">
 						<thead>
 							<tr>
+								<th>번호</th>
 								<th>동물구분</th>
 								<th>상품구분</th>
 								<th>상품코드</th>
@@ -115,10 +132,11 @@
 
 							<c:forEach var="product" items="${response.list}">
 								<tr>
+									<td class="productid">${product.product_id}</td>
 									<td>${product.pet_type}</td>
 									<td>${product.category}</td>
-									<td class="productid">${product.product_id}</td>
-									<td class="productname">${product.product_name}</td>
+									<td>${product.product_code}</td>
+									<td class="productname"><a href="/shopproductread?product_id=${product.product_id}">${product.product_name}</a></td>
 									<td><fmt:formatNumber value="${product.quatity}"
 											pattern="#,###" />개</td>
 									<td><fmt:formatNumber value="${product.price}"
@@ -146,14 +164,14 @@
 							<div class="prevArrow"></div>
 							<div class="prevArrow" style="margin-left: -3px"></div>
 						</div>
-						<div class="prev" id="${response.pagination.endPage-10}"
+						<div class="prev" id="${response.pagination.startPage-1}"
 							<c:if test="${!response.pagination.existPrevPage}"> style="visibility: hidden;" </c:if>>
 							<div class="prevArrow"></div>
 						</div>
 
 						<c:choose>
 							<c:when test="${param.page eq null}">
-								<c:forEach begin="1" end="10" varStatus="vs">
+								<c:forEach begin="1" end="${response.pagination.endPage}" varStatus="vs">
 									<c:if test="${vs.index == 1}">
 										<div class="pageNumber active">${vs.index}</div>
 									</c:if>

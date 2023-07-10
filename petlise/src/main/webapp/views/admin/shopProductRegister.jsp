@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="/css/style.css" />
 <link rel="stylesheet" href="/css/shop/modal.css" />
 <link rel="stylesheet" href="/css/admin/aside.css" />
-<link rel="stylesheet" href="/css/admin/editShopProduct.css" />
+<link rel="stylesheet" href="/css/admin/shopProductRegister.css" />
 <link rel="stylesheet" href="/css/admin/shop_dropdown.css" />
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
 	rel="stylesheet" />
@@ -161,6 +161,6 @@
 
 	<script src="/js/admin/aside.js"></script>
 	<script src="/js/admin/shop/shopCategory.js"></script>
-	<script src="/js/admin/shop/editShopProduct.js"></script>
+	<script src="/js/admin/shop/shopProductRegister.js"></script>
 </body>
 </html>

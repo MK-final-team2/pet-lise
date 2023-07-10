@@ -14,8 +14,9 @@ public interface ProductDAO {
 	int maxProductNum();
 	int countTotalProductNum();
 	List<ProductDTO> getAllProduct();
-	List<ProductDTO> getAllByPetType(String petType);
 	int deleteProduct(String product_id);	
+	ProductDTO getProductById(String product_id);
+	int updateProduct(ProductDTO dto);
 	
 	//Pagination
 	List<ProductDTO> getAllProductPaging(SearchDTO dto);

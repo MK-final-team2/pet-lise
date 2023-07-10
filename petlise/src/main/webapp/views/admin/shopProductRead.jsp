@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/css/style.css" />
 <link rel="stylesheet" href="/css/shop/modal.css" />
 <link rel="stylesheet" href="/css/admin/aside.css" />
-<link rel="stylesheet" href="/css/admin/shopProductEdit.css" />
+<link rel="stylesheet" href="/css/admin/shopProductRead.css" />
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
 	rel="stylesheet" />
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
@@ -34,13 +34,13 @@
 						<p>상품 대표이미지</p>
 						<label for="file1">
 						<img id='fileimg1' src="${product.image_main}" alt="이미지아이콘" />
-						</label> <input type="file" id="file1" />
+						</label> <input type="file" id="file1" readonly="readonly" />
 					</div>
 					<div class="fileWrap">
 						<p>상품 상세이미지</p>
 						<label for="file2"> <img id='fileimg2'
 							src="${product.image_detail}" alt="이미지아이콘" />
-						</label> <input type="file" id="file2" />
+						</label> <input type="file" id="file2" readonly="readonly" />
 					</div>
 				</div>
 
@@ -56,11 +56,6 @@
 									<div class="select">
 										<span id="span_pettype">${product.pet_type}</span>
 									</div>
-									<input type="hidden" id="petType" value="${product.pet_type}" />
-									<ul class="dropdown-menu">
-										<li>강아지(D)</li>
-										<li>고양이(C)</li>
-									</ul>
 								</div>
 							</div>
 
@@ -69,44 +64,24 @@
 									<div class="select">
 										<span id="span_product">${product.category}</span>
 									</div>
-									<input type="hidden" id="productType"
-										value="${product.category}" />
-									<ul id="dropdown-menu" class="dropdown-menu">
-										<li>사료(01)</li>
-										<li>간식(02)</li>
-										<li>영양제(03)</li>
-										<li>장난감(04)</li>
-									</ul>
 								</div>
 							</div>
-						
-						<input type="hidden" id="petTypeTmp" value="${product.pet_type}" />
-						<input type="hidden" id="productTypeTmp" value="${product.category}" />
-						<button id="returnbtn">원래대로</button>
-
 						</div>
 					</div>
 					<!-- category_container -->
 					
-					<div class="Wrapper_container" style="margin-bottom: 0px">
-						<div class="Wrapper_half" >	
-							<p>상품코드 변경전</p>
-							<input type="text" readonly="readonly" id="code_before" value="${product.product_code}" style="width:240px;" />
-						</div>
-						<div class="Wrapper_half">	
-							<p>상품코드 변경후</p>
-							<input type="text" readonly="readonly" id="code_after" value="${product.product_code}" style="width:240px;" />
-						</div>
-					</div><!-- Wrapper_container -->
-					<p style="font: var(--body14); margin-top: 0px; margin-bottom: 30px">* 상품코드는 카테고리 변경시 자동 변경됩니다. 변경후 코드값을 꼭 확인해 주세요.</p>
+					<div class="Wrapper" >	
+						<p>상품코드</p>
+						<input type="text" readonly="readonly" id="code_before" value="${product.product_code}" />
+					</div>
 					
 					<div class="Wrapper">
 						<p>상품명</p>
-						<input type="text" id="product_name" value="${product.product_name}" />
+						<input type="text" readonly="readonly" id="product_name" value="${product.product_name}" />
 					</div>
 					<div class="Wrapper">
 						<p>상품가격</p>
-						<input type="number" id="product_price" value="${product.price}" />
+						<input type="number" readonly="readonly" id="product_price" value="${product.price}" />
 					</div>
 					<div class="Wrapper_container">
 						<div class="Wrapper_half">
@@ -115,7 +90,7 @@
 						</div>
 						<div class="Wrapper_half">
 							<p>상품재고</p>
-							<input type="number" id="product_quatity" min="120" value="${product.quatity}"/>
+							<input type="number" readonly="readonly" id="product_quatity" min="120" value="${product.quatity}"/>
 						</div>
 						<div class="Wrapper_half">
 							<p>판매여부</p>
@@ -130,17 +105,9 @@
 						</div>
 					</div>
 
-					<%
-					Date date = new Date();
-					SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd");
-					String today = simple.format(date);
-					%>
-
 					<div class="Wrapper">
 						<p>상품 등록일</p>
-						<input type="date" id="product_regtime" 
-							min=<fmt:parseDate value="${product.reg_date}" var="reg" pattern="yyyy-MM-dd HH:mm:ss" />
-							<fmt:formatDate	value="${reg}" pattern="yyyy-MM-dd" />
+						<input type="date" id="product_regtime" readonly="readonly" 
 							style="margin-bottom: 5px" 
 							value=<fmt:parseDate value="${product.reg_date}" var="reg" pattern="yyyy-MM-dd HH:mm:ss" />
 							<fmt:formatDate	value="${reg}" pattern="yyyy-MM-dd" />
@@ -153,21 +120,21 @@
 			
 			<input type="hidden" id="product_number" value="${product.product_id}" />
 			<div id="btndiv">
-				<button id="cancelButton">취소</button>
-				<button id="editButton">수정</button>
+				<button id="cancelButton">목록으로가기</button>
+				<button id="editButton">상품정보수정</button>
+				<button id="deleteButton">상품삭제</button>
 			</div>
 
 
 		</main>
 	</div>
 
-	<!-- 수정취소창 -->
-	<div class="modal" id="cancel_modal">
+	<!-- 목록가기 -->
+	<div class="modal" id="list_modal">
 		<div class="modal_contents">
 			<div class="modal_text">
 				<div>
-					상품수정이 진행중입니다.<br> 작성중인 내용은 저장되지 않습니다.<br> 상품목록으로
-					돌아가시겠습니까?
+					상품목록으로 돌아가시겠습니까?
 				</div>
 			</div>
 			<div class="modal_btn">
@@ -182,9 +149,9 @@
 		<div class="modal_contents">
 			<div class="modal_text">
 				<div>
-					수정 이전 정보는 저장되지 않습니다.<br>
-					수정 정보를 확인해 주세요.<br>
-					상품정보를 수정하시겠습니까?
+					상품정보를 수정하시겠습니까?<br>
+					수정 버튼을 누르시면 <br>
+					상품 수정페이지로 이동합니다.
 				</div>
 			</div>
 			<div class="modal_btn">
@@ -194,34 +161,31 @@
 		</div>
 	</div>
 
-	<!-- 등록완료창 -->
-	<div class="modal" id="okaymodal">
+	<!-- 삭제확인창 -->
+	<div class="modal" id="delete_modal">
 		<div class="modal_contents">
-			<div class="modal_text">
-				<div>
-					상품정보가 수정되었습니다.<br>라이스샵 관리페이지로 이동합니다.
-				</div>
-			</div>
+			<input type="hidden" value="" />
+			<div class="modal_text"></div>
 			<div class="modal_btn">
-				<button class="okaybtn">확인</button>
+				<button class="modal_cancelbtn">취소</button>
+				<button class="modal_deletebtn">삭제</button>
 			</div>
 		</div>
 	</div>
-
-	<!-- 경고창 -->
-	<div class="modal" id="alertmodal">
+	<!-- 삭제 후 확인창 -->
+	<div class="modal" id="delete_okay_modal">
 		<div class="modal_contents">
 			<div class="modal_text">
-				<div></div>
+			<div>상품이 삭제되었습니다.<br>
+			상품목록 첫페이지로 이동합니다.</div>
 			</div>
 			<div class="modal_btn">
-				<button class="okaybtn">확인</button>
+				<button class="modal_okaybtn">확인</button>
 			</div>
 		</div>
 	</div>
-
 
 	<script src="/js/admin/aside.js"></script>
-	<script src="/js/admin/shop/shopProductEdit.js"></script>
+	<script src="/js/admin/shop/shopProductRead.js"></script>
 </body>
 </html>
