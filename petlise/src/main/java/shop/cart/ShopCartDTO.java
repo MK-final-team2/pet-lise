@@ -1,8 +1,8 @@
 package shop.cart;
 
 public class ShopCartDTO {
-	int cart_id;
-	String user_id, product_id, product_image, product_name;
+	int cart_id, order_id, product_id ;
+	String user_id, product_image, product_name;
 	int quantity, product_price, price_total;
 
 	public int getCart_id() {
@@ -17,10 +17,10 @@ public class ShopCartDTO {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
-	public String getProduct_id() {
+	public int getProduct_id() {
 		return product_id;
 	}
-	public void setProduct_id(String product_id) {
+	public void setProduct_id(int product_id) {
 		this.product_id = product_id;
 	}
 	public String getProduct_image() {
@@ -52,6 +52,12 @@ public class ShopCartDTO {
 	}
 	public void setPrice_total(int price_total) {
 		this.price_total = price_total;
+	}
+	public int getOrder_id() {
+		return order_id;
+	}
+	public void setOrder_id(int order_id) {
+		this.order_id = order_id;
 	}
 
 }
