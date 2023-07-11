@@ -11,6 +11,10 @@ pageEncoding="UTF-8"%>
     <title>Pet LiSe</title>
   </head>
   <body>
-    <p>하이</p>
+  	<p>홈입니다.</p>
+  	<br>
+    <a href="/signin">로그인</a>
+    <br>
+    <a href="/mypage">마이페이지 가기</a>
   </body>
 </html>

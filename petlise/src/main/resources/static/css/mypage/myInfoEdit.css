@@ -7,7 +7,7 @@
   border-radius: 10px;
   padding-bottom: 60px;
 }
-.contentWrap > p {
+.contentWrap > div:first-of-type > p {
   font: var(--heading24);
   padding: 30px 0 20px 35px;
 }
@@ -18,24 +18,33 @@
   background-color: var(--light-stroke);
 }
 
-.contentWrap .profileImgWrap {
+.contentWrap .infoWrap {
   display: flex;
   justify-content: center;
   align-items: start;
   padding: 30px 0 40px;
 }
-.contentWrap .profileImgWrap .img {
+.contentWrap .infoWrap .imgWrap {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.contentWrap .profileImgWrap .img img {
+.contentWrap .infoWrap .imgWrap .img {
+  min-width: 120px;
+  min-height: 120px;
   width: 120px;
+  height: 120px;
   border-radius: 50%;
   overflow: hidden;
+  border: 1.5px solid var(--light-main);
 }
-.contentWrap .profileImgWrap .img label {
+.contentWrap .infoWrap .imgWrap .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.contentWrap .infoWrap .imgWrap label {
   display: inline-block;
   cursor: pointer;
   width: 140px;
@@ -45,22 +54,22 @@
   border: 1px solid var(--gray5);
   margin-top: 20px;
 }
-.contentWrap .profileImgWrap .img #file {
+.contentWrap .infoWrap .imgWrap #file {
   display: none;
 }
 
-.contentWrap .profileImgWrap .nameWrap {
+.contentWrap .infoWrap .nameWrap {
   margin-left: 50px;
   padding-top: 25px;
 }
-.contentWrap .profileImgWrap .nameWrap p:first-of-type {
+.contentWrap .infoWrap .nameWrap p:first-of-type {
   font: var(--heading34);
   margin-bottom: 15px;
 }
-.contentWrap .profileImgWrap .nameWrap p:first-of-type span {
+.contentWrap .infoWrap .nameWrap p:first-of-type span {
   font: var(--heading24);
 }
-.contentWrap .profileImgWrap .nameWrap p:last-of-type {
+.contentWrap .infoWrap .nameWrap p:last-of-type {
   font: var(--body16);
 }
 
@@ -70,37 +79,33 @@
   align-items: start;
   grid-template-columns: 184px 450px;
   column-gap: 50px;
+  margin-bottom: 15px;
 }
-.inputWrap > div {
-  display: grid;
-  grid-template-rows: 146px repeat(3, 45px) 60px repeat(2, 45px);
-  row-gap: 15px;
-}
-.inputWrap > div > p {
+.inputWrap p {
   font: var(--highlight16);
   color: var(--light-point);
-  margin-top: 12px;
+  margin-top: 10px;
 }
-.inputWrap > div > p:nth-of-type(5) {
+.inputWrap p:nth-of-type(5) {
   margin: 18px 0;
 }
-.inputWrap > div input {
+.inputWrap input {
   width: 100%;
   height: 45px;
   border: 1px solid var(--gray4);
   border-radius: 8px;
   padding: 0 15px;
 }
-.inputWrap > div input:focus {
+.inputWrap input:focus {
   border-color: var(--light-main);
 }
-.inputWrap > div button {
+.inputWrap button {
   height: 45px;
   border: 1px solid var(--light-main);
   border-radius: 8px;
   font: var(--body14);
 }
-.inputWrap > div button:hover {
+.inputWrap button:hover {
   background-color: var(--light-sub);
 }
 
@@ -121,9 +126,9 @@
 }
 
 .chooseAnimal {
-  margin: 20px 0;
+  margin: 15px 0;
 }
-.chooseAnimal input[type='checkbox'] {
+.chooseAnimal input[type='radio'] {
   display: none;
 }
 .chooseAnimal .inputWrapper {
@@ -138,7 +143,7 @@
   justify-content: center;
   font: var(--body14);
 }
-.chooseAnimal .inputWrapper label input[type='checkbox'] + label {
+.chooseAnimal .inputWrapper label input[type='radio'] + label {
   position: relative;
   min-width: 12px;
   width: 13px;
@@ -175,9 +180,9 @@ input[id='animal2']:checked + label::before {
 .deleteUser {
   width: 100%;
   text-align: end;
-  padding: 25px 140px;
+  padding: 25px 140px !important;
   color: var(--gray3);
-  font: var(--body14);
+  font: var(--body14) !important;
 }
 .editButton {
   width: 300px;
@@ -186,4 +191,11 @@ input[id='animal2']:checked + label::before {
   background-color: var(--light-stroke);
   font: var(--button16);
   border-radius: 8px;
+}
+.required {
+	position: relative;
+	/* top: -3px; */
+	padding-left: 5px;
+	color: red;
+	font: var(--body14);
 }

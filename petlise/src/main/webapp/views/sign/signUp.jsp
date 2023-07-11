@@ -10,7 +10,7 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/sign/signUp.css" />
     <title>Pet LiSe</title>
-    <script src="/js/text.js"></script>
+    <script src="/js/sign/text.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <%--
     <script type="text/javascript">
@@ -118,7 +118,7 @@ pageEncoding="UTF-8"%>
         </div>
         <div class="chooseAnimal">
           <p>어떤 동물과 함께 하시나요? (선택)</p>
-          <input type="radio" name="pet_type" value=null checked />
+          <input type="radio" name="pet_type" value="" checked />
           <div class="inputWrapper">
             <label>
               <input type="radio" name="pet_type" id="animal1" value="dog" />

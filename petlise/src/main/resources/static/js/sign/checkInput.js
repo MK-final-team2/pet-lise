@@ -20,27 +20,31 @@ $(document).ready(function() {
 	$('#emailCheckButton').on('click', function(e) {
 		var email = $('#email').val();
 		
-		$.ajax({
-			url: "/checkemail",
-			type: "post",
-			data: {
-				email: email
-			},
-			success: function(data) {
-				if (data == 0) {
-					alert("가입 가능한 이메일 입니다.")
-					$('#emailCheckButton').val("true");
-					
-				} else {
-					alert("등록된 이메일 입니다.")
-					$('#emailCheckButton').val("false");
-					
+		if (emailReg.test(email)) {
+			$.ajax({
+				url: "/checkemail",
+				type: "post",
+				data: {
+					email: email
+				},
+				success: function(data) {
+					if (data == 0) {
+						alert("가입 가능한 이메일 입니다.")
+						$('#emailCheckButton').val("true");
+
+					} else {
+						alert("등록된 이메일 입니다.")
+						$('#emailCheckButton').val("false");
+
+					}
+				},
+				error: function(error) {
+					console.log(error);
 				}
-			},
-			error: function(error) {
-				console.log(error);
-			}
-		});
+			});
+		} else {
+			alert("이메일을 입력해주세요")
+		}
 	});
 })
 
@@ -73,7 +77,7 @@ function checkPw() {
 
 function regName() {
 	let name = $('#name').val();
-	
+
 	if (!nameReg.test(name)) {
 		$("#nameRequired").text("한글 또는 영문 이름 2글자 이상 20자 이내 입니다.");
 		$("#nameRequired").addClass("required");

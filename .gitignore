@@ -3,6 +3,7 @@
 .prettierrc
 .vscode
 *.properties
+**/src/main/resources/*.json
 
 # Compiled class file
 *.class

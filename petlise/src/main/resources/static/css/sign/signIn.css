@@ -59,7 +59,7 @@
   height: 50px;
   border-radius: 8px;
   background-color: var(--light-sub);
-  margin: 10px 0 12px;
+  margin-top: 12px;
   font: var(--body14);
 }
 .loginWrapper .loginform button:hover {
@@ -71,6 +71,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  margin-top: 12px;
 }
 .findlink a {
   font: var(--body14);
@@ -149,4 +150,9 @@
 .movetosignup a {
   font: var(--button14);
   color: var(--light-main);
+}
+.errorMessage {
+  font: var(--body14);
+  color: red;
+  margin-bottom: 0 !important;
 }

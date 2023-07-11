@@ -1,3 +1,7 @@
+function onSubmit(event) {
+	event.preventDefault(); 
+}
+
 function checkLogin() {
 	if (loginform.email.value == "") {
 		alert('이메일 필수 입력 사항입니다.');

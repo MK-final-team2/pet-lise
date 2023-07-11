@@ -23,7 +23,7 @@ pageEncoding="UTF-8"%>
         <img src="/images/dogs.svg" alt="강아지" />
       </div>
       <div class="loginWrapper">
-        <form method="post" class="loginform" name="loginform">
+        <form method="post" class="loginform" name="loginform" id="form">
           <p>로그인</p>
           <div class="emailWrapper">
             <p>E-mail</p>
@@ -33,6 +33,7 @@ pageEncoding="UTF-8"%>
             <p>Password</p>
             <input type="password" id="password" name="password" />
           </div>
+       	  <div class="errorMessage"><%=session.getAttribute("error_message")%></div>
           <button onclick="return checkLogin()">이메일로 로그인하기</button>
         </form>
         <div class="findlink">
