@@ -97,6 +97,6 @@
         </div>
 
     </div><!--layout end-->
-	<script src="/js/admin/shop/shopCart.js"></script>    
+	<script src="/js/shop/cart/shopCart.js"></script>    
 </body>    
 </html>
