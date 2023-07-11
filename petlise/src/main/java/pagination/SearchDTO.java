@@ -8,6 +8,7 @@ public class SearchDTO {
 	private String keyword; // 검색 키워드
 	private String searchType1; // 검색 유형1
 	private String searchType2; // 검색 유형2
+	private String searchType3; // 검색 유형3
 	
 	
 	private Pagination pagination; // 페이지네이션 정보
@@ -79,5 +80,16 @@ public class SearchDTO {
 	public void setSearchType2(String searchType2) {
 		this.searchType2 = searchType2;
 	}
+
+	public String getSearchType3() {
+		return searchType3;
+	}
+
+	public void setSearchType3(String searchType3) {
+		this.searchType3 = searchType3;
+	}
+
+	
+	
 
 }

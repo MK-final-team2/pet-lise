@@ -37,11 +37,35 @@ public class AdminShopController {
 	
 	//상품수정페이지
 	@GetMapping("/shopproductedit")
-	public String shopproductedit() {
-		return "admin/shopProductEdit";
+	public ModelAndView shopproductedit(String product_id) {
+		ProductDTO product = service.getProductById(product_id);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("product", product);
+		mv.setViewName("admin/shopProductEdit");
+		return mv;
+	}
+
+	//상품디테일페이지(Read)
+	@GetMapping("/shopproductread")
+	public ModelAndView shopproductread(String product_id) {
+		ProductDTO product = service.getProductById(product_id);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("product", product);
+		mv.setViewName("admin/shopProductRead");
+		return mv;
 	}
 
 	
+	//상품수정 - ajax
+	@PostMapping("/editproduct")
+	@ResponseBody
+	public String editproduct(ProductDTO dto) {
+		int result = service.updateProduct(dto);
+		return "{\"result\":\""+result+"\"}";
+	}
+
 	//상품삭제 - ajax
 	@PostMapping("/deleteproduct")
 	@ResponseBody
@@ -55,26 +79,26 @@ public class AdminShopController {
 	@ResponseBody
 	public String productSave(ProductDTO dto) {
 		/*
-		 * product_id / pet_type / category / product_num / reg_date / product_name /
+		 * product_id / pet_type / category / product_code / reg_date / product_name /
 		 * price / quatity / image_main / image_detail
 		 */
 
 		//상품코드만들기
-		String productId = "";
+		String productCode = "";
 		if(dto.getPet_type().equals("강아지")) {
-			productId += "D";
+			productCode += "D";
 		}else {
-			productId += "C";
+			productCode += "C";
 		}
 
 		if(dto.getCategory().equals("사료")) {
-			productId += "01_";
+			productCode += "01_";
 		}else if(dto.getCategory().equals("간식")) {
-			productId += "02_";
+			productCode += "02_";
 		}else if(dto.getCategory().equals("영양제")) {
-			productId += "03_";
+			productCode += "03_";
 		}else if(dto.getCategory().equals("장난감")) {
-			productId += "04_";
+			productCode += "04_";
 		}
 
 		int product_nextnum = 0;
@@ -84,21 +108,14 @@ public class AdminShopController {
 			product_nextnum = 1;
 		}
 
-		if(product_nextnum<10) {
-			productId += "00"+product_nextnum;
-		} else if(product_nextnum>=10 && product_nextnum<100) {
-			productId += "0"+product_nextnum;			
-		} else {
-			productId += product_nextnum;
-		}
+		productCode += String.format("%03d", product_nextnum);
 
-		dto.setProduct_id(productId);
-		dto.setProduct_num(product_nextnum);
+		dto.setProduct_code(productCode);
 		dto.setImage_main(null);
 		dto.setImage_detail(null);
 
-		service.insertProduct(dto);
-		return "{\"success\":\"good\"}";
+		int result = service.insertProduct(dto);
+		return "{\"result\":\""+result+"\"}";
 	}
 	
 }

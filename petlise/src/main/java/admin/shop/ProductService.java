@@ -31,12 +31,16 @@ public class ProductService {
 		return dao.getAllProduct();
 	}
 	
-	public List<ProductDTO> getAllByPetType(String petType) {
-		return dao.getAllByPetType(petType);
-	}
+	public ProductDTO getProductById(String product_id) {
+		return dao.getProductById(product_id);
+	};
 	
 	public int deleteProduct(String product_id) {
 		return dao.deleteProduct(product_id);
+	};
+	
+	public int updateProduct(ProductDTO dto) {
+		return dao.updateProduct(dto);
 	};
 	
 	//Pagination

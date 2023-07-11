@@ -4,20 +4,20 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ProductDTO {
-	String product_id, pet_type, category, reg_date, product_name, image_main, image_detail;
-	int product_num, price, quatity;
+	String pet_type, category,product_code, reg_date, product_name, image_main, image_detail;
+	int product_id, price, quatity;
 	boolean isvisible;
 
-	public int getProduct_num() {
-		return product_num;
+	public String getProduct_code() {
+		return product_code;
 	}
-	public void setProduct_num(int product_num) {
-		this.product_num = product_num;
+	public void setProduct_code(String product_code) {
+		this.product_code = product_code;
 	}
-	public String getProduct_id() {
+	public int getProduct_id() {
 		return product_id;
 	}
-	public void setProduct_id(String product_id) {
+	public void setProduct_id(int product_id) {
 		this.product_id = product_id;
 	}
 	public String getPet_type() {
