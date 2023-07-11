@@ -70,6 +70,7 @@
 		left join user
 		on rc.user_id = user.user_id
 		where rc.user_id = #{id}
+		and rc.parent_id is null
 	</select>
 
 	<select id="boardCount" parameterType="string" resultType="int">
@@ -86,14 +87,6 @@
 		where bc.user_id = #{id}
 	</select>
 	
-	<!-- <select id="recipeCommentCount" parameterType="string" resultType="int">
-		select count(rc.user_id) from recipeComment as rc
-		left join user
-		on rc.user_id = user.user_id
-		where rc.user_id = #{user_id}
-		and rc.parent_id is not null
-	</select> -->
-
 </mapper>
 
 
