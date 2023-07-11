@@ -93,7 +93,7 @@ $("#cancelButton").on("click",function(){
 	$("#cancel_modal").css('display', 'block');
 	
 	$(".golisthomebtn").on("click",function(){
-		location.href = "/adminshoplist";
+		history.back();
 	});
 });
 
@@ -148,7 +148,7 @@ $(".modal_cancelbtn").on('click', function(){
 //수정 후 완료 버튼
 $("#okaymodal .okaybtn").on('click', function(){
 	$(this).parents(".modal").css('display', 'none');
-	location.href = "/adminshoplist";
+	location.href = document.referrer;
 });
 
 //경고창 확인 버튼

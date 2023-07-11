@@ -19,13 +19,12 @@ public class AdminShopController {
 	
 	//상품목록페이지
 	@GetMapping("/adminshoplist")
-	public ModelAndView adminproductlist(@ModelAttribute SearchDTO searchdto) 
-	{
+	public ModelAndView adminproductlist(@ModelAttribute SearchDTO searchdto) {
 		PagingResponse<ProductDTO> productlist = service.getAllProductPaging(searchdto);
+		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("response", productlist);
 		mv.setViewName("admin/shopManagement");
-		
 		return mv;
 	}
 	
@@ -48,10 +47,11 @@ public class AdminShopController {
 
 	//상품디테일페이지(Read)
 	@GetMapping("/shopproductread")
-	public ModelAndView shopproductread(String product_id) {
+	public ModelAndView shopproductread(String product_id, int page) {
 		ProductDTO product = service.getProductById(product_id);
 		
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("currentpage", page);
 		mv.addObject("product", product);
 		mv.setViewName("admin/shopProductRead");
 		return mv;
@@ -113,9 +113,10 @@ public class AdminShopController {
 		dto.setProduct_code(productCode);
 		dto.setImage_main(null);
 		dto.setImage_detail(null);
-
-		int result = service.insertProduct(dto);
-		return "{\"result\":\""+result+"\"}";
+		
+		service.insertProduct(dto);
+		int page = service.countTotalProductNum()%10==0?service.countTotalProductNum()/10:service.countTotalProductNum()/10+1;
+		return "{\"page\":\""+page+"\"}";
 	}
 	
 }

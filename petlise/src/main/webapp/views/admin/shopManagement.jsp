@@ -136,11 +136,9 @@
 									<td>${product.pet_type}</td>
 									<td>${product.category}</td>
 									<td>${product.product_code}</td>
-									<td class="productname"><a href="/shopproductread?product_id=${product.product_id}">${product.product_name}</a></td>
-									<td><fmt:formatNumber value="${product.quatity}"
-											pattern="#,###" />개</td>
-									<td><fmt:formatNumber value="${product.price}"
-											pattern="#,###" />p</td>
+									<td class="productname"><a href="/shopproductread?product_id=${product.product_id}&page=${param.page}">${product.product_name}</a></td>
+									<td><fmt:formatNumber value="${product.quatity}" pattern="#,###" />개</td>
+									<td><fmt:formatNumber value="${product.price}" pattern="#,###" />p</td>
 									<td><fmt:parseDate value="${product.reg_date}" var="reg"
 											pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate
 											value="${reg}" pattern="yyyy-MM-dd" /></td>
@@ -203,7 +201,7 @@
 							<div class="nextArrow" style="margin-left: -6px"></div>
 						</div>
 					</c:if>
-				</div>
+				</div><!-- pagination -->
 			</div>
 		</main>
 	</div>

@@ -166,13 +166,13 @@
 		<div class="modal_contents">
 			<div class="modal_text">
 				<div>
-					상품수정이 진행중입니다.<br> 작성중인 내용은 저장되지 않습니다.<br> 상품목록으로
+					상품수정이 진행중입니다.<br> 작성중인 내용은 저장되지 않습니다.<br> 이전 페이지로
 					돌아가시겠습니까?
 				</div>
 			</div>
 			<div class="modal_btn">
 				<button class="modal_cancelbtn">취소</button>
-				<button class="golisthomebtn">목록가기</button>
+				<button class="golisthomebtn">돌아가기</button>
 			</div>
 		</div>
 	</div>
@@ -199,7 +199,7 @@
 		<div class="modal_contents">
 			<div class="modal_text">
 				<div>
-					상품정보가 수정되었습니다.<br>라이스샵 관리페이지로 이동합니다.
+					상품정보가 수정되었습니다.<br>이전 페이지로 이동합니다.
 				</div>
 			</div>
 			<div class="modal_btn">
