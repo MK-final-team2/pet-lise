@@ -29,7 +29,6 @@
         <div class="search_container">
 		<div class="category">
 			<button aria-current="page">건조간식</button>
-			<button>습식간식</button>
 		</div>
         <div class="search">
             <input type="text" placeholder="검색">

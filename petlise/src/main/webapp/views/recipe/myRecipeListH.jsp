@@ -31,7 +31,6 @@
 		<div class="category">
 			<button aria-current="page">다이어트식</button>
 			<button>병원식</button>
-			<button>이유식</button>
 			<button>영양식</button>
 		</div>
         <div class="search">
@@ -239,8 +238,8 @@
 					</a>
 	            </div>
             </div>
-			
 	            </div>
+	            
 				<div id="recipe_write">
 					<a href="/recipecreate"><div class="write"><button>글쓰기</button></div></a>
 					</div>

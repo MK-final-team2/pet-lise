@@ -137,14 +137,15 @@
      }
 }
 
-.ql-toolbar {
+.ql-toolbar  {
   width: 85%;
-  border: 2px solid var(--light-stroke);
-  border-bottom: 0.5px solid var(--light-stroke);
+  border: 2px solid var(--light-stroke) !important;
+  border-bottom: 0.5px solid var(--light-stroke) !important;
   border-radius: 10px 10px 0 0;
   margin-left: 105px;
   margin-top: -15px;
 }
+
 #editor {
   width: 85%;
   height: 650px;
@@ -161,7 +162,7 @@
   align-items: center;
 }
 
-.editButton {
+#submitButton {
   width: 250px;
   height: 55px;
   border-radius: 8px;

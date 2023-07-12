@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="recipe.RecipeDAO">
+
+    <insert id="insertRecipe" parameterType="recipedto">
+        insert into recipe(recipe_id, user_id, recipe_title, recipe_contents, recipe_created_at, recipe_updated_at,
+            image, recipe_category, pet_category, main_category, sub_category, recipe_of_the_month_registration_date,
+            view_cnt, recipe_of_the_month)
+        values (#{recipe_id}, #{user_id}, #{recipe_title}, #{recipe_contents}, #{recipe_created_at}, #{recipe_updated_at},
+            #{image}, #{recipe_category}, #{pet_category}, #{main_category}, #{sub_category},
+            #{recipe_of_the_month_registration_date}, #{view_cnt}, #{recipe_of_the_month})
+    </insert> 
+
+</mapper>

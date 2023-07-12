@@ -30,7 +30,6 @@
 		<div class="category">
 			<button aria-current="page">다이어트식</button>
 			<button>병원식</button>
-			<button>이유식</button>
 			<button>영양식</button>
 		</div>
         <div class="search">
