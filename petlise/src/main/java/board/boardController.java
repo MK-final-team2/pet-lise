@@ -17,7 +17,7 @@ public class boardController {
 	public String boardWrite() {
 		return "/board/boardWrite";
 	}
-	
+    
 	@GetMapping("/petplaceMain")
 	public String petplaceMain() {
 		return "/board/petplaceMain";
@@ -32,5 +32,6 @@ public class boardController {
 	public String petplaceDetail() {
 		return "/board/petplaceDetail";
 	}
+	
 
 }

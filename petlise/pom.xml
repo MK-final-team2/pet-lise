@@ -86,11 +86,11 @@
 			<artifactId>spring-security-web</artifactId>
 			<version>5.5.2</version>
 		</dependency>
-
-		<dependency>
+<dependency>
 			<groupId>com.google.cloud</groupId>
 			<artifactId>google-cloud-storage</artifactId>
 		</dependency>
+		
 	</dependencies>
 
 	<dependencyManagement>
