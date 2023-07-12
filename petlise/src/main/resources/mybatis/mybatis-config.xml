@@ -8,6 +8,7 @@
 		<typeAlias type="mypage.user.MypageDTO" alias="mypagedto" />
 		<typeAlias type="admin.shop.ProductDTO" alias="productdto" />
 		<typeAlias type="shop.cart.ShopCartDTO" alias="cartdto" />
+		<typeAlias type="shop.payment.ShopOrderProductDTO" alias="orderdto" />
 		<typeAlias type="recipe.RecipeDTO" alias="recipedto" />
 	</typeAliases>
 

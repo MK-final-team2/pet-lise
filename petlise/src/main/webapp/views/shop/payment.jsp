@@ -1,12 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>주문/결제</title>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
 <link rel="stylesheet" href="/css/shop/payment.css">
 <link rel="stylesheet" href="/css/style.css">
+<link rel="icon" href="/images/favicon.ico" />
+<link rel="apple-touch-icon" href="/images/favicon.ico" />
+<title>주문/결제</title>
+<script src="/js/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 	<div id="layout">
@@ -32,39 +38,39 @@
 					</div>
 				</div>
 			</div>
-<!--			<c:forEach class="table_Column"> --> 
+		<div>
+			<c:forEach var="order" items="${orderList}" begin="0" end="2">
 			    <div class="table_Column">
-					<div id="table_Product_Img">
-						<p>
-							<a href="#">
-								<img src="/images/kangnangkong.png">
-							</a>
-						</p>
-					</div>
-					<div id="table_Product_Info">
-						<p>
-							<a href="#">
-								<span>상품 A</span>				
-							</a>
-						</p>
-					</div>
-				    <div id="table_Quantity">
-						<p>1개</p>
-				    </div>
-				    <div id="table_Price">
-				    	<p>
-							<img src="/images/mypage/coin2.svg" id="point_Icon"> 10,000
-						</p>
-				    </div>
-				    <div id="table_Total">
-				    	<p>
-							<img src="/images/mypage/coin2.svg" id="point_Icon"> 10,000
-						</p>
-				    </div>
-	   			</div>			
-<!-- 		</c:forEach> -->
-			
-
+			        <div id="table_Product_Img">
+			            <p>
+			                <a href="#">
+			                    <img class="product_image" src="${order.product_image}">
+			                </a>
+			            </p>
+			        </div>
+			        <div id="table_Product_Info">
+			            <p>
+			                <a href="#">
+			                    <span class="product_name">${order.product_name}</span>				
+			                </a>
+			            </p>
+			        </div>
+			        <div id="table_Quantity">
+			            <p>${order.quantity}</p>
+			        </div>
+			        <div id="table_Price">
+			            <p class="product_price">
+			                <img src="/images/mypage/coin2.svg" id="point_Icon">${order.product_price}
+			            </p>
+			        </div>
+			        <div id="table_Total">
+			            <p class="price_total">
+			                <img src="/images/mypage/coin2.svg" id="point_Icon">${order.price_total}
+			            </p>
+			        </div>
+			    </div>
+			</c:forEach>
+		</div>
 			<div class="order_Detail">
 				<div class="order_Info">
 					<div class="member_Info_Title">회원 정보</div>
@@ -131,18 +137,18 @@
 							</div>																
 							<div class="receipt_Col_2">
 								<div class="receipt_Row_0">
-									<p>2023.06.30</p>
-								</div>							
+									<p id="order_date"></p>
+								</div>
 								<div class="receipt_Row_1">
-									<p><img src="/images/mypage/coin2.svg" id="point_Icon"> 2,500</p>
-									<p><img src="/images/mypage/coin2.svg" id="point_Icon"> 30,000</p>
+									<p><img src="/images/mypage/coin2.svg" id="point_Icon"><span id="totalPoint"></span></p>
+									<p><img src="/images/mypage/coin2.svg" id="point_Icon">3,000</p>
 								</div>
 								<div class="receipt_Row_2">
-									<p><img src="/images/mypage/coin2.svg" id="point_Icon"> 32,500</p>
-									<p><img src="/images/mypage/coin2.svg" id="point_Icon"> 45,000</p>
+									<p><img src="/images/mypage/coin2.svg" id="point_Icon"><span id="totalPayment"></span></p>
+									<p><img src="/images/mypage/coin2.svg" id="point_Icon">45,000</p>
 								</div>
 								<div class="receipt_Row_3">
-									<p><img src="/images/mypage/coin2.svg" id="point_Icon"> 12,500</p>
+									<p><img src="/images/mypage/coin2.svg" id="point_Icon"><span id="change"></span></p>
 								</div>
 							</div>
 							<div class="receipt_Check">
@@ -161,5 +167,6 @@
 			</div>
 		</div>
 	</div>				
+<script src="/js/shop/payment/payment.js"></script>
 </body>
 </html>
