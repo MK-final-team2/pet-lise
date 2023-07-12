@@ -19,4 +19,8 @@ public class ShopCartService {
 		return dao.deleteCartList(product_name);
 	}
 	
+	public int saveCartList(ShopCartDTO dto) {
+		return dao.saveCartList(dto);
+	}
+	
 }

@@ -15,4 +15,14 @@
 <!--  	WHERE user_id = #{user_id}; -->
 	</select>
 
+<!-- 선택된 장바구니 상품 주문하기 -->
+	<insert id="saveCartList" parameterType="cartdto">
+		INSERT INTO orderProduct
+					(user_id, product_id, product_image, 
+					product_name, product_price, quantity, price_total)  
+		VALUES		( 
+					#{user_id}, #{product_id}, #{product_image}, 
+					#{product_name}, #{product_price}, #{quantity}, #{price_total});	
+	</insert>
+	
 </mapper>

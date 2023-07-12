@@ -20,4 +20,8 @@ public class ShopCartDAO {
 		return session.delete("deleteCartList", product_name);
 	}
 	
+	public int saveCartList(ShopCartDTO dto){
+		return session.insert("saveCartList", dto);
+	}
+	
 }
