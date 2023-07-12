@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="/css/mypage/myInfo.css" />
     <title>Pet LiSe</title>
     <script type="text/javascript">
-      let myinfo = '${my_info}';
-      let total = ${my_total_info}
+      //let myinfo = '${my_info}';
+      //let total = ${my_total_info}
     </script>
   </head>
   <body>
@@ -32,7 +32,7 @@
             <div class="userWrap">
               <div class="imgWrap">
                 <img
-                  src="${my_info.profile_image}"
+                  src="https://storage.googleapis.com/${my_info.profile_image}"
                   onerror="this.onerror=null; this.src='/images/default-profile.svg';"
                 />
               </div>

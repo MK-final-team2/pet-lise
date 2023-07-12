@@ -129,8 +129,7 @@ public class MypageController {
 	@ResponseBody
 	@RequestMapping(value = "/api/image-upload", method = RequestMethod.POST)
 	public String imageUpload(MultipartFile image, HttpSession session) throws IOException {
-		String imageUrl = upload.uploadFile(image);
 
-		return "https://storage.googleapis.com/" + bucketName + "/" + imageUrl;
+		return upload.uploadFile(image);
 	}
 }
