@@ -82,6 +82,7 @@ font: var(--button14);
     margin-left: 30px;
   }
   
+  /* 글쓰기   */
   .bt_wrap {
     margin-left: 1120px;
     margin-top: 20px;
@@ -104,7 +105,7 @@ font: var(--button14);
     font: var(--button14);
     line-height: 37px;
   }
-
+/* 소분류 카테고리  */
   .petplace_category{
     display: flex;
     margin: 0 auto;
@@ -115,6 +116,7 @@ font: var(--button14);
   }
   .petplace_category a{
 font: var(--highlight16);
+position: relative;;
 
   }
 
@@ -129,6 +131,27 @@ font: var(--highlight16);
   .petplace_category div {
     margin-right: 50px; /* 요소 사이의 간격 조정 */
   }
+  
+  
+  .petplace_category a:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 100%;
+        height: 1px;
+        background-color: var(--light-point);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .petplace_category a:not(.on):hover:after {
+        transform: scaleX(1);
+    }
+  
+  
+  
   
   .board_list {
   
@@ -282,7 +305,7 @@ font: var(--body16);
 .dogImg_F {
   position: relative; /* 상대적인 위치 설정 */
   top: -535px;
-  left: -137px; /* 좌측 위치를 0으로 설정 */
+  left: 96px; /* 좌측 위치를 0으로 설정 */
   
 }
 
@@ -295,7 +318,7 @@ font: var(--body16);
 
   position: relative;
   top: -555px;
-  left: -137px;
+  left: 96px;
 }
 
 .dogImg_S img {
@@ -306,7 +329,7 @@ font: var(--body16);
 .dogImg_Up {
 
   position: relative;
-  left: 1100px;
+  left: 1315px;
   top: -1188px;
 }
 
