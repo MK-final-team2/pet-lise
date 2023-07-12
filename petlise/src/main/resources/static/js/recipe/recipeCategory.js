@@ -13,7 +13,7 @@ document.getElementById('dropdown').innerHTML += `
   <div class="select">
     <span>카테고리 선택</span>
   </div>
-  <input type="hidden" />
+  <input type="hidden" id="main_category" name="main_category"/>
   <ul class="dropdown-menu">
     <li>일반식</li>
     <li>건강식</li>
@@ -44,22 +44,19 @@ $('#dropdown .dropdown-menu li').click(function (e) {
     $('#smallCategory').css('display', 'block');
     $('#dropdown2 .dropdown-menu').html(`
       <li>습식</li>
-      <li>건식</li>
-      <li>생식</li>
+      <li>건식</li>      
     `);
   } else if (value === '건강식') {
     $('#smallCategory').css('display', 'block');
     $('#dropdown2 .dropdown-menu').html(`
       <li>다이어트식</li>
-      <li>병원식</li>
-      <li>이유식</li>
+      <li>병원식</li>      
       <li>영양식</li>
     `);
   } else if (value === '간식') {
     $('#smallCategory').css('display', 'block');
     $('#dropdown2 .dropdown-menu').html(`
-      <li>건조간식</li>
-      <li>화식간식</li>
+      <li>건조간식</li>      
     `);
   } else {
     $('#smallCategory').css('display', 'none');
