@@ -30,7 +30,6 @@
 		<div class="category">
 			<button aria-current="page">습식</button>
 			<button>건식</button>
-			<button>생식</button>
 		</div>
         <div class="search">
             <input type="text" placeholder="검색">
