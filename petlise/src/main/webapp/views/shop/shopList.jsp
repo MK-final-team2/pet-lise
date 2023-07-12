@@ -25,19 +25,22 @@
 <body>
 	<div id='layout'>
 		<div id="titlediv">
+			<input type="hidden" id="searchType1" value="${param.searchType1}" />
+			<input type="hidden" id="searchType2" value="${param.searchType2}" />
+			<input type="hidden" id="sortType" value="${param.sortType}" />
+			<!-- 메인샵버튼 -->
 			<div id="shopTitle">
 				<div></div>
-				<span style="font : var(--heading24);">라이스샵</span>
-				<span style="font : var(--highlight14);">LiSe Shop</span>
+				<span style="font: var(--heading24);">라이스샵</span> <span
+					style="font: var(--highlight14);">LiSe Shop</span>
 			</div>
-			
+
 			<!--강아지 카테고리-->
 			<div class="petTitle">
 				<div class="title">
-					<img src="/images/shop/shoplist/category_dog.svg" />
-					<span>강아지</span>
+					<img src="/images/shop/shoplist/category_dog.svg" /> <span>강아지</span>
 				</div>
-				<div class="category">
+				<div class="category" id="category_dog">
 					<!--강아지 상품 카테고리-->
 					<!-- 사료 -->
 					<div class="product" id="D01">
@@ -61,13 +64,13 @@
 					</div>
 				</div>
 			</div>
+
 			<!--고양이 카테고리-->
 			<div class="petTitle">
 				<div class="title">
-					<img src="/images/shop/shoplist/category_cat.svg" />
-					<span>고양이</span>
+					<img src="/images/shop/shoplist/category_cat.svg" /> <span>고양이</span>
 				</div>
-				<div class="category">
+				<div class="category"  id="category_cat">
 					<!--고양이 상품 카테고리-->
 					<!-- 사료 -->
 					<div class="product" id="C01">
@@ -93,53 +96,80 @@
 			</div>
 		</div>
 
+		<div id="textTitle"></div>
+
 		<div id="filterhead">
-			<div id = "filterbtns">
-				<button id="filterbtn_pop" class="filter_active">인기순</button>
-				<button id="filterbtn_new">신상품순</button>
-				<button id="filterbtn_high">고가순</button>
-				<button id="filterbtn_low">저가순</button>
+			<div id="filterbtns">
+				<button class="filterbtn"
+					<c:if test="${param.sortType eq '인기순' || param.sortType eq null || param.sortType eq ''}">id="filterbtn_active"</c:if>>인기순</button>
+				<button class="filterbtn"
+					<c:if test="${param.sortType eq '신상품순'}">id="filterbtn_active"</c:if>>신상품순</button>
+				<button class="filterbtn"
+					<c:if test="${param.sortType eq '고가순'}">id="filterbtn_active"</c:if>>고가순</button>
+				<button class="filterbtn"
+					<c:if test="${param.sortType eq '저가순'}">id="filterbtn_active"</c:if>>저가순</button>
 			</div>
 			<div id="filtertail">
-			<div style="margin-right: 10px">
-				<input type="checkbox" id="issoldout" <c:if test="${param.searchType3 eq '판매중'}"> checked </c:if> />
-				<label for="issoldout"><span></span>품절상품제외</label>
-			</div><!-- checkboxdiv -->
-			<div id="searchdiv">
-				<c:choose>
-					<c:when test="${param.keyword == '' || param.keyword eq null}">
-						<input type="text" id="keyword" placeholder="상품명 검색" />
-					</c:when>
-					<c:otherwise>
-						<input type="text" id="keyword" value="${param.keyword}" />
-					</c:otherwise>
-				</c:choose>
-				<button id="searchbtn">
-					<img src="/images/shop/shopList/search_main.svg">
-				</button>
-			</div><!-- searchdiv -->
-			
+				<div style="margin-right: 10px">
+					<input type="checkbox" id="issoldout"
+						<c:if test="${param.searchType3 eq '판매중'}"> checked </c:if> /> <label
+						for="issoldout"><span></span>품절상품제외</label>
+				</div>
+				<!-- checkboxdiv -->
+				<div id="searchdiv">
+					<c:choose>
+						<c:when test="${param.keyword == '' || param.keyword eq null}">
+							<input type="text" id="keyword" placeholder="상품명 검색" />
+						</c:when>
+						<c:otherwise>
+							<input type="text" id="keyword" value="${param.keyword}" />
+						</c:otherwise>
+					</c:choose>
+					<button id="searchbtn">
+						<img src="/images/shop/shopList/search_main.svg">
+					</button>
+				</div>
+				<!-- searchdiv -->
+
 			</div>
 		</div>
 
 		<div id="product_container">
 			<c:forEach var="product" items="${response.list}">
-				<div class="products">
-					<div class="product_img"
-						style="background-image: url(${product.image_main});">
-						<div class="product_img_cover">
-							<button>
-								<img src="/images/shop/shoplist/cart_yellow.svg" alt="cart" />
-							</button>
+				<!-- 판매상품 -->
+				<c:if test="${product.isvisible}">
+					<div class="products">
+						<div class="product_img"
+							style="background-image: url(${product.image_main});">
+							<div class="product_img_cover">
+								<button>
+									<img src="/images/shop/shoplist/cart_yellow.svg" alt="cart" />
+								</button>
+							</div>
+						</div>
+						<div id="product_info">
+							<span> ${product.product_name} </span> <span> <img
+								id="coinimg" src="/images/shop/shoplist/coin2.svg" alt="coin" />
+								<fmt:formatNumber value="${product.price}" pattern="#,###" />
+							</span>
 						</div>
 					</div>
-					<div id="product_info">
-						<span> ${product.product_name} </span> <span> <img
-							id="coinimg" src="/images/shop/shoplist/coin2.svg" alt="coin" />
-							<fmt:formatNumber value="${product.price}" pattern="#,###" />
-						</span>
+				</c:if>
+				<!-- 품절상품 -->
+				<c:if test="${!product.isvisible}">
+					<div class="products_soldout">
+						<div class="product_img_soldout"
+							style="background-image: url(${product.image_main});">
+							<div class="product_img_cover_soldout">
+								<span>SOLD</span>
+								<span>OUT</span>
+							</div>
+						</div>
+						<div id="product_info_soldout">
+							<span> ${product.product_name} </span> <span> 품절 </span>
+						</div>
 					</div>
-				</div>
+				</c:if>
 			</c:forEach>
 		</div>
 		<!-- 상품목록 -->
@@ -191,9 +221,11 @@
 					<div class="nextArrow" style="margin-left: -6px"></div>
 				</div>
 			</c:if>
-		</div><!-- pagination -->
-	</div><!-- layout -->
-	
+		</div>
+		<!-- pagination -->
+	</div>
+	<!-- layout -->
+
 	<script src="/js/shop/shopList.js"></script>
 </body>
 </html>
