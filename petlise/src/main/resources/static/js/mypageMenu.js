@@ -5,8 +5,8 @@ document.getElementById('mypageMenu').innerHTML += `
         <span class="material-symbols-outlined">person</span> 회원정보
       </div>
       <ul>
-        <li><a href="#">회원정보 수정</a></li>
-        <li><a href="#">회원 탈퇴</a></li>
+        <li><a href="/mypage">회원정보</a></li>
+        <li><a href="/mypage/edit">회원정보수정</a></li>
       </ul>
     </div>
     <div class="menu_Community">

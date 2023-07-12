@@ -16,29 +16,31 @@ function EmailReg() {
 
 
 $(document).ready(function() {
-	$('#emailCheckButton').on('click', function(e) {
+	$('#emailCheckButton').on('click', function() {
 		var email = $('#email').val();
-		
-		$.ajax({
-			url: "/checkemail",
-			type: "post",
-			data: {
-				email: email
-			},
-			success: function(data) {
-				if (data == 0) {
-					alert("가입 가능한 이메일 입니다.")
-					$('#emailCheckButton').val("true");
-					
-				} else {
-					alert("등록된 이메일 입니다.")
-					$('#emailCheckButton').val("false");
-					
+
+		if (regEmail.test(email)) {
+			$.ajax({
+				url: "/checkemail",
+				type: "post",
+				data: {
+					email: email
+				},
+				success: function(data) {
+					if (data == 0) {
+						alert("가입 가능한 이메일 입니다.")
+						$('#emailCheckButton').val("true");
+					} else {
+						alert("등록된 이메일 입니다.")
+						$('#emailCheckButton').val("false");
+					}
+				},
+				error: function(error) {
+					console.log(error);
 				}
-			},
-			error: function(error) {
-				console.log(error);
-			}
-		});
+			});
+		} else {
+			alert("이메일을 입력해주세요")
+		}
 	});
 })

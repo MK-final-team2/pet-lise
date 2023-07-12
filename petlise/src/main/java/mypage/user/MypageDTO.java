@@ -1,20 +1,9 @@
-package user;
+package mypage.user;
 
-import java.util.Date;
-
-public class UserDTO {
-	String user_id, name, email, password, address;
+public class MypageDTO {
+	String name, email, password, address;
 	int point;
-	Date created_at, deleted_at;
 	String profile_image, pet_type, pet_name, pet_age;
-	String role;
-
-	public String getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
-	}
 
 	public String getName() {
 		return name;
@@ -51,20 +40,6 @@ public class UserDTO {
 		this.point = point;
 	}
 
-	public Date getCreated_at() {
-		return created_at;
-	}
-	public void setCreated_at(Date created_at) {
-		this.created_at = created_at;
-	}
-
-	public Date getDeleted_at() {
-		return deleted_at;
-	}
-	public void setDeleted_at(Date deleted_at) {
-		this.deleted_at = deleted_at;
-	}
-
 	public String getProfile_image() {
 		return profile_image;
 	}
@@ -91,13 +66,6 @@ public class UserDTO {
 	}
 	public void setPet_age(String pet_age) {
 		this.pet_age = pet_age;
-	}
-
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
 	}
 
 }

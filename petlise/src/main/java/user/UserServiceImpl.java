@@ -23,4 +23,5 @@ public class UserServiceImpl implements UserService{
 	public void newPassword(String password, String email) {
 		dao.newPassword(password, email);
 	}
+	
 }
