@@ -9,6 +9,8 @@
 		<typeAlias type="admin.shop.ProductDTO" alias="productdto" />
 		<typeAlias type="shop.cart.ShopCartDTO" alias="cartdto" />
 		<typeAlias type="board.petplace.PetPlaceDTO" alias="petplacedto" />
+		<typeAlias type="shop.payment.ShopOrderProductDTO" alias="orderdto" />
+		<typeAlias type="recipe.RecipeDTO" alias="recipedto" />
 	</typeAliases>
 
 </configuration>
