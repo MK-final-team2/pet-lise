@@ -64,6 +64,16 @@
 	padding: 0 15px;
 }
 
+.Wrapper>div {
+	font: var(--body16);
+	width: 100%;
+	height: 45px;
+	line-height:45px;
+	border: 1px solid var(--light-stroke);
+	border-radius: 5px;
+	padding: 0 15px;
+}
+
 .Wrapper input:focus {
 	border-color: var(--light-point);
 }
@@ -85,6 +95,16 @@
 	font: var(--body16);
 	width: 160px;
 	height: 45px;
+	border: 1px solid var(--light-stroke);
+	border-radius: 5px;
+	padding: 0 15px;
+	text-align: center;
+}
+.Wrapper_half>div {
+	font: var(--body16);
+	width: 160px;
+	height: 45px;
+	line-height:45px;
 	border: 1px solid var(--light-stroke);
 	border-radius: 5px;
 	padding: 0 15px;

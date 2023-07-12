@@ -27,7 +27,7 @@
 		<div id="asideMenu"></div>
 
 		<main>
-			<p>라이스샵 상품정보수정</p>
+			<p>라이스샵 상품정보</p>
 			<div id="layout">
 				<div class="edit_images">
 					<div class="fileWrap">
@@ -81,16 +81,16 @@
 					</div>
 					<div class="Wrapper">
 						<p>상품가격</p>
-						<input type="number" readonly="readonly" id="product_price" value="${product.price}" />
+						<div> <fmt:formatNumber value="${product.price}" pattern="#,###" /> </div>
 					</div>
 					<div class="Wrapper_container">
 						<div class="Wrapper_half">
 							<p>판매량</p>
-							<input type="number" readonly="readonly" id="product_saled" value="120"/>
+							<div> <fmt:formatNumber value="120" pattern="#,###" /> </div>
 						</div>
 						<div class="Wrapper_half">
 							<p>상품재고</p>
-							<input type="number" readonly="readonly" id="product_quatity" min="120" value="${product.quatity}"/>
+							<div> <fmt:formatNumber value="${product.quatity}" pattern="#,###" /> </div>
 						</div>
 						<div class="Wrapper_half">
 							<p>판매여부</p>
@@ -118,6 +118,7 @@
 			</div>
 			<!-- layout end -->
 			
+			<input type="hidden" id="pageinput" value="${currentpage}"/>
 			<input type="hidden" id="product_number" value="${product.product_id}" />
 			<div id="btndiv">
 				<button id="cancelButton">목록으로가기</button>

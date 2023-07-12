@@ -3,7 +3,7 @@ $("#cancelButton").on("click",function(){
 	$("#list_modal").css('display', 'block');
 	
 	$(".golisthomebtn").on("click",function(){
-		location.href = "/adminshoplist";
+		location.href = "/adminshoplist?page="+$('#pageinput').val();
 	});
 });
 

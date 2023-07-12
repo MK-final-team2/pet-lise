@@ -141,8 +141,9 @@
 	<div class="modal" id="okaymodal">
 		<div class="modal_contents">
 			<div class="modal_text">
+				<input type="hidden" id="pageinput"/>
 				<div>상품이 등록되었습니다.<br>
-				라이스샵 관리페이지로 이동합니다.</div>
+				상품목록 페이지로 이동합니다.</div>
 			</div>
 			<div class="modal_btn"><button class="okaybtn">확인</button></div>
 		</div>

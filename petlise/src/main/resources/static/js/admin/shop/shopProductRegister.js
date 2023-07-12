@@ -69,6 +69,7 @@ $(".createbtn").on('click', function(){
 			quatity :$("#product_quatity").val()
 		},
 		success : function(result) { // 결과 성공 콜백함수
+		   	$("#okaymodal #pageinput").val(result.page);
 		   	$("#okaymodal").css('display', 'block');
     	},
 	    error : function(request, status, error) { // 결과 에러 콜백함수
@@ -94,7 +95,7 @@ $(".cancelbtn").on('click', function(){
 //등록 후 완료 버튼
 $("#okaymodal .okaybtn").on('click', function(){
 	$(this).parents(".modal").css('display', 'none');
-	location.href = "/adminshoplist";
+	location.href = "/adminshoplist?page="+$("#okaymodal #pageinput").val();
 });
 
 //경고창 확인 버튼
