@@ -27,7 +27,7 @@ function imageUpload() {
 		contentType: false,
 		processData: false,
 		success: function(url) {
-			$("#imgUrl").attr("src", url);
+			$("#imgUrl").attr("src", `https://storage.googleapis.com/${url}`);
 			$("#imageValue").val(url);
 		},
 		error: function(error) {
