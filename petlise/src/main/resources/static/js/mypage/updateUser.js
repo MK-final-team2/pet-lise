@@ -1,5 +1,4 @@
-$(document).ready(function() {
-	//$(`input:radio[name='pet_type']:radio[value='사과']`).prop('checked', true); 
+$(document).ready(function() { 
 	$('.editButton').on('click', function() {
 		let password = $('#password').val()
 
@@ -52,25 +51,6 @@ $(document).ready(function() {
 		}
 	})
 });
-
-function modal() {
-	const today = new Date();
-
-	$.ajax({
-		url: "/deleteuser",
-		type: "post",
-		data: {
-			today: today
-		},
-		success: function() {
-			alert("탈퇴가 완료되었습니다.")
-			location.href = "/";
-		},
-		error: function(error) {
-			console.log(error);
-		}
-	})
-}
 
 function regPw() {
 	const pwReg = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,12}$/;
