@@ -16,7 +16,7 @@
 	margin-top:-125px; margin-left:-200px;
 	
 	border-radius: 5px;
-	border: 3px solid var(--light-point, #8A6F4E);
+	border: 3px solid var(--light-main);
 	background: var(--gray-white, #FFF);
 
 }
@@ -29,6 +29,7 @@
 	text-align: center;
 	
 	display: flex;
+	flex-direction:column;
 	justify-content: center;
 	align-items: center;
 }
@@ -45,11 +46,11 @@
 	height:45px;
 	margin:0 10px;
 	border-radius: 20px;
-	border: 1px solid var(--light-point, #8A6F4E);
+	border: 1px solid var(--light-main);
 	text-align: center;
 	font:var(--body16);
 }
 
 .modal_btn > button:hover{
-	background: #DED4C7;
+	background:var(--light-sub);
 }

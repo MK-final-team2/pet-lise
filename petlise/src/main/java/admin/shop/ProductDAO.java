@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import pagination.SearchDTO;
+import shop.cart.ShopCartDTO;
 
 @Mapper
 @Repository
@@ -21,4 +22,8 @@ public interface ProductDAO {
 	//Pagination
 	List<ProductDTO> getAllProductPaging(SearchDTO dto);
 	int getCount(SearchDTO dto);
+	
+	//cart
+	int insertCart(ShopCartDTO dto);
+	int isinCart(ShopCartDTO dto);
 }
