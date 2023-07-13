@@ -9,7 +9,8 @@ public class SearchDTO {
 	private String searchType1; // 검색 유형1
 	private String searchType2; // 검색 유형2
 	private String searchType3; // 검색 유형3
-	
+
+	private String sortType; // 정렬유형
 	
 	private Pagination pagination; // 페이지네이션 정보
 
@@ -87,6 +88,14 @@ public class SearchDTO {
 
 	public void setSearchType3(String searchType3) {
 		this.searchType3 = searchType3;
+	}
+
+	public String getSortType() {
+		return sortType;
+	}
+
+	public void setSortType(String sortType) {
+		this.sortType = sortType;
 	}
 
 	
