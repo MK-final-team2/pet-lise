@@ -131,6 +131,6 @@ public class MypageController {
 	public String imageUpload(MultipartFile image, HttpSession session) throws IOException {
 		String imageUrl = upload.uploadFile(image);
 
-		return "https://storage.googleapis.com/" + bucketName + "/" + imageUrl;
+		return bucketName + "/" + imageUrl;
 	}
 }
