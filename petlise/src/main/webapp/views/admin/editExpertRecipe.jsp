@@ -19,22 +19,25 @@ pageEncoding="UTF-8"%>
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <title>Pet LiSe</title>
+    <script>let title = "${title}"</script>
   </head>
   <body>
     <div class="container">
       <div id="asideMenu"></div>
 
       <main>
-        <p>전문가 레시피 등록</p>
+        <p>전문가 레시피 등록 - ${title}</p>
 
         <div class="contents">
-          <input type="text" placeholder="제목" />
+          <input type="text" placeholder="제목" name="recipe_title" />
           <div class="fileWrap">
             <p>대표이미지</p>
             <label for="file">
-              <img src="/images/image-icon.svg" alt="이미지아이콘" />
+              <img src="/images/image-icon.svg" alt="대표이미지" id="imgUrl" />
+              <input type="hidden" id="imageValue" name="image" />
             </label>
-            <input type="file" id="file" />
+            <input type="file" id="file" accept="image/*"
+              onchange="imageUpload()" />
           </div>
           <div class="categoryWrap">
             <div class="category">
@@ -46,23 +49,16 @@ pageEncoding="UTF-8"%>
               <p>소분류 카테고리</p>
               <div id="dropdown2" class="dropdown">
                 <div class="select">
-                  <span>카테고리 선택</span>
+                  <span></span>
                 </div>
-                <input type="hidden" />
+                <input type="hidden" class="smallCateName" name="sub_category" />
                 <ul id="dropdown-menu" class="dropdown-menu"></ul>
               </div>
             </div>
           </div>
 
-          <div id="editor">
-            <p>내용을 입력해주세요</p>
-            <br />
-            <p>
-              * 저작권 침해, 음란, 청소년 유해물, 기타 위법자료 등을 게시할 경우
-              게시물은 경고 없이 삭제됩니다.
-            </p>
-          </div>
-          <button class="editButton">등록하기</button>
+          <div id="editor"></div>
+          <button class="editButton" onclick="return edit()">등록하기</button>
         </div>
       </main>
     </div>
@@ -70,5 +66,7 @@ pageEncoding="UTF-8"%>
     <script src="/js/admin/aside.js"></script>
     <script src="/js/admin/expertRecipeCategory.js"></script>
     <script src="/js/editor.js"></script>
+    <script src="/js/imageUpload.js"></script>
+    <script src="/js/admin/editRecipe.js"></script>
   </body>
 </html>

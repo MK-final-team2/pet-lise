@@ -12,6 +12,9 @@
   display: none;
   margin-left: 20px;
 }
+#smallCategory.active {
+  display: block;
+}
 .dropdown {
   position: relative;
   width: 300px;
@@ -29,6 +32,7 @@
 .dropdown.active {
   box-shadow: var(--shadow100);
   border-radius: 5px;
+  display: block;
 }
 .dropdown .dropdown-menu {
   z-index: 10;
@@ -41,6 +45,9 @@
   border: 1.5px solid var(--light-main);
   border-radius: 5px;
   display: none;
+}
+.dropdown .dropdown-menu.active {
+	display: block;
 }
 .dropdown .dropdown-menu > li {
   padding: 10px 15px;

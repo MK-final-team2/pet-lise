@@ -3,12 +3,10 @@ package user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -67,7 +65,14 @@ public class UserController {
 			if (bCryptService.matchesBcrypt(password, dto.getPassword(), bcryptNum)) {
 				if (dto.getDeleted_at() == null) {
 					session.setAttribute("user_id", dto.getUser_id());
-					mv.setViewName("redirect:/");
+					session.setAttribute("role", dto.getRole());
+
+					if (dto.getRole().equals("admin")) {
+						mv.setViewName("redirect:/admin");
+					} else {						
+						mv.setViewName("redirect:/");
+					}
+					
 				} else {
 					session.setAttribute("error_message", "로그인이 불가한 이메일입니다.");
 					mv.setViewName("sign/signIn");

@@ -47,7 +47,7 @@ function check() {
 		return false;
 	}
 
-	if (!signupForm.text1.checked && !signupForm.text2.checked) {
+	if (!signupForm.text1.checked || !signupForm.text2.checked) {
 		alert('이용약관 또는 개인정보 수집 및 이용에 대한 동의는 필수 입니다.');
 		signupForm.text1.focus();
 		return false;
