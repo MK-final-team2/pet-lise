@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import pagination.Pagination;
 import pagination.PagingResponse;
 import pagination.SearchDTO;
+import shop.cart.ShopCartDTO;
 
 @Service
 public class ProductService {
@@ -61,5 +62,13 @@ public class ProductService {
         return new PagingResponse<>(list, pagination);
     }
 	
+	//cart
+	public int insertCart(ShopCartDTO dto) {
+		return dao.insertCart(dto);
+	}
+	
+	public int isinCart(ShopCartDTO dto) {
+		return dao.isinCart(dto);
+	}
 	
 }

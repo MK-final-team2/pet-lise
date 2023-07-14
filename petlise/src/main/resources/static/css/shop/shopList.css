@@ -275,6 +275,40 @@
 	width:60%;
 }
 
+/* --------- no result ----------- */
+#noresult {
+	width:100%; 
+	height:300px; 
+	color: var(--light-point, #8A6F4E);
+	font-size:50px; 
+	text-align: center;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 300px;
+	
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+#noresult>button {
+	width: 250px;
+	height: 50px;
+	border-radius: 20px;
+	border: 1px solid var(--light-sub, #FBC252);
+	color: var(--light-text, #1F1F1F);
+	font-size: 16px;
+	font-weight: 700;
+	padding: 10px;
+	background-color: transparent;
+	margin-left: 15px;
+	cursor: pointer;
+}
+
+#noresult>button:hover {
+	background-color: var(--light-sub, #FBC252);
+}
 /* --------- 상품목록 ----------- */
 
 #product_container {
@@ -316,17 +350,20 @@
 	margin:-1px 0px 0px -1px;
 	visibility: hidden;
 	border-radius: 5px;
+	
+	display:flex;
+	justify-content: center;
+	align-items: flex-end;
 }
 
 .product_img_cover>button {
-	position: absolute;
 	width: 60px;
 	height: 60px;
 	border-radius: 60px;
 	background: #FFF;
 	border-width: 0;
-	left: 105px;
-	top: 160px;
+	
+	margin-bottom: 10px;
 }
 
 .product_img_cover>button>img {
@@ -419,18 +456,18 @@
 	border-radius: 5px;
 	
 	display:flex;
-	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
 
-.product_img_cover_soldout>span{
+.product_img_cover_soldout>div{
+	margin:0px;
 	color: var(--light-point, #8A6F4E);
 	text-align: center;
 	font-size: 48px;
 	font-style: normal;
 	font-weight: 700;
-	height: 60px;
+	line-height: 55px;
 }
 
 #product_info_soldout {

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,55 +23,66 @@
 <body>
     <div id='layout'>
         <div id="categorys">
-            <p>라이스샵 > 강아지 > 사료</p>
+            <p>라이스샵 > ${product.pet_type} > ${product.category}</p>
         </div> <!-- categorys -->
 
         <div id="detail_img_info">
-            <div id="img"></div>
+            <div id="img" style="background-image: url(${product.image_main});">
+            	<c:if test="${!product.isvisible}">
+	            	<div class="product_img_cover_soldout">
+						<div>SOLD<br>OUT</div>
+					</div>
+            	</c:if>
+            </div>
             <div id="info">
-                <p>상품명</p>
+                <p>${product.product_name}</p>
                 <table>
                     <tbody>
-                        <tr><td>가격</td><td><img src="/images/shop/shopdetail/coin2.svg" alt="coin"/>10,000</td></tr>    
-                        <tr><td>배송비</td><td><img src="/images/shop/shopdetail/coin2.svg" alt="coin"/>2,500 / 포인트 선결제</td></tr>    
-                        <tr><td>상품코드</td><td>abcdefg123456</td></tr>    
-                        <tr><td>수량</td><td>
-                            <select name="select_number" id="select_number">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
+                        <tr><td>가격</td><td><img src="/images/shop/shopdetail/coin2.svg" alt="coin"/><fmt:formatNumber value="${product.price}" pattern="#,###" /></td></tr>    
+                        <tr><td>배송비</td><td><img src="/images/shop/shopdetail/coin2.svg" alt="coin"/>3,000 / 포인트 선결제</td></tr>    
+                        <tr><td>상품코드</td><td>${product.product_code}</td></tr>    
+                        <tr><td>수량</td><td id="select_number">
+                            <button id="num_minus" class="oper"><span class="material-symbols-outlined">remove</span></button>
+                            <div id="number">1</div>
+                            <button id="num_plus" class="oper"><span class="material-symbols-outlined">add</span></button>
+                            <span></span>
                         </td></tr>
                     </tbody>
                 </table>
                 <div id="info_btns">
-                    <button id="cartbtn">장바구니담기</button>
-                    <button id="buybtn">바로 구매하기</button>
+                    <c:if test="${product.isvisible}">
+	                    <button id="cartbtn">장바구니담기</button>
+	                    <button id="buybtn">바로 구매하기</button>
+            		</c:if>
+                    <c:if test="${!product.isvisible}">
+	                    <button id="soldoutbtn">품절</button>
+            		</c:if>
+                    
                 </div>
             </div>
         </div> <!-- detail_img_info -->
 
         <div class="detail_tab">
-            <div class="tab_active"><img src="/images/shop/shopdetail/pawprint_black.svg">상품상세정보</div>
-            <div>상품후기</div>
-            <div>상품안내</div>
+            <div id="tab1_1" class="tab_active"><img src="/images/shop/shopdetail/pawprint_black.svg">상품상세정보</div>
+            <div id="tab1_2">상품후기</div>
+            <div id="tab1_3">상품안내</div>
         </div>
 
-        <div id="product_detail"></div>
+        <div id="product_detail">
+        	<img src="${product.image_detail}">
+        </div>
         
         <div class="detail_tab">
-            <div>상품상세정보</div>
-            <div class="tab_active"><img src="/images/shop/shopdetail/pawprint_black.svg">상품안내</div>
-            <div>상품후기</div>
+            <div id="tab2_1">상품상세정보</div>
+            <div id="tab2_2" class="tab_active"><img src="/images/shop/shopdetail/pawprint_black.svg">상품안내</div>
+            <div id="tab2_3">상품후기</div>
         </div>
 
         <div id="product_infomation">
             <h4>배송안내</h4>
             <p>
                 ▪ 배송방법 : 순차배송<br>
-                ▪ 배송비 : 2,500원 / 포인트 선결제<br>
+                ▪ 배송비 : 3,000 point / 포인트 선결제<br>
                 <span class="tab">&#9;</span>- 배송비 포함하여 전액 포인트 결제를 진행해 주셔야 합니다.<br>
                 ▪ 배송기간 : 결제 완료 후 2~3일 이내 도착<br>
                 <span class="tab">&#9;</span>- 도서 산간 지역은 하루가 더 소요될 수 있습니다.<br>                
@@ -82,9 +95,9 @@
         </div>
         
         <div class="detail_tab">
-            <div>상품상세정보</div>
-            <div>상품안내</div>
-            <div class="tab_active"><img src="/images/shop/shopdetail/pawprint_black.svg">상품후기</div>
+            <div id="tab3_1">상품상세정보</div>
+            <div id="tab3_2">상품안내</div>
+            <div id="tab3_3" class="tab_active"><img src="/images/shop/shopdetail/pawprint_black.svg">상품후기</div>
         </div>
 
         <div id="product_review">
@@ -252,5 +265,7 @@
         </div>
 
     </div> <!-- Layout -->
+    
+    <script src="/js/shop/shopDetail.js"></script>
 </body>
 </html>

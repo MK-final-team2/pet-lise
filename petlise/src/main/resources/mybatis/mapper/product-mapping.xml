@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="admin.shop.ProductDAO">
-
+	
 	<insert id="insertProduct" parameterType="productdto">
 		<!-- product_id(auto) / pet_type / category / product_code / reg_date -->
 		<!-- product_name / price / quatity / image_main / image_detail / isvisible -->
@@ -47,7 +47,34 @@
 		WHERE product_id = #{product_id};
 	</update>
 	
-	<!-- ▼▼▼▼Pagination▼▼▼▼ -->
+	<!-- 장바구니 상품등록 -->
+	<insert id="insertCart" parameterType="cartdto">
+		INSERT INTO cart(
+			user_id, product_id, product_image,
+			product_name, quantity, product_price, price_total
+		)
+		VALUES(
+			#{user_id},#{product_id},#{product_image},
+			#{product_name},#{quantity},#{product_price},#{price_total}
+		)
+	</insert>
+	
+	<!-- 장바구니 조회 -->
+	<select id="isinCart" parameterType="cartdto" resultType="int">
+		SELECT count(*)
+		FROM cart
+		WHERE user_id=#{user_id} and product_id=#{product_id}
+	</select>
+
+	<!-- 
+	<update id="insertCart" parameterType="cartdto">
+		UPDATE *
+		SET quantity=#{quantity}
+		WHERE user_id=#{user_id} and product_id=#{product_id}
+	</update> 
+	-->
+	
+<!-- ▼▼▼▼Pagination▼▼▼▼ -->
 	<select id="getAllProductPaging" resultType="productdto"
 		parameterType="pagination.SearchDTO">
 		select *
@@ -244,6 +271,7 @@
 				<when test="'저가순'.equals(sortType)">order by price </when>
 				<when test="'고가순'.equals(sortType)">order by price desc </when>
 				<when test="'신상품순'.equals(sortType)">order by reg_date desc </when>
+				<when test="'판매량순'.equals(sortType)">order by sales desc </when>
 			</choose>
 		</if>
 		limit #{pagination.limitStart}, #{recordSize}
@@ -441,6 +469,6 @@
 			</otherwise>
 		</choose>
 	</select>
-	<!-- ▲▲▲▲Pagination▲▲▲▲ -->
+<!-- ▲▲▲▲Pagination▲▲▲▲ -->
 
 </mapper>

@@ -12,13 +12,14 @@
 <link rel="stylesheet" href="css/style.css" />
 <link rel="stylesheet" href="css/shop/shopList.css" />
 <link rel="stylesheet" href="css/shop/pagination_shop.css" />
+<link rel="stylesheet" href="css/shop/modal_main.css" />
 <link rel="icon" href="/images/favicon.ico" />
 <link rel="apple-touch-icon" href="/images/favicon.ico" />
 <title>Pet LiSe</title>
 <script src="/js/jquery-3.6.4.min.js"></script>
 <script>
 	$(document).ready(function() {
-		//vs추가추가추가
+		
 	});
 </script>
 </head>
@@ -101,7 +102,7 @@
 		<div id="filterhead">
 			<div id="filterbtns">
 				<button class="filterbtn"
-					<c:if test="${param.sortType eq '인기순' || param.sortType eq null || param.sortType eq ''}">id="filterbtn_active"</c:if>>인기순</button>
+					<c:if test="${param.sortType eq '판매량순' || param.sortType eq null || param.sortType eq ''}">id="filterbtn_active"</c:if>>판매량순</button>
 				<button class="filterbtn"
 					<c:if test="${param.sortType eq '신상품순'}">id="filterbtn_active"</c:if>>신상품순</button>
 				<button class="filterbtn"
@@ -135,20 +136,29 @@
 		</div>
 
 		<div id="product_container">
+			<c:if test="${fn:length(response.list) == 0}">
+				<div id="noresult">
+				해당되는 검색결과가 없습니다.
+				
+				<button>LiSe Shop 메인으로 가기</button>
+				</div>
+			</c:if>
+		
 			<c:forEach var="product" items="${response.list}">
 				<!-- 판매상품 -->
 				<c:if test="${product.isvisible}">
-					<div class="products">
+					<div class="products" id="${product.product_id}">
 						<div class="product_img"
 							style="background-image: url(${product.image_main});">
 							<div class="product_img_cover">
-								<button>
+								<button class="cartbtn">
 									<img src="/images/shop/shoplist/cart_yellow.svg" alt="cart" />
 								</button>
 							</div>
 						</div>
 						<div id="product_info">
-							<span> ${product.product_name} </span> <span> <img
+							<span> ${product.product_name} </span> 
+							<span> <img
 								id="coinimg" src="/images/shop/shoplist/coin2.svg" alt="coin" />
 								<fmt:formatNumber value="${product.price}" pattern="#,###" />
 							</span>
@@ -157,16 +167,19 @@
 				</c:if>
 				<!-- 품절상품 -->
 				<c:if test="${!product.isvisible}">
-					<div class="products_soldout">
+					<div class="products_soldout" id="${product.product_id}">
 						<div class="product_img_soldout"
 							style="background-image: url(${product.image_main});">
 							<div class="product_img_cover_soldout">
-								<span>SOLD</span>
-								<span>OUT</span>
+								<div>SOLD<br>OUT</div>
 							</div>
 						</div>
 						<div id="product_info_soldout">
-							<span> ${product.product_name} </span> <span> 품절 </span>
+							<span> ${product.product_name} </span>
+							<span> <img
+								id="coinimg" src="/images/shop/shopdetail/coin_brown.svg" alt="coin" />
+								<fmt:formatNumber value="${product.price}" pattern="#,###" />
+							</span>
 						</div>
 					</div>
 				</c:if>
@@ -225,7 +238,35 @@
 		<!-- pagination -->
 	</div>
 	<!-- layout -->
-
+	
+	<div class="modal" id="cartconfrim_modal">
+		<div class="modal_contents">
+			<div class="modal_text">
+			<div>
+			<img src="/images/shop/shoplist/cart_yellow.svg" alt="cart" style="margin-bottom:10px;"/><br>
+			장바구니에 상품을 등록하시겠습니까?</div>
+			</div>
+			<div class="modal_btn">
+				<button class="modal_cancelbtn">취소</button>
+				<button class="modal_editbtn">확인</button>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal" id="okay_modal">
+		<div class="modal_contents">
+			<div class="modal_text">
+				<img src="/images/shop/shoplist/cart_yellow.svg" alt="cart" style="margin-bottom:10px;"/>
+				<div>
+				</div>
+			</div>
+			<div class="modal_btn">
+				<button class="modal_cancelbtn">계속쇼핑하기</button>
+				<button class="modal_gocartbtn">장바구니가기</button>
+			</div>
+		</div>
+	</div>
+	
 	<script src="/js/shop/shopList.js"></script>
 </body>
 </html>
