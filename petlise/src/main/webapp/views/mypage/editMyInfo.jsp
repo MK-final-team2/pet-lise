@@ -10,7 +10,8 @@
     <link rel="apple-touch-icon" href="/images/favicon.ico" />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/mypage/myPageForm.css" />
-    <link rel="stylesheet" href="/css/mypage/myInfoEdit.css" />
+    <link rel="stylesheet" href="/css/mypage/editMyInfo.css" />
+    <link rel="stylesheet" href="/css/mypage/modal.css" />
     <title>Pet LiSe</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   </head>
@@ -136,13 +137,16 @@
           <input type="text" class="petAge" value="${my_info.pet_age}" />
         </div>
       </div>
-      <p class="deleteUser" onclick="modal()">회원탈퇴하기</p>
+	  <p class="deleteUser" onclick="modalClick()">회원탈퇴하기</p>
       <button class="editButton">확인</button>
 	  </div>
     </div>
+    
+    <div id="modal"></div>
 
     <script src="/js/mypageMenu.js"></script>
     <script src="/js/mypage/updateUser.js"></script>
     <script src="/js/mypage/imageUpload.js"></script>
+    <script src="/js/mypage/modal.js"></script>
   </body>
 </html>

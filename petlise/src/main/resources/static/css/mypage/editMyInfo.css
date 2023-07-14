@@ -178,6 +178,7 @@ input[id='animal2']:checked + label::before {
 }
 
 .deleteUser {
+  display: inline-block;
   width: 100%;
   text-align: end;
   padding: 25px 140px !important;
