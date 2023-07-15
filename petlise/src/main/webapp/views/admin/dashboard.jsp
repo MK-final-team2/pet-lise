@@ -14,7 +14,7 @@ pageEncoding="UTF-8"%>
   </head>
   <body>
     <div class="container">
-      <aside id="menu"></aside>
+      <aside id="asideMenu"></aside>
       <main>
         <p>대시보드</p>
         <div class="dataWrapper">

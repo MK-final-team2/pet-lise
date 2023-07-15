@@ -29,7 +29,7 @@ pageEncoding="UTF-8"%>
               <li><a href="#tab3" class="btn">이벤트</a></li>
               <li><a href="#tab4" class="btn">가족찾기</a></li>
             </ul>
-            <a href="/editAnnouncement" class="editButton">등록</a>
+            <a href="/admin/editannouncement" class="editButton">등록</a>
           </div>
 
           <div class="tableWrap">
@@ -46,6 +46,7 @@ pageEncoding="UTF-8"%>
     <script src="/js/admin/aside.js"></script>
     <script src="/js/admin/pagination.js"></script>
     <script src="/js/admin/tabMenu.js"></script>
+    <script src="/js/admin/announcement.js"></script>
     <script src="/js/admin/announcementTable.js"></script>
   </body>
 </html>

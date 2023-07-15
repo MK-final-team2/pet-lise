@@ -1,6 +1,5 @@
 package mypage.user;
 
-import java.io.IOException;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,20 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpSession;
-import upload.UploadService;
 import user.BCryptService;
 
 @Controller
 public class MypageController {
-
-	@Value("${spring.cloud.gcp.storage.bucket}")
-	private String bucketName;
 
 	@Value("${spring.bcrypt.number}")
 	private int bcryptNum;
@@ -121,16 +114,5 @@ public class MypageController {
 			session.removeAttribute("user_id");
 		}
 		return new ResponseEntity(HttpStatus.OK);
-	}
-
-	@Autowired
-	UploadService upload;
-
-	@ResponseBody
-	@RequestMapping(value = "/api/image-upload", method = RequestMethod.POST)
-	public String imageUpload(MultipartFile image, HttpSession session) throws IOException {
-		String imageUrl = upload.uploadFile(image);
-
-		return bucketName + "/" + imageUrl;
 	}
 }

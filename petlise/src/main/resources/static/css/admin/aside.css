@@ -43,6 +43,7 @@
 }
 .menuWrapper .ul li:first-of-type {
   padding-left: 28px;
+  margin-bottom: 4.5px;
 }
 .menuWrapper .ul li:nth-of-type(2),
 .menuWrapper .ul li:nth-of-type(3) {
