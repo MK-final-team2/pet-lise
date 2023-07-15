@@ -31,7 +31,7 @@ pageEncoding="UTF-8"%>
               <li><a href="#tab5" class="btn">간식</a></li>
               <li><a href="#tab6" class="btn">기타</a></li>
             </ul>
-            <a href="/editExpertRecipe" class="editButton">등록</a>
+            <a href="/admin/editexpertrecipe" class="editButton">등록</a>
           </div>
 
           <div class="tableWrap">
