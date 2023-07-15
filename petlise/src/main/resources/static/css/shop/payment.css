@@ -168,7 +168,7 @@
 
 .order_Detail {
   width: 1050px;
-  height: 500px;
+  height: 550px;
   border-top: 2px solid var(--light-main, #ffb100);
   border-bottom: 2px solid var(--light-main, #ffb100);
   padding: 20px 0;
@@ -245,6 +245,7 @@
   width: 370px;
   height: 450px;
   border: 2px solid var(--light-sub, #fbc252);
+  margin-top: 10px;
 }
 
 .receipt_Detail {
@@ -308,7 +309,7 @@
   	text-align: right;
 }
 
-#orderList_Btn,
+#order_Btn,
 #cancel_Btn {
   width: 200px;
   height: 45px;
@@ -349,6 +350,43 @@ input[type='checkbox']:checked {
   background-position: 50%;
 }
 
+input[type='text'] {
+	width: 480px;
+	height: 35px;
+	border: 1px solid var(--gray-gray-4, #BDBDBD);
+	border-radius: 8px;
+	padding-left: 10px;
+	margin: 4px auto;
+}
+
+#input_Name,
+#input_Phone {
+	width: 150px;
+}
+
+#sample6_postcode {
+	margin: 4px auto;
+}
+
+#sample6_address {
+	margin: 2px auto;
+}
+
+#sample6_detailAddress{
+	margin: 4px auto;
+}
+
+#find_ZipCode {
+	display: inline-flex;
+	height: 35px;
+	padding: 15px 30px;
+	align-items: center;
+	border-radius: 8px;
+	border: 1px solid var(--light-main, #FFB100);
+	font: var(--button14);
+	margin-left: 10px;
+}
+
 #logo {
   text-align: center;
   width: 100%;
@@ -358,4 +396,8 @@ input[type='checkbox']:checked {
   width: 1050px;
   display: inherit;
   text-align: center;
+}
+
+.Else{
+	display: none;
 }

@@ -1,11 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="shopCart">
+<mapper namespace="payment">
 
 <!-- 선택된 주문목록 불러오기 -->
-	<select id="getOrderList" resultType="orderdto">
-		SELECT * FROM orderproduct;
+	<select id="getOrderList" resultType="orderproductdto">
+		SELECT * FROM `orderproduct` WHERE `user_id` = 'petlise' AND `order_id` IS NULL;
 	</select>
+
+<!-- 회원정보 불러오기 -->
+	<select id="getUserInfo" resultType="userdto">
+		SELECT * FROM `user` WHERE `user_id` = 'petlise';
+	</select>
+
+<!-- 배송정보 저장하기 -->	
+	<insert id="saveOrderInfo" parameterType="orderinfodto">
+		INSERT INTO `order`
+					(`user_id`, `name`, `phone`, `address`, `require`) 
+		VALUE 		(#{user_id}, #{name}, #{phone}, #{address}, #{require});
+	</insert>
 	
+<!-- 주문번호 부여 -->	
+	<update id="orderConfirm" parameterType="orderproductdto">
+		UPDATE `orderproduct` 
+		SET    `order_id` = (SELECT `order_id` FROM `order` WHERE `user_id` = 'petlise' ORDER BY `order_id` DESC LIMIT 1) 
+		WHERE  `user_id` = 'petlise' AND `order_id` IS NULL;
+	</update>
+	
+<!-- 주문완료 후 장바구니 비우기 -->
+	<delete id="deleteCart" parameterType="String">
+		DELETE FROM `cart` 
+		WHERE `user_id` = 'petlise';
+	</delete>
+	
+<!-- 상품목록 불러오기 -->
+	<select id="getProducts" resultType="productdto">
+		SELECT * FROM `products`;
+	</select>	
+	
+<!-- 주문완료 후 판매량 업데이트 -->	
+	<update id="updateSales" parameterType="productdto">
+	    UPDATE `products` 
+	    SET    `sales` = (
+	           SELECT SUM(`quantity`) 
+	           FROM `orderproduct` 
+	           WHERE `product_id` = #{product_id})
+	    WHERE  `product_id` = #{product_id};
+	</update>
 </mapper>
