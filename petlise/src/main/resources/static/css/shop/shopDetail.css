@@ -325,8 +325,11 @@
 	background-color: var(--light-sub, #FBC252);
 }
 
+
+/* 리뷰 통계 부분 */
 #review_statistic {
 	border-top: 1px solid var(--light-sub, #FBC252);
+	border-bottom: 1px solid var(--light-sub, #FBC252);
 	margin: 0px auto;
 	width: 1200px;
 	height: 250px;
@@ -435,6 +438,105 @@
 	margin-left: 10px;
 }
 
+/* 리뷰 필터 부분 */
+#review_filter {
+	width: 1200px;
+	height:70px;
+	margin: 0px auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	border-bottom: 1px solid var(--light-sub, #FBC252);
+}
+
+#review_filter>div{
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+#review_filter>div>span{
+	height:25px;
+	line-height:25px;
+	margin: 5px;
+	margin-right: 0px;
+	padding-right:5px;
+	color: #1F1F1F;
+	
+	font-size: 16px;
+	font-weight: 700;
+}
+
+#review_filter>div>span:nth-last-child(1){
+	padding-right: 0px;
+}
+
+#review_filter>div:nth-child(2) .material-symbols-outlined {
+  font-variation-settings:'FILL' 1, 'wght' 400, 'GRAD' 0,  'opsz' 48;
+  color:var(--light-main, #FFB100);
+  font-size: 25px;
+  border-right:0;
+  padding-right: 0px;
+}
+
+#review_filter .filter{
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: 400;
+}
+
+#review_filter #filter_active {
+	color:var(--light-main, #FFB100);
+}
+
+#review_filter>div>div{
+	margin: 5px;
+	height:25px;
+	display: flex;
+	align-items: flex-end;
+}
+
+#isphoto {
+	display: none;
+}
+
+#isphoto + label{
+	display:flex;
+	align-items:center;
+    cursor:pointer;
+    font-size: 16px;
+	font-weight: 700;
+	color: var(--light-text, #1F1F1F);
+}
+
+#isphoto + label>span:nth-child(1) {
+	display:inline-flex;
+	margin-top:3px;
+	margin-right:5px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--light-sub, #FBC252);
+    border-radius: 5px;
+}
+
+#isphoto + label>.material-symbols-outlined{
+	margin-top:3px;
+	font-variation-settings:'FILL' 1, 'wght' 400, 'GRAD' 0,  'opsz' 48;
+}
+        
+#isphoto:checked + label {
+	color: var(--light-main);
+}
+
+#isphoto:checked + label>span:nth-child(1) {
+    border:1px solid var(--light-main);
+    background-color: var(--light-sub, #FBC252);
+    background-image: url('/images/shop/cart/checkbox.svg');
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+/* 리뷰 부분 */
 .review_container {
 	width: 1200px;
 	height: auto;
@@ -531,61 +633,43 @@
 .review_img {
 	width: 100%;
 	height: 100%;
+	border-radius:10px;
 	object-fit: cover;
 }
 
-.review_btns_my {
+.review_btns {
 	width: 70px;
 	height: 150px;
 	display: flex;
-	flex-wrap: wrap;
-	align-content: center;
+	flex-direction: column;
+	align-items: center;
 	justify-content: center;
 	color: #BDBDBD;
 }
 
-.review_btns_my>button {
-	width: 70px;
-	height: 50px;
-	border-width: 0;
-	background-color: transparent;
-	color: #BDBDBD;
-}
-
-.review_btns_my>button>span {
-	font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48
-}
-
-.review_btns_my>button:hover {
-	color: #FFB100;
-}
-
-.review_btns_others {
-	width: 70px;
-	height: 150px;
-	display: flex;
-	flex-wrap: wrap;
-	align-content: center;
-	justify-content: center;
-	color: #BDBDBD;
-}
-
-.review_btns_others>button {
+.review_btns>button {
 	width: 70px;
 	border-width: 0;
 	background-color: transparent;
 	color: #BDBDBD;
+	cursor: pointer;
+	margin: 5px 0;
 }
 
-.review_btns_others>button>span {
+.review_likebtn>span {
 	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48
 }
 
-.review_btns_others:hover {
+.review_deletebtn>span {
+	font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+	color: #BDBDBD;
+}
+
+.review_deletebtn:hover>span {
 	color: #FFB100;
 }
 
-.review_btns_others:hover .material-symbols-outlined {
+.review_likebtn_active>span{
 	color: #FFB100;
 	font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48
 }

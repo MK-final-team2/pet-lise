@@ -48,6 +48,7 @@
 	border: 1px solid var(--light-point, #8A6F4E);
 	text-align: center;
 	font:var(--body16);
+	cursor: pointer;
 }
 
 .modal_btn > button:hover{

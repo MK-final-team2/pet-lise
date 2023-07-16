@@ -50,119 +50,56 @@ $("#num_plus").on('click',function(){
 });
 
 // ----- 장바구니버튼 -----
-$(".cartbtn").on('click',function(e){
-	e.stopPropagation();
-	let productID = $(this).parents(".products").attr('id');
 
-	$.ajax({
-		type : 'post',
-		url : '/isincart',
-		dataType : 'json',
-		data : {
-			user_id : "userid1",
-			product_id : $(this).parents(".products").attr('id')
-		},
-		success : function(result) { // 결과 성공 콜백함수
-			//장바구니 신규등록
-			if(result.result == 'no'){
-				$.ajax({
-					type : 'post',
-					url : '/insertcart',
-					dataType : 'json',
-					data : {
-						user_id : "userid1",
-						product_id : productID,
-						quantity : 1
-					},
-					success : function(result) { // 결과 성공 콜백함수
-						$("#okay_modal .modal_text>div").html("상품이 장바구니에 등록되었습니다.<br>장바구니로 이동하시겠습니까?");
-						$("#okay_modal").css('display', 'block');
-			    	},
-				    error : function(request, status, error) { // 결과 에러 콜백함수
-				        console.log(error)
-				    }
-				});//ajax end
-			}
-			//장바구니 기존 존재
-			else {
-				$("#okay_modal .modal_text>div").html("장바구니에 이미 등록된 상품입니다.<br>장바구니로 이동하시겠습니까?");
-				$("#okay_modal").css('display', 'block');
-			}
-			
-    	},
-	    error : function(request, status, error) { // 결과 에러 콜백함수
-	        console.log(error)
-	    }
-	});//ajax end
-});
-
-// ----- 모달이벤트 -----
+// ----- 모달이벤트(모달 내 취소버튼) -----
 $(".modal_cancelbtn").on('click',function(){
 	$(this).parents(".modal").css('display', 'none');
 });
 
-// ----- 페이징버튼 ----- (모든조건유지)
-//숫자 페이징버튼 
-$(".pageNumber").on('click', function() {
-	const queryparamsPage = {
-		page: $(this).text(),
-		searchType1: SearchType1,
-		searchType2: SearchType2,
-		searchType3: $('#issoldout').is(':checked')?'판매중':'전체',
-		sortType:$("#sortType").val(),
-		keyword: $("#keyword").val()
-	}
-	location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
+// ----- 후기 삭제 버튼 클릭 ( 모달 팝업 ) -----
+$("#product_review").on('click','.review_deletebtn',function(){
+	$("#delete_confirm_modal input[type='hidden']").val($(this).siblings("input[type='hidden']").val());
+	$("#delete_confirm_modal").css("top", $(window).scrollTop()+"px");
+	$("#delete_confirm_modal").css('display', 'block');
+	
+	$('#delete_confirm_modal').on('scroll touchmove mousewheel', function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		return false;
+	});
 });
 
-//첫페이지버튼 
-$(".pagefirst").on('click', function() {
-	const queryparamsPage = {
-		page: 1,
-		searchType1: SearchType1,
-		searchType2: SearchType2,
-		searchType3: $('#issoldout').is(':checked')?'판매중':'전체',
-		sortType:$("#sortType").val(),
-		keyword: $("#keyword").val()
-	}
-	location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
-});
+// ----- 삭제 버튼 클릭 ( 후기삭제버튼 ) -----
+$("#delete_confirm_modal").on('click','.modal_deletebtn',function(){
+	$(this).parents(".modal").css('display', 'none');
+	$.ajax({
+		type : 'post',
+		url : '/deletereview',
+		dataType : 'json',
+		data : {
+			review_id : $(this).siblings("input[type='hidden']").val()
+		},
+		success : function(result) { // 결과 성공 콜백함수
+			$("#delete_okay_modal").css("top", $(window).scrollTop()+"px");
+			$("#delete_okay_modal").css('display', 'block');
+			
+			$('#delete_okay_modal').on('scroll touchmove mousewheel', function(event) {
+				event.preventDefault();
+				event.stopPropagation();
+				return false;
+			});
 
-//이전페이지버튼
-$(".prev").on('click', function() {
-	const queryparamsPage = {
-		page: $(this).attr("id"),
-		searchType1: SearchType1,
-		searchType2: SearchType2,
-		searchType3: $('#issoldout').is(':checked')?'판매중':'전체',
-		sortType:$("#sortType").val(),
-		keyword: $("#keyword").val()
-	}
-	location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
-});
-
-//다음페이지버튼
-$(".next").on('click', function() {
-	const queryparamsPage = {
-		page: $(this).attr("id"),
-		searchType1: SearchType1,
-		searchType2: SearchType2,
-		searchType3: $('#issoldout').is(':checked')?'판매중':'전체',
-		sortType:$("#sortType").val(),
-		keyword: $("#keyword").val()
-	}
-	location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
-});
-
-//마지막페이지버튼
-$(".pagelast").on('click', function() {
-	const queryparamsPage = {
-		page: $(this).attr("id"),
-		searchType1: SearchType1,
-		searchType2: SearchType2,
-		searchType3: $('#issoldout').is(':checked')?'판매중':'전체',
-		sortType:$("#sortType").val(),
-		keyword: $("#keyword").val()
-	}
-	location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
+			$('#delete_okay_modal').on('click','.modal_okaybtn', function() {
+				const queryparamsPage = {
+	   				product_id : $(this).siblings("input[type='hidden']").val(),
+	   				page: 1,
+	   				searchType2: "review"
+	    		}
+	    		location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
+			});
+		},
+	    error : function(request, status, error) { // 결과 에러 콜백함수
+	        console.log(error)
+	    }
+	});//ajax end
 });

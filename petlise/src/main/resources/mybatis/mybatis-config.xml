@@ -10,6 +10,7 @@
 		<typeAlias type="admin.recipe.AdminRecipeRequestDTO" alias="adminreciperequestdto" />
 		<typeAlias type="admin.shop.ProductDTO" alias="productdto" />
 		<typeAlias type="shop.cart.ShopCartDTO" alias="cartdto" />
+		<typeAlias type="shop.detail.ProductReviewDTO" alias="productreviewdto" />
 		<typeAlias type="board.petplace.PetPlaceDTO" alias="petplacedto" />
 		<typeAlias type="shop.payment.ShopOrderProductDTO" alias="orderdto" />
 		<typeAlias type="recipe.RecipeDTO" alias="recipedto" />
