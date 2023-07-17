@@ -93,7 +93,7 @@
 }
 
 #info>table>tbody>tr:nth-child(1) {
-	height: 50px;
+	/* height: 50px; */
 	border-bottom: 1px solid #BDBDBD;
 }
 
@@ -107,19 +107,17 @@
 
 #info>table>tbody>tr:nth-child(1)>td:nth-last-child(1)>img {
 	width: 30px;
-	height: 30px;
-	margin-top: 5px;
+	height: 25px;
 	margin-right: 10px;
 }
 
 #info>table>tbody>tr>td:nth-child(1) {
 	width: 100px;
-	height: 20px;
 }
 
 #info>table>tbody>tr>td:nth-last-child(1) {
 	width: 580px;
-	padding: 10px;
+	padding: 7px;
 	display: flex;
 	align-items: center;
 }
@@ -178,7 +176,7 @@
 }
 
 #info_btns {
-	margin-top: 40px;
+	margin-top: 20px;
 	display: flex;
 	justify-content: flex-end;
 }
@@ -207,7 +205,7 @@
 }
 
 .detail_tab {
-	width: 1200px;
+	width: 1240px;
 	margin: 0px auto;
 	display: flex;
 	justify-content: center;
@@ -221,9 +219,10 @@
 	height: 50px;
 	justify-content: center;
 	align-items: center;
-	border-radius: 20px;
+	border-radius: 50px;
 	border: 1px solid var(--light-sub, #FBC252);
 	background: transparent;
+	margin:0px 2.5px;
 	cursor: pointer;
 }
 
@@ -535,6 +534,24 @@
     background-repeat: no-repeat;
     background-position: 50%;
 }
+
+/* 리뷰없을때 */
+#noreview {
+	width: 1200px;
+	height: 300px;
+	margin: 0 auto;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	color: var(--light-stroke, #E2D6CA);
+	font-size:40px; 
+	text-align: center;
+	font-style: normal;
+	font-weight: 700;
+}
+
 
 /* 리뷰 부분 */
 .review_container {

@@ -5,7 +5,7 @@
 	
 	<resultMap type="userdto" id="user">
 		<result column="user_id" property="user_id" />
-		<result column="email" property="email" />
+		<result column="name" property="name" />
 		<result column="profile_image" property="profile_image" />
 	</resultMap>
 
@@ -68,7 +68,7 @@
 		where product_id=#{product_id} and score = #{score};
 	</select>
 
-	<select id="getAvgReviews" parameterType="String" resultType="double">
+	<select id="getAvgReviews" parameterType="String" resultType="java.lang.Double">
 		select avg(score)
 		from product_review
 		where product_id=#{product_id};

@@ -145,68 +145,6 @@ $(".products_soldout").on('click',function(){
 	location.href = '/shopdetail?product_id='+$(this).attr('id') ;
 });
 
-// ----- 장바구니버튼 -----
-$(".cartbtn").on('click',function(e){
-	e.stopPropagation();
-	let productID = $(this).parents(".products").attr('id');
-
-	$.ajax({
-		type : 'post',
-		url : '/isincart',
-		dataType : 'json',
-		data : {
-			user_id : "userid1",
-			product_id : $(this).parents(".products").attr('id')
-		},
-		success : function(result) { // 결과 성공 콜백함수
-			//장바구니 신규등록
-			if(result.result == 'no'){
-				$.ajax({
-					type : 'post',
-					url : '/insertcart',
-					dataType : 'json',
-					data : {
-						user_id : "userid1",
-						product_id : productID,
-						quantity : 1
-					},
-					success : function(result) { // 결과 성공 콜백함수
-						$("#okay_modal .modal_text>div").html("상품이 장바구니에 등록되었습니다.<br>장바구니로 이동하시겠습니까?");
-						$("#okay_modal").css("top", $(window).scrollTop()+"px");
-						$("#okay_modal").css('display', 'block');
-						
-						$('#okay_modal').on('scroll touchmove mousewheel', function(event) {
-							event.preventDefault();
-							event.stopPropagation();
-							return false;
-						});
-						
-			    	},
-				    error : function(request, status, error) { // 결과 에러 콜백함수
-				        console.log(error)
-				    }
-				});//ajax end
-			}
-			//장바구니 기존 존재
-			else {
-				$("#okay_modal .modal_text>div").html("장바구니에 이미 등록된 상품입니다.<br>장바구니로 이동하시겠습니까?");
-				$("#okay_modal").css("top", $(window).scrollTop()+"px");
-				$("#okay_modal").css('display', 'block');
-				
-				$('#okay_modal').on('scroll touchmove mousewheel', function(event) {
-					event.preventDefault();
-					event.stopPropagation();
-					return false;
-				});
-			}
-			
-    	},
-	    error : function(request, status, error) { // 결과 에러 콜백함수
-	        console.log(error)
-	    }
-	});//ajax end
-});
-
 // ----- 모달이벤트 -----
 $(".modal_cancelbtn").on('click',function(){
 	$(this).parents(".modal").css('display', 'none');

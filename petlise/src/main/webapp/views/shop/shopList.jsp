@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
-<html>
+<html style="height: auto;">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -19,12 +19,87 @@
 <script src="/js/jquery-3.6.4.min.js"></script>
 <script>
 	$(document).ready(function() {
+		/* // ----- 장바구니버튼 -----
+		$(".cartbtn").on('click',function(e){
+			e.stopPropagation();
+			if("${user_id}"==""){
+   				$("#login_modal").css("top", $(window).scrollTop()+"px");
+				$("#login_modal").css('display', 'block');
+				
+				$('#login_modal').on('scroll touchmove mousewheel', function(event) {
+					event.preventDefault();
+					event.stopPropagation();
+					return false;
+				});
+   			}//if
+   			else{
+				let productID = $(this).parents(".products").attr('id');
+	
+				$.ajax({
+					type : 'post',
+					url : '/isincart',
+					dataType : 'json',
+					data : {
+						user_id : "${user_id}",
+						product_id : $(this).parents(".products").attr('id')
+					},
+					success : function(result) { // 결과 성공 콜백함수
+						//장바구니 신규등록
+						if(result.result == 'no'){
+							$.ajax({
+								type : 'post',
+								url : '/insertcart',
+								dataType : 'json',
+								data : {
+									user_id : "${user_id}",
+									product_id : productID,
+									quantity : 1
+								},
+								success : function(result) { // 결과 성공 콜백함수
+									$("#okay_modal .modal_text>div").html("상품이 장바구니에 등록되었습니다.<br>장바구니로 이동하시겠습니까?");
+									$("#okay_modal").css("top", $(window).scrollTop()+"px");
+									$("#okay_modal").css('display', 'block');
+									
+									$('#okay_modal').on('scroll touchmove mousewheel', function(event) {
+										event.preventDefault();
+										event.stopPropagation();
+										return false;
+									});
+									
+						    	},
+							    error : function(request, status, error) { // 결과 에러 콜백함수
+							        console.log(error)
+							    }
+							});//ajax end
+						}
+						//장바구니 기존 존재
+						else {
+							$("#okay_modal .modal_text>div").html("장바구니에 이미 등록된 상품입니다.<br>장바구니로 이동하시겠습니까?");
+							$("#okay_modal").css("top", $(window).scrollTop()+"px");
+							$("#okay_modal").css('display', 'block');
+							
+							$('#okay_modal').on('scroll touchmove mousewheel', function(event) {
+								event.preventDefault();
+								event.stopPropagation();
+								return false;
+							});
+						}
+						
+			    	},
+				    error : function(request, status, error) { // 결과 에러 콜백함수
+				        console.log(error)
+				    }
+				});//ajax end
+   			}//else end
+		});//cart end
+		 */
 		
-	});
+	});//ready end
 </script>
 </head>
-<body>
-	<div id='layout'>
+<body style="height: auto;">
+	<input type="hidden">
+	<div id='layout' >
 		<div id="titlediv">
 			<input type="hidden" id="searchType1" value="${param.searchType1}" />
 			<input type="hidden" id="searchType2" value="${param.searchType2}" />
@@ -150,11 +225,11 @@
 					<div class="products" id="${product.product_id}">
 						<div class="product_img"
 							style="background-image: url(${product.image_main});">
-							<div class="product_img_cover">
+							<!-- <div class="product_img_cover">
 								<button class="cartbtn">
 									<img src="/images/shop/shoplist/cart_yellow.svg" alt="cart" />
-								</button>
-							</div>
+								</button> 
+							</div>-->
 						</div>
 						<div id="product_info">
 							<span> ${product.product_name} </span> 
@@ -187,7 +262,7 @@
 		</div>
 		<!-- 상품목록 -->
 
-		<div id="pagination">
+		<div id="pagination" style="margin-top: 10px;">
 			<c:if test="${fn:length(response.list) != 0}">
 				<div class="pagefirst"
 					<c:if test="${!response.pagination.existPrevPage}"> style="visibility: hidden;" </c:if>>
@@ -238,7 +313,7 @@
 		<!-- pagination -->
 	</div>
 	<!-- layout -->
-	
+	<!-- 
 	<div class="modal" id="cartconfrim_modal">
 		<div class="modal_contents">
 			<div class="modal_text">
@@ -267,6 +342,22 @@
 		</div>
 	</div>
 	
+	<div class="modal" id="login_modal">
+		<div class="modal_contents">
+			<div class="modal_text">
+			<div>
+			<img src="/images/logo-icon.png" style="margin-bottom:10px; width:25px;"/><br>
+			로그인이 필요한 항목입니다.<br>
+			로그인 페이지로 이동하시겠습니까?
+			</div>
+			</div>
+			<div class="modal_btn">
+				<button class="modal_cancelbtn">취소</button>
+				<button class="modal_loginbtn">이동</button>
+			</div>
+		</div>
+	</div>
+	 -->
 	<script src="/js/shop/shopList.js"></script>
 </body>
 </html>

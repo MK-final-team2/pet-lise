@@ -53,8 +53,8 @@ document.getElementById('asideMenu').innerHTML += `
       <li onClick="location.href='/admin/myrecipemanagement'">강아지</li>
       <li onClick="location.href='/admin/myrecipemanagement-cat'">고양이</li>
     </ul>
-    <li onClick="location.href='/admin/shopmanagement'" style="background:${
-      link === '/admin/shopmanagement' ? '#181818' : ''
+    <li onClick="location.href='/adminshoplist'" style="background:${
+      link === '/adminshoplist' ? '#181818' : ''
     }">
       <embed
         src="/images/shop-icon.svg"

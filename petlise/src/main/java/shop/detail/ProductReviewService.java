@@ -30,23 +30,23 @@ public class ProductReviewService {
         return new PagingResponse<>(list, pagination);
 	}
 	
-	int getCountAllReviews(String product_id) {
+	Integer getCountAllReviews(String product_id) {
 		return dao.getCountAllReviews(product_id);
 	};
 	
-	int getCountAllPhotoReviews(String product_id) {
+	Integer getCountAllPhotoReviews(String product_id) {
 		return dao.getCountAllPhotoReviews(product_id);
 	};
 	
 	
-	int getCountReviewsScore(String product_id, int score) {
+	Integer getCountReviewsScore(String product_id, int score) {
 		HashMap<String, String> map = new HashMap<>();
 		map.put("product_id", product_id);
 		map.put("score", String.valueOf(score));
 		
 		return dao.getCountReviewsScore(map);
 	};
-	double getAvgReviews(String product_id) {
+	Double getAvgReviews(String product_id) {
 		return dao.getAvgReviews(product_id);
 	};
 	

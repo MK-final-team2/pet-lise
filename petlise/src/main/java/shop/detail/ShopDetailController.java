@@ -27,9 +27,6 @@ public class ShopDetailController {
 
 	@GetMapping("/shopdetail")
 	public ModelAndView shopdetail(String product_id, @ModelAttribute SearchDTO searchdto, HttpSession session) {
-		//임의 세션처리 (로그인)
-		session.setAttribute("user_id", "1");
-		
 		ProductDTO product = service.getProductById(product_id);
 		
 		//전체후기리스트
@@ -42,7 +39,10 @@ public class ShopDetailController {
 		int totalPhotoCnt = reviewService.getCountAllPhotoReviews(product_id);
 		
 		//전체평점평균
-		double totalAvg = reviewService.getAvgReviews(product_id);
+		double totalAvg = 0;
+		if(reviewService.getAvgReviews(product_id) != null) {
+			totalAvg = reviewService.getAvgReviews(product_id);
+		}
 		
 		//점수별개수
 		int scores [] = new int[5];
@@ -51,7 +51,7 @@ public class ShopDetailController {
 		}
 		
 		//후기 좋아요 여부
-		String user_id = "1";
+		String user_id = (String) session.getAttribute("user_id");
 		for(ProductReviewDTO reviewdto : reviewlist.getList()) {
 			if(reviewService.isLikeReview(user_id, reviewdto.getReview_id())>0) {
 				reviewdto.setIslike(true);
