@@ -11,5 +11,7 @@
             #{image}, #{recipe_category}, #{pet_category}, #{main_category}, #{sub_category},
             #{recipe_of_the_month_registration_date}, #{view_cnt}, #{recipe_of_the_month})
     </insert> 
+    
+    
 
 </mapper>

@@ -7,8 +7,7 @@ import org.springframework.stereotype.Component;
 public class RecipeDTO {
 	String recipe_id, user_id, recipe_title, recipe_contents, image, recipe_category, pet_category, main_category,
 			sub_category;
-	int view_cnt;
-	boolean recipe_of_the_month;
+	int view_cnt, recipe_of_the_month;
 	String recipe_of_the_month_registration_date;
 	Timestamp recipe_created_at, recipe_updated_at;
 	
@@ -84,11 +83,11 @@ public class RecipeDTO {
 	public void setView_cnt(int view_cnt) {
 		this.view_cnt = view_cnt;
 	}
-	public boolean isRecipe_of_the_month() {
-		return recipe_of_the_month;
+	public int getRecipe_of_the_month() {
+	    return recipe_of_the_month;
 	}
-	public void setRecipe_of_the_month(boolean recipe_of_the_month) {
-		this.recipe_of_the_month = recipe_of_the_month;
+	public void setRecipe_of_the_month(int recipe_of_the_month) {
+	    this.recipe_of_the_month = recipe_of_the_month;
 	}
 	public String getRecipe_of_the_month_registration_date() {
 		return recipe_of_the_month_registration_date;

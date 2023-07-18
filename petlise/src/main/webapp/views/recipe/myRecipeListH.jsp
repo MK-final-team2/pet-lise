@@ -1,17 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" href="/images/favicon.ico" />
 <link rel="apple-touch-icon" href="/images/favicon.ico" />
 <link rel="stylesheet" href="/css/recipe/recipeList.css" />
 <link rel="stylesheet" href="/css/style.css" />
 <link rel="stylesheet" href="/css/recipe/recipePage.css" />
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link rel="stylesheet" href="/css/nav/nav.css" />
+
 <title>PetLiSe</title>
+<script src="/js/jquery-3.6.4.min.js"></script>
+        <script>
+      $(document).ready(function () {});
+    </script>  
+
 </head>
 <body>
     <div class="wrap">
@@ -20,24 +29,22 @@
 			<div class="dog_icon"><img src="/images/recipe/dog_icon.svg"></div>
 			<!-- <div class="cat_icon"><img src="/images/recipe/cat_icon.svg"></div> -->
 			</div>
-		
-			<div class="title_recipe">
+			
+		<div class="title_recipe">
         	<span>나만의 레시피</span></div>
 			<div class="subtitle_recipe">
-			<span>건강식</span></div>
+			<span>이달의 레시피</span></div>
 		</div>
         
         <div class="search_container">
-		<div class="category">
-			<button aria-current="page">다이어트식</button>
-			<button>병원식</button>
-			<button>영양식</button>
-		</div>
-        <div class="search">
-            <input type="text" placeholder="검색">
-            <button><img src="/images/recipe/search.svg"></button>
-          </div>
-        </div>
+			<div class="category">
+			</div>
+			<div class="search">
+				<input type="text" placeholder="검색">
+				<button><img src="/images/recipe/search.svg"></button>
+			  </div>
+			</div>
+		
         
         <div id="recipe_container">
         	    <div class="recipe-line"> 
@@ -238,11 +245,12 @@
 					</a>
 	            </div>
             </div>
+			
 	            </div>
-	            
-				<div id="recipe_write">
+	             <div id="recipe_write">
 					<a href="/recipecreate"><div class="write"><button>글쓰기</button></div></a>
 					</div>
+					
 				<div class="page">
 					<div class="pagination">
 						<a href="#"><div class="precious"></div></a>
@@ -261,10 +269,11 @@
 						<a href="#"><div class="next"></div></a>
 						</div>
 				</div>
-		</div>
+		</div> 	
 </body>
 
 <script>
+	<!--버튼 script-->
     const buttons = document.querySelectorAll('.recipe_cover > button'); 
     
     buttons.forEach(function(button) { 
@@ -272,6 +281,10 @@
             button.classList.toggle('active');
         });
     });
+    
+    
+
 
 </script>
+<script src="/js/recipe/nav.js"></script>
 </html>

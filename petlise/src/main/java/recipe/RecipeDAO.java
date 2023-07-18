@@ -4,6 +4,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface RecipeDAO {
-    void insertRecipe(RecipeDTO recipe);
+    public void insertRecipe(RecipeDTO recipe);
     
 }
