@@ -48,6 +48,12 @@
 			</c:if>		
 			<c:forEach var="cart" items="${cart }" begin="0" end="2">
 				<div class="cart_product_container">
+					<div>
+						<p class="Else">${cart.user_id }</p>
+					</div>
+					<div>
+						<p class="Else" data-product_id="${cart.product_id }"></p>
+					</div>					
 					<div style="width: 100px;">
 						<input type="checkbox" id="product_check_${cart }" class="product_check">
 						<label for="product_check_${cart }"></label>

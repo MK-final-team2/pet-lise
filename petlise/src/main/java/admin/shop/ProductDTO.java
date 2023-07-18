@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProductDTO {
 	String pet_type, category,product_code, reg_date, product_name, image_main, image_detail;
-	int product_id, price, quatity;
+	int product_id, price, quatity, sales;
 	boolean isvisible;
 
 	public String getProduct_code() {
@@ -74,6 +74,11 @@ public class ProductDTO {
 	public void setIsvisible(boolean isvisible) {
 		this.isvisible = isvisible;
 	}
-
+	public int getSales() {
+		return sales;
+	}
+	public void setSales(int sales) {
+		this.sales = sales;
+	}
 
 }

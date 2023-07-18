@@ -280,3 +280,7 @@
         background: var(--light-sub, #FBC252);
     }
 }
+
+.Else {
+	display: none;
+}
