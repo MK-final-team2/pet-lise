@@ -50,6 +50,7 @@
 	text-align: center;
 	font:var(--body16);
 	cursor: pointer;
+	background-color: transparent;
 }
 
 .modal_btn > button:hover{

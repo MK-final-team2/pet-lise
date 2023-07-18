@@ -16,6 +16,7 @@ $("#searchbtn").on('click', function() {
 		searchType1: $("#petType").val(),
 		searchType2: $("#productType").val(),
 		searchType3: $("#saleType").val(),
+		sortType:$("#sortType").val(),
 		keyword: $("#keyword").val()
 	}
 	location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
@@ -28,6 +29,7 @@ $(".pageNumber").on('click', function() {
 		searchType1: $("#petType").val(),
 		searchType2: $("#productType").val(),
 		searchType3: $("#saleType").val(),
+		sortType:$("#sortType").val(),
 		keyword: $("#keyword").val()
 	}
 	location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
@@ -40,6 +42,7 @@ $(".pagefirst").on('click', function() {
 		searchType1: $("#petType").val(),
 		searchType2: $("#productType").val(),
 		searchType3: $("#saleType").val(),
+		sortType:$("#sortType").val(),
 		keyword: $("#keyword").val()
 	}
 	location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
@@ -52,6 +55,7 @@ $(".prev").on('click', function() {
 		searchType1: $("#petType").val(),
 		searchType2: $("#productType").val(),
 		searchType3: $("#saleType").val(),
+		sortType:$("#sortType").val(),
 		keyword: $("#keyword").val()
 	}
 	location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
@@ -64,6 +68,7 @@ $(".next").on('click', function() {
 		searchType1: $("#petType").val(),
 		searchType2: $("#productType").val(),
 		searchType3: $("#saleType").val(),
+		sortType:$("#sortType").val(),
 		keyword: $("#keyword").val()
 	}
 	location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
@@ -76,6 +81,7 @@ $(".pagelast").on('click', function() {
 		searchType1: $("#petType").val(),
 		searchType2: $("#productType").val(),
 		searchType3: $("#saleType").val(),
+		sortType:$("#sortType").val(),
 		keyword: $("#keyword").val()
 	}
 	location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();

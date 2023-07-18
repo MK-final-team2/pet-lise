@@ -40,7 +40,7 @@ table thead {
 }
 table thead tr {
   display: grid;
-  grid-template-columns: 50px 90px 90px 100px 246px 90px 90px 100px 100px 85px 85px;
+  grid-template-columns: 50px 80px 80px 100px 246px 90px 90px 90px 90px 90px 60px 60px;
 }
 table thead th {
   font: var(--highlight16);
@@ -53,7 +53,7 @@ table tbody {
 }
 table tbody tr {
   display: grid;
-  grid-template-columns: 50px 90px 90px 100px 246px 90px 90px 100px 100px 85px 85px;
+  grid-template-columns: 50px 80px 80px 100px 246px 90px 90px 90px 90px 90px 60px 60px;
   border-bottom: 1px solid var(--light-point);
 }
 table tbody td {
@@ -72,7 +72,7 @@ table tbody td:last-of-type {
 
 .no_data_msg {
 	grid-column-start : 1;
-	grid-column-end : 12;
+	grid-column-end : 13;
 	height:200px;
 }
 
@@ -87,7 +87,7 @@ table tbody td:last-of-type {
 .table_btnbox button {
 	width:100%;
 	height: 100%;
-	padding: 10px 15px;
+	padding: 5px 5px;
 	text-align: center;
 }
 
@@ -107,13 +107,15 @@ table tbody td:last-of-type {
 }
 .category > p {
   margin-bottom: 8px;
+  margin-right: 10px;
 }
 #smallCategory {
   margin-left: 10px;
-	margin-right: 10px;
+  margin-right: 10px;
 }
 
-#Category3 {
+#Category3,
+#sortcategory {
 	margin-right: 10px;
 }
 .dropdown {

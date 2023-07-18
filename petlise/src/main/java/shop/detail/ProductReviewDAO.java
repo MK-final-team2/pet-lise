@@ -14,10 +14,10 @@ public interface ProductReviewDAO {
 	List<ProductReviewDTO> getProductReviews(SearchDTO searchdto);
 	int getCount(SearchDTO searchdto);
 	
-	int getCountAllReviews(String product_id);
-	int getCountAllPhotoReviews(String product_id);
-	int getCountReviewsScore(HashMap<String, String> map);
-	double getAvgReviews(String product_id);
+	Integer getCountAllReviews(String product_id);
+	Integer getCountAllPhotoReviews(String product_id);
+	Integer getCountReviewsScore(HashMap<String, String> map);
+	Double getAvgReviews(String product_id);
 	int deleteReview(String review_id);
 	
 	int likeUp(String review_id);

@@ -80,6 +80,24 @@
 								</ul>
 							</div>
 						</div>
+						
+						<div class="category" id="sortcategory">
+							<div id="dropdown4" class="dropdown">
+								<div class="select">
+									<span> <c:if test="${param.sortType == '' || param.sortType eq null }">정렬기준</c:if>
+										${param.sortType}
+									</span>
+								</div>
+								<input type="hidden" id="sortType" value="${param.sortType}" />
+								<ul id="dropdown-menu" class="dropdown-menu">
+									<li>상품번호순</li>
+									<li>판매량순</li>
+									<li>신상품순</li>
+									<li>고가순</li>
+									<li>저가순</li>
+								</ul>
+							</div>
+						</div>
 
 						<div id="searchdiv">
 							<c:choose>
@@ -114,8 +132,9 @@
 								<th>금액</th>
 								<th>등록일</th>
 								<th>판매구분</th>
-								<th>정보수정</th>
-								<th>상품삭제</th>
+								<th>판매량</th>
+								<th>수정</th>
+								<th>삭제</th>
 							</tr>
 						</thead>
 
@@ -146,6 +165,7 @@
 									<c:if test="${product.isvisible}">판매중</c:if>
 									<c:if test="${!product.isvisible}">품절</c:if>									
 									</td>
+									<td><fmt:formatNumber value="${product.sales}" pattern="#,###" />개</td>
 									<td class="table_btnbox"><button class="editbtn">수정</button></td>
 									<td class="table_btnbox"><button class="deletebtn">삭제</button></td>
 								</tr>

@@ -41,11 +41,19 @@ $("#num_minus").on('click',function(){
 
 $("#num_plus").on('click',function(){
 	let number = $("#number").text();
+	let quantity = $(this).siblings("input[type='hidden']").val();
+	let maxnumber = 5;
 	
-	if(number<5){
+	if(quantity<5){
+		maxnumber = quantity;
+	}
+	
+	if(number<maxnumber){
 		$("#number").text(Number(number)+1);
 	}else if(number==5){
 		$(this).next().text("1회 최대 주문 수량은 5개입니다.")
+	}else if(number==quantity){
+		$(this).next().text("현재 주문 가능한 최대 수량입니다.")
 	}
 });
 

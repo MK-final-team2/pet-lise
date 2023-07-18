@@ -266,12 +266,12 @@
 				</choose>
 			</otherwise>
 		</choose>
-		<if test="sortType!=null or sortType!=''">
+		<if test="'상품번호순'.equals(sortType) or sortType!=null or sortType!=''">
 			<choose>
+				<when test="'판매량순'.equals(sortType)">order by sales desc </when>
+				<when test="'신상품순'.equals(sortType)">order by reg_date desc </when>
 				<when test="'저가순'.equals(sortType)">order by price </when>
 				<when test="'고가순'.equals(sortType)">order by price desc </when>
-				<when test="'신상품순'.equals(sortType)">order by reg_date desc </when>
-				<when test="'판매량순'.equals(sortType)">order by sales desc </when>
 			</choose>
 		</if>
 		limit #{pagination.limitStart}, #{recordSize}

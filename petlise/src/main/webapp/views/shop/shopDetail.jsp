@@ -33,8 +33,6 @@
     			searchType3: $('#isphoto').is(':checked')?'photo':'',
  				sortType:$("#filter_active").text()
     		}
-    		$(this).siblings(".pageNumber.active").toggleClass('active');
-    		$(this).toggleClass('active');
     		location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
     	});
 
@@ -112,49 +110,150 @@
     	
     	//후기 좋아요 버튼 클릭
     	$("#review_show").on('click','.review_likebtn',function(){
-    		$(this).removeClass();
-			$(this).addClass('review_likebtn_active');
-			$(this).children(".likecnt").text(Number($(this).children(".likecnt").text())+1);
-			
-    		$.ajax({
-    			type : 'post',
-    			url : '/likeup',
-    			dataType : 'json',
-    			data : {
-    				user_id : "${sessionScope.user_id}",
-    				review_id : $(this).siblings("input[type='hidden']").val()
-    			},
-    			success : function(result) { // 결과 성공 콜백함수
-    				
-    			},
-    		    error : function(request, status, error) { // 결과 에러 콜백함수
-    		        console.log(error)
-    		    }
-    		});//ajax end    		
+    		if("${user_id}"==""){
+   				$("#login_modal").css("top", $(window).scrollTop()+"px");
+				$("#login_modal").css('display', 'block');
+				
+				$('#login_modal').on('scroll touchmove mousewheel', function(event) {
+					event.preventDefault();
+					event.stopPropagation();
+					return false;
+				});
+   			}//if
+   			else{
+	    		$(this).removeClass();
+				$(this).addClass('review_likebtn_active');
+				$(this).children(".likecnt").text(Number($(this).children(".likecnt").text())+1);
+				
+	    		$.ajax({
+	    			type : 'post',
+	    			url : '/likeup',
+	    			dataType : 'json',
+	    			data : {
+	    				user_id : "${sessionScope.user_id}",
+	    				review_id : $(this).siblings("input[type='hidden']").val()
+	    			},
+	    			success : function(result) { // 결과 성공 콜백함수
+	    				
+	    			},
+	    		    error : function(request, status, error) { // 결과 에러 콜백함수
+	    		        console.log(error)
+	    		    }
+	    		});//ajax end    		
+   			}
     	});
     	
-    	//후기 좋아요 취소 클릭
+    	//후기 좋아요 취소
     	$("#review_show").on('click','.review_likebtn_active',function(){
-    		$(this).removeClass();
-			$(this).addClass('review_likebtn');
-			$(this).children(".likecnt").text(Number($(this).children(".likecnt").text())-1);
-    		
-    		$.ajax({
-    			type : 'post',
-    			url : '/likedown',
-    			dataType : 'json',
-    			data : {
-    				user_id : "${sessionScope.user_id}",
-    				review_id : $(this).siblings("input[type='hidden']").val()
-    			},
-    			success : function(result) { // 결과 성공 콜백함수
-    			},
-    		    error : function(request, status, error) { // 결과 에러 콜백함수
-    		        console.log(error)
-    		    }
-    		});//ajax end    		
+    		if("${user_id}"==""){
+   				$("#login_modal").css("top", $(window).scrollTop()+"px");
+				$("#login_modal").css('display', 'block');
+				
+				$('#login_modal').on('scroll touchmove mousewheel', function(event) {
+					event.preventDefault();
+					event.stopPropagation();
+					return false;
+				});
+   			}//if
+   			else{
+	    		$(this).removeClass();
+				$(this).addClass('review_likebtn');
+				$(this).children(".likecnt").text(Number($(this).children(".likecnt").text())-1);
+	    		
+	    		$.ajax({
+	    			type : 'post',
+	    			url : '/likedown',
+	    			dataType : 'json',
+	    			data : {
+	    				user_id : "${sessionScope.user_id}",
+	    				review_id : $(this).siblings("input[type='hidden']").val()
+	    			},
+	    			success : function(result) { // 결과 성공 콜백함수
+	    			},
+	    		    error : function(request, status, error) { // 결과 에러 콜백함수
+	    		        console.log(error)
+	    		    }
+	    		});//ajax end
+   			}
     	});
     	
+   		// ----- 장바구니버튼 -----
+   		$("#cartbtn").on('click',function(e){
+   			if("${user_id}"==""){
+   				$("#login_modal").css("top", $(window).scrollTop()+"px");
+				$("#login_modal").css('display', 'block');
+				
+				$('#login_modal').on('scroll touchmove mousewheel', function(event) {
+					event.preventDefault();
+					event.stopPropagation();
+					return false;
+				});
+   			}//if
+   			else{
+	   			$.ajax({
+	   				type : 'post',
+	   				url : '/isincart',
+	   				dataType : 'json',
+	   				data : {
+	   					user_id : "${user_id}",
+	   					product_id : "${product.product_id}"
+	   				},
+	   				success : function(result) { // 결과 성공 콜백함수
+	   					//장바구니 신규등록
+	   					if(result.result == 'no'){
+	   						$.ajax({
+	   							type : 'post',
+	   							url : '/insertcart',
+	   							dataType : 'json',
+	   							data : {
+	   								user_id : "${user_id}",
+	   								product_id : "${product.product_id}",
+	   								quantity : $("#number").text()
+	   							},
+	   							success : function(result) { // 결과 성공 콜백함수
+	   								$("#okay_modal .modal_text>div").html("상품이 장바구니에 등록되었습니다.<br>장바구니로 이동하시겠습니까?");
+	   								$("#okay_modal").css("top", $(window).scrollTop()+"px");
+	   								$("#okay_modal").css('display', 'block');
+	   								
+	   								$('#okay_modal').on('scroll touchmove mousewheel', function(event) {
+	   									event.preventDefault();
+	   									event.stopPropagation();
+	   									return false;
+	   								});
+	   								
+	   					    	},
+	   						    error : function(request, status, error) { // 결과 에러 콜백함수
+	   						        console.log(error)
+	   						    }
+	   						});//ajax end
+	   					}
+	   					//장바구니 기존 존재
+	   					else {
+	   						$("#okay_modal .modal_text>div").html("장바구니에 이미 등록된 상품입니다.<br>장바구니로 이동하시겠습니까?");
+	   						$("#okay_modal").css("top", $(window).scrollTop()+"px");
+	   						$("#okay_modal").css('display', 'block');
+	   						
+	   						$('#okay_modal').on('scroll touchmove mousewheel', function(event) {
+	   							event.preventDefault();
+	   							event.stopPropagation();
+	   							return false;
+	   						});
+	   					}
+	   					
+	   		    	},
+	   			    error : function(request, status, error) { // 결과 에러 콜백함수
+	   			        console.log(error)
+	   			    }
+	   			});//ajax end
+   			}//else
+   			
+   		});//cart end
+    	
+   		
+	   	// ----- 바로 구매하기 버튼 -----
+	   	$("#buybtn").on('click',function(){
+	   		alert("${user_id}"=="");
+	   	});
     });
     </script>
 </head>
@@ -194,8 +293,13 @@
 							<td>${product.product_code}</td>
 						</tr>
 						<tr>
-							<td>수량</td>
+							<td>남은 수량</td>
+							<td>${product.quatity}개</td>
+						</tr>
+						<tr>
+							<td>주문 수량</td>
 							<td id="select_number">
+								<input type="hidden" value="${product.quatity}">
 								<button id="num_minus" class="oper">
 									<span class="material-symbols-outlined">remove</span>
 								</button>
@@ -298,10 +402,10 @@
 								<div class="score_score">${5-vs.index}점</div>
 								<div class="graph_back">
 									<div class="graph_color"
-										style="width:${scores[5-vs.index-1]/totalCnt*100}%;"></div>
+										style="width:${totalCnt==0?0:scores[5-vs.index-1]/totalCnt*100}%;"></div>
 								</div>
 								<div class="score_cnt">${scores[5-vs.index-1]}건(<fmt:formatNumber
-										value="${scores[5-vs.index-1]/totalCnt*100}" pattern="#" />
+										value="${totalCnt==0?0:scores[5-vs.index-1]/totalCnt*100}" pattern="#" />
 									%)
 								</div>
 							</div>
@@ -334,6 +438,14 @@
 			</div>
 			
 			<div id="review_show">
+			<c:if test="${fn:length(response.list) == 0}">
+				<div id="noreview">
+				작성된 상품후기가 없습니다.<br>
+				첫 상품후기를 등록해 보세요!
+				</div>
+			</c:if>
+			
+			
 			<c:forEach items="${response.list}" var="review">
 				<div class="review_container">
 					<div class="review_info"
@@ -342,8 +454,7 @@
 							<div class="box" style="background: #BDBDBD;">
 								<img class="profile" src="${review.user.profile_image}">
 							</div>
-							<span>${fn:substring(review.user.email,0,fn:indexOf(review.user.email,'@'))}</span>
-							<%-- <span>${fn:substring(review.user.email,0,3)}*****</span> --%>
+							<span>${review.user.name}</span>
 							<span>${review.created_at}</span>
 						</div>
 						<!--유저정보영역-->
@@ -488,7 +599,51 @@
 			</div>
 		</div>
 	</div>
-
+	
+	<div class="modal" id="cartconfrim_modal">
+		<div class="modal_contents">
+			<div class="modal_text">
+			<div>
+			<img src="/images/shop/shoplist/cart_yellow.svg" alt="cart" style="margin-bottom:10px;"/><br>
+			장바구니에 상품을 등록하시겠습니까?</div>
+			</div>
+			<div class="modal_btn">
+				<button class="modal_cancelbtn">취소</button>
+				<button class="modal_editbtn">확인</button>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal" id="okay_modal">
+		<div class="modal_contents">
+			<div class="modal_text">
+				<img src="/images/shop/shoplist/cart_yellow.svg" alt="cart" style="margin-bottom:10px;"/>
+				<div>
+				</div>
+			</div>
+			<div class="modal_btn">
+				<button class="modal_cancelbtn">계속쇼핑하기</button>
+				<button class="modal_gocartbtn">장바구니가기</button>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal" id="login_modal">
+		<div class="modal_contents">
+			<div class="modal_text">
+			<div>
+			<img src="/images/logo-icon.png" style="margin-bottom:10px; width:25px;"/><br>
+			로그인이 필요한 항목입니다.<br>
+			로그인 페이지로 이동하시겠습니까?
+			</div>
+			</div>
+			<div class="modal_btn">
+				<button class="modal_cancelbtn">취소</button>
+				<button class="modal_loginbtn">이동</button>
+			</div>
+		</div>
+	</div>
+	
 	<script src="/js/shop/shopDetail.js"></script>
 </body>
 </html>

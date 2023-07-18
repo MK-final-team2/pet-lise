@@ -86,7 +86,7 @@
 					<div class="Wrapper_container">
 						<div class="Wrapper_half">
 							<p>판매량</p>
-							<div> <fmt:formatNumber value="120" pattern="#,###" /> </div>
+							<div> <fmt:formatNumber value="${product.sales}" pattern="#,###" /> </div>
 						</div>
 						<div class="Wrapper_half">
 							<p>상품재고</p>

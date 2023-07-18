@@ -111,7 +111,7 @@
 					<div class="Wrapper_container">
 						<div class="Wrapper_half">
 							<p>판매량</p>
-							<input type="number" readonly="readonly" id="product_saled" value="120"/>
+							<input type="number" readonly="readonly" id="product_saled" value="${product.sales}"/>
 						</div>
 						<div class="Wrapper_half">
 							<p>상품재고</p>
