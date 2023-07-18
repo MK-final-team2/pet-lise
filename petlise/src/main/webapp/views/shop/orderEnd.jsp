@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<% java.util.Date orderDate = new java.util.Date(); %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,7 +12,7 @@
 	<link rel="apple-touch-icon" href="/images/favicon.ico" />
     <link rel="stylesheet" href="css/shop/orderEnd.css" />
     <link rel="stylesheet" href="/css/style.css" />
-    <title>Pet LiSe</title>
+    <title>주문완료</title>
     <script src="/js/jquery-3.6.4.min.js"></script>
     <script>
       $(document).ready(function () {});
@@ -33,34 +35,38 @@
       <hr class="line" />
 
       <p style="font: var(--heading24)">주문이 완료되었습니다.</p>
-      <p style="font: var(--heading18); margin-bottom: 30px">
-        주문일 2023.06.26ㅣ주문번호 dOG20230626A001
-      </p>
+      <c:forEach var="orderInfo" items="${orderInfo}">
+	      <p style="font: var(--heading18); margin-bottom: 30px">
+	        주문일 <fmt:formatDate value="${orderInfo.date}" pattern="yyyy.MM.dd" />ㅣ주문번호 ${orderInfo.order_id}
+	      </p>
+      </c:forEach>
 
       <div id="container">
         <!-- 배달정보 -->
         <div id="order_info">
           <div id="info_title">배송지 정보</div>
-          <div class="info_contents">
-            <div>이름</div>
-            <div>홍길동</div>
-          </div>
-          <div class="info_contents">
-            <div>연락처</div>
-            <div>010-1234-1234</div>
-          </div>
-          <div class="info_contents">
-            <div>배송주소</div>
-            <div style="height: 70px">
-              서울특별시 강남구 테헤란로 14길 684-45
-            </div>
-          </div>
-          <div class="info_contents">
-            <div>배송요청사항</div>
-            <div style="height: 70px">
-              부재시 문 앞에 두고 가주세요(벨누르지말아주세요)
-            </div>
-          </div>
+	          <c:forEach var="orderInfo" items="${orderInfo}">
+		          <div class="info_contents">
+		            <div>이름</div>
+		            <div>${orderInfo.name}</div>
+		          </div>
+		          <div class="info_contents">
+		            <div>연락처</div>
+		            <div>${orderInfo.phone}</div>
+		          </div>
+		          <div class="info_contents">
+		            <div>배송주소</div>
+		            <div style="height: 70px">
+		              ${orderInfo.address}
+		            </div>
+		          </div>
+		          <div class="info_contents">
+		            <div>배송요청사항</div>
+		            <div style="height: 70px">
+		              ${orderInfo.require}
+		            </div>
+		          </div>
+	          </c:forEach>
 
           <div>
             <img src="/images/shop/orderend/order_logo.svg" alt="logo" />
@@ -75,72 +81,74 @@
           </div>
           <div class="receipt_contents">
             <div>주문날짜</div>
-            <div>2023.06.30</div>
+            <div><fmt:formatDate value="<%= orderDate %>" pattern="yyyy.MM.dd" /></div>
           </div>
           <hr class="dotline" />
-          <div class="receipt_contents">
-            <div>상품 전체 Point</div>
-            <div>
-              <img
-                src="/images/shop/shopdetail/coin2.svg"
-                alt="coin"
-                style="width: 20px; margin-right: 5px"
-              />
-              <span>10,000</span>
-            </div>
-          </div>
-          <div class="receipt_contents">
-            <div>배송 Point</div>
-            <div>
-              <img
-                src="/images/shop/shopdetail/coin2.svg"
-                alt="coin"
-                style="width: 20px; margin-right: 5px"
-              />
-              <span>2,500</span>
-            </div>
-          </div>
-          <hr class="dotline" />
-          <div class="receipt_contents">
-            <div>총 결제 Point</div>
-            <div>
-              <img
-                src="/images/shop/shopdetail/coin2.svg"
-                alt="coin"
-                style="width: 20px; margin-right: 5px"
-              />
-              <span>12,500</span>
-            </div>
-          </div>
-          <div class="receipt_contents">
-            <div>결제 가능 Point</div>
-            <div>
-              <img
-                src="/images/shop/shopdetail/coin2.svg"
-                alt="coin"
-                style="width: 20px; margin-right: 5px"
-              />
-              <span>13,500</span>
-            </div>
-          </div>
-          <hr class="dotline" />
-          <div class="receipt_contents">
-            <div>잔여 Point</div>
-            <div>
-              <img
-                src="/images/shop/shopdetail/coin2.svg"
-                alt="coin"
-                style="width: 20px; margin-right: 5px"
-              />
-              <span>1,000</span>
-            </div>
-          </div>
-          <div>
-            <img src="/images/shop/orderend/order_logo.svg" alt="logo" />
-          </div>
-        </div>
-      </div>
-
+	      <c:forEach var="orderInfo" items="${orderInfo}">          
+	          <div class="receipt_contents">
+	            <div>상품 전체 Point</div>
+	            <div>
+	              <img
+	                src="/images/shop/shopdetail/coin2.svg"
+	                alt="coin"
+	                style="width: 20px; margin-right: 5px"
+	              />
+	              <span class="total_point"><fmt:formatNumber value="${orderInfo.total_point}" pattern="#,###"/></span>
+	            </div>
+	          </div>
+	          <div class="receipt_contents">
+	            <div>배송 Point</div>
+	            <div>
+	              <img
+	                src="/images/shop/shopdetail/coin2.svg"
+	                alt="coin"
+	                style="width: 20px; margin-right: 5px"
+	              />
+	              <span><fmt:formatNumber value="3000" pattern="#,###"/></span>
+	            </div>
+	          </div>
+	          <hr class="dotline" />
+	          <div class="receipt_contents">
+	            <div>총 결제 Point</div>
+	            <div>
+	              <img
+	                src="/images/shop/shopdetail/coin2.svg"
+	                alt="coin"
+	                style="width: 20px; margin-right: 5px"
+	              />
+	              <span class="total_payment"><fmt:formatNumber value="${orderInfo.total_payment}" pattern="#,###"/></span>
+	            </div>
+	          </div>
+	          <div class="receipt_contents">
+	            <div>결제 가능 Point</div>
+	            <div>
+	              <img
+	                src="/images/shop/shopdetail/coin2.svg"
+	                alt="coin"
+	                style="width: 20px; margin-right: 5px"
+	              />
+	              <span class="affordable"><fmt:formatNumber value="45000" pattern="#,###"/></span>
+	            </div>
+	          </div>
+	          <hr class="dotline" />
+	          <div class="receipt_contents">
+	            <div>잔여 Point</div>
+	            <div>
+	              <img
+	                src="/images/shop/shopdetail/coin2.svg"
+	                alt="coin"
+	                style="width: 20px; margin-right: 5px"
+	              />
+	              <span class="change"></span>
+	            </div>
+	          </div>
+	          <div>
+	            <img src="/images/shop/orderend/order_logo.svg" alt="logo" />
+	          </div>
+	        </div>
+	      </div>
+		</c:forEach>
+	
       <p style="font: var(--body16); margin-bottom: 30px">
         펫라이스는 배송지 정보 오기입으로 인한 배송오류에 대해 책임지지
         않습니다.<br />
@@ -170,4 +178,5 @@
     </div>
     <!--layout end-->
   </body>
+<script src="/js/shop/payment/orderEnd.js"></script>  
 </html>
