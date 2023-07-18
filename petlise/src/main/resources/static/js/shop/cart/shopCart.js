@@ -91,7 +91,9 @@ $(document).ready(function(){
     // 주문하러가기 버튼
 	$('#order_button').click(function() {
 	    $('.product_check:checked').each(function() {
+	    	var user_id = 'petlise';
 	        var container = $(this).closest('.cart_product_container');
+	    	var product_id =  container.find('[data-product_id]').data('product_id');
 	        var product_name = container.find('.cart_info a').text().trim();
 	        var product_image = container.find('.cart_product_image').attr('src');
 	        var product_price = parseInt(container.find('[data-product_price]').data('product_price'));
@@ -99,6 +101,8 @@ $(document).ready(function(){
 	        var price_total = parseInt(container.find('[data-price_total]').data('price_total'));
 	
 	        var dto = {
+	        	user_id: user_id,
+	        	product_id: product_id,
 	            product_name: product_name,
 	            product_image: product_image,
 	            product_price: product_price,

@@ -20,6 +20,11 @@ public class RecipeService {
         recipeDTO.setRecipe_created_at(new Timestamp(System.currentTimeMillis()));  // 게시글 생성 시간 설정
         recipeDTO.setRecipe_updated_at(new Timestamp(System.currentTimeMillis()));  // 게시글 수정 시간 설정
         recipeDTO.setRecipe_category("나만의레시피");
+        recipeDTO.setRecipe_of_the_month(0); //이달의 레시피 조건충족X false=0
+        
+        // 이미지 URL 설정
+        String imageUrl = recipeDTO.getImage();
+        recipeDTO.setImage(imageUrl);
         
         recipeDAO.insertRecipe(recipeDTO);  // 게시글 등록
     }

@@ -10,11 +10,13 @@
 <link rel="stylesheet" href="/css/recipe/recipeList.css" />
 <link rel="stylesheet" href="/css/style.css" />
 <link rel="stylesheet" href="/css/recipe/recipePage.css" />
+<link rel="stylesheet" href="/css/nav/nav.css" />
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>PetLiSe</title>
 </head>
 <body>
     <div class="wrap">
+     <div id="nav"></div>
 		<div id="board_title">
 			<div class="pet_icon">
 			<div class="dog_icon"><img src="/images/recipe/dog_icon.svg"></div>
@@ -269,4 +271,5 @@
     });
 
 </script>
+<script src="/js/recipe/nav.js"></script>
 </html>

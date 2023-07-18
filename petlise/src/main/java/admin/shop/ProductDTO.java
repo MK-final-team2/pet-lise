@@ -81,6 +81,11 @@ public class ProductDTO {
 	public void setIsvisible(boolean isvisible) {
 		this.isvisible = isvisible;
 	}
-
+	public int getSales() {
+		return sales;
+	}
+	public void setSales(int sales) {
+		this.sales = sales;
+	}
 
 }

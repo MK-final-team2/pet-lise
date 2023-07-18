@@ -1,14 +1,17 @@
 
 .wrap {
-    width: 1440px;
+    width: 100%;
     margin: 0 auto;
-    padding: 60px 0 0;
+    
 }
 
 .pet_icon {
 	display: flex;
-  justify-content: center;
+    justify-content: center;
+    margin-top: 80px;
+    
 }
+
 .dog_icon img {
   width: 75px;
   height: 60px;
@@ -38,33 +41,37 @@
 .search_container{
   display: flex; 
   justify-content: space-between;
+  margin-right: 135px;
+  z-index: 92;
+  
 }
 
 .category {
-  margin-left: 120px;
+  margin-left: 260px;
   
 
-  > button {
-    width: 110px;
-    height: 30px;
+  > a {
+    
     border: 1px solid var(--light-sub);
     border-radius: 25px;
     font: var(--button14);
-    padding: 0 20px;
+    padding: 8px 20px;
   }
 
-  > button[aria-current="page"] {
+  >a:hover {
     background-color: var(--light-sub);
   }
-
-  >button:hover {
-    background-color: var(--light-sub);
-  }
+  
 }
+
+
+
 
 .search{
   margin-right: 130px;
   position: relative;
+  
+  
 }
 
 
@@ -74,6 +81,7 @@
   border: 1px solid var(--gray4);
   border-radius: 8px;
   padding: 10px 12px;
+  
 }
 .search > input:focus {
     border-color: var(--light-main);
@@ -196,7 +204,7 @@
         display: flex;
         justify-content: flex-end;
         margin-top: -5px;
-        margin-right: 140px;
+        margin-right: 280px;
         margin-bottom: 40px;
       }
       
