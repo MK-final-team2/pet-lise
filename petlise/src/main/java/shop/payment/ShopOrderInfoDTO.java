@@ -6,6 +6,8 @@ public class ShopOrderInfoDTO {
 	int order_id;
 	String user_id, name, address, phone, require, status;
 	Date date;
+	int total_point, total_payment;
+	
 	public int getOrder_id() {
 		return order_id;
 	}
@@ -53,6 +55,18 @@ public class ShopOrderInfoDTO {
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	public int getTotal_point() {
+		return total_point;
+	}
+	public void setTotal_point(int total_point) {
+		this.total_point = total_point;
+	}
+	public int getTotal_payment() {
+		return total_payment;
+	}
+	public void setTotal_payment(int total_payment) {
+		this.total_payment = total_payment;
 	}
 	
 }

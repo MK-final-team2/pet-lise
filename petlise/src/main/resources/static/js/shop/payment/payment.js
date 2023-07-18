@@ -49,18 +49,21 @@
 	var year = today.getFullYear();
 	var month = (today.getMonth() + 1).toString().padStart(2, '0');
 	var day = today.getDate();
-	var order_date = year + "-" + month + "-" + day;
+	var order_date = year + "." + month + "." + day;
 	
 	document.getElementById("order_date").textContent = order_date;
 
 
 //상품 전체 Point 계산
 	var productPrices = document.getElementsByClassName("product_price");
+	var productQuantities = document.getElementsByClassName("product_quantity");
 	var calcTotalPoint = 0;
 	
 	for (var i = 0; i < productPrices.length; i++) {
-	  var calcPrice = parseFloat(productPrices[i].innerText);
-	  calcTotalPoint += calcPrice;
+	  var price = parseFloat(productPrices[i].innerText);
+	  var quantity = parseFloat(productQuantities[i].innerText);
+      var subTotal = price * quantity;
+	  calcTotalPoint += subTotal;
 	}
 	
 	var formattedTotalPoint = calcTotalPoint.toLocaleString();
@@ -101,7 +104,9 @@ $('#order_Btn').click(function(){
 					address: $('#sample6_postcode').val() + ", " 
 							+ $('#sample6_address').val() + ", " 
 							+ $('#sample6_detailAddress').val(),
-					require: $('#input_Require').val()		
+					require: $('#input_Require').val(),
+					total_point: calcTotalPoint,
+					total_payment: calcTotalPoint + 3000		
 				},
 				complete: function(response){
 					var order_id = response.order_id;
@@ -138,7 +143,7 @@ $('#order_Btn').click(function(){
 														product_ids: product_ids
 													},
 													complete: function(response4){
-														location.href = "/shopcart";
+														location.href = "/orderend";
 																																			
 													}
 												});
