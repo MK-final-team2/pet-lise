@@ -39,33 +39,45 @@
 				</div>
 			</div>
 		<div>
-			<c:forEach var="order" items="${orderList}" begin="0" end="2">
+			<c:forEach var="products" items="${products}">
+				<div class="Else">
+					<div class="product_id">${products.product_id}</div>
+					<div id="product_name">${products.product_name}</div>
+				</div>
+			</c:forEach>
+			<c:forEach var="orderProduct" items="${orderProduct}" begin="0" end="2">
 			    <div class="table_Column">
+			    	<div class="Else">
+			    		<p id="product_User_Id" class="Else">${orderProduct.user_id}</p>
+			    	</div>
+			    	<div class="Else">
+			    		<p id="product_Product_Id" class="Else">${orderProduct.product_id}</p>
+			    	</div>			    	
 			        <div id="table_Product_Img">
 			            <p>
 			                <a href="#">
-			                    <img class="product_image" src="${order.product_image}">
+			                    <img class="product_image" src="${orderProduct.product_image}">
 			                </a>
 			            </p>
 			        </div>
 			        <div id="table_Product_Info">
 			            <p>
 			                <a href="#">
-			                    <span class="product_name">${order.product_name}</span>				
+			                    <span class="product_name">${orderProduct.product_name}</span>				
 			                </a>
 			            </p>
 			        </div>
 			        <div id="table_Quantity">
-			            <p>${order.quantity}</p>
+			            <p>${orderProduct.quantity}</p>
 			        </div>
 			        <div id="table_Price">
 			            <p class="product_price">
-			                <img src="/images/mypage/coin2.svg" id="point_Icon">${order.product_price}
+			                <img src="/images/mypage/coin2.svg" id="point_Icon">${orderProduct.product_price}
 			            </p>
 			        </div>
 			        <div id="table_Total">
 			            <p class="price_total">
-			                <img src="/images/mypage/coin2.svg" id="point_Icon">${order.price_total}
+			                <img src="/images/mypage/coin2.svg" id="point_Icon">${orderProduct.price_total}
 			            </p>
 			        </div>
 			    </div>
@@ -73,45 +85,61 @@
 		</div>
 			<div class="order_Detail">
 				<div class="order_Info">
-					<div class="member_Info_Title">회원 정보</div>
-					<table class="member_Info">
-						<tr id="member_Name">
-							<td class="col_1">이름</td>
-							<td class="col_2">이름이름</td>
-						</tr>
-						<tr id="member_Email">
-							<td class="col_1">이메일</td>
-							<td class="col_2">이메일@이메일</td>
-						</tr>						
-						<tr id="member_Phone">
-							<td class="col_1">휴대폰 번호</td>
-							<td class="col_2">휴대폰 번호</td>
-						</tr>
-					</table>
-					
-					<div class="delivery_Info_Title">배송 정보<span id="address_Check"><input type="checkbox" id="address_CheckBox"><label for="address_CheckBox">배송 정보 동일</label></span></div>
-					<table class="delivery_Info">
-						<tr id="delivery_Name">
-							<td class="col_1">받는분 성함</td>
-							<td class="col_2">이름이름</td>
-						</tr>
-						<tr id="delivery_Address">
-							<td class="col_1">배송 주소</td>
-							<td class="col_2">주소주소</td>
-						</tr>
-						<tr id="delivery_Phone">
-							<td class="col_1">연락처</td>
-							<td class="col_2">연락처</td>
-						</tr>
-						<tr id="delivery_Detail">
-							<td class="col_1">배송 요청사항</td>
-							<td class="col_2">요청사항</td>
-						</tr>
-						<tr id="delivery_Status">
-							<td class="col_1">배송 현황</td>
-							<td class="col_2">배송 현황</td>					
-						</tr>
-					</table>
+					<c:forEach var="userInfo" items="${userInfo}">
+						<div class="member_Info_Title">회원 정보</div>
+							<table class="member_Info">
+								<tr class="Else">
+									<td class="col_1">아이디</td>
+									<td class="col_2" id="member_User_Id">${userInfo.user_id}</td>
+								</tr>		
+								<tr>
+									<td class="col_1">이름</td>
+									<td class="col_2" id="member_Name">${userInfo.name}</td>
+								</tr>
+								<tr>
+									<td class="col_1">이메일</td>
+									<td class="col_2" id="member_Email">${userInfo.email}</td>
+								</tr>						
+								<tr>
+									<td class="col_1">주소</td>
+									<td class="col_2" id="member_Address">${userInfo.address}</td>
+								</tr>
+								<tr class="Else">
+									<td class="col_1"></td>
+									<td class="col_2"></td>
+								</tr>
+								<tr class="Else">
+									<td class="col_1"></td>
+									<td class="col_2"></td>
+								</tr>																
+							</table>
+					</c:forEach>
+						<div class="delivery_Info_Title">배송 정보<span id="address_Check"><input type="checkbox" id="address_CheckBox"><label for="address_CheckBox">회원 정보 동일</label></span></div>
+							<table class="delivery_Info">
+								<tr>
+									<td class="col_1">받는분 성함</td>
+									<td class="col_2" id="delivery_Name"><input type="text" id="input_Name"></td>
+								</tr>
+								<tr>
+									<td class="col_1">연락처</td>
+									<td class="col_2" id="delivery_Phone"><input type="text" id="input_Phone"></td>
+								</tr>
+								<tr>
+									<td class="col_1">배송주소</td>
+									<td class="col_2" id="delivery_Address">
+										<input type="text" id="sample6_postcode" style="width:150px" />
+										  <button type="button" id="find_ZipCode" onclick="sample6_execDaumPostcode()">
+										    우편번호
+										  </button>
+										<input type="text" id="sample6_address" />
+										<input type="text" id="sample6_detailAddress" />
+									</td>
+								</tr>
+								<tr>
+									<td class="col_1">배송 요청사항</td>
+									<td class="col_2" id="delivery_Require"><input type="text" id="input_Require"></td>					
+								</tr>
+							</table>
 					<p id="delivery_Caption">※ 배송지 정보는 주문 완료시 수정이 불가능하므로 정보를 꼭 확인해주시기 바랍니다.</p>
 				</div>
 			
@@ -163,10 +191,13 @@
 				</div>
 			</div>
 			<div class="Btn">
-				<input type=button value="결제하기" id="orderList_Btn" onclick="#">
+				<button type="button" id="order_Btn">결제하기</button>
 			</div>
 		</div>
-	</div>				
+	</div>
+					
 <script src="/js/shop/payment/payment.js"></script>
+<script src="/js/postcode.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </body>
 </html>
