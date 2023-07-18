@@ -1,271 +1,494 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="css/shop/shopDetail.css" />
-    <link rel="icon" href="/images/favicon.ico" />
-	<link rel="apple-touch-icon" href="/images/favicon.ico" />
-    <title> Pet LiSe </title>
-    <script src="/js/jquery-3.6.4.min.js"></script>
-    <script>
+<meta charset="UTF-8">
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="css/shop/shopDetail.css" />
+<link rel="stylesheet" href="css/shop/pagination_shop.css" />
+<link rel="stylesheet" href="css/shop/modal_main.css" />
+<link rel="icon" href="/images/favicon.ico" />
+<link rel="apple-touch-icon" href="/images/favicon.ico" />
+<title>Pet LiSe</title>
+<script src="/js/jquery-3.6.4.min.js"></script>
+<script>
     $(document).ready(function(){
+    	if("${searchdto.searchType2}"=="review"){
+    		$('html').animate({scrollTop : $('#review_statistic').offset().top}, 0);
+    	}
+    	
+    	//숫자 페이징버튼 
+    	$(".pageNumber").on('click', function() {
+    		const queryparamsPage = {
+    			product_id : "${product.product_id}",
+    			page: $(this).text(),
+    			searchType2: "review",
+    			searchType3: $('#isphoto').is(':checked')?'photo':'',
+ 				sortType:$("#filter_active").text()
+    		}
+    		$(this).siblings(".pageNumber.active").toggleClass('active');
+    		$(this).toggleClass('active');
+    		location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
+    	});
 
+    	//첫페이지버튼 
+    	$(".pagefirst").on('click', function() {
+    		const queryparamsPage = {
+    			product_id : "${product.product_id}",
+    	    	page: 1,
+    	    	searchType2: "review",
+    	    	searchType3: $('#isphoto').is(':checked')?'photo':'',
+    	    	sortType:$("#filter_active").text()
+    		}
+    		location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
+    	});
+
+    	//이전페이지버튼
+    	$(".prev").on('click', function() {
+    		const queryparamsPage = {
+   				product_id : "${product.product_id}",
+       	    	page: $(this).attr("id"),
+       	    	searchType2: "review",
+       	    	searchType3: $('#isphoto').is(':checked')?'photo':'',
+ 	    		sortType:$("#filter_active").text()
+    		}
+    		location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
+    	});
+
+    	//다음페이지버튼
+    	$(".next").on('click', function() {
+    		const queryparamsPage = {
+   				product_id : "${product.product_id}",
+				page: $(this).attr("id"),
+				searchType2: "review",
+				searchType3: $('#isphoto').is(':checked')?'photo':'',
+				sortType:$("#filter_active").text()
+    		}
+    		location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
+    	});
+
+    	//마지막페이지버튼
+    	$(".pagelast").on('click', function() {
+    		const queryparamsPage = {
+   				product_id : "${product.product_id}",
+   				page: $(this).attr("id"),
+   				searchType2: "review",
+				searchType3: $('#isphoto').is(':checked')?'photo':'',
+				sortType:$("#filter_active").text()
+    		}
+    		location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
+    	});
+    	
+    	//포토후기 모아보기 체크박스
+    	$("#product_review").on('click',"#isphoto", function() {
+    		const queryparamsPage = {
+   				product_id : "${product.product_id}",
+    			page: 1,
+    			searchType2: "review",
+    			searchType3: $('#isphoto').is(':checked')?'photo':'',
+				sortType:$("#filter_active").text()
+    		}
+    		location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
+    	});
+    	
+    	//정렬버튼
+    	$("#product_review").on('click',".filter", function() {
+    		const queryparamsPage = {
+   				product_id : "${product.product_id}",
+    			page: 1,
+    			searchType2: "review",
+    			searchType3: $('#isphoto').is(':checked')?'photo':'',
+    			sortType:$(this).text()
+    		}
+    		location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
+    	});
+    	
+    	//후기 좋아요 버튼 클릭
+    	$("#review_show").on('click','.review_likebtn',function(){
+    		$(this).removeClass();
+			$(this).addClass('review_likebtn_active');
+			$(this).children(".likecnt").text(Number($(this).children(".likecnt").text())+1);
+			
+    		$.ajax({
+    			type : 'post',
+    			url : '/likeup',
+    			dataType : 'json',
+    			data : {
+    				user_id : "${sessionScope.user_id}",
+    				review_id : $(this).siblings("input[type='hidden']").val()
+    			},
+    			success : function(result) { // 결과 성공 콜백함수
+    				
+    			},
+    		    error : function(request, status, error) { // 결과 에러 콜백함수
+    		        console.log(error)
+    		    }
+    		});//ajax end    		
+    	});
+    	
+    	//후기 좋아요 취소 클릭
+    	$("#review_show").on('click','.review_likebtn_active',function(){
+    		$(this).removeClass();
+			$(this).addClass('review_likebtn');
+			$(this).children(".likecnt").text(Number($(this).children(".likecnt").text())-1);
+    		
+    		$.ajax({
+    			type : 'post',
+    			url : '/likedown',
+    			dataType : 'json',
+    			data : {
+    				user_id : "${sessionScope.user_id}",
+    				review_id : $(this).siblings("input[type='hidden']").val()
+    			},
+    			success : function(result) { // 결과 성공 콜백함수
+    			},
+    		    error : function(request, status, error) { // 결과 에러 콜백함수
+    		        console.log(error)
+    		    }
+    		});//ajax end    		
+    	});
+    	
     });
     </script>
 </head>
 <body>
-    <div id='layout'>
-        <div id="categorys">
-            <p>라이스샵 > ${product.pet_type} > ${product.category}</p>
-        </div> <!-- categorys -->
+	<div id='layout'>
+		<div id="categorys">
+			<p>라이스샵 > ${product.pet_type} > ${product.category}</p>
+		</div>
+		<!-- categorys -->
 
-        <div id="detail_img_info">
-            <div id="img" style="background-image: url(${product.image_main});">
-            	<c:if test="${!product.isvisible}">
-	            	<div class="product_img_cover_soldout">
-						<div>SOLD<br>OUT</div>
+		<div id="detail_img_info">
+			<div id="img" style="background-image: url(${product.image_main});">
+				<c:if test="${!product.isvisible}">
+					<div class="product_img_cover_soldout">
+						<div>
+							SOLD<br>OUT
+						</div>
 					</div>
-            	</c:if>
-            </div>
-            <div id="info">
-                <p>${product.product_name}</p>
-                <table>
-                    <tbody>
-                        <tr><td>가격</td><td><img src="/images/shop/shopdetail/coin2.svg" alt="coin"/><fmt:formatNumber value="${product.price}" pattern="#,###" /></td></tr>    
-                        <tr><td>배송비</td><td><img src="/images/shop/shopdetail/coin2.svg" alt="coin"/>3,000 / 포인트 선결제</td></tr>    
-                        <tr><td>상품코드</td><td>${product.product_code}</td></tr>    
-                        <tr><td>수량</td><td id="select_number">
-                            <button id="num_minus" class="oper"><span class="material-symbols-outlined">remove</span></button>
-                            <div id="number">1</div>
-                            <button id="num_plus" class="oper"><span class="material-symbols-outlined">add</span></button>
-                            <span></span>
-                        </td></tr>
-                    </tbody>
-                </table>
-                <div id="info_btns">
-                    <c:if test="${product.isvisible}">
-	                    <button id="cartbtn">장바구니담기</button>
-	                    <button id="buybtn">바로 구매하기</button>
-            		</c:if>
-                    <c:if test="${!product.isvisible}">
-	                    <button id="soldoutbtn">품절</button>
-            		</c:if>
-                    
-                </div>
-            </div>
-        </div> <!-- detail_img_info -->
+				</c:if>
+			</div>
+			<div id="info">
+				<p>${product.product_name}</p>
+				<table>
+					<tbody>
+						<tr>
+							<td>가격</td>
+							<td><img src="/images/shop/shopdetail/coin2.svg" alt="coin" />
+							<fmt:formatNumber value="${product.price}" pattern="#,###" /></td>
+						</tr>
+						<tr>
+							<td>배송비</td>
+							<td><img src="/images/shop/shopdetail/coin2.svg" alt="coin" />3,000
+								/ 포인트 선결제</td>
+						</tr>
+						<tr>
+							<td>상품코드</td>
+							<td>${product.product_code}</td>
+						</tr>
+						<tr>
+							<td>수량</td>
+							<td id="select_number">
+								<button id="num_minus" class="oper">
+									<span class="material-symbols-outlined">remove</span>
+								</button>
+								<div id="number">1</div>
+								<button id="num_plus" class="oper">
+									<span class="material-symbols-outlined">add</span>
+								</button> <span></span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div id="info_btns">
+					<c:if test="${product.isvisible}">
+						<button id="cartbtn">장바구니담기</button>
+						<button id="buybtn">바로 구매하기</button>
+					</c:if>
+					<c:if test="${!product.isvisible}">
+						<button id="soldoutbtn">품절</button>
+					</c:if>
 
-        <div class="detail_tab">
-            <div id="tab1_1" class="tab_active"><img src="/images/shop/shopdetail/pawprint_black.svg">상품상세정보</div>
-            <div id="tab1_2">상품후기</div>
-            <div id="tab1_3">상품안내</div>
-        </div>
+				</div>
+			</div>
+		</div>
+		<!-- detail_img_info -->
 
-        <div id="product_detail">
-        	<img src="${product.image_detail}">
-        </div>
-        
-        <div class="detail_tab">
-            <div id="tab2_1">상품상세정보</div>
-            <div id="tab2_2" class="tab_active"><img src="/images/shop/shopdetail/pawprint_black.svg">상품안내</div>
-            <div id="tab2_3">상품후기</div>
-        </div>
+		<div class="detail_tab">
+			<div id="tab1_1" class="tab_active">
+				<img src="/images/shop/shopdetail/pawprint_black.svg">상품상세정보
+			</div>
+			<div id="tab1_2">상품후기</div>
+			<div id="tab1_3">상품안내</div>
+		</div>
 
-        <div id="product_infomation">
-            <h4>배송안내</h4>
-            <p>
-                ▪ 배송방법 : 순차배송<br>
-                ▪ 배송비 : 3,000 point / 포인트 선결제<br>
-                <span class="tab">&#9;</span>- 배송비 포함하여 전액 포인트 결제를 진행해 주셔야 합니다.<br>
-                ▪ 배송기간 : 결제 완료 후 2~3일 이내 도착<br>
-                <span class="tab">&#9;</span>- 도서 산간 지역은 하루가 더 소요될 수 있습니다.<br>                
-            </p>
-            <h4>주의사항</h4>
-            <p>
-                라이스샵은 수익을 창출하지 않는 회원 전용 포인트샵으로 운영되며 라이스샵 내 모든 상품은 교환 및 반품이 불가합니다.<br>
-                구매 시 신중한 선택을 부탁드리며, 기타 문의사항은 문의게시판을 이용해주시기 바랍니다.
-            </p>
-        </div>
-        
-        <div class="detail_tab">
-            <div id="tab3_1">상품상세정보</div>
-            <div id="tab3_2">상품안내</div>
-            <div id="tab3_3" class="tab_active"><img src="/images/shop/shopdetail/pawprint_black.svg">상품후기</div>
-        </div>
+		<div id="product_detail">
+			<img src="${product.image_detail}">
+		</div>
 
-        <div id="product_review">
-            <div id="review_title">
-                <div>
-                    <h4>상품후기</h4>
-                    <p>
-                        이 상품을 구매한 회원님들의 후기입니다.<br>
-                        구매한 제품에 대한 후기는 마이페이지 구매목록에서 남기실 수 있습니다.
-                    </p>
-                </div>
-                <button>구매목록가기</button>
-            </div>
+		<div class="detail_tab">
+			<div id="tab2_1">상품상세정보</div>
+			<div id="tab2_2" class="tab_active">
+				<img src="/images/shop/shopdetail/pawprint_black.svg">상품안내
+			</div>
+			<div id="tab2_3">상품후기</div>
+		</div>
 
-            <div id="review_statistic">
-                <div id="score">
-                    <span>구매고객 만족도</span>
-                    <span>4.5점</span>
-                    <div>
-                        <img src="/images/shop/shopdetail/borns5_line.svg"/>
-                        <span id="fillscore" style="width: 90%;">
-                            <img src="/images/shop/shopdetail/borns5_fill.svg"/>
-                        </span>
-                    </div>
-                </div>
-                <div id="count">
-                    <span>작성 후기 건수</span>
-                    <span>10건</span>
-                </div>
-                
-                <div id="score_count">
-                    <div id="score_box">
-                        <div class="scores">
-                            <div class="score_score">5점</div>
-                            <div class="graph_back">
-                                <div class="graph_color" style="width:50%;"></div>
-                            </div>
-                            <div class="score_cnt">5건 (50%)</div>
-                        </div>
-                        <div class="scores">
-                            <div class="score_score">4점</div>
-                            <div class="graph_back">
-                                <div class="graph_color" style="width:30%;"></div>
-                            </div>
-                            <div class="score_cnt">3건 (30%)</div>
-                        </div>
-                        <div class="scores">
-                            <div class="score_score">3점</div>
-                            <div class="graph_back">
-                                <div class="graph_color" style="width:20%;"></div>
-                            </div>
-                            <div class="score_cnt">2건 (20%)</div>
-                        </div>
-                        <div class="scores">
-                            <div class="score_score">2점</div>
-                            <div class="graph_back">
-                                <div class="graph_color" style="width:0%;"></div>
-                            </div>
-                            <div class="score_cnt">0건 (0%)</div>
-                        </div>
-                        <div class="scores">
-                            <div class="score_score">1점</div>
-                            <div class="graph_back">
-                                <div class="graph_color" style="width:0%;"></div>
-                            </div>
-                            <div class="score_cnt">0건 (0%)</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- review_statistic end -->
-            
-            <div class="review_container" style="border-top: 1px solid var(--light-sub, #FBC252);">
-                <div class="review_info">
-                    <div class="user_info">
-                        <div class="box" style="background: #BDBDBD;">
-                            <img class="profile" src="https://images.mypetlife.co.kr/content/uploads/2021/10/22152410/IMG_2087-scaled-e1634883900174.jpg">
-                        </div>
-                        <span>자몽</span>
-                        <span>2023.06.28</span>
-                    </div><!--유저정보영역-->
-                    <div class="review_contents">
-                        <div class="score">
-                            <img class="score_fill" src="/images/shop/shopdetail/bone_fill.svg">
-                            <img class="score_fill" src="/images/shop/shopdetail/bone_fill.svg">
-                            <img class="score_fill" src="/images/shop/shopdetail/bone_fill.svg">
-                            <img class="score_fill" src="/images/shop/shopdetail/bone_fill.svg">
-                            <img class="score_fill" src="/images/shop/shopdetail/bone_fill.svg">
-                            <span>5점</span>
-                        </div>
-                        <div class="contents">
-                            <p>
-                                아이가 엄청 좋아해요 ㅎㅎ 포인트로 사본건데 너무 좋아해서 값 주고도 구입할 것 같습니다 :) <br>
-                                앞으로도 포인트 열심히 모아봐야겠어요!!
-                            </p>
-                        </div><!--후기내용-->
-                    </div><!--후기영역-->
-                </div><!--정보/후기영역-->
+		<div id="product_infomation">
+			<h4>배송안내</h4>
+			<p>
+				▪ 배송방법 : 순차배송<br> ▪ 배송비 : 3,000 point / 포인트 선결제<br> <span
+					class="tab">&#9;</span>- 배송비 포함하여 전액 포인트 결제를 진행해 주셔야 합니다.<br>
+				▪ 배송기간 : 결제 완료 후 2~3일 이내 도착<br> <span class="tab">&#9;</span>-
+				도서 산간 지역은 하루가 더 소요될 수 있습니다.<br>
+			</p>
+			<h4>주의사항</h4>
+			<p>
+				라이스샵은 수익을 창출하지 않는 회원 전용 포인트샵으로 운영되며 라이스샵 내 모든 상품은 교환 및 반품이 불가합니다.<br>
+				구매 시 신중한 선택을 부탁드리며, 기타 문의사항은 문의게시판을 이용해주시기 바랍니다.
+			</p>
+		</div>
 
-                <div class="review_img_box">
-                    <img class="review_img" src="https://images.mypetlife.co.kr/content/uploads/2021/10/22152410/IMG_2087-scaled-e1634883900174.jpg">
-                </div>
+		<div class="detail_tab">
+			<div id="tab3_1">상품상세정보</div>
+			<div id="tab3_2">상품안내</div>
+			<div id="tab3_3" class="tab_active">
+				<img src="/images/shop/shopdetail/pawprint_black.svg">상품후기
+			</div>
+		</div>
 
-                <div class="review_btns_my">
-                    <button id="editbtn"><span class="material-symbols-outlined">edit</span></button>
-                    <button id="deletebtn"><span class="material-symbols-outlined">delete</span></button>
-                </div>
-            </div><!--리뷰1개-->
+		<div id="product_review">
+			<div id="review_title">
+				<div>
+					<h4>상품후기</h4>
+					<p>
+						이 상품을 구매한 회원님들의 후기입니다.<br> 구매한 제품에 대한 후기는 마이페이지 구매목록에서 남기실 수
+						있습니다.
+					</p>
+				</div>
+				<button>구매목록가기</button>
+			</div>
 
-            <div class="review_container">
-                <div class="review_info">
-                    <div class="user_info">
-                        <div class="box" style="background: #BDBDBD;">
-                            <img class="profile" src="https://image.dongascience.com/Photo/2020/03/5bddba7b6574b95d37b6079c199d7101.jpg">
-                        </div>
-                        <span>몽자</span>
-                        <span>2023.06.28</span>
-                    </div><!--유저정보영역-->
-                    <div class="review_contents">
-                        <div class="score">
-                            <img class="score_fill" src="/images/shop/shopdetail/bone_fill.svg">
-                            <img class="score_line" src="/images/shop/shopdetail/bone_line.svg">
-                            <img class="score_line" src="/images/shop/shopdetail/bone_line.svg">
-                            <img class="score_line" src="/images/shop/shopdetail/bone_line.svg">
-                            <img class="score_line" src="/images/shop/shopdetail/bone_line.svg">
-                            <span>1점</span>
-                        </div>
-                        <div class="contents">
-                            <p>
-                                주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
-                                주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
-                                주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
-                                주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
-                                주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
-                                주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
-                                주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
-                                주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
-                                주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
-                                주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
-                                주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
-                                주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
-                                주인님이 별로라고 화내시네요ㅋㅋ큐ㅠㅠ 주인님 의사 반영하여 1점......
-                            </p>
-                        </div><!--후기내용-->
-                    </div><!--후기영역-->
-                </div><!--정보/후기영역-->
+			<div id="review_statistic">
+				<div id="score">
+					<span>구매고객 만족도</span> <span><fmt:formatNumber
+							value="${totalAvg}" pattern="#.#" />점</span>
+					<div>
+						<img src="/images/shop/shopdetail/borns5_line.svg" /> <span
+							id="fillscore" style="width: ${totalAvg/5*100}%;"> <img
+							src="/images/shop/shopdetail/borns5_fill.svg" />
+						</span>
+					</div>
+				</div>
+				<div id="count">
+					<span>작성 후기 건수</span> <span>${totalCnt}건</span>
+				</div>
 
-                <div class="review_img_box">
-                    <img class="review_img" src="https://image.dongascience.com/Photo/2020/03/5bddba7b6574b95d37b6079c199d7101.jpg">
-                </div>
+				<div id="score_count">
+					<div id="score_box">
+						<c:forEach begin="0" end="4" varStatus="vs">
+							<div class="scores">
+								<div class="score_score">${5-vs.index}점</div>
+								<div class="graph_back">
+									<div class="graph_color"
+										style="width:${scores[5-vs.index-1]/totalCnt*100}%;"></div>
+								</div>
+								<div class="score_cnt">${scores[5-vs.index-1]}건(<fmt:formatNumber
+										value="${scores[5-vs.index-1]/totalCnt*100}" pattern="#" />
+									%)
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</div>
+			<!-- review_statistic end -->
+			
+			<div id="review_filter">
+				<div>
+					<span style="border-right:1px solid var(--light-sub, #FBC252);">전체후기 ${totalCnt}건</span>
+					<span>사진후기 ${totalPhotoCnt}건</span>
+					<div>
+						<input type="checkbox" id="isphoto"
+							<c:if test="${searchdto.searchType3 eq 'photo'}"> checked </c:if> /> 
+						<label for="isphoto"><span></span>사진후기모아보기
+						<span class="material-symbols-outlined">photo_camera</span>
+						</label>
+					</div>
+				</div>
+				<div>
+					<span class="material-symbols-outlined">filter_alt</span>
+					
+					<span class="filter" <c:if test="${searchdto.sortType eq '최신순' || searchdto.sortType eq null || searchdto.sortType eq ''}">id="filter_active"</c:if>>최신순</span>
+					<span class="filter" <c:if test="${searchdto.sortType eq '평점높은순'}">id="filter_active"</c:if>>평점높은순</span>
+					<span class="filter" <c:if test="${searchdto.sortType eq '평점낮은순'}">id="filter_active"</c:if>>평점낮은순</span>
+					<span class="filter" <c:if test="${searchdto.sortType eq '후기추천순'}">id="filter_active"</c:if>>후기추천순</span>
+				</div>
+			</div>
+			
+			<div id="review_show">
+			<c:forEach items="${response.list}" var="review">
+				<div class="review_container">
+					<div class="review_info"
+						<c:if test="${review.review_img == '' || review.review_img eq null}">style="width:1130px"</c:if>>
+						<div class="user_info">
+							<div class="box" style="background: #BDBDBD;">
+								<img class="profile" src="${review.user.profile_image}">
+							</div>
+							<span>${fn:substring(review.user.email,0,fn:indexOf(review.user.email,'@'))}</span>
+							<%-- <span>${fn:substring(review.user.email,0,3)}*****</span> --%>
+							<span>${review.created_at}</span>
+						</div>
+						<!--유저정보영역-->
+						<div class="review_contents">
+							<div class="score">
+								<c:forEach begin="1" end="${review.score}">
+									<img class="score_fill"
+										src="/images/shop/shopdetail/bone_fill.svg">
+								</c:forEach>
+								<c:forEach begin="${review.score+1}" end="5">
+									<img class="score_fill"
+										src="/images/shop/shopdetail/bone_line.svg">
+								</c:forEach>
+								<span>${review.score}점</span>
+							</div>
+							<div class="contents">
+								<p>${review.contents}</p>
+							</div>
+							<!--후기내용-->
+						</div>
+						<!--후기영역-->
+					</div>
+					<!--정보/후기영역-->
 
-                <div class="review_btns_others">
-                    <button id="likebtn"><span class="material-symbols-outlined">thumb_up</span></button>
-                    <span>10</span>
-                </div>
-            </div><!--리뷰1개-->
+					<c:if
+						test="${review.review_img != '' && review.review_img != null}">
+						<div class="review_img_box">
+							<img class="review_img" src="${review.review_img}">
+						</div>
+					</c:if>
 
-            <div id="pages">
-                <a href="" class="page_active">1</a>
-                <a href="">2</a>
-                <a href="">3</a>
-                <a href="">4</a>
-            </div>
+					<div class="review_btns">
+						<input type="hidden" value="${review.review_id}"/>
+						<c:if test="${review.islike}">
+							<button class="review_likebtn_active">
+								<span class="material-symbols-outlined">thumb_up</span>
+								<br>
+								<span class="likecnt">${review.likes}</span>
+							</button>
+						</c:if>
+						<c:if test="${!review.islike}">
+							<button class="review_likebtn">
+								<span class="material-symbols-outlined">thumb_up</span>
+								<br>
+								<span class="likecnt">${review.likes}</span>
+							</button>
+						</c:if>
+						<c:if test="${review.user_id == sessionScope.user_id}">
+							<button class="review_deletebtn">
+								<span class="material-symbols-outlined">delete</span>
+							</button>
+						</c:if>
+					</div>
+				</div>
+				<!--리뷰1개-->
+			</c:forEach>
+			</div>
+		</div><!-- products review -->
+		
+		<div id="pagination">
+			<c:if test="${fn:length(response.list) != 0}">
+				<div class="pagefirst"
+					<c:if test="${!response.pagination.existPrevPage}"> style="visibility: hidden;" </c:if>>
+					<div class="prevArrow"></div>
+					<div class="prevArrow" style="margin-left: -3px"></div>
+				</div>
+				<div class="prev" id="${response.pagination.startPage-1}"
+					<c:if test="${!response.pagination.existPrevPage}"> style="visibility: hidden;" </c:if>>
+					<div class="prevArrow"></div>
+				</div>
 
-        </div>
+				<c:choose>
+					<c:when test="${searchdto.page eq null}">
+						<c:forEach begin="1" end="${response.pagination.endPage}"
+							varStatus="vs">
+							<c:if test="${vs.index == 1}">
+								<div class="pageNumber active">${vs.index}</div>
+							</c:if>
+							<c:if test="${vs.index != 1}">
+								<div class="pageNumber">${vs.index}</div>
+							</c:if>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<c:forEach begin="${response.pagination.startPage}"
+							end="${response.pagination.endPage}" varStatus="vs">
+							<c:if test="${vs.index == searchdto.page}">
+								<div class="pageNumber active">${vs.index}</div>
+							</c:if>
+							<c:if test="${vs.index != searchdto.page}">
+								<div class="pageNumber">${vs.index}</div>
+							</c:if>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 
-    </div> <!-- Layout -->
-    
-    <script src="/js/shop/shopDetail.js"></script>
+				<div class="next" id="${response.pagination.endPage+1}"
+					<c:if test="${!response.pagination.existNextPage}"> style="visibility: hidden;" </c:if>>
+					<div class="nextArrow"></div>
+				</div>
+				<div class="pagelast" id="${response.pagination.totalPageCount}"
+					<c:if test="${!response.pagination.existNextPage}"> style="visibility: hidden;" </c:if>>
+					<div class="nextArrow"></div>
+					<div class="nextArrow" style="margin-left: -6px"></div>
+				</div>
+			</c:if>
+		</div>
+		<!-- pagination -->
+	</div>
+	<!-- Layout -->
+	
+	<div class="modal" id="delete_confirm_modal">
+		<div class="modal_contents">
+			<div class="modal_text">
+				<img src="/images/logo-icon.png" style="margin-bottom:10px; width:25px;"/>
+				<div>
+					삭제된 후기는 복구하실 수 없으며,<br>
+					후기 작성으로 지급된 포인트는 회수됩니다.<br>
+					해당 후기를 정말 삭제하시겠습니까?
+				</div>
+			</div>
+			<div class="modal_btn">
+				<button class="modal_cancelbtn">취소</button>
+				<button class="modal_deletebtn">후기삭제하기</button>
+				<input type="hidden" value=""/>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal" id="delete_okay_modal">
+		<div class="modal_contents">
+			<div class="modal_text">
+				<img src="/images/logo-icon.png" style="margin-bottom:10px; width:25px;"/>
+				<div>
+					후기가 삭제되었습니다.<br>
+					후기 첫 페이지로 이동합니다.
+				</div>
+			</div>
+			<div class="modal_btn">
+				<button class="modal_okaybtn">확인</button>
+				<input type="hidden" value="${product.product_id}"/>
+			</div>
+		</div>
+	</div>
+
+	<script src="/js/shop/shopDetail.js"></script>
 </body>
 </html>

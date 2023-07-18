@@ -49,6 +49,7 @@
 	border: 1px solid var(--light-main);
 	text-align: center;
 	font:var(--body16);
+	cursor: pointer;
 }
 
 .modal_btn > button:hover{

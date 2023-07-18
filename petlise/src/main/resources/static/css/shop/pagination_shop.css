@@ -1,5 +1,39 @@
+:root {
+  --light-main: #ffb100;
+  --light-sub: #fbc252;
+  --light-point: #8a6f4e;
+  --light-stroke: #ded4c7;
+  --light-text: #1f1f1f;
+  --dark-main: #3c4245;
+  --dark-sub: #5f6769;
+  --dark-point: #ffd369;
+  --dark-stroke: #eeeeee;
+  --dark-text: #ffffff;
+  --gray1: #333333;
+  --gray2: #4f4f4f;
+  --gray3: #828282;
+  --gray4: #bdbdbd;
+  --gray5: #e0e0e0;
+  --white: #ffffff;
+  --heading34: normal bold 34px 'Noto Sans KR';
+  --heading24: normal bold 24px 'Noto Sans KR';
+  --heading18: normal bold 18px 'Noto Sans KR';
+  --body16: normal normal 16px 'Noto Sans KR';
+  --body14: normal normal 14px 'Noto Sans KR';
+  --button16: normal bold 16px 'Noto Sans KR';
+  --button14: normal bold 14px 'Noto Sans KR';
+  --button12: normal bold 12px 'Noto Sans KR';
+  --caption14: normal normal 14px 'Noto Sans KR';
+  --caption12: normal normal 12px 'Noto Sans KR';
+  --highlight16: normal bold 16px 'Noto Sans KR';
+  --highlight14: normal bold 14px 'Noto Sans KR';
+  --shadow100: 0px 4px 4px 0px rgba(167, 176, 192, 0.16);
+  --shadow200: 3px 5px 8px 0px rgba(167, 176, 192, 0.32);
+}
+
 #pagination {
-	margin: 30px 0px; display : flex;
+	margin: 30px 0px; 
+	display : flex;
 	justify-content: center;
 	align-items: center;
 	display: flex;
@@ -68,7 +102,6 @@
 
 #pagination *:hover {
 	background-color: var(--light-sub);
-	border: 1px solid var(--light-sub);
 }
 
 #pagination *:hover .prevArrow, 

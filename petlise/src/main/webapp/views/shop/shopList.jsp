@@ -113,8 +113,8 @@
 			<div id="filtertail">
 				<div style="margin-right: 10px">
 					<input type="checkbox" id="issoldout"
-						<c:if test="${param.searchType3 eq '판매중'}"> checked </c:if> /> <label
-						for="issoldout"><span></span>품절상품제외</label>
+						<c:if test="${param.searchType3 eq '판매중'}"> checked </c:if> /> 
+					<label for="issoldout"><span></span>품절상품제외</label>
 				</div>
 				<!-- checkboxdiv -->
 				<div id="searchdiv">
