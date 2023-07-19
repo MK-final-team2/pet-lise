@@ -6,13 +6,14 @@
   width: 1240px;
 }
 
+
   
 .board_title {
 
 font: var(--heading24);
   text-align: center; /* 가로 가운데 정렬 */
   margin: 0 auto;
- 
+ margin-top: 50px;
   width: 300px;
     
 }
@@ -25,11 +26,12 @@ font: var(--heading24);
     border: 1px solid var(--light-stroke);
     width: 240px;
     height: 40px;
-    flex-shrink: 0;
-    
     margin-right: auto;
-    margin-top: 30px;
+    margin-top: 20px;
+    
   }
+  
+  
   
   .searchbox button {
     margin-left: 10px;
@@ -52,11 +54,12 @@ font: var(--heading24);
   
   .board_main_category_btn1,
   .board_main_category_btn2 {
-    padding: 8px 30px;
+    padding: 8px 32px;
     gap: 10px;
-    display: inline-block;
+   display:flex;
     border-radius: 25px;
-  
+  	height:35px;
+  	width:130px;
     border: 1px solid var(--light-sub);
     transition: background-color 0.5s ease;
   }
@@ -81,6 +84,19 @@ font: var(--button14);
   .board_main_category_btn2 {
     margin-left: 30px;
   }
+  
+  
+  .btnline {
+  display: flex;
+  align-items: center;
+
+}
+
+.btnline-buttons {
+  display: flex;
+  align-items: center;
+}
+  
   
   /* 글쓰기   */
   .bt_wrap {
@@ -150,87 +166,56 @@ position: relative;;
         transform: scaleX(1);
     }
   
-  
-  
-  
   .board_list {
-  
-      align-items: center;
-      justify-content: center;
-  
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 1240px;
-    height: 60px;
-    border-radius: 10px;
-    background: var(--dark-point);
-  }
-  
-  .board_list > div {
-    font-size: 0;
-  }
-  
-  .board_list > div:not(.top) {
-    border-bottom: 1px solid #9A9EA6;
-  }
-  /*보드리스트 탑*/
-.board_list > div.top > div {
-  
-  font: var(--highlight16);
- text-align: center;
- margin-bottom: 10px;
-}
-
-
-
-.board_list > div > div {
-  display: inline-block;
-  padding: 16px 20px;
-  
  
+  text-align: center;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1240px;
+  height: 50px;
+  border-radius: 10px;
+  background: var(--dark-point);
+}
+board_list.th, td {
+      
+        border-bottom: 1px solid #ddd;
+        
+    }
+
+.board_list > div.top > div {
+  font: var(--highlight16);
+  text-align: center;
+  margin-bottom: 15px;
+  display: inline-block;
+  padding: 12px 20px;
 }
 
 
 .board_list .title {
-  width: 600px;
-  height: 50px;
-font: var(--body14);
+  width: 550px;
+  
+  font: var(--body14);
+  text-align: left;
+  margin-right: 10px;
+  padding-left: 60px;
 }
 
-.board_list .writer {
-  text-align: center;
-  width:  200px;
-  height: 50px;
-font: var(--body16);
-}
-
-.board_list .date {
-  text-align: center;
-  width: 140px;
-  height: 50px;
- font: var(--body16);
-}
-
-.board_list .view {
-  margin-left:40px;
+.board_list .writer,
+.board_list .date,
+.board_list .view,
+.board_list .like {
   text-align: center;
   
-  width: 100px;
-height: 50px;
-flex-shrink: 0;
-font: var(--body16);
+  width: 150px; 
+  height: 45px;
+  font: var(--body16);
+}
+.board_list td {
+  vertical-align: middle;
 }
 
-.board_list .like {
-text-align: center;
-width:  150px;
-height: 50px;
-
-font: var(--body16);
-}
-
-
+ 
 .board_list .comment-count {
   display: inline-block;
   color: #FF0808;
@@ -241,71 +226,98 @@ font: var(--body16);
   line-height: normal;
 }
   
-  .board_page {
- position: relative;
- top: 50px;
-    margin-top: 480px;
-      text-align: center;
-    }
-    
+  /*pagination*/
+#pagination {
+	margin: 30px 0px; 
+	display : flex;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+}
+
+#pagination .pagefirst, 
+#pagination .pagelast, 
+#pagination .prev,
+#pagination .next, 
+#pagination .pageNumber {
+	width: 25px;
+	height: 25px;
+	border-radius: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+#pagination .prevArrow, 
+#pagination .nextArrow {
+	height: 8px;
+	width: 8px;
+	border: solid var(--light-point);
+	border-width: 2px 2px 0 0;
+}
+
+.pageNumber {
+	font: var(--body14);
+	margin-right: 10px;
+	border-radius: 50% !important;
+}
+
+.pageNumber.active {
+	background-color: var(--light-sub);
+}
+
+.pageNumber:last-of-type {
+	margin-right: 0 !important;
+}
+
+.pagefirst, .prev {
+	margin-right: 10px;
+	background-color: var(--white);
+	border: 1px solid var(--light-stroke);
+}
+
+.pagefirst {
+	margin-right: 3px;
+}
+
+.prevArrow {
+	transform: rotate(-135deg);
+	margin-left: 3px;
+}
+
+.pagelast, .next {
+	margin-right: 3px;
+	border: 1px solid var(--light-stroke);
+}
+
+.nextArrow {
+	transform: rotate(45deg);
+	margin-right: 3px;
+}
+
+#pagination *:hover {
+	background-color: var(--light-sub);
+}
+
+#pagination *:hover .prevArrow, 
+#pagination *:hover .nextArrow {
+	border: solid var(--white);
+	border-width: 2px 2px 0 0;
+	background-color: transparent;
+}
   
-  .board_page a {
-    display: inline-block;
-    width: 32px;
-    height: 32px;
-    vertical-align: middle;
-    line-height: 100%;
-  }
-  
-  .board_page a.num {
-    display: inline-block;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
-  
-  .board_page a.num.on {
-    
-    display: inline-block;
-    background: var(--light-sub, #FBC252);
-    padding: 5px 10px;
-    border-radius: 20px;
-    text-align: center;
-    position: relative;
-    bottom: 4px;
-  }
-  
-  .bt.first {
-    display: inline-block;
-    
-    margin-bottom: 7px;
-    width: 20px;
-    height: 20px;
-    background-image: url('/images/board/left.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  
-  .bt.next {
-    display: inline-block;
-    margin-left: 22px;
-    margin-right: 5px;
-    margin-bottom: 7px;
-    width: 20px;
-    height: 20px;
-    background-image: url('/images/board/right.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+
+
+
   
   /* 이미지 추가 */
 
  
 .dogImg_F {
-  position: relative; /* 상대적인 위치 설정 */
-  top: -535px;
-  left: 96px; /* 좌측 위치를 0으로 설정 */
+  position: absolute; /* 상대적인 위치 설정 */
+  top: 350px;
+  left: -140px; /* 좌측 위치를 0으로 설정 */
   
 }
 
@@ -316,9 +328,9 @@ font: var(--body16);
 }
 .dogImg_S {
 
-  position: relative;
-  top: -555px;
-  left: 96px;
+  position: absolute;
+  top: 490px;
+  left: -140px;
 }
 
 .dogImg_S img {
@@ -328,9 +340,9 @@ font: var(--body16);
 
 .dogImg_Up {
 
-  position: relative;
-  left: 1315px;
-  top: -1188px;
+  position: absolute;
+  left: 1090px;
+  top: -35px;
 }
 
 .dogImg_Up img {

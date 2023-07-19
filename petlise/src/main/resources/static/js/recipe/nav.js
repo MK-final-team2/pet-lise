@@ -202,12 +202,12 @@ document.getElementById('nav').innerHTML += `
                 <a href="#">커뮤니티</a>
                 <div class="sub-menu mega-menu mega-menu-column-4">
                   <div class="list-item2">
-                    <a href="#">    
+                    <a href="petplaceMain">    
                       <span class="title">펫플레이스</span>
                     </a>
                   </div>
                   <div class="list-item2">
-                    <a href="#">    
+                    <a href="boardMain">    
                       <span class="title">자유게시판</span>
                     </a>
                   </div>
@@ -217,7 +217,7 @@ document.getElementById('nav').innerHTML += `
                 <a href="#">공지사항</a>
                 <div class="sub-menu mega-menu mega-menu-column-4">
                   <div class="list-item2">
-                    <a href="#">    
+                    <a href="noticeMain">    
                       <span class="title">공지사항</span>
                     </a>
                   </div>

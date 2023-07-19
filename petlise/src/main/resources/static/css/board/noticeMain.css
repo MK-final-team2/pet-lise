@@ -1,141 +1,109 @@
 
 
-#container {
+.container {
   margin: 0 auto;
   position: relative;
   width: 1240px;
 }
 
 
+  
 .notice_title {
- 
+
 font: var(--heading24);
   text-align: center; /* 가로 가운데 정렬 */
   margin: 0 auto;
- margin-bottom: 50px;
+ margin-top: 50px;
   width: 300px;
     
 }
-  
-  .notice_main_category_btn1,
-  .notice_main_category_btn2
-  ,.notice_main_category_btn3
-  ,.notice_main_category_btn4 {
-    padding: 8px 30px;
-    
-    display : inline-block;
-    border-radius: 25px;
-  
-    border: 1px solid var(--gray4);
-    transition: background-color 0.3s ease;
-  }
 
-  .notice_main_category_btn1 a,
-.notice_main_category_btn2 a,
-.notice_main_category_btn3 a,
-.notice_main_category_btn4 a{
-
-font: var(--button14);
-} 
-
-
-  .notice_main_category_btn1:hover,
-  .notice_main_category_btn2:hover,
-  .notice_main_category_btn3:hover,
-  .notice_main_category_btn4:hover {
-    background-color: var(--gray4);
-  }
   
-  .notice_main_category_btn1 {
-    background-color: var(--gray4);
   
-  }
-  
-  .notice_main_category_btn2,
-   .notice_main_category_btn3,
-    .notice_main_category_btn4 {
-    margin-left: 20px;
-  }
-  
-  .board_list {
-  
-      align-items: center;
-      justify-content: center;
-  
-    margin-top: 20px;
-    margin-left: auto;
+  .search-container {
+    margin-left: 1200px;
+    border-radius: 40px;
+    border: 1px solid var(--light-stroke);
+    width: 240px;
+    height: 40px;
     margin-right: auto;
-    width: 1240px;
-    height: 60px;
-    border-radius: 10px;
-    background: var(--dark-point);
+    margin-top: 20px;
+    
   }
   
-  .board_list > div {
-    font-size: 0;
+  
+  
+  .searchbox button {
+    margin-left: 10px;
+    margin-top: 10px;
+    
+  width: 17.5px;
+  height: 17.5px;
   }
   
-  .board_list > div:not(.top) {
-    border-bottom: 1px solid #9A9EA6;
+  .searchbox input {
+    margin-left: 10px;
+    margin-top: 10px;
+    display: inline-block;
+    color: var(--gray4);
+    /* Body 14 */
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
   }
-  /*보드리스트 탑*/
-.board_list > div.top > div {
-  
-  font: var(--highlight16);
- text-align: center;
- margin-bottom: 10px;
-}
-
-
-
-.board_list > div > div {
-  display: inline-block;
-  padding: 16px 20px;
-  
  
-}
-
-
-.board_list .title {
-  width: 600px;
-  height: 50px;
-font: var(--body14);
-}
-
-.board_list .writer {
+ 
+  .notice_list {
+ 
   text-align: center;
-  width:  200px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1240px;
   height: 50px;
-font: var(--body16);
+  border-radius: 10px;
+  background: var(--dark-point);
 }
+notice_list.th, td {
+      
+        border-bottom: 1px solid #ddd;
+        
+    }
 
-.board_list .date {
+.notice_list > div.top > div {
+  font: var(--highlight16);
   text-align: center;
-  width: 140px;
-  height: 50px;
- font: var(--body16);
+  margin-bottom: 15px;
+  display: inline-block;
+  padding: 12px 20px;
 }
 
-.board_list .view {
-  margin-left:40px;
+
+.notice_list .title {
+  width: 550px;
+  
+  font: var(--body14);
+  text-align: left;
+  margin-right: 10px;
+  padding-left: 60px;
+}
+
+.notice_list .writer,
+.notice_list .date,
+.notice_list .view,
+.notice_list .like {
   text-align: center;
   
-  width: 100px;
-height: 50px;
-flex-shrink: 0;
-font: var(--body16);
+  width: 150px; 
+  height: 45px;
+  font: var(--body16);
+}
+.notice_list td {
+  vertical-align: middle;
 }
 
-.board_list .like {
-text-align: center;
-width:  150px;
-height: 50px;
-
-font: var(--body16);
-}
-
-
-.board_list .comment-count {
+ 
+.notice_list .comment-count {
   display: inline-block;
   color: #FF0808;
   font-size: 12px;
@@ -145,66 +113,129 @@ font: var(--body16);
   line-height: normal;
 }
   
-  .board_page {
- position: relative;
- top: 50px;
-    margin-top: 480px;
-      text-align: center;
-    }
-    
-  
-  .board_page a {
-    display: inline-block;
-    width: 32px;
-    height: 32px;
-    vertical-align: middle;
-    line-height: 100%;
-  }
-  
-  .board_page a.num {
-    display: inline-block;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
-  
-  .board_page a.num.on {
-    
-    display: inline-block;
-    background: var(--light-sub, #FBC252);
-    padding: 5px 10px;
-    border-radius: 20px;
-    text-align: center;
-    position: relative;
-    bottom: 4px;
-  }
-  
-  .bt.first {
-    display: inline-block;
-    
-    margin-bottom: 7px;
-    width: 20px;
-    height: 20px;
-    background-image: url('/images/board/left.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  
-  .bt.next {
-    display: inline-block;
-    margin-left: 22px;
-    margin-right: 5px;
-    margin-bottom: 7px;
-    width: 20px;
-    height: 20px;
-    background-image: url('/images/board/right.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  
+  /*pagination*/
+#pagination {
+	margin: 30px 0px; 
+	display : flex;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+}
+
+#pagination .pagefirst, 
+#pagination .pagelast, 
+#pagination .prev,
+#pagination .next, 
+#pagination .pageNumber {
+	width: 25px;
+	height: 25px;
+	border-radius: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+#pagination .prevArrow, 
+#pagination .nextArrow {
+	height: 8px;
+	width: 8px;
+	border: solid var(--light-point);
+	border-width: 2px 2px 0 0;
+}
+
+.pageNumber {
+	font: var(--body14);
+	margin-right: 10px;
+	border-radius: 50% !important;
+}
+
+.pageNumber.active {
+	background-color: var(--light-sub);
+}
+
+.pageNumber:last-of-type {
+	margin-right: 0 !important;
+}
+
+.pagefirst, .prev {
+	margin-right: 10px;
+	background-color: var(--white);
+	border: 1px solid var(--light-stroke);
+}
+
+.pagefirst {
+	margin-right: 3px;
+}
+
+.prevArrow {
+	transform: rotate(-135deg);
+	margin-left: 3px;
+}
+
+.pagelast, .next {
+	margin-right: 3px;
+	border: 1px solid var(--light-stroke);
+}
+
+.nextArrow {
+	transform: rotate(45deg);
+	margin-right: 3px;
+}
+
+#pagination *:hover {
+	background-color: var(--light-sub);
+}
+
+#pagination *:hover .prevArrow, 
+#pagination *:hover .nextArrow {
+	border: solid var(--white);
+	border-width: 2px 2px 0 0;
+	background-color: transparent;
+}
   
 
+
+
+  
+  /* 이미지 추가 */
+
+ 
+.dogImg_F {
+  position: absolute; /* 상대적인 위치 설정 */
+  top: 290px;
+  left: -140px; /* 좌측 위치를 0으로 설정 */
+  
+}
+
+
+.dogImg_F img {
+  width: 150px;
+  height: 150px;
+}
+.dogImg_S {
+
+  position: absolute;
+  top: 410px;
+  left: -140px;
+}
+
+.dogImg_S img {
+  width: 150px;
+  height: 150px;
+}
+
+.dogImg_Up {
+
+  position: absolute;
+  left: 1090px;
+  top: -39px;
+}
+
+.dogImg_Up img {
+  width: 150px;
+  height: 150px;
+}
 
   
   

@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Import;
 
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 @ComponentScan(basePackages = {"mypage", "shop", "user", "recipe", "admin", "upload", "board"})
-@MapperScan(basePackages = {"mypage", "shop", "user", "recipe", "admin"})
+@MapperScan(basePackages = {"mypage", "shop", "user", "recipe", "admin","board"})
 
 public class PetliseApplication {
 
