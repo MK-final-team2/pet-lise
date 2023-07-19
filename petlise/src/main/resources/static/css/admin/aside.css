@@ -60,7 +60,7 @@
 .menuWrapper .ul li:first-of-type {
   line-height: 50px;
 }
-.menuWrapper li embed {
+.menuWrapper li object {
   width: 16px;
   margin-right: 20px;
 }
@@ -68,6 +68,7 @@
 main {
   min-width: calc(1240px - 250px);
   max-width: calc(1440px - 250px);
+  position: relative;
   width: calc(100% - 250px);
   height: 100%;
   overflow-y: scroll;

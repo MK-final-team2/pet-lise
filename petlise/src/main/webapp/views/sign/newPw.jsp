@@ -9,6 +9,7 @@
     <link rel="apple-touch-icon" href="/images/favicon.ico" />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/sign/searchUser.css" />
+    <link rel="stylesheet" href="/css/nav/nav.css" />
     <title>Pet LiSe</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript">
@@ -16,6 +17,7 @@
     </script>
   </head>
   <body>
+  	<div id="nav"></div>
     <main class="container">
       <div class="dogImage">
         <a href="/signin">
@@ -45,6 +47,7 @@
       </div>
     </main>
 
+	<script src="/js/recipe/nav.js"></script>
     <script src="/js/sign/checkPw.js"></script>
   </body>
 </html>

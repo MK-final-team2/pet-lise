@@ -6,19 +6,19 @@ document.getElementById('asideMenu').innerHTML += `
     <li onClick="location.href='/admin'" style="background:${
       link === '/admin' ? '#181818' : ''
     }">
-      <embed
-        src="/images/dashboard-icon.svg"
+      <object
+        data="/images/dashboard-icon.svg"
         alt="대시보드아이콘"
-      />
+      ></object>
       <span>대시보드</span>
     </li>
     <li onClick="location.href='/admin/usermanagement'" style="background:${
       link === '/admin/usermanagement' ? '#181818' : ''
     }">
-      <embed
-        src="/images/userManagement-icon.svg"
+      <object
+        data="/images/userManagement-icon.svg"
         alt="사용자관리아이콘"
-      />
+      ></object>
       <span>사용자 관리</span>
     </li>
     <ul class="ul">
@@ -28,10 +28,10 @@ document.getElementById('asideMenu').innerHTML += `
           ? '#181818'
           : ''
       }">
-        <embed
-        src="/images/expertRecipe-icon.svg"
-        alt="전문가레시피아이콘"
-        />
+        <object
+          data="/images/expertRecipe-icon.svg"
+          alt="전문가레시피아이콘"
+        ></object>
         <span>전문가 레시피 관리</span>
       </li>
       <li onClick="location.href='/admin/expertrecipemanagement'">강아지</li>
@@ -44,10 +44,10 @@ document.getElementById('asideMenu').innerHTML += `
           ? '#181818'
           : ''
       }">
-        <embed
-        src="/images/myRecipe-icon.svg"
-        alt="나만의레시피아이콘"
-        />
+        <object
+          data="/images/myRecipe-icon.svg"
+          alt="나만의레시피아이콘"
+        ></object>
         <span>나만의 레시피 관리</span>
       </li>
       <li onClick="location.href='/admin/myrecipemanagement'">강아지</li>
@@ -56,46 +56,46 @@ document.getElementById('asideMenu').innerHTML += `
     <li onClick="location.href='/adminshoplist'" style="background:${
       link === '/adminshoplist' ? '#181818' : ''
     }">
-      <embed
-        src="/images/shop-icon.svg"
+      <object
+        data="/images/shop-icon.svg"
         alt="라이스샵아이콘"
-      />
+      ></object>
       <span>라이스샵 관리</span>
     </li>
     <li onClick="location.href='/admin/paydeliverymanagement'" style="background:${
       link === '/admin/paydeliverymanagement' ? '#181818' : ''
     }">
-      <embed
-        src="/images/delivery-icon.svg"
+      <object
+        data="/images/delivery-icon.svg"
         alt="배달아이콘"
-      />
+      ></object>
       <span>결제/배송 관리</span>
     </li>
     <li onClick="location.href='/admin/boardmanagement'" style="background:${
       link === '/admin/boardmanagement' ? '#181818' : ''
     }">
-      <embed
-        src="/images/board-icon.svg"
+      <object
+        data="/images/board-icon.svg"
         alt="자유게시판아이콘"
-      />
+      ></object>
       <span>자유게시판 관리</span>
     </li>
     <li onClick="location.href='/admin/petplacemanagement'" style="background:${
       link === '/admin/petplacemanagement' ? '#181818' : ''
     }">
-      <embed
-        src="/images/place-icon.svg"
+      <object
+        data="/images/place-icon.svg"
         alt="펫플레이스아이콘"
-      />
+      ></object>
       <span>펫플레이스 관리</span>
     </li>
     <li onClick="location.href='/admin/announcement'" style="background:${
       link === '/admin/announcement' ? '#181818' : ''
     }">
-      <embed
-        src="/images/announcement-icon.svg"
+      <object
+        data="/images/announcement-icon.svg"
         alt="공지사항아이콘"
-      />
+      ></object>
       <span>공지사항 관리</span>
     </li>
   </ul>
