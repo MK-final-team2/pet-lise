@@ -3,35 +3,32 @@ package board.petplace;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
 
-@RestController
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.servlet.ModelAndView;
+
+
+import pagination.PagingResponse;
+import pagination.SearchDTO;
+
+@Controller
 public class PetPlaceController {
-    private final PetPlaceDAO petPlaceDAO;
 
     @Autowired
-    public PetPlaceController(PetPlaceDAO petPlaceDAO) {
-        this.petPlaceDAO = petPlaceDAO;
-    }
+    private PetPlaceService service;
 
-    @GetMapping("/places/{placeId}")
-    public PetPlaceDTO getPlaceById(@PathVariable int placeId) {
-        return petPlaceDAO.getPlaceById(placeId);
-    }
-
-    @PostMapping("/places")
-    public void createPlace(@RequestBody PetPlaceDTO petPlaceDTO) {
-        petPlaceDAO.createPlace(petPlaceDTO);
-    }
-
-    // 카테고리별 게시글 목록 조회
-    @GetMapping("/places/category/{category}")
-    public List<PetPlaceDTO> getPlacesByCategory(@PathVariable String category) {
-        return petPlaceDAO.getPlacesByCategory(category);
-    }
-
-    }
+    
+    
+	//펫플레이스리스트 
+	@GetMapping("/petplaceMain")
+	public ModelAndView petPlaceList(@ModelAttribute SearchDTO searchdto) {
+		PagingResponse<PetPlaceDTO> petPlaces = service. getAllPetPlacePaging(searchdto);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("response", petPlaces);
+		mv.setViewName("board/petplaceMain");
+		return mv;
+	}
+}

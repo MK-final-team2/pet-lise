@@ -13,6 +13,8 @@
 		<typeAlias type="shop.cart.ShopCartDTO" alias="cartdto" />
 		<typeAlias type="shop.detail.ProductReviewDTO" alias="productreviewdto" />
 		<typeAlias type="board.petplace.PetPlaceDTO" alias="petplacedto" />
+		<typeAlias type="board.BoardDTO" alias="boarddto" />
+		<typeAlias type="board.notice.NoticeDTO" alias="noticedto" />
 		<typeAlias type="recipe.RecipeDTO" alias="recipedto" />
 		<typeAlias type="shop.cart.ShopCartDTO" alias="cartdto" />
 		<typeAlias type="shop.payment.ShopOrderProductDTO" alias="orderproductdto" />
