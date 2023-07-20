@@ -15,8 +15,8 @@
     <title>Pet LiSe</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script>
-    let recipe_category = "전문가레시피";
-    let pet_category = "${pet_category}";
+      let recipe_category = "전문가레시피";
+      let pet_category = "${pet_category}";
     </script>
     <script src="/js/admin/recipeManagement.js"></script>
   </head>
@@ -39,7 +39,7 @@
             </ul>
             <div class="inputWrap">
             <object data="/images/search.svg"></object>
-            <input type="text" id="searchInput" />
+            <input type="text" id="searchInput" placeholder="제목 or 작성자" />
             </div>
             <a href="/admin/editexpertrecipe" class="editButton">등록</a>
           </div>

@@ -1,28 +1,46 @@
-const table = document.getElementsByClassName('table');
+const table = document.querySelectorAll('table');
 
-for (let i = 0; i < table.length; i++) {
-  table[i].innerHTML += `
+table[0].innerHTML += `
   <thead>
     <tr>
-      <th>제목</th>
+      <th>게시글 제목</th>
       <th>작성자</th>
-      <th>등록일</th>
       <th>댓글수</th>
       <th>좋아요수</th>
       <th>신고수</th>
+      <th>등록일</th>
       <th>삭제여부</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="tbody"></tbody>
+`;
+  
+table[1].innerHTML += `
+  <thead>
     <tr>
-      <td>레시피 제목인듯 아닌듯 맞는듯 함 레시피 제목인듯 아닌듯 맞는듯 함 레시피 제목인듯 아닌듯 맞는듯 함</td>
-      <td>강낭콩</td>
-      <td>2022.02.22</td>
-      <td>100</td>
-      <td>50</td>
-      <td>10</td>
-      <td>삭제</td>
+      <th>신고구분</th>
+      <th>게시글 제목</th>
+      <th>작성자</th>
+      <th>신고자</th>
+      <th>신고일</th>
+      <th>등록일</th>
+      <th>삭제여부</th>
     </tr>
-  </tbody>
+  </thead>
+  <tbody id="reportBoardTbody"></tbody>
   `;
-}
+  
+table[2].innerHTML += `
+  <thead>
+    <tr>
+      <th>신고구분</th>
+      <th>댓글 내용</th>
+      <th>작성자</th>
+      <th>신고자</th>
+      <th>신고일</th>
+      <th>등록일</th>
+      <th>삭제여부</th>
+    </tr>
+  </thead>
+  <tbody id="reportCommentTbody"></tbody>
+`;
