@@ -19,14 +19,16 @@ pageEncoding="UTF-8"%>
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <title>Pet LiSe</title>
-    <script>let title = "${title}"</script>
+    <script>
+      let title = '${pet_category}';
+    </script>
   </head>
   <body>
     <div class="container">
       <div id="asideMenu"></div>
 
       <main>
-        <p>전문가 레시피 등록 - ${title}</p>
+        <p>전문가 레시피 등록 - ${pet_category}</p>
 
         <div class="contents">
           <input type="text" placeholder="제목" name="recipe_title" />
@@ -36,8 +38,12 @@ pageEncoding="UTF-8"%>
               <img src="/images/image-icon.svg" alt="대표이미지" id="imgUrl" />
               <input type="hidden" id="imageValue" name="image" />
             </label>
-            <input type="file" id="file" accept="image/*"
-              onchange="imageUpload()" />
+            <input
+              type="file"
+              id="file"
+              accept="image/*"
+              onchange="imageUpload()"
+            />
           </div>
           <div class="categoryWrap">
             <div class="category">
@@ -51,7 +57,11 @@ pageEncoding="UTF-8"%>
                 <div class="select">
                   <span></span>
                 </div>
-                <input type="hidden" class="smallCateName" name="sub_category" />
+                <input
+                  type="hidden"
+                  class="smallCateName"
+                  name="sub_category"
+                />
                 <ul id="dropdown-menu" class="dropdown-menu"></ul>
               </div>
             </div>
@@ -64,7 +74,7 @@ pageEncoding="UTF-8"%>
     </div>
 
     <script src="/js/admin/aside.js"></script>
-    <script src="/js/admin/expertRecipeCategory.js"></script>
+    <script src="/js/admin/recipeCategory.js"></script>
     <script src="/js/editor.js"></script>
     <script src="/js/imageUpload.js"></script>
     <script src="/js/admin/editRecipe.js"></script>

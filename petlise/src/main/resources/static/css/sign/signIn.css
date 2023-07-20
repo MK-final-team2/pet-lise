@@ -127,7 +127,7 @@
 .snsWrapper a:hover span {
   font: var(--button14);
 }
-.snsWrapper a embed {
+.snsWrapper a object {
   height: 24px;
   margin-right: 8px;
 }

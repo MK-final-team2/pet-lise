@@ -3,16 +3,24 @@
   justify-content: center;
   align-items: center;
 }
+#pagination .prev#prevActive,
+#pagination .next#nextActive {
+  background-color: var(--light-stroke);
+  cursor: pointer;
+}
+#pagination .prev,
+#pagination .next {
+  border-radius: 5px;	
+}
 #pagination .prev,
 #pagination .next,
 #pagination .pageNumber {
-  width: 25px;
-  height: 25px;
-  border-radius: 5px;
+  width: 28px;
+  height: 28px;
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
+  line-height: 25px;
 }
 #pagination .prevArrow,
 #pagination .nextArrow {
@@ -24,18 +32,20 @@
 
 .pageNumber {
   font: var(--body14);
-  margin-right: 10px;
-  border-radius: 50% !important;
+  margin: 0 5px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 .pageNumber.active {
   background-color: var(--light-stroke);
+  font: var(--highlight14)
 }
 .pageNumber:last-of-type {
   margin-right: 0 !important;
 }
 
 .prev {
-  margin-right: 10px;
+  margin: 0 5px;
   background-color: var(--white);
   border: 1px solid var(--light-stroke);
 }
@@ -45,8 +55,8 @@
 }
 
 .next {
+  margin: 0 5px;
   border: 1px solid var(--light-stroke);
-  background-color: var(--light-stroke);
 }
 .nextArrow {
   transform: rotate(45deg);

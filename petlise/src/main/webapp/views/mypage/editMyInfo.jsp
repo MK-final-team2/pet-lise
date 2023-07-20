@@ -13,10 +13,12 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
     <link rel="stylesheet" href="/css/mypage/myPageForm.css" />
     <link rel="stylesheet" href="/css/mypage/editMyInfo.css" />
     <link rel="stylesheet" href="/css/mypage/modal.css" />
+    <link rel="stylesheet" href="/css/nav/nav.css" />
     <title>Pet LiSe</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   </head>
   <body>
+    <div id="nav"></div>
     <p class="title">마이페이지</p>
 
     <div class="container">
@@ -148,16 +150,17 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
             <input type="text" class="petAge" value="${my_info.pet_age}" />
           </div>
         </div>
-        <p class="deleteUser" onclick="modalClick()">회원탈퇴하기</p>
+        <p class="deleteUser" onclick="clickModal()">회원탈퇴하기</p>
         <button class="editButton">확인</button>
       </div>
     </div>
 
     <div id="modal"></div>
 
+    <script src="/js/recipe/nav.js"></script>
     <script src="/js/mypageMenu.js"></script>
     <script src="/js/mypage/updateUser.js"></script>
     <script src="/js/imageUpload.js"></script>
-    <script src="/js/mypage/modal.js"></script>
+    <script src="/js/mypage/deleteUser.js"></script>
   </body>
 </html>

@@ -1,7 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core" %> <%@ taglib
+uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> <%@ taglib
+prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -12,6 +13,7 @@
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/mypage/myPageForm.css" />
     <link rel="stylesheet" href="/css/mypage/myInfo.css" />
+    <link rel="stylesheet" href="/css/nav/nav.css" />
     <title>Pet LiSe</title>
     <script type="text/javascript">
       //let myinfo = '${my_info}';
@@ -19,6 +21,7 @@
     </script>
   </head>
   <body>
+  	<div id="nav"></div>
     <p class="title">마이페이지</p>
 
     <div class="container">
@@ -63,48 +66,57 @@
               </div>
             </div>
 
-            <embed src="/images/puppy.svg" alt="강아지" />
+            <object data="/images/puppy.svg" alt="강아지"></object>
           </div>
         </div>
 
         <div class="info">
           <div class="infoBox">
-            <embed src="/images/point-icon.svg" alt="포인트아이콘" />
+            <object data="/images/point-icon.svg" alt="포인트아이콘"></object>
             <p>포인트</p>
             <p><fmt:formatNumber value="${my_info.point}" pattern="#,###" /></p>
           </div>
           <div class="infoBox">
-            <embed src="/images/gift-icon.svg" alt="상품아이콘" />
+            <object data="/images/gift-icon.svg" alt="상품아이콘"></object>
             <p>상품 주문 내역</p>
             <p>${my_total_info.orderCount}</p>
           </div>
           <div class="infoBox">
-            <embed src="/images/comment1.svg" alt="상품후기아이콘" />
+            <object data="/images/comment1.svg" alt="상품후기아이콘"></object>
             <p>상품 후기</p>
             <p>${my_total_info.productCommentsCount}</p>
           </div>
           <div class="infoBox">
-            <embed src="/images/comment2.svg" alt="작성한문의아이콘" />
+            <object data="/images/comment2.svg" alt="작성한문의아이콘"></object>
             <p>작성한 문의</p>
             <p>${my_total_info.qnaCount}</p>
           </div>
           <div class="infoBox">
-            <embed src="/images/box-icon.svg" alt="작성한레시피아이콘" />
+            <object
+              data="/images/box-icon.svg"
+              alt="작성한레시피아이콘"
+            ></object>
             <p>작성한 레시피</p>
             <p>${my_total_info.recipeCount}</p>
           </div>
           <div class="infoBox">
-            <embed src="/images/comment3.svg" alt="레시피후기아이콘" />
+            <object data="/images/comment3.svg" alt="레시피후기아이콘"></object>
             <p>레시피 후기</p>
             <p>${my_total_info.recipeCommentsCount}</p>
           </div>
           <div class="infoBox">
-            <embed src="/images/board2-icon.svg" alt="작성한게시글아이콘" />
+            <object
+              data="/images/board2-icon.svg"
+              alt="작성한게시글아이콘"
+            ></object>
             <p>작성한 게시글</p>
             <p>${my_total_info.boardCount}</p>
           </div>
           <div class="infoBox">
-            <embed src="/images/keyboard-icon.svg" alt="작성한댓글아이콘" />
+            <object
+              data="/images/keyboard-icon.svg"
+              alt="작성한댓글아이콘"
+            ></object>
             <p>작성한 댓글</p>
             <p>${my_total_info.boardCommentsCounts}</p>
           </div>
@@ -112,6 +124,7 @@
       </div>
     </div>
 
+	<script src="/js/recipe/nav.js"></script>
     <script src="/js/mypageMenu.js"></script>
   </body>
 </html>

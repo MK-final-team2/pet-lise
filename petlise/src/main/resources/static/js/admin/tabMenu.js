@@ -7,12 +7,9 @@ for (var i = 0; i < tabList.length; i++) {
     e.preventDefault();
     for (var j = 0; j < tabList.length; j++) {
       tabList[j].classList.remove('isOn');
-
-      tableContents[j].style.display = 'none';
     }
     this.parentNode.classList.add('isOn');
 
     activeCont = this.getAttribute('href');
-    document.querySelector(activeCont).style.display = 'block';
   });
 }

@@ -4,23 +4,58 @@
 <mapper namespace="admin.recipe.AdminRecipeDAO">
 
 	<insert id="insertRecipe" parameterType="adminreciperequestdto">
-		insert into recipe(
+		INSERT INTO recipe(
 			user_id, recipe_title, recipe_contents, image,
 			recipe_category, pet_category, main_category,
 			sub_category, recipe_of_the_month
-		) values (
+		) VALUES (
 			#{user_id}, #{recipe_title}, #{recipe_contents}, #{image},
 			#{recipe_category}, #{pet_category}, #{main_category},
 			#{sub_category}, false
 		)
 	</insert>
 
-	<!-- <select id="findAllRecipe" parameterType="string" resultType="adminreciperesponsedto">
-		SELECT *
+	<select id="findAllRecipe" parameterType="adminfindallreciperequestdto"
+		resultType="hashmap">
+		SELECT ( SELECT count(*) FROM recipe 
+			WHERE recipe_category=#{recipe_category}
+			AND pet_category=#{pet_category}
+			<if test="keyword != null and keyword != ''" >
+				AND recipe_title like CONCAT('%', #{keyword}, '%')
+			</if> 
+			<if test="main_category != null and main_category != ''" >
+				AND main_category = #{main_category}
+			</if>
+	 		<if test="recipe_of_the_month == true" >
+				AND recipe_of_the_month = true
+			</if>
+		) as 'count', recipe_id, recipe_title, recipe_created_at, recipe_category,
+			pet_category, main_category, sub_category, recipe_of_the_month
 		FROM recipe
-		ORDER BY recipe_created_at DESC
+ 		WHERE recipe_category=#{recipe_category}
+		AND pet_category=#{pet_category}
+		<if test="keyword != null and keyword != ''" >
+			AND recipe_title like CONCAT('%', #{keyword}, '%')
+		</if> 
+		<if test="main_category != null and main_category != ''" >
+			AND main_category = #{main_category}
+		</if>
+ 		<if test="recipe_of_the_month == true" >
+			AND recipe_of_the_month = true
+		</if>
+		ORDER BY recipe_created_at DESC,
+		recipe_id DESC
 		LIMIT 10 OFFSET #{page};
-	</select> -->
-
+	</select>
+	
+	<update id="updateRecipeOfTheMonth" parameterType="map">
+		UPDATE recipe SET recipe_of_the_month=#{recipe_of_the_month}
+		where recipe_id=#{recipe_id}
+	</update>
+	
+	<delete id="deleteRecipe" parameterType="string">
+		DELETE FROM recipe
+		WHERE recipe_id=#{recipe_id}
+	</delete>
 
 </mapper>

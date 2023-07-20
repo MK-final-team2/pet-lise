@@ -89,9 +89,9 @@
   padding: 43px 0;
   box-shadow: var(--shadow200);
 }
-.contentWrap .info .infoBox .embed {
+/* .contentWrap .info .infoBox object {
   width: 35px;
-}
+} */
 .contentWrap .info .infoBox p:first-of-type {
   font: var(--heading18);
   margin: 12px 0 15px;

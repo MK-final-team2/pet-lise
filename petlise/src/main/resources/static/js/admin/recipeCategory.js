@@ -6,7 +6,6 @@ document.getElementById('dropdown').innerHTML += `
   <ul class="dropdown-menu">
     <li>일반식</li>
     <li>건강식</li>
-    <li>다이어트식</li>
     <li>간식</li>
     <li>기타</li>
   </ul>

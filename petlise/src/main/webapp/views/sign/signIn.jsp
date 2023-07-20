@@ -9,12 +9,14 @@ pageEncoding="UTF-8"%>
     <link rel="apple-touch-icon" href="/images/favicon.ico" />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/sign/signIn.css" />
+    <link rel="stylesheet" href="/css/nav/nav.css" />
     <title>Pet LiSe</title>
     <script>
       let my_id = "<%=session.getAttribute("user_id")%>"
     </script>
   </head>
   <body>
+  	<div id="nav"></div>
     <main class="container">
       <div class="dogImage">
         <a href="/signin">
@@ -33,7 +35,9 @@ pageEncoding="UTF-8"%>
             <p>Password</p>
             <input type="password" id="password" name="password" />
           </div>
-       	  <div class="errorMessage"><%=session.getAttribute("error_message")%></div>
+          <div class="errorMessage">
+            <%=session.getAttribute("error_message")%>
+          </div>
           <button onclick="return checkLogin()">이메일로 로그인하기</button>
         </form>
         <div class="findlink">
@@ -43,11 +47,11 @@ pageEncoding="UTF-8"%>
         <div class="snsWrapper">
           <p>다음 계정으로 간편 로그인</p>
           <a href="#">
-            <embed src="/images/google.svg" alt="구글아이콘" />
+            <object data="/images/google.svg" alt="구글아이콘"></object>
             <span>Google로 로그인</span>
           </a>
           <a href="#">
-            <embed src="/images/kakao.svg" alt="카카오아이콘" />
+            <object data="/images/kakao.svg" alt="카카오아이콘"></object>
             <span>카카오 계정으로 로그인</span>
           </a>
         </div>
@@ -58,6 +62,7 @@ pageEncoding="UTF-8"%>
       </div>
     </main>
 
+	<script src="/js/recipe/nav.js"></script>
     <script src="/js/sign/checkLoginForm.js"></script>
   </body>
 </html>

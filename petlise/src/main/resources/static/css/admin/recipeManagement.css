@@ -1,16 +1,15 @@
 table {
-  display: none;
   min-width: calc(100% - 250px - 60px);
   width: 100%;
   margin-bottom: 50px;
+  table-layout: fixed;
 }
 table thead {
-  width: 100%;
   background: var(--light-stroke);
 }
 table thead tr {
   display: grid;
-  grid-template-columns: 100px 150px 99fr 80px 120px 100px;
+  grid-template-columns: 100px 150px minmax(377px, 1130px) 80px 120px 100px;
 }
 table thead th {
   font: var(--highlight16);
@@ -22,6 +21,7 @@ table tbody {
   text-align: center;
 }
 table tbody tr {
+  width: 100%;
   display: grid;
   grid-template-columns: 100px 150px auto 80px 120px 100px;
   border-bottom: 1px solid var(--light-point);
@@ -38,4 +38,7 @@ table tbody td {
 table tbody td:first-of-type,
 table tbody td:last-of-type {
   padding: 0 10px;
+}
+table tbody td:last-of-type span {
+	cursor: pointer;
 }
