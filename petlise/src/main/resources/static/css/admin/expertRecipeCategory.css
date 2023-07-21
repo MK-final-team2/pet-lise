@@ -47,7 +47,7 @@
   display: none;
 }
 .dropdown .dropdown-menu.active {
-	display: block;
+  display: block;
 }
 .dropdown .dropdown-menu > li {
   padding: 10px 15px;

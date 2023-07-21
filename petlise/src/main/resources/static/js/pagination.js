@@ -5,29 +5,39 @@ function pagination(page, totalCount) {
   var startPage = parseInt((page - 1) / pageLimit) * pageLimit + 1;
 
   document.getElementById('pagination').innerHTML = `
+	${startPage <= 10
+      ? `<div class="prev">`
+      : `<div class="prev" id="fisrtActive">`}
+	  <div class="first prevArrow"></div>
+	  <div class="first prevArrow"></div>
+	</div>
 	${startPage <= 10 ? `<div class="prev">` : `<div class="prev" id="prevActive">`}
 	  <div class="prevArrow"></div>
 	</div>
-	${new Array(10)
-    .fill(1)
-    .map((_, index) =>
+	${new Array(10).fill(1).map((_, index) =>
       index + startPage <= lastPage
         ? `
 	  	<div class="pageNumber${index + startPage == page ? ' active' : ''}" id="${
             index + startPage
           }">
 			${`${index + startPage}`}
-		</div>
-	`
+		</div>`
         : ''
-    )
-    .join('')}
+    ).join('')}
 	${
     startPage + 10 < lastPage
       ? `<div class="next" id="nextActive">`
       : `<div class="next">`
   }
 	  <div class="nextArrow"></div>
+	</div>
+	${
+    startPage + 10 < lastPage
+      ? `<div class="next" id="lastActive">`
+      : `<div class="next">`
+  }
+	  <div class="last nextArrow"></div>
+	  <div class="last nextArrow"></div>
 	</div>
 	`;
 
@@ -43,7 +53,6 @@ function pagination(page, totalCount) {
 
       e.currentTarget.classList.add('active');
       page = Number(e.target.id);
-
       keyword = searchInput.value;
 
       ajaxData(keyword, page);
@@ -54,39 +63,39 @@ function pagination(page, totalCount) {
   const next = document.getElementById('nextActive');
 
   if (prev) {
-    prev.addEventListener('click', e => {
-      page = Math.ceil(page / 10) * 10 + 1;
+    prev.addEventListener('click', () => {
+      page = Math.floor(page / 10 - 1) * 10;
+      keyword = searchInput.value;
 
-      pageNums.forEach(() => {
-        let children = e.target.parentElement?.children;
-
-        for (var i = 0; i < children?.length; i++) {
-          e.target.parentElement.children[i].classList.remove('active');
-        }
-
-        e.currentTarget.classList.add('active');
-        keyword = searchInput.value;
-
-        ajaxData(keyword, page);
-      });
+      ajaxData(keyword, page);
     });
   }
   if (next) {
-    next.addEventListener('click', e => {
+    next.addEventListener('click', () => {
       page = Math.ceil(page / 10) * 10 + 1;
+      keyword = searchInput.value;
 
-      pageNums.forEach(() => {
-        let children = e.target.parentElement?.children;
+      ajaxData(keyword, page);
+    });
+  }
 
-        for (var i = 0; i < children?.length; i++) {
-          e.target.parentElement.children[i].classList.remove('active');
-        }
+  const first = document.getElementById('fisrtActive');
+  const last = document.getElementById('lastActive');
 
-        e.currentTarget.classList.add('active');
-        keyword = searchInput.value;
+  if (first) {
+    first.addEventListener('click', () => {
+      page = 1;
+      keyword = searchInput.value;
 
-        ajaxData(keyword, page);
-      });
+      ajaxData(keyword, page);
+    });
+  }
+  if (last) {
+    last.addEventListener('click', () => {
+      page = lastPage;
+      keyword = searchInput.value;
+
+      ajaxData(keyword, page);
     });
   }
 }

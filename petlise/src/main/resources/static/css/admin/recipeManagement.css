@@ -40,5 +40,5 @@ table tbody td:last-of-type {
   padding: 0 10px;
 }
 table tbody td:last-of-type span {
-	cursor: pointer;
+  cursor: pointer;
 }

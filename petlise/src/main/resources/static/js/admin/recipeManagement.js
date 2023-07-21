@@ -16,13 +16,15 @@ $(document).ready(function () {
 });
 
 function ajaxData(keyword, page) {
-  select_category = $('.isOn').children('a').text();
-  main_category = `${
+  let select_category = $('.isOn').children('a').text();
+  let main_category = `${
     select_category == '전체' || select_category == '이달의 레시피'
       ? ''
       : select_category
   }`;
-  recipe_of_the_month = `${select_category == '이달의 레시피' ? true : false}`;
+  let recipe_of_the_month = `${
+    select_category == '이달의 레시피' ? true : false
+  }`;
 
   let formData = new FormData();
   formData.set('recipe_category', recipe_category);
@@ -47,18 +49,26 @@ function ajaxData(keyword, page) {
     success: function (data) {
       let dataTable = data;
       let tbody = document.querySelector('tbody');
-      totalCount = dataTable.length != 0 ? dataTable[0].count : 0;
+      let totalCount = dataTable.length != 0 ? dataTable[0].count : 0;
       pagination(page, totalCount);
       tbody.innerHTML = dataTable
         .map(
           el => `
           	<tr>
-              <td><input type="checkbox" id="${el?.recipe_id}" onclick="addCheck(this)" ${el?.recipe_of_the_month == true ? 'checked' : ''} ></td>
-              <td>${el?.main_category}${el?.main_category == "기타" ? "" : ` [${el?.sub_category}]`}</td>
+              <td><input type="checkbox" id="${
+                el?.recipe_id
+              }" onclick="addCheck(this)" ${
+            el?.recipe_of_the_month == true ? 'checked' : ''
+          } ></td>
+              <td>${el?.main_category}${
+            el?.main_category == '기타' ? '' : ` [${el?.sub_category}]`
+          }</td>
               <td id="${el?.recipe_id}">${el?.recipe_title}</td>
-              <td>관리자</td>
+              <td>${el?.name}</td>
               <td>${getDate(el?.recipe_created_at)}</td>
-              <td><span id="${el?.recipe_id}" onclick="clickModal(this)">삭제</span></td>
+              <td><span id="${
+                el?.recipe_id
+              }" onclick="clickModal(this)">삭제</span></td>
             </tr>`
         )
         .join('');

@@ -1,7 +1,7 @@
 package admin.recipe;
 
 public class AdminFindAllRecipeRequestDTO {
-	String recipe_category, pet_category, main_category, keyword;
+	String recipe_category, pet_category, main_category, keyword, name;
 	boolean recipe_of_the_month;
 	int page;
 	
@@ -28,6 +28,12 @@ public class AdminFindAllRecipeRequestDTO {
 	}
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public boolean isRecipe_of_the_month() {
 		return recipe_of_the_month;
