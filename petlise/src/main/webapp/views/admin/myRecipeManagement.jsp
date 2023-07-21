@@ -56,7 +56,7 @@ pageEncoding="UTF-8"%>
 
     <script src="/js/admin/aside.js"></script>
     <script src="/js/pagination.js"></script>
-    <script src="/js/admin/tabMenu.js"></script>
+    <script src="/js/admin/recipeTabMenu.js"></script>
     <script src="/js/admin/recipeTable.js"></script>
     <script src="/js/admin/getDate.js"></script>
     <script src="/js/admin/search.js"></script>

@@ -44,7 +44,7 @@ public class AdminRecipeController {
 
 	@ResponseBody
 	@RequestMapping("/expertrecipemanagement")
-	public List<AdminRecipeResponseDTO> expertRecipeDog(Model model, AdminFindAllRecipeRequestDTO dto) {
+	public List<AdminRecipeResponseDTO> expertRecipeDog(AdminFindAllRecipeRequestDTO dto) {
 		
 		int pages = (dto.getPage() - 1) * 10;
 		dto.setPage(pages);

@@ -52,7 +52,7 @@
 
     <script src="/js/admin/aside.js"></script>
     <script src="/js/pagination.js"></script>
-    <script src="/js/admin/boardTabMenu.js"></script>
+    <script src="/js/admin/tabMenu.js"></script>
     <script src="/js/admin/boardTable.js"></script>
     <script src="/js/admin/getDate.js"></script>
     <script src="/js/admin/search.js"></script>
