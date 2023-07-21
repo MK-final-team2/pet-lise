@@ -12,6 +12,10 @@ table thead {
   display: grid;
   grid-template-columns: minmax(362px, 1130px) 120px repeat(3, 80px) 120px 85px;
 }
+.table thead tr.petplace {
+  display: grid;
+  grid-template-columns: 110px minmax(292px, 1130px) 120px repeat(3, 75px) 100px 80px;
+}
 .reportBoard thead tr,
 .reportComment thead tr {
   display: grid;
@@ -30,6 +34,9 @@ table tbody {
   display: grid;
   grid-template-columns: auto 120px repeat(3, 80px) 120px 85px;
   border-bottom: 1px solid var(--light-point);
+}
+.table tbody tr.petplace {
+  grid-template-columns: 110px auto 120px repeat(3, 75px) 100px 80px;
 }
 .reportBoard tbody tr,
 .reportComment tbody tr {
