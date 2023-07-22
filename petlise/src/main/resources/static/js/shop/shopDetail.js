@@ -58,6 +58,14 @@ $("#num_plus").on('click',function(){
 });
 
 // ----- 장바구니버튼 -----
+$(".modal_gocartbtn").on('click',function(){
+	location.href = "/shopcart";
+});
+
+// ----- 주문페이지 이동버튼 -----
+$(".modal_goorderbtn").on('click',function(){
+	location.href = "/payment";
+});
 
 // ----- 모달이벤트(모달 내 취소버튼) -----
 $(".modal_cancelbtn").on('click',function(){

@@ -260,7 +260,7 @@
 
 #keyword{
 	width: 85%;
-	padding: 10px 15px;
+	padding: 10px 5px;
 }
 
 #searchbtn{
@@ -269,6 +269,7 @@
 	display:flex;
 	align-items: center;
 	justify-content: center;
+	margin-left:3px;
 }
 
 #searchbtn img{

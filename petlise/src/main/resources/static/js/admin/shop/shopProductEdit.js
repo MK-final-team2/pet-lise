@@ -148,7 +148,7 @@ $(".modal_cancelbtn").on('click', function(){
 //수정 후 완료 버튼
 $("#okaymodal .okaybtn").on('click', function(){
 	$(this).parents(".modal").css('display', 'none');
-	location.href = document.referrer;
+	$('#adminshoplist').submit();
 });
 
 //경고창 확인 버튼

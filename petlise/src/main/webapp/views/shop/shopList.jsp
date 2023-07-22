@@ -13,92 +13,14 @@
 <link rel="stylesheet" href="css/shop/shopList.css" />
 <link rel="stylesheet" href="css/shop/pagination_shop.css" />
 <link rel="stylesheet" href="css/shop/modal_main.css" />
+<link rel="stylesheet" href="/css/nav/nav.css" />
 <link rel="icon" href="/images/favicon.ico" />
 <link rel="apple-touch-icon" href="/images/favicon.ico" />
 <title>Pet LiSe</title>
 <script src="/js/jquery-3.6.4.min.js"></script>
-<script>
-	$(document).ready(function() {
-		/* // ----- 장바구니버튼 -----
-		$(".cartbtn").on('click',function(e){
-			e.stopPropagation();
-			if("${user_id}"==""){
-   				$("#login_modal").css("top", $(window).scrollTop()+"px");
-				$("#login_modal").css('display', 'block');
-				
-				$('#login_modal').on('scroll touchmove mousewheel', function(event) {
-					event.preventDefault();
-					event.stopPropagation();
-					return false;
-				});
-   			}//if
-   			else{
-				let productID = $(this).parents(".products").attr('id');
-	
-				$.ajax({
-					type : 'post',
-					url : '/isincart',
-					dataType : 'json',
-					data : {
-						user_id : "${user_id}",
-						product_id : $(this).parents(".products").attr('id')
-					},
-					success : function(result) { // 결과 성공 콜백함수
-						//장바구니 신규등록
-						if(result.result == 'no'){
-							$.ajax({
-								type : 'post',
-								url : '/insertcart',
-								dataType : 'json',
-								data : {
-									user_id : "${user_id}",
-									product_id : productID,
-									quantity : 1
-								},
-								success : function(result) { // 결과 성공 콜백함수
-									$("#okay_modal .modal_text>div").html("상품이 장바구니에 등록되었습니다.<br>장바구니로 이동하시겠습니까?");
-									$("#okay_modal").css("top", $(window).scrollTop()+"px");
-									$("#okay_modal").css('display', 'block');
-									
-									$('#okay_modal').on('scroll touchmove mousewheel', function(event) {
-										event.preventDefault();
-										event.stopPropagation();
-										return false;
-									});
-									
-						    	},
-							    error : function(request, status, error) { // 결과 에러 콜백함수
-							        console.log(error)
-							    }
-							});//ajax end
-						}
-						//장바구니 기존 존재
-						else {
-							$("#okay_modal .modal_text>div").html("장바구니에 이미 등록된 상품입니다.<br>장바구니로 이동하시겠습니까?");
-							$("#okay_modal").css("top", $(window).scrollTop()+"px");
-							$("#okay_modal").css('display', 'block');
-							
-							$('#okay_modal').on('scroll touchmove mousewheel', function(event) {
-								event.preventDefault();
-								event.stopPropagation();
-								return false;
-							});
-						}
-						
-			    	},
-				    error : function(request, status, error) { // 결과 에러 콜백함수
-				        console.log(error)
-				    }
-				});//ajax end
-   			}//else end
-		});//cart end
-		 */
-		
-	});//ready end
-</script>
 </head>
 <body style="height: auto;">
-	<input type="hidden">
+	<div id="nav"></div>
 	<div id='layout' >
 		<div id="titlediv">
 			<input type="hidden" id="searchType1" value="${param.searchType1}" />
@@ -193,6 +115,9 @@
 				</div>
 				<!-- checkboxdiv -->
 				<div id="searchdiv">
+					<button id="searchbtn">
+						<img src="/images/shop/shopList/search_main.svg">
+					</button>
 					<c:choose>
 						<c:when test="${param.keyword == '' || param.keyword eq null}">
 							<input type="text" id="keyword" placeholder="상품명 검색" />
@@ -201,9 +126,6 @@
 							<input type="text" id="keyword" value="${param.keyword}" />
 						</c:otherwise>
 					</c:choose>
-					<button id="searchbtn">
-						<img src="/images/shop/shopList/search_main.svg">
-					</button>
 				</div>
 				<!-- searchdiv -->
 
@@ -313,51 +235,7 @@
 		<!-- pagination -->
 	</div>
 	<!-- layout -->
-	<!-- 
-	<div class="modal" id="cartconfrim_modal">
-		<div class="modal_contents">
-			<div class="modal_text">
-			<div>
-			<img src="/images/shop/shoplist/cart_yellow.svg" alt="cart" style="margin-bottom:10px;"/><br>
-			장바구니에 상품을 등록하시겠습니까?</div>
-			</div>
-			<div class="modal_btn">
-				<button class="modal_cancelbtn">취소</button>
-				<button class="modal_editbtn">확인</button>
-			</div>
-		</div>
-	</div>
-	
-	<div class="modal" id="okay_modal">
-		<div class="modal_contents">
-			<div class="modal_text">
-				<img src="/images/shop/shoplist/cart_yellow.svg" alt="cart" style="margin-bottom:10px;"/>
-				<div>
-				</div>
-			</div>
-			<div class="modal_btn">
-				<button class="modal_cancelbtn">계속쇼핑하기</button>
-				<button class="modal_gocartbtn">장바구니가기</button>
-			</div>
-		</div>
-	</div>
-	
-	<div class="modal" id="login_modal">
-		<div class="modal_contents">
-			<div class="modal_text">
-			<div>
-			<img src="/images/logo-icon.png" style="margin-bottom:10px; width:25px;"/><br>
-			로그인이 필요한 항목입니다.<br>
-			로그인 페이지로 이동하시겠습니까?
-			</div>
-			</div>
-			<div class="modal_btn">
-				<button class="modal_cancelbtn">취소</button>
-				<button class="modal_loginbtn">이동</button>
-			</div>
-		</div>
-	</div>
-	 -->
+	<script src="/js/recipe/nav.js"></script>
 	<script src="/js/shop/shopList.js"></script>
 </body>
 </html>

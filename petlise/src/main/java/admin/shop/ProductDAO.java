@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import pagination.SearchDTO;
 import shop.cart.ShopCartDTO;
+import shop.detail.ShopOrderProductDTO;
 
 @Mapper
 @Repository
@@ -26,4 +27,7 @@ public interface ProductDAO {
 	//cart
 	int insertCart(ShopCartDTO dto);
 	int isinCart(ShopCartDTO dto);
+	
+	//orderProduct
+	int insertOrderProduct(ShopOrderProductDTO dto);
 }

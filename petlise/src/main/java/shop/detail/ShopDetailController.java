@@ -16,6 +16,7 @@ import admin.shop.ProductService;
 import jakarta.servlet.http.HttpSession;
 import pagination.PagingResponse;
 import pagination.SearchDTO;
+import shop.cart.ShopCartDTO;
 
 
 @Controller
@@ -70,6 +71,58 @@ public class ShopDetailController {
 		mv.addObject("scores", scores);
 		mv.setViewName("shop/shopDetail");
 		return mv;
+	}
+	
+	@PostMapping("/isincart")
+	@ResponseBody
+	public String isincart(ShopCartDTO cartdto) {
+		int cartcnt = service.isinCart(cartdto);
+		
+		String result ="";
+		if(cartcnt <= 0) { result = "no";}
+		else { result = "yes";}
+		
+		return "{\"result\":\""+result+"\"}";
+	}
+	
+	@PostMapping("/insertcart")
+	@ResponseBody
+	public String insertcart(String user_id, String product_id, int quantity) {
+		//상품정보조회
+		ProductDTO product = service.getProductById(product_id);
+		
+		//ShopCart정보 담기
+		ShopCartDTO cartdto = new ShopCartDTO();
+		cartdto.setUser_id(user_id);
+		cartdto.setProduct_id(product.getProduct_id());
+		cartdto.setProduct_image(product.getImage_main());
+		cartdto.setProduct_name(product.getProduct_name());
+		cartdto.setQuantity(quantity);
+		cartdto.setProduct_price(product.getPrice());
+		cartdto.setPrice_total(quantity*product.getPrice());
+		
+		int result = service.insertCart(cartdto);
+		return "{\"result\":\""+result+"\"}";
+	}
+
+	@PostMapping("/insertorderproduct")
+	@ResponseBody
+	public String insertOrderProduct(String user_id, String product_id, int quantity) {
+		//상품정보조회
+		ProductDTO product = service.getProductById(product_id);
+		
+		//ShopCart정보 담기
+		ShopOrderProductDTO orderproductdto = new ShopOrderProductDTO();
+		orderproductdto.setUser_id(user_id);
+		orderproductdto.setProduct_id(product.getProduct_id());
+		orderproductdto.setProduct_image(product.getImage_main());
+		orderproductdto.setProduct_name(product.getProduct_name());
+		orderproductdto.setQuantity(quantity);
+		orderproductdto.setProduct_price(product.getPrice());
+		orderproductdto.setPrice_total(quantity*product.getPrice());
+		
+		int result = service.insertOrderProduct(orderproductdto);
+		return "{\"result\":\""+result+"\"}";
 	}
 	
 	@PostMapping("/deletereview")
