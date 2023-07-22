@@ -135,29 +135,29 @@ document.getElementById('nav').innerHTML += `
                     </div>
                     <div class="list-container">
                       <div class="list-item-col">                                
-                        <span class="subtitle"><a href="#">건강식</a></span>
+                        <span class="subtitle"><a href="/recipelist?searchType1=강아지&searchType2=건강식&searchType3=전체">건강식</a></span>
                         <ul>
-                          <li><a href="#">다이어트식</a></li>
-                          <li><a href="#">병원식</a></li>
-                          <li><a href="#">영양식</a></li>
+                          <li><a href="/recipelist?searchType1=강아지&searchType2=건강식&searchType3=다이어트식">다이어트식</a></li>
+                          <li><a href="/recipelist?searchType1=강아지&searchType2=건강식&searchType3=병원식">병원식</a></li>
+                          <li><a href="/recipelist?searchType1=강아지&searchType2=건강식&searchType3=영양식">영양식</a></li>
                         </ul>
                       </div>
                       <div class="list-item-col">                                
-                        <span class="subtitle"><a href="#">일반식</a></span>
+                        <span class="subtitle"><a href="/recipelist?searchType1=강아지&searchType2=일반식&searchType3=전체">일반식</a></span>
                         <ul>
-                          <li><a href="#">습식</a></li>
-                          <li><a href="#">건식</a></li>                                         
+                          <li><a href="/recipelist?searchType1=강아지&searchType2=일반식&searchType3=습식">습식</a></li>
+                          <li><a href="/recipelist?searchType1=강아지&searchType2=일반식&searchType3=건식">건식</a></li>                                         
                         </ul>
                       </div>
                       <div class="list-item-col">                                
-                        <span class="subtitle"><a href="#">간식</a></span>
+                        <span class="subtitle"><a href="/recipelist?searchType1=강아지&searchType2=간식&searchType3=전체">간식</a></span>
                         <ul>
-                          <li><a href="#">건조간식</a></li>
-                          <li><a href="#">화식간식</a></li>                                          
+                          <li><a href="/recipelist?searchType1=강아지&searchType2=간식&searchType3=건조간식">건조간식</a></li>
+                          <li><a href="/recipelist?searchType1=강아지&searchType2=간식&searchType3=화식간식">화식간식</a></li>                                          
                         </ul>
                       </div>
                       <div class="list-item-col">                                
-                        <span class="subtitle"><a href="#">기타</a></span>                                    
+                        <span class="subtitle"><a href="/recipelist?searchType1=강아지&searchType2=기타">기타</a></span>                                    
                       </div>
                     </div>                            
                   </div>
@@ -167,29 +167,29 @@ document.getElementById('nav').innerHTML += `
                     </div>
                     <div class="list-container">
                       <div class="list-item-col">                                
-                        <span class="subtitle"><a href="#">건강식</a></span>
+                        <span class="subtitle"><a href="/recipelist?searchType1=고양이&searchType2=건강식&searchType3=전체">건강식</a></span>
                         <ul>
-                          <li><a href="#">다이어트식</a></li>
-                          <li><a href="#">병원식</a></li>
-                          <li><a href="#">영양식</a></li>
+                          <li><a href="/recipelist?searchType1=고양이&searchType2=건강식&searchType3=다이어트식">다이어트식</a></li>
+                          <li><a href="/recipelist?searchType1=고양이&searchType2=건강식&searchType3=병원식">병원식</a></li>
+                          <li><a href="/recipelist?searchType1=고양이&searchType2=건강식&searchType3=영양식">영양식</a></li>
                         </ul>
                       </div>
                       <div class="list-item-col">                                
-                        <span class="subtitle"><a href="#">일반식</a></span>
+                        <span class="subtitle"><a href="/recipelist?searchType1=고양이&searchType2=일반식&searchType3=전체">일반식</a></span>
                         <ul>
-                          <li><a href="#">습식</a></li>
-                          <li><a href="#">건식</a></li>                                         
+                          <li><a href="/recipelist?searchType1=고양이&searchType2=일반식&searchType3=습식">습식</a></li>
+                          <li><a href="/recipelist?searchType1=고양이&searchType2=일반식&searchType3=건식">건식</a></li>                                         
                         </ul>
                       </div>
                       <div class="list-item-col">                                
-                        <span class="subtitle"><a href="#">간식</a></span>
+                        <span class="subtitle"><a href="/recipelist?searchType1=고양이&searchType2=간식&searchType3=전체">간식</a></span>
                         <ul>
-                          <li><a href="#">건조간식</a></li>
-                          <li><a href="#">화식간식</a></li>                                          
+                          <li><a href="/recipelist?searchType1=고양이&searchType2=간식&searchType3=건조간식">건조간식</a></li>
+                          <li><a href="/recipelist?searchType1=고양이&searchType2=간식&searchType3=화식간식">화식간식</a></li>                                          
                         </ul>
                       </div>
                       <div class="list-item-col">                                
-                        <span class="subtitle"><a href="#">기타</a></span>                                    
+                        <span class="subtitle"><a href="/recipelist?searchType1=고양이&searchType2=기타">기타</a></span>                                    
                       </div>
                     </div>                            
                   </div>
