@@ -89,8 +89,8 @@ document.getElementById('asideMenu').innerHTML += `
       ></object>
       <span>펫플레이스 관리</span>
     </li>
-    <li onClick="location.href='/admin/announcement'" style="background:${
-      link === '/admin/announcement' ? '#181818' : ''
+    <li onClick="location.href='/admin/noticemanagement'" style="background:${
+      link === '/admin/noticemanagement' ? '#181818' : ''
     }">
       <object
         data="/images/announcement-icon.svg"

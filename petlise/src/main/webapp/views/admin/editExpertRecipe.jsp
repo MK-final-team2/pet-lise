@@ -38,12 +38,7 @@ pageEncoding="UTF-8"%>
               <img src="/images/image-icon.svg" alt="대표이미지" id="imgUrl" />
               <input type="hidden" id="imageValue" name="image" />
             </label>
-            <input
-              type="file"
-              id="file"
-              accept="image/*"
-              onchange="imageUpload()"
-            />
+            <input type="file" id="file" accept="image/*" onchange="imageUpload()" />
           </div>
           <div class="categoryWrap">
             <div class="category">
@@ -57,11 +52,7 @@ pageEncoding="UTF-8"%>
                 <div class="select">
                   <span></span>
                 </div>
-                <input
-                  type="hidden"
-                  class="smallCateName"
-                  name="sub_category"
-                />
+                <input type="hidden" class="smallCateName" name="sub_category" />
                 <ul id="dropdown-menu" class="dropdown-menu"></ul>
               </div>
             </div>

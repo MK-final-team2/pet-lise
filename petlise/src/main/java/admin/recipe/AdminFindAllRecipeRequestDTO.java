@@ -47,11 +47,5 @@ public class AdminFindAllRecipeRequestDTO {
 	public void setPage(int page) {
 		this.page = page;
 	}
-	
-	@Override
-	public String toString() {
-		return "AdminFindAllRecipeRequestDTO [recipe_category=" + recipe_category + ", pet_category=" + pet_category
-				+ ", main_category=" + main_category + ", keyword=" + keyword + ", recipe_of_the_month="
-				+ recipe_of_the_month + ", page=" + page + "]";
-	}
+
 }

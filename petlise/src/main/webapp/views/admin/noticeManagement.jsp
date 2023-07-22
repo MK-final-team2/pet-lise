@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -11,8 +10,11 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="/css/admin/aside.css" />
     <link rel="stylesheet" href="/css/admin/pagination.css" />
     <link rel="stylesheet" href="/css/admin/tabMenu.css" />
-    <link rel="stylesheet" href="/css/admin/announcement.css" />
+    <link rel="stylesheet" href="/css/admin/noticeManagement.css" />
+    <link rel="stylesheet" href="/css/admin/modal.css" />
     <title>Pet LiSe</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/js/admin/noticeManagement.js"></script>
   </head>
   <body>
     <div class="container">
@@ -25,11 +27,16 @@ pageEncoding="UTF-8"%>
           <div class="tabWrap">
             <ul class="list">
               <li class="isOn"><a href="#tab1" class="btn">공지사항</a></li>
-              <li><a href="#tab2" class="btn">문의사항</a></li>
-              <li><a href="#tab3" class="btn">이벤트</a></li>
+              <li><a href="#tab2" class="btn">이벤트</a></li>
+              <li><a href="#tab3" class="btn">문의사항</a></li>
               <li><a href="#tab4" class="btn">가족찾기</a></li>
             </ul>
-            <a href="/admin/editannouncement" class="editButton">등록</a>
+            <div class="inputWrap">
+              <object data="/images/search.svg"></object>
+              <input type="text" id="searchInput" placeholder="제목 or 작성자" />
+            </div>
+            
+            <div id="edit"></div>
           </div>
 
           <div class="tableWrap">
@@ -44,9 +51,10 @@ pageEncoding="UTF-8"%>
     </div>
 
     <script src="/js/admin/aside.js"></script>
-    <script src="/js/admin/pagination.js"></script>
+    <script src="/js/pagination.js"></script>
     <script src="/js/admin/tabMenu.js"></script>
-    <script src="/js/admin/announcement.js"></script>
-    <script src="/js/admin/announcementTable.js"></script>
+    <script src="/js/admin/noticeTable.js"></script>
+    <script src="/js/admin/getDate.js"></script>
+    <script src="/js/admin/search.js"></script>
   </body>
 </html>
