@@ -17,10 +17,12 @@
   min-width: 100px;
   width: 150px;
   height: 45px;
-  padding: 10px 15px;
+  padding: 10px 10px;
   text-align: center;
+  font:var(--body14);
   border: 1px solid var(--light-point);
   border-radius: 20px;
+  cursor: pointer;
 }
 .tabMenu .tabWrap .createbtn:hover {
   background-color: var(--light-stroke);
@@ -65,6 +67,15 @@ table tbody td {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.productname>form>input[type='submit']{
+	width:246px;
+	overflow: hidden;
+  	text-overflow: ellipsis;
+  	white-space: nowrap;
+  	cursor: pointer;
+}
+
 table tbody td:first-of-type,
 table tbody td:last-of-type {
   padding: 0 10px;
@@ -194,7 +205,7 @@ table tbody td:last-of-type {
 #keyword{
 	width: 205px;
 	height: 45px;
-	padding: 10px 15px;
+	padding: 10px 5px;
 }
 
 #searchbtn{
@@ -203,6 +214,7 @@ table tbody td:last-of-type {
 	display:flex;
 	align-items: center;
 	justify-content: center;
+	margin-left: 3px;
 }
 
 #searchbtn img{

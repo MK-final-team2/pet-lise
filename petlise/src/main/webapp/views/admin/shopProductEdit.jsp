@@ -199,10 +199,11 @@
 		<div class="modal_contents">
 			<div class="modal_text">
 				<div>
-					상품정보가 수정되었습니다.<br>이전 페이지로 이동합니다.
+					상품정보가 수정되었습니다.<br>상품 목록으로 이동합니다.
 				</div>
 			</div>
 			<div class="modal_btn">
+				<form action="adminshoplist" id="adminshoplist" method="post"></form>
 				<button class="okaybtn">확인</button>
 			</div>
 		</div>

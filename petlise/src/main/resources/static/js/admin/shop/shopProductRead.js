@@ -3,7 +3,7 @@ $("#cancelButton").on("click",function(){
 	$("#list_modal").css('display', 'block');
 	
 	$(".golisthomebtn").on("click",function(){
-		location.href = "/adminshoplist?page="+$('#pageinput').val();
+		$("#adminshoplist").submit();
 	});
 });
 
@@ -20,7 +20,6 @@ $("#editButton").on("click",function(){
 //모달-수정버튼 (수정창 이동)
 $(".modal_editbtn").on('click', function(){
 	$(this).parents(".modal").css('display', 'none');
-	location.href = "/shopproductedit?product_id="+$("#product_number").val();
 });
 
 //상품삭제 버튼--모달 확인창 팝업
@@ -49,7 +48,7 @@ $("#delete_modal .modal_deletebtn").on('click', function(){
 			$("#delete_okay_modal").css('display', 'block');
 			$("#delete_okay_modal .modal_okaybtn").on("click", function() {
 				$(this).parents(".modal").css('display', 'none');
-				location.href = "/adminshoplist";
+				$("#adminshoplist").submit();
 			});
 		},
 		error: function(request, status, error) { // 결과 에러 콜백함수

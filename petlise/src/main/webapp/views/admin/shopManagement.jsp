@@ -27,6 +27,8 @@
 
 			<div class="tabMenu">
 				<div class="tabWrap">
+					<form action="adminshoplist" id="adminshoplist" method="post">
+					<input type="hidden" id="page" name="page" value="1"/>
 					<div class="categoryWrap">
 						<div class="category">
 							<div id="dropdown" class="dropdown">
@@ -36,7 +38,7 @@
 										${param.searchType1}
 									</span>
 								</div>
-								<input type="hidden" id="petType" value="${param.searchType1}" />
+								<input type="hidden" id="petType" name="searchType1" value="${param.searchType1}" />
 								<ul class="dropdown-menu">
 									<li>전체</li>
 									<li>강아지</li>
@@ -53,7 +55,7 @@
 										${param.searchType2}
 									</span>
 								</div>
-								<input type="hidden" id="productType"
+								<input type="hidden" id="productType" name="searchType2"
 									value="${param.searchType2}" />
 								<ul id="dropdown-menu" class="dropdown-menu">
 									<li>전체</li>
@@ -72,7 +74,7 @@
 										${param.searchType3}
 									</span>
 								</div>
-								<input type="hidden" id="saleType" value="${param.searchType3}" />
+								<input type="hidden" id="saleType" name="searchType3" value="${param.searchType3}" />
 								<ul id="dropdown-menu" class="dropdown-menu">
 									<li>전체</li>
 									<li>판매중</li>
@@ -88,7 +90,7 @@
 										${param.sortType}
 									</span>
 								</div>
-								<input type="hidden" id="sortType" value="${param.sortType}" />
+								<input type="hidden" id="sortType" name="sortType" value="${param.sortType}" />
 								<ul id="dropdown-menu" class="dropdown-menu">
 									<li>상품번호순</li>
 									<li>판매량순</li>
@@ -100,23 +102,25 @@
 						</div>
 
 						<div id="searchdiv">
-							<c:choose>
-								<c:when test="${param.keyword == '' || param.keyword eq null}">
-									<input type="text" id="keyword" placeholder="상품명 검색" />
-								</c:when>
-								<c:otherwise>
-									<input type="text" id="keyword" value="${param.keyword}" />
-								</c:otherwise>
-							</c:choose>
 							<button id="searchbtn">
 								<img src="/images/admin/search.svg">
 							</button>
+							<c:choose>
+								<c:when test="${param.keyword == '' || param.keyword eq null}">
+									<input type="text" id="keyword" name="keyword" placeholder="상품명 검색" />
+								</c:when>
+								<c:otherwise>
+									<input type="text" id="keyword" name="keyword" value="${param.keyword}" />
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<!-- searchdiv -->
-					</div>
-					<!-- categoryWrap -->
-
-					<a href="/shopproductregister" class="createbtn">신규 상품 등록</a>
+					</div> <!-- categoryWrap -->
+					</form>
+					
+					<form action="/shopproductregister" method="post">
+						<input type="submit" class="createbtn" value="신규 상품 등록"/>
+					</form>
 				</div>
 
 				<div class="tableWrap">
@@ -141,7 +145,7 @@
 						<tbody>
 							<c:if test="${fn:length(response.list) == 0}">
 								<tr>
-									<td colspan="9" class="no_data_msg">
+									<td class="no_data_msg">
 										<div>
 											검색된 결과가 없습니다.<br> 카테고리 및 상품명을 확인해 주세요.
 										</div>
@@ -155,7 +159,13 @@
 									<td>${product.pet_type}</td>
 									<td>${product.category}</td>
 									<td>${product.product_code}</td>
-									<td class="productname"><a href="/shopproductread?product_id=${product.product_id}&page=${param.page}">${product.product_name}</a></td>
+									<td class="productname">
+										<form action="shopproductread" method="post">
+											<input type="hidden" name="product_id" value="${product.product_id}">
+											<input type="hidden" name="page" value="${param.page eq null?1:param.page}">
+											<input type="submit" value="${product.product_name}">
+										</form>
+									</td>
 									<td><fmt:formatNumber value="${product.quatity}" pattern="#,###" />개</td>
 									<td><fmt:formatNumber value="${product.price}" pattern="#,###" />p</td>
 									<td><fmt:parseDate value="${product.reg_date}" var="reg"
@@ -228,11 +238,13 @@
 	
 	<div class="modal" id="edit_modal">
 		<div class="modal_contents">
-			<input type="hidden" value="" />
+			<form action="shopproductedit" id="edit_form" method="post">
+			<input type="hidden" name="product_id" value="" />
+			</form>
 			<div class="modal_text"></div>
 			<div class="modal_btn">
 				<button class="modal_cancelbtn">취소</button>
-				<button class="modal_editbtn">수정하기</button>
+				<button id="modal_editbtn">수정하기</button>
 			</div>
 		</div>
 	</div>

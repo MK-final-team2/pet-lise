@@ -10,6 +10,7 @@ import pagination.Pagination;
 import pagination.PagingResponse;
 import pagination.SearchDTO;
 import shop.cart.ShopCartDTO;
+import shop.detail.ShopOrderProductDTO;
 
 @Service
 public class ProductService {
@@ -69,6 +70,11 @@ public class ProductService {
 	
 	public int isinCart(ShopCartDTO dto) {
 		return dao.isinCart(dto);
+	}
+	
+	//insertOrderProduct
+	public int insertOrderProduct(ShopOrderProductDTO dto) {
+		return dao.insertOrderProduct(dto);
 	}
 	
 }

@@ -140,7 +140,9 @@
 			</div>
 			<div class="modal_btn">
 				<button class="modal_cancelbtn">취소</button>
-				<button class="golisthomebtn">목록가기</button>
+				<form action="adminshoplist" id="adminshoplist" method="post">
+					<input type="submit" class="golisthomebtn" value="목록가기">
+				</form>
 			</div>
 		</div>
 	</div>
@@ -157,7 +159,10 @@
 			</div>
 			<div class="modal_btn">
 				<button class="modal_cancelbtn">취소</button>
-				<button class="modal_editbtn">수정</button>
+				<form action="shopproductedit" id="edit_form" method="post">
+					<input type="hidden" name="product_id" value="${product.product_id}" />
+					<input type="submit" class="modal_editbtn" value="수정">
+				</form>
 			</div>
 		</div>
 	</div>

@@ -1,5 +1,11 @@
+//홈버튼
 $("#listhome").on("click", function() {
-	location.href = "/adminshoplist";
+	$("#page").val(1);
+	$("#petType").val("");
+	$("#productType").val("");
+	$("#saleType").val("");
+	$("#sortType").val("");
+	$("#adminshoplist").submit();
 });
 
 //검색창 엔터키 이벤트
@@ -11,80 +17,38 @@ $("#keyword").on("keyup", function(key) {
 
 //검색 버튼
 $("#searchbtn").on('click', function() {
-	const queryparamsPage = {
-		page: 1,
-		searchType1: $("#petType").val(),
-		searchType2: $("#productType").val(),
-		searchType3: $("#saleType").val(),
-		sortType:$("#sortType").val(),
-		keyword: $("#keyword").val()
-	}
-	location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
+	$("#page").val(1);
+	$("#adminshoplist").submit();
 });
 
 //숫자 페이징버튼
 $(".pageNumber").on('click', function() {
-	const queryparamsPage = {
-		page: $(this).text(),
-		searchType1: $("#petType").val(),
-		searchType2: $("#productType").val(),
-		searchType3: $("#saleType").val(),
-		sortType:$("#sortType").val(),
-		keyword: $("#keyword").val()
-	}
-	location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
+	$("#page").val($(this).text());
+	$("#adminshoplist").submit();
 });
 
 //첫페이지버튼 
 $(".pagefirst").on('click', function() {
-	const queryparamsPage = {
-		page: 1,
-		searchType1: $("#petType").val(),
-		searchType2: $("#productType").val(),
-		searchType3: $("#saleType").val(),
-		sortType:$("#sortType").val(),
-		keyword: $("#keyword").val()
-	}
-	location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
+	$("#page").val(1);
+	$("#adminshoplist").submit();
 });
 
 //이전페이지버튼
 $(".prev").on('click', function() {
-	const queryparamsPage = {
-		page: $(this).attr("id"),
-		searchType1: $("#petType").val(),
-		searchType2: $("#productType").val(),
-		searchType3: $("#saleType").val(),
-		sortType:$("#sortType").val(),
-		keyword: $("#keyword").val()
-	}
-	location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
+	$("#page").val($(this).attr("id"));
+	$("#adminshoplist").submit();
 });
 
 //다음페이지버튼
 $(".next").on('click', function() {
-	const queryparamsPage = {
-		page: $(this).attr("id"),
-		searchType1: $("#petType").val(),
-		searchType2: $("#productType").val(),
-		searchType3: $("#saleType").val(),
-		sortType:$("#sortType").val(),
-		keyword: $("#keyword").val()
-	}
-	location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
+	$("#page").val($(this).attr("id"));
+	$("#adminshoplist").submit();
 });
 
 //마지막페이지버튼
 $(".pagelast").on('click', function() {
-	const queryparamsPage = {
-		page: $(this).attr("id"),
-		searchType1: $("#petType").val(),
-		searchType2: $("#productType").val(),
-		searchType3: $("#saleType").val(),
-		sortType:$("#sortType").val(),
-		keyword: $("#keyword").val()
-	}
-	location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
+	$("#page").val($(this).attr("id"));
+	$("#adminshoplist").submit();
 });
 
 //상품수정버튼(확인모달 팝업)
@@ -92,18 +56,24 @@ $("tbody .editbtn").on("click", function() {
 	$("#edit_modal .modal_text").html(
 		"<div>" +
 		"상품번호 : " + $(this).parents().siblings(".productid").text() + "<br>" +
-		"상품명 : " + $(this).parents().siblings(".productname").text() + "<br>" +
+		"상품명 : " + $(this).parents().siblings(".productname").children().children("input[type='submit']").val() + "<br>" +
 		"해당 상품정보를 수정하시겠습니까?</div>"
 	);
 	$("#edit_modal input[type='hidden']").val($(this).parents().siblings(".productid").text());
+	$("#edit_modal").css("top", $(window).scrollTop()+"px");
 	$("#edit_modal").css('display', 'block');
+	
+	$('#edit_modal').on('scroll touchmove mousewheel', function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		return false;
+	});
 });
 
 //상품 수정 확인모달 수정버튼 -- 수정페이지 이동
-$(".modal_editbtn").on("click", function() {
+$("#modal_editbtn").on("click", function() {
 	$(this).parents(".modal").css('display', 'none');
-
-	location.href = "/shopproductedit?product_id=" + $("#edit_modal input[type='hidden']").val();
+	$("#edit_form").submit();
 });
 
 //상품삭제버튼(확인모달 팝업)
@@ -112,7 +82,7 @@ $("tbody .deletebtn").on("click", function() {
 		"<div>" +
 		"상품 삭제 후 복구할 수 없습니다.<br>" +
 		"상품번호 : " + $(this).parents().siblings(".productid").text() + "<br>" +
-		"상품명 : " + $(this).parents().siblings(".productname").text() + "<br>" +
+		"상품명 : " + $(this).parents().siblings(".productname").children().children("input[type='submit']").val() + "<br>" +
 		"해당 상품을 삭제하시겠습니까?</div>"
 	);
 	$("#delete_modal input[type='hidden']").val($(this).parents().siblings(".productid").text());

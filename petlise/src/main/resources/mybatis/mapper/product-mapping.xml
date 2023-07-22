@@ -65,14 +65,18 @@
 		FROM cart
 		WHERE user_id=#{user_id} and product_id=#{product_id}
 	</select>
-
-	<!-- 
-	<update id="insertCart" parameterType="cartdto">
-		UPDATE *
-		SET quantity=#{quantity}
-		WHERE user_id=#{user_id} and product_id=#{product_id}
-	</update> 
-	-->
+	
+	<!-- 주문상품 상품등록 -->
+	<insert id="insertOrderProduct" parameterType="shop.detail.ShopOrderProductDTO">
+		INSERT INTO orderproduct(
+			user_id, product_id, product_image,
+			product_name, quantity, product_price, price_total
+		)
+		VALUES(
+			#{user_id},#{product_id},#{product_image},
+			#{product_name},#{quantity},#{product_price},#{price_total}
+		)
+	</insert>
 	
 <!-- ▼▼▼▼Pagination▼▼▼▼ -->
 	<select id="getAllProductPaging" resultType="productdto"

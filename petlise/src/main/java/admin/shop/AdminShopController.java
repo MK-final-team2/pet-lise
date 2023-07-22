@@ -27,15 +27,26 @@ public class AdminShopController {
 		mv.setViewName("admin/shopManagement");
 		return mv;
 	}
+
+	//상품목록페이지(Post)
+	@PostMapping("/adminshoplist")
+	public ModelAndView adminproductlistpost(@ModelAttribute SearchDTO searchdto) {
+		PagingResponse<ProductDTO> productlist = service.getAllProductPaging(searchdto);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("response", productlist);
+		mv.setViewName("admin/shopManagement");
+		return mv;
+	}
 	
 	//상품등록페이지
-	@GetMapping("/shopproductregister")
+	@PostMapping("/shopproductregister")
 	public String shopproductregister() {
 		return "admin/shopProductRegister";
 	}
 	
 	//상품수정페이지
-	@GetMapping("/shopproductedit")
+	@PostMapping("/shopproductedit")
 	public ModelAndView shopproductedit(String product_id) {
 		ProductDTO product = service.getProductById(product_id);
 		
@@ -46,12 +57,12 @@ public class AdminShopController {
 	}
 
 	//상품디테일페이지(Read)
-	@GetMapping("/shopproductread")
-	public ModelAndView shopproductread(String product_id, int page) {
+	@PostMapping("/shopproductread")
+	public ModelAndView shopproductread(String product_id, String page) {
 		ProductDTO product = service.getProductById(product_id);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("currentpage", page);
+		mv.addObject("currentpage", Integer.parseInt(page));
 		mv.addObject("product", product);
 		mv.setViewName("admin/shopProductRead");
 		return mv;

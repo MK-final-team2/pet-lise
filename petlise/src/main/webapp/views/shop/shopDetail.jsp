@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="css/shop/shopDetail.css" />
 <link rel="stylesheet" href="css/shop/pagination_shop.css" />
 <link rel="stylesheet" href="css/shop/modal_main.css" />
+<link rel="stylesheet" href="/css/nav/nav.css" />
 <link rel="icon" href="/images/favicon.ico" />
 <link rel="apple-touch-icon" href="/images/favicon.ico" />
 <title>Pet LiSe</title>
@@ -246,18 +247,54 @@
 	   			    }
 	   			});//ajax end
    			}//else
-   			
    		});//cart end
     	
    		
 	   	// ----- 바로 구매하기 버튼 -----
 	   	$("#buybtn").on('click',function(){
-	   		alert("${user_id}"=="");
+	   		if("${user_id}"==""){
+   				$("#login_modal").css("top", $(window).scrollTop()+"px");
+				$("#login_modal").css('display', 'block');
+				
+				$('#login_modal').on('scroll touchmove mousewheel', function(event) {
+					event.preventDefault();
+					event.stopPropagation();
+					return false;
+				});
+   			}//if
+   			else{
+   				//주문상품 신규등록
+				$.ajax({
+					type : 'post',
+					url : '/insertorderproduct',
+					dataType : 'json',
+					data : {
+						user_id : "${user_id}",
+						product_id : "${product.product_id}",
+						quantity : $("#number").text()
+					},
+					success : function(result) { // 결과 성공 콜백함수
+						$("#go_order_modal").css("top", $(window).scrollTop()+"px");
+						$("#go_order_modal").css('display', 'block');
+						
+						$('#go_order_modal').on('scroll touchmove mousewheel', function(event) {
+							event.preventDefault();
+							event.stopPropagation();
+							return false;
+						});
+						
+			    	},
+				    error : function(request, status, error) { // 결과 에러 콜백함수
+				        console.log(error)
+				    }
+				});//ajax end
+   			}//else
 	   	});
     });
     </script>
 </head>
 <body>
+	<!-- <div id="nav"></div> -->
 	<div id='layout'>
 		<div id="categorys">
 			<p>라이스샵 > ${product.pet_type} > ${product.category}</p>
@@ -627,6 +664,19 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="modal" id="go_order_modal">
+		<div class="modal_contents">
+			<div class="modal_text">
+				<img src="/images/shop/shoplist/cart_yellow.svg" alt="cart" style="margin-bottom:10px;"/>
+				<div>
+				주문페이지로 이동합니다.</div>
+			</div>
+			<div class="modal_btn">
+				<button class="modal_goorderbtn">확인</button>
+			</div>
+		</div>
+	</div>
 	
 	<div class="modal" id="login_modal">
 		<div class="modal_contents">
@@ -644,6 +694,7 @@
 		</div>
 	</div>
 	
+	<script src="/js/recipe/nav.js"></script>
 	<script src="/js/shop/shopDetail.js"></script>
 </body>
 </html>
