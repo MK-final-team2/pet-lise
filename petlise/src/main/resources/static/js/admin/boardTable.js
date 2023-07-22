@@ -2,7 +2,8 @@ const table = document.querySelectorAll('table');
 
 table[0].innerHTML += `
   <thead>
-    <tr>
+    <tr ${title == "펫플레이스" ? 'class="petplace"':""}>
+      ${title == "펫플레이스" ? '<th>게시글 제목</th>':""}
       <th>게시글 제목</th>
       <th>작성자</th>
       <th>댓글수</th>

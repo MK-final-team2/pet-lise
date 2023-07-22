@@ -35,7 +35,8 @@ function ajaxData(keyword, page) {
         tbody.innerHTML = dataTable
           .map(
             el => `
-          	<tr>
+          	<tr ${title == "펫플레이스" ? 'class="petplace"':""}>
+              ${title == "펫플레이스" ? `<td>${el?.category}</td>` : ""}
               <td id="${el?.board_id}">${el?.title}</td>
               <td>${el?.name}</td>
               <td>${el?.comment_count}</td>

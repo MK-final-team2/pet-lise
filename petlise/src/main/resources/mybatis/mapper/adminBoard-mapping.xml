@@ -105,7 +105,7 @@
 		(SELECT count(*) FROM boardReport WHERE place_id = p.place_id) AS 'report_count',
 		(SELECT count(*) FROM petplaceComment WHERE place_id = p.place_id) AS 'comment_count',
 		(SELECT count(*) FROM petplaceLike WHERE place_id = p.place_id) AS 'like_count',
-		p.place_id as board_id, p.user_id, p.title, p.petplace_created as created_at, p.view_count, u.name
+		p.place_id as board_id, p.category, p.user_id, p.title, p.petplace_created as created_at, p.view_count, u.name
 		FROM petplace p
 		LEFT JOIN user u ON p.user_id = u.user_id
 		WHERE p.deleted_at IS NULL
@@ -182,10 +182,5 @@
 		UPDATE petplaceComment SET deleted_at=#{deleted_at}
 		WHERE comment_id=#{comment_id}
 	</update>
-
-
-
-
-
 
 </mapper>
