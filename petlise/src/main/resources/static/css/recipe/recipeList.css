@@ -1,15 +1,12 @@
-
-.wrap {
-    width: 100%;
-    margin: 0 auto;
-    
+.wrap {	
+  margin: 0;   
+  padding-bottom: 50px; 
 }
 
 .pet_icon {
 	display: flex;
     justify-content: center;
     margin-top: 80px;
-    
 }
 
 .dog_icon img {
@@ -38,10 +35,10 @@
     }
 }
 
-.search_container{
+#search_container{
   display: flex; 
   justify-content: space-between;
-  margin-right: 135px;
+  margin-right: 130px;
   z-index: 92;
   
 }
@@ -64,10 +61,31 @@
   
 }
 
+.category a.on {
+  background-color: var(--light-sub); 
+  color: white; 
+}
+
+
+#noresult {
+	width:100%; 
+	height:300px; 
+	color: var(--light-point);
+	font-size:22px; 
+	text-align: center;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 300px;	
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
 
 
 
-.search{
+
+#searchdiv{
   margin-right: 130px;
   position: relative;
   
@@ -75,7 +93,7 @@
 }
 
 
-.search > input {
+#searchdiv > input {
   width: 200px;
   height: 30px;
   border: 1px solid var(--gray4);
@@ -83,11 +101,11 @@
   padding: 10px 12px;
   
 }
-.search > input:focus {
+#searchdiv > input:focus {
     border-color: var(--light-main);
 }
 
-.search img {
+#searchdiv img {
   position : absolute;
   width: 17px;
   top: 8px;
@@ -106,13 +124,16 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    border-bottom: solid 1px var(--light-point);
+    border-top: solid 1px var(--light-point);
 }
 
 .recipe {
     width: 290px;
     height: 430px;
-    margin-left: 14px;
+    margin-left: 16px;
     margin-bottom: 20px;
+    margin-top: 20px;
     border-radius: 10px;
     background-color: var(--light-stroke);
     border: 1px solid var(--light-point);
@@ -124,6 +145,7 @@
       border-radius: 10px;
       border: 1px solid var(--light-point);
       margin: -1px -1px;
+      background-color: #ffffff;
       background-image: url("/images/recipe/sample.jpg");
       background-size: contain;
       background-repeat: no-repeat;
@@ -160,13 +182,17 @@
   }
 }
 
-#recipe_info{
-           
-    margin: 15px 10px;
-    padding: 0px 10px;
-    align-items: center;
+#recipe_info {
+	margin: 13px 10px;
+	padding: 0px 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 110px;
+	
+	
 }
-    
+
 .recipe:hover {
     background: var(--light-sub, #FBC252);
 
@@ -175,22 +201,35 @@
       }
 }
 
-    .info_title {
-        color: var(--light-text);
-        font: var(--highlight16);
-        margin-bottom: 5px;
-      }
+.info_title {
+	color: var(--light-text);
+	font: var(--highlight16);
+	margin-bottom: 5px;
+}
     
-      .info_content {
-        color: var(--gray2);
-        font: var(--body14);
-        margin-bottom: 5px;
+.info_content {
+	color: var(--gray2);
+	font: var(--body14);
+	margin-bottom: 5px;
+}
+    
+#info_bottom {
+	display: flex;
+	flex-direction: row;	
+}
+
+      .info_writer {
+        color:  var(--light-point);
+        font: var(--highlight14);
+        margin-top: auto;
+        
       }
     
       .info_date {
-        color:  var(--gray2);
+        color:  var(--light-point);
         font: var(--caption12);
-        margin-top: 40px;
+        margin-left: auto;
+        margin-top: 2px;
       }
     
       .love_this {
@@ -203,8 +242,8 @@
       #recipe_write {
         display: flex;
         justify-content: flex-end;
-        margin-top: -5px;
-        margin-right: 280px;
+        margin-top: 10px;
+        margin-right: 270px;
         margin-bottom: 40px;
       }
       
@@ -226,3 +265,5 @@
       .write button:hover {
         color: var(--dark-text);
       }
+      
+ 

@@ -22,6 +22,7 @@ public class RecipeService {
         recipeDTO.setRecipe_category("나만의레시피");
         recipeDTO.setRecipe_of_the_month(0); //이달의 레시피 조건충족X false=0
         
+        
         // 이미지 URL 설정
         String imageUrl = recipeDTO.getImage();
         recipeDTO.setImage(imageUrl);
