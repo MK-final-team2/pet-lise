@@ -13,13 +13,12 @@ import pagination.SearchDTO;
 @Repository
 public interface PetPlaceDAO {
 	int insertPetPlace(PetPlaceDTO dto);
-	int updatePetPlace(PetPlaceDTO dto);
-	int deletePetPlace(String _id);	
 	int maxPetPlaceNum();
 	int countTotalPetPlaceNum();
-	//Petplace_List
 	List<PetPlaceDTO> getAllPetPlace();
+	int deletePetPlace(String _id);	
 	PetPlaceDTO getPetPlaceById(String PetPlace_id);
+	int updatePetPlace(PetPlaceDTO dto);
 	
 	//Pagination
 	List<PetPlaceDTO> getAllPetPlacePaging(SearchDTO dto);

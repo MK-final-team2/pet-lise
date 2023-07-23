@@ -20,12 +20,7 @@ public class PetPlaceService {
 	public int insertPetPlace(PetPlaceDTO dto) {
 		return dao.insertPetPlace(dto);
 	}
-	public int savePetPlace(PetPlaceDTO dto) {
-	        // Service에서 필요한 유효성 검사 등을 수행하고 DAO를 통해 데이터베이스에 새로운 PetPlace를 추가합니다.
-	        // 이 부분에서 필요한 비즈니스 로직을 구현하세요.
-	        return dao.insertPetPlace(dto);
-	    }
-	
+
 	public int maxPetPlaceNum() {
 		return dao.maxPetPlaceNum();
 	}
