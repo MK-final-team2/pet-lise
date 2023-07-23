@@ -1,105 +1,136 @@
-
 #container {
-  margin: 0 auto;
-  position: relative;
-  width: 1240px;
-  
+	margin: 0 auto;
+	position: relative;
+	width: 1040px;
 }
 
-.board_title{
+.board_title {
 	color: var(--light-text);
-	font:var(--heading24);
+	font: var(--heading24);
 	text-align: center;
+	margin-top: 70px;
 	margin-bottom: 93px;
-	}
+}
 
-.contents p{
-	font:var(--body16);
+.talkdog {
+	display: flex;
+	align-items: center;
+
+}
+
+#searchBtn {
+	width: 150px;
+	height: 150px;
+	margin-top: 60px;
+
+	
+}
+
+.talkdog p {
+	font: var(--body14);
+	text-align:center;
+	background-image: url('/images/board/bloon.png');
+	background-repeat: no-repeat;
+	
+	background-size: contain; 
+	padding : 60px;
+	padding-left: 42px;
+	padding-top: 33px; 
+	margin-left:-30px;
+	margin-top: -120px;
+
+}
+
+#map {
+	display: flex;
+	
+	margin-top: -10px;
+	margin-bottom: -10px;
+	width: 350px;
+	height: 200px;
 }
 
 .write_title {
-  width: 1240px;
- height: 50px;
- padding: 0 25px;
-  border: 2px solid var(--light-stroke);
-  border-radius: 10px;
-  margin-bottom: 20px;
-  font-size: 24px;
+	width: 1040px;
+	height: 50px;
+	padding: 0 25px;
+	border: 2px solid var(--light-stroke);
+	border-radius: 10px;
+	margin-bottom: 20px;
+	font-size: 24px;
 }
 
 .categoryWrap {
-  width: 100%;
-  margin-bottom: 30px;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  
+	width: 100%;
+	margin-bottom: 20px;
+	display: flex;
+	justify-content: left;
+	align-items: center;
 }
 
-
-
 #dropdown {
-  position: relative;
-  width: 292px;
- height: 46px;
-
-  border: 1.5px solid var(--light-stroke);
-  border-radius: 10px;
-  transition: all 0.5s ease;
-  font: var(--body16);
-  padding-left: 23px;
+	position: relative;
+	width: 292px;
+	height: 46px;
+	border: 1.5px solid var(--light-stroke);
+	border-radius: 10px;
+	transition: all 0.5s ease;
+	font: var(--body16);
+	padding-left: 23px;
 }
 
 .adressWrap {
-  width: 1240px;
-height: 140px;
-
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  
+	width: 1040px;
+	height: 140px;
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	margin-top: -25px;
 }
 
-#sample6_postcode{
-width: 187px;
-height: 50px;
-
-border-radius: 10px;
-border: 1px solid var(--light-stroke);
-	
-}
-
-#sample6_detailAddress{
-width: 1240px;
-height: 50px;
-border-radius: 10px;
-border: 1px solid var(--light-stroke, #DED4C7);
-margin-bottom: 30px;
-}
-
-#adressBtn{
+#sample6_postcode {
+	width: 187px;
+	height: 40px;
 	border-radius: 10px;
-border: 1px solid var(--light-stroke, #DED4C7);
-width: 125px;
-height: 50px;
-font:var(--button14);
-margin-left: 10px;
-
+	border: 1px solid var(--light-stroke);
+	margin-right: 10px;
 }
 
-
-.writeButton{
-	
-display: flex;
-justify-content: center;
-align-items:center;
-
-width: 250px;
-padding: 16px 96px;
-border-radius: 8px;
-background: var(--light-point);
-font:var(--button14);
-margin: 0 auto;
+#sample6_address {
+	width: 250px;
+	height: 40px;
+	border-radius: 10px;
+	border: 1px solid var(--light-stroke, #DED4C7);
+	margin-right: 10px;
 }
 
+#sample6_detailAddress {
+	width: 700px;
+	height: 40px;
+	border-radius: 10px;
+	border: 1px solid var(--light-stroke, #DED4C7);
+	margin-bottom: 30px;
+}
 
+#adressBtn {
+	border-radius: 10px;
+	border: 1px solid var(--light-stroke, #DED4C7);
+	width: 125px;
+	height: 40px;
+	font: var(--button14);
+}
+
+.addressLine {
+	margin-top: -35px;
+}
+
+.writeButton {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 250px;
+	border-radius: 8px;
+	background: var(--light-point);
+	font: var(--button14);
+	margin: 0 auto;
+}

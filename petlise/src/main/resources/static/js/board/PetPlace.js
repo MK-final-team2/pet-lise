@@ -85,3 +85,8 @@ $("#searchbtn").on('click', function() {
   };
   location.href = location.pathname + '?' + new URLSearchParams(queryParams).toString();
 });
+
+
+
+
+
