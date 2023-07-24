@@ -2,12 +2,10 @@ const pwReg = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,12}$/;
 
 function regPw() {
 	let pw = $('#password').val();
-	console.log(pw)
+
 	if (!pwReg.test(pw)) {
 		$('#pwRequired').text('비밀번호는 영문과 숫자를 포함한 6~12자리 입니다.');
 		$('#pwRequired').addClass('required');
-		//$('#checkPwRequired').text('비밀번호가 일치하지 않습니다.');
-		//$('#checkPwRequired').addClass('required');
 	} else {
 		$('#pwRequired').text('');
 		$('#pwRequired').removeClass('required');

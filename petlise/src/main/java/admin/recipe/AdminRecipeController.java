@@ -36,6 +36,7 @@ public class AdminRecipeController {
 		}
 		return "admin/editExpertRecipe";
 	}
+	
 	@GetMapping("/getexpertrecipe")
 	public String getExpertRecipe(Model model,@RequestParam("id") String id) {
 		model.addAttribute("check", "수정");
@@ -47,6 +48,7 @@ public class AdminRecipeController {
 		
 		return "admin/editExpertRecipe";
 	}
+	
 	@RequestMapping("/editexpertrecipe")
 	public ResponseEntity<Void> editExpertRecipeDog(AdminEditRecipeRequestDTO dto) {
 		service.updateRecipe(dto);

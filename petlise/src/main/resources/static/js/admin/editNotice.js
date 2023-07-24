@@ -15,21 +15,24 @@ function edit() {
 		alert('내용을 입력해주세요.')
 		return false;
 	}
+	
+	let param = document.location.href.split("id=");
 
 	let formData = new FormData();
 	formData.append("title", title)
 	formData.append("contents", contents)
 	formData.append("category", category)
+	if(param) formData.append("notice_id", param[1])
 
 	$.ajax({
-		url: 'editnotice',
+		url: `${check == '등록' ? 'createnotice' : 'editnotice'}`,
 		type: "post",
 		data: formData,
 		contentType: false,
 		processData: false,
 		success: function(data) {
-			alert("등록이 완료되었습니다.")
-			location.href = `/admin/notice`;
+			alert(`${check}이 완료되었습니다.`)
+			location.href = `/admin/noticemanagement`;
 		},
 		error: function(error) {
 			console.log(error);

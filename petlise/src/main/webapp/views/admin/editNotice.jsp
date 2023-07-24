@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -19,22 +19,38 @@ pageEncoding="UTF-8"%>
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <title>Pet LiSe</title>
+    <script>
+    	let check = "${check}";
+    </script>
   </head>
   <body>
     <div class="container">
       <div id="asideMenu"></div>
 
       <main>
-        <p>공지사항 등록</p>
+        <p>공지사항 ${check}</p>
 
         <div class="contents">
-          <div class="category" id="category"></div>
-          
-          <input type="text" placeholder="제목" name="title" />
-          
-          <div id="editor"></div>
-          
-          <button class="editButton" onclick="return edit()">등록하기</button>
+          <div class="category" id="category">
+            <div id="dropdown" class="dropdown">
+              <div class="select">
+                <span>${fn:length(noticeInfo.category) != 0 ? noticeInfo.category : '카테고리 선택'}</span>
+              </div>
+              <input type="hidden" name="category" value="${fn:length(noticeInfo.category) != 0 ? noticeInfo.category : ''}" />
+              <ul class="dropdown-menu">
+                <li>공지</li>
+                <li>이벤트</li>
+              </ul>
+            </div>
+          </div>
+
+          <input type="text" placeholder="제목" name="title" value="${noticeInfo.title}" />
+
+          <div id="editor">
+          	${noticeInfo.contents}
+          </div>
+
+          <button class="editButton" onclick="return edit()">${check}하기</button>
         </div>
       </main>
     </div>
