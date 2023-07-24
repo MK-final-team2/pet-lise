@@ -22,7 +22,7 @@
       // Add click event listener to the "우편번호 검색" button
       $("#adressBtn").click(function() {
         sample6_execDaumPostcode(); // Call the address search function
-      });
+      });	
 
       $('#searchBtn').click(function() {
         // 버튼을 click했을때
@@ -103,7 +103,7 @@
     </div>
     <div class="talkdog">
       <div id="map"></div>
-      <button id="searchBtn" type="button" style="background-image: url('/images/board/talkdog.png'); background-size: contain; width: 150px; height: 150px;">&nbsp;</button>
+      <button id="searchBtn" type="button" style="background-image: url('/images/board/talkdog1.png'); background-size: contain; width: 150px; height: 150px;">&nbsp;</button>
       <p>
         노랑이(3세) <br> <br>주인님! 펫플레이스의 주소 검색 후<br> <br> 저를 누르면 위치를 보여드릴게요! <br> <br>
       </p>
@@ -123,7 +123,6 @@
         <p>* 저작권 침해, 음란, 청소년 유해물, 기타 위법자료 등을 게시할 경우 게시물은 경고 없이 삭제됩니다.</p>
       </div>
       <button class="writeButton" onclick="return edit()">등록하기</button>
-    </form>
     </div>
   </div>
   <script src="/js/editor.js"></script>

@@ -9,7 +9,8 @@ public class PetPlaceDTO {
     String user_id;
     String title;
     String category;
-    Date petplace_created;
+    String p_address;
+	Date petplace_created;
     Date petplace_updated;
     
     public int getPlace_id() {
@@ -58,6 +59,13 @@ public class PetPlaceDTO {
     
     public void setCategory(String category) {
         this.category = category;
+    }
+    public String getP_address() {
+    	return p_address;
+    }
+    
+    public void setP_address(String p_address) {
+    	this.p_address = p_address;
     }
     
     public Date getPetplace_created() {

@@ -70,10 +70,10 @@
 <!-- Insert a new pet place -->
 <insert id="insertPetPlace" parameterType="board.petplace.PetPlaceDTO">
   INSERT INTO petlise.petplace (
-    title, category,
+    view_count, like_count, user_id, title, category,
     petplace_created, petplace_updated
   ) VALUES (
-     #{title}, #{category},
+    #{viewCount}, #{likeCount}, #{userId}, #{title}, #{category},
     #{petplaceCreated}, #{petplaceUpdated}
   )
 </insert>

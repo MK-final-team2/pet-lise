@@ -17,7 +17,6 @@ public interface PetPlaceDAO {
 	int deletePetPlace(String _id);	
 	int maxPetPlaceNum();
 	int countTotalPetPlaceNum();
-	//Petplace_List
 	List<PetPlaceDTO> getAllPetPlace();
 	PetPlaceDTO getPetPlaceById(String PetPlace_id);
 	

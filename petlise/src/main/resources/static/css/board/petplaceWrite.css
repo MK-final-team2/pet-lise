@@ -18,7 +18,7 @@
 
 }
 
-#searchBtn {
+.talkdog.searchBtn {
 	width: 150px;
 	height: 150px;
 	margin-top: 60px;
@@ -29,7 +29,7 @@
 .talkdog p {
 	font: var(--body14);
 	text-align:center;
-	background-image: url('/images/board/bloon.png');
+	background-image: url('/images/board/bloon1.png');
 	background-repeat: no-repeat;
 	
 	background-size: contain; 
