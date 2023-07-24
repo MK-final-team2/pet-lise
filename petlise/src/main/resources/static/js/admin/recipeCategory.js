@@ -1,15 +1,12 @@
-document.getElementById('dropdown').innerHTML += `
-  <div class="select">
-    <span>카테고리 선택</span>
-  </div>
-  <input type="hidden" name="main_category" />
-  <ul class="dropdown-menu">
-    <li>일반식</li>
-    <li>건강식</li>
-    <li>간식</li>
-    <li>기타</li>
-  </ul>
-`;
+let defaultCate = $('#dropdown2 .select span').text('카테고리 선택');
+let changValue = $('.smallCateName').attr('value', '');
+let main_category = $('input[name=main_category]').val();
+
+if(main_category != '') {
+	$('#smallCategory').css('display', 'block');
+
+	smallCategory(main_category)
+}
 
 $('#dropdown').click(function () {
   $(this).attr('tabindex', 1).focus();
@@ -27,9 +24,11 @@ $('#dropdown .dropdown-menu li').click(function () {
 
 $('.dropdown-menu li').click(function () {
   let value = $(this).text();
-  let defaultCate = $('#dropdown2 .select span').text('카테고리 선택');
-  let changValue = $('.smallCateName').attr('value', '');
 
+  smallCategory(value)
+});
+
+function smallCategory(value){
   if (value === '일반식') {
     $('#smallCategory').css('display', 'block');
     defaultCate
@@ -58,14 +57,16 @@ $('.dropdown-menu li').click(function () {
     defaultCate
     changValue
   }
-});
+}
 
 $('#dropdown2').click(function () {
+  $('#smallCategory').css('display', 'block');
   $(this).attr('tabindex', 1).focus();
   $(this).toggleClass('active');
   $(this).find('.dropdown-menu').slideToggle(300);
 });
 $('#dropdown2').focusout(function () {
+  $('#smallCategory').css('display', 'block');
   $(this).removeClass('active');
   $(this).find('.dropdown-menu').slideUp(300);
 });

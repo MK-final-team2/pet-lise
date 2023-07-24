@@ -9,7 +9,10 @@ table thead {
 }
 table thead tr {
   display: grid;
-  grid-template-columns: 100px 150px minmax(377px, 1130px) 80px 120px 100px;
+  grid-template-columns: 80px 130px minmax(435px, 1130px) 80px 120px 85px;
+}
+table thead tr.expert {
+  grid-template-columns: 80px 130px minmax(350px, 1130px) 80px 120px repeat(2, 85px);
 }
 table thead th {
   font: var(--highlight16);
@@ -23,8 +26,11 @@ table tbody {
 table tbody tr {
   width: 100%;
   display: grid;
-  grid-template-columns: 100px 150px auto 80px 120px 100px;
+  grid-template-columns: 80px 130px auto 80px 120px 85px;
   border-bottom: 1px solid var(--light-point);
+}
+table tbody tr.expert {
+  grid-template-columns: 80px 130px auto 80px 120px repeat(2, 85px);
 }
 table tbody td {
   font: var(--body14);

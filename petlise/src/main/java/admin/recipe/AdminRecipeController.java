@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.servlet.http.HttpSession;
@@ -22,8 +23,9 @@ public class AdminRecipeController {
 	@Qualifier("adminRecipeServiceImpl")
 	AdminRecipeService service;
 
-	@RequestMapping("/editexpertrecipe")
-	public String editExpertRecipeDog(Model model, HttpSession session, AdminRecipeRequestDTO dto) {
+	@RequestMapping("/createexpertrecipe")
+	public String createExpertRecipeDog(Model model, HttpSession session, AdminRecipeRequestDTO dto) {
+		model.addAttribute("check", "등록");
 		model.addAttribute("pet_category", "강아지");
 
 		if (session.getAttribute("user_id") != null) {
@@ -33,6 +35,23 @@ public class AdminRecipeController {
 			service.insertRecipe(dto);
 		}
 		return "admin/editExpertRecipe";
+	}
+	@GetMapping("/getexpertrecipe")
+	public String getExpertRecipe(Model model,@RequestParam("id") String id) {
+		model.addAttribute("check", "수정");
+		model.addAttribute("recipe_category", "전문가");
+		model.addAttribute("pet_category", "강아지");
+		AdminRecipeRequestDTO recipeInfo = service.findRecipe(id);
+
+		model.addAttribute("recipeInfo", recipeInfo);
+		
+		return "admin/editExpertRecipe";
+	}
+	@RequestMapping("/editexpertrecipe")
+	public ResponseEntity<Void> editExpertRecipeDog(AdminEditRecipeRequestDTO dto) {
+		service.updateRecipe(dto);
+		
+		return new ResponseEntity(HttpStatus.OK);
 	}
 
 	@GetMapping("/expertrecipemanagement")
@@ -66,8 +85,9 @@ public class AdminRecipeController {
 		return new ResponseEntity(HttpStatus.OK);
 	}
 
-	@RequestMapping("/editexpertrecipe-cat")
+	@RequestMapping("/createexpertrecipe-cat")
 	public String editExpertRecipeCat(Model model, HttpSession session, AdminRecipeRequestDTO dto) {
+		model.addAttribute("check", "등록");
 		model.addAttribute("pet_category", "고양이");
 
 		if (session.getAttribute("user_id") != null) {
@@ -76,6 +96,18 @@ public class AdminRecipeController {
 			dto.setUser_id(user_id);
 			service.insertRecipe(dto);
 		}
+		return "admin/editExpertRecipe";
+	}
+	
+	@GetMapping("/getexpertrecipe-cat")
+	public String getExpertRecipeCat(Model model, @RequestParam("id") String id) {
+		model.addAttribute("check", "수정");
+		model.addAttribute("recipe_category", "전문가");
+		model.addAttribute("pet_category", "고양이");
+		AdminRecipeRequestDTO recipeInfo = service.findRecipe(id);
+
+		model.addAttribute("recipeInfo", recipeInfo);
+		
 		return "admin/editExpertRecipe";
 	}
 

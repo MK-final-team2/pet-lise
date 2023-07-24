@@ -10,4 +10,6 @@ public interface AdminRecipeService {
 	public List<AdminRecipeResponseDTO> findAllRecipe(AdminFindAllRecipeRequestDTO dto);
 	public void updateRecipeOfTheMonth(String recipe_id, boolean recipe_of_the_month);
 	public void deleteRecipe(String recipe_id);
+	public AdminRecipeRequestDTO findRecipe (String recipe_id);
+	public void updateRecipe(AdminEditRecipeRequestDTO dto);
 }

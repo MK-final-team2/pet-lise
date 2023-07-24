@@ -14,6 +14,23 @@
 			#{sub_category}, false
 		)
 	</insert>
+	
+	<update id="updateRecipe" parameterType="Map">
+		UPDATE recipe SET
+			recipe_title=#{recipe_title}, 
+			recipe_contents=#{recipe_contents}, 
+			main_category=#{main_category}, 
+			sub_category=#{sub_category}, 
+			image=#{image} 
+		WHERE recipe_id=#{recipe_id}
+	</update>
+	
+	<select id="findRecipe" parameterType="string" resultType="adminreciperequestdto">
+		SELECT recipe_title, recipe_contents, main_category, 
+			sub_category, image
+		FROM recipe 
+		WHERE recipe_id=#{recipe_id}
+	</select>
 
 	<select id="findAllRecipe" parameterType="adminfindallreciperequestdto"
 		resultType="hashmap">
@@ -55,7 +72,7 @@
 	</select>
 	
 	<update id="updateRecipeOfTheMonth" parameterType="map">
-		UPDATE recipe SET recipe_of_the_month=#{recipe_of_the_month}
+		UPDATE recipe SET recipe_of_the_month=#{recipe_of_the_month}, recipe_of_the_month_ registration_date=NOW()
 		where recipe_id=#{recipe_id}
 	</update>
 	

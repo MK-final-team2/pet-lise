@@ -34,7 +34,7 @@ public class AdminController {
 		return "admin/userManagement";
 	}
 
-	@RequestMapping("/editnotice")
+	@RequestMapping("/createnotice")
 	public String editNotice(HttpSession session, AdminNoticeRequestDTO dto) {
 		if (session.getAttribute("user_id") != null) {
 			String user_id = session.getAttribute("user_id").toString();

@@ -23,7 +23,7 @@ function ajaxData(keyword, page) {
 
   const editBtn = document.getElementById('edit');
   if (category == '공지' || category == '이벤트') {
-    editBtn.innerHTML = `<a href="/admin/editnotice" class="editButton">등록</a>`;
+    editBtn.innerHTML = `<a href="/admin/createnotice" class="editButton">등록</a>`;
 
     let formData = new FormData();
     formData.set('category', category);
@@ -47,7 +47,8 @@ function ajaxData(keyword, page) {
         pagination(page, totalCount);
         console.log(data);
         tbody.innerHTML = dataTable
-          .map(el => `
+          .map(
+            el => `
           	<tr>
               <td>${el?.category}</td>
               <td id="${el?.notice_id}">${el?.title}</td>
@@ -59,7 +60,8 @@ function ajaxData(keyword, page) {
                 el?.notice_id
               }" onclick="clickModal(this)">삭제</span></td>
             </tr>`
-          ).join('');
+          )
+          .join('');
       },
       error: function (error) {
         console.log(error);
@@ -83,7 +85,9 @@ function ajaxData(keyword, page) {
         let totalCount = dataTable.length != 0 ? dataTable[0].count : 0;
         pagination(page, totalCount);
         console.log(data);
-        tbody.innerHTML = dataTable.map(el => `
+        tbody.innerHTML = dataTable
+          .map(
+            el => `
           	<tr>
               <td>${el?.category}</td>
               <td id="${el?.notice_id}">${el?.title}</td>
@@ -95,7 +99,8 @@ function ajaxData(keyword, page) {
                 el?.notice_id
               }" onclick="clickModal(this)">삭제</span></td>
             </tr>`
-          ).join('');
+          )
+          .join('');
       },
       error: function (error) {
         console.log(error);
@@ -107,11 +112,19 @@ function ajaxData(keyword, page) {
     editBtn.style.display = 'none';
 
     var xhr = new XMLHttpRequest();
-    var url = 'http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic';
-    var queryParams = '?' + encodeURIComponent('serviceKey') + '=' + '5kTczAnUCFz4l%2BW%2BMvfc2YntVC36c4UOTxbpLzEPG1N1DQ5qStpMlahJjdq71by6HZo3ez8kwe1kFCs3TBlNWw%3D%3D';
-    queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10');
-    queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent(page); /**/
-    queryParams += '&' + encodeURIComponent('_type') + '=' + encodeURIComponent('json'); /**/
+    var url =
+      'http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic';
+    var queryParams =
+      '?' +
+      encodeURIComponent('serviceKey') +
+      '=' +
+      '5kTczAnUCFz4l%2BW%2BMvfc2YntVC36c4UOTxbpLzEPG1N1DQ5qStpMlahJjdq71by6HZo3ez8kwe1kFCs3TBlNWw%3D%3D';
+    queryParams +=
+      '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10');
+    queryParams +=
+      '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent(page); /**/
+    queryParams +=
+      '&' + encodeURIComponent('_type') + '=' + encodeURIComponent('json'); /**/
     xhr.open('GET', url + queryParams);
     xhr.onreadystatechange = function () {
       if (this.readyState == 4) {
@@ -120,9 +133,11 @@ function ajaxData(keyword, page) {
         let totalCount = response.totalCount / 1.5;
 
         pagination(page, totalCount);
-        
+
         let tbody = document.getElementById('familyTbody');
-        tbody.innerHTML = item.map(el => `
+        tbody.innerHTML = item
+          .map(
+            el => `
           	<tr>
               <td>${el?.kindCd.split('] ')[0]}]</td>
               <td><img src="${el?.popfile}" /></td>
@@ -133,7 +148,8 @@ function ajaxData(keyword, page) {
               <td>${el?.weight}</td>
               <td>${el?.processState}</td>
             </tr>`
-          ).join('');
+          )
+          .join('');
       }
     };
 
