@@ -32,6 +32,23 @@
 		LIMIT 10 OFFSET #{page};
 	</select>
 	
+	<update id="updateNotice" parameterType="Map">
+		UPDATE noticeBoard SET
+			title=#{title}, contents=#{contents}, category=#{category}
+		WHERE notice_id=#{notice_id}
+	</update>
+	
+	<select id="findNotice" parameterType="string" resultType="adminnoticerequestdto">
+		SELECT title, contents, category
+		FROM noticeBoard
+		WHERE notice_id=#{notice_id}
+	</select>
+	
+	<delete id="deleteNotice" parameterType="string">
+		DELETE FROM noticeBoard
+		WHERE notice_id=#{notice_id}
+	</delete>
+	
 	<select id="findAllQnA" parameterType="map" resultType="hashmap">
 		SELECT ( SELECT count(*) FROM qnaBoard q
 			LEFT JOIN user u
@@ -52,5 +69,10 @@
 		notice_id DESC
 		LIMIT 10 OFFSET #{page};
 	</select>
+	
+	<delete id="deleteQnA" parameterType="string">
+		DELETE FROM qnaBoard
+		WHERE notice_id=#{notice_id}
+	</delete>
 
 </mapper>

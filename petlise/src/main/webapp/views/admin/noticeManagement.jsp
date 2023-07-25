@@ -47,6 +47,7 @@
           </div>
           <div id="pagination"></div>
         </div>
+        <div id="modal"></div>
       </main>
     </div>
 
@@ -56,5 +57,6 @@
     <script src="/js/admin/noticeTable.js"></script>
     <script src="/js/admin/getDate.js"></script>
     <script src="/js/admin/search.js"></script>
+    <script src="/js/admin/deleteNotice.js"></script>
   </body>
 </html>

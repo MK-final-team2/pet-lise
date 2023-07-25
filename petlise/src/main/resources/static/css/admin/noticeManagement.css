@@ -65,3 +65,7 @@ table tbody td:first-of-type,
 table tbody td:last-of-type {
   padding: 0 10px;
 }
+table tbody td:last-of-type span {
+  cursor: pointer;
+}
+

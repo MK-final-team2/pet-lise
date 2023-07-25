@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -22,8 +22,6 @@ pageEncoding="UTF-8"%>
     <script>
       let title = '${pet_category}';
       let check = '${check}';
-      
-      //console.log(recipeInfo)
     </script>
   </head>
   <body>
@@ -51,7 +49,7 @@ pageEncoding="UTF-8"%>
               <p>대분류 카테고리</p>
               <div id="dropdown" class="dropdown">
               	<div class="select">
-				    <span>${recipeInfo.main_category == '' ? '카테고리 선택' : recipeInfo.main_category}</span>
+				    <span>${fn:length(recipeInfo.main_category) == 0 ? '카테고리 선택' : recipeInfo.main_category}</span>
 				  </div>
 				  <input type="hidden" name="main_category" value="${recipeInfo.main_category == '' ? '' : recipeInfo.main_category}" />
 				  <ul class="dropdown-menu">
