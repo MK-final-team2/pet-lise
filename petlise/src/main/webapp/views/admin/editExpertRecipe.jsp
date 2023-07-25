@@ -21,6 +21,9 @@ pageEncoding="UTF-8"%>
     <title>Pet LiSe</title>
     <script>
       let title = '${pet_category}';
+      let check = '${check}';
+      
+      //console.log(recipeInfo)
     </script>
   </head>
   <body>
@@ -28,22 +31,36 @@ pageEncoding="UTF-8"%>
       <div id="asideMenu"></div>
 
       <main>
-        <p>전문가 레시피 등록 - ${pet_category}</p>
+        <p>${recipe_category} 레시피 ${check} - ${pet_category}</p>
 
         <div class="contents">
-          <input type="text" placeholder="제목" name="recipe_title" />
+          <input type="text" placeholder="제목" name="recipe_title" value="${recipeInfo.recipe_title}" />
           <div class="fileWrap">
             <p>대표이미지</p>
             <label for="file">
-              <img src="/images/image-icon.svg" alt="대표이미지" id="imgUrl" />
-              <input type="hidden" id="imageValue" name="image" />
+              <img 
+              	src="https://storage.googleapis.com/${recipeInfo.image}"
+              	onerror="this.onerror=null; this.src='/images/image-icon.svg';" 
+              	alt="대표이미지" id="imgUrl" />
+              <input type="hidden" id="imageValue" name="image" value="${recipeInfo.image}" />
             </label>
             <input type="file" id="file" accept="image/*" onchange="imageUpload()" />
           </div>
           <div class="categoryWrap">
             <div class="category">
               <p>대분류 카테고리</p>
-              <div id="dropdown" class="dropdown"></div>
+              <div id="dropdown" class="dropdown">
+              	<div class="select">
+				    <span>${recipeInfo.main_category == '' ? '카테고리 선택' : recipeInfo.main_category}</span>
+				  </div>
+				  <input type="hidden" name="main_category" value="${recipeInfo.main_category == '' ? '' : recipeInfo.main_category}" />
+				  <ul class="dropdown-menu">
+				    <li>일반식</li>
+				    <li>건강식</li>
+				    <li>간식</li>
+				    <li>기타</li>
+				  </ul>
+              </div>
             </div>
 
             <div class="category" id="smallCategory">
@@ -58,8 +75,10 @@ pageEncoding="UTF-8"%>
             </div>
           </div>
 
-          <div id="editor"></div>
-          <button class="editButton" onclick="return edit()">등록하기</button>
+          <div id="editor">
+          	${recipeInfo.recipe_contents}
+          </div>
+          <button class="editButton" onclick="return ${check == '등록' ? 'create()' : 'edit()'}">${check}하기</button>
         </div>
       </main>
     </div>

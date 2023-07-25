@@ -77,4 +77,12 @@ public class AdminRecipeRequestDTO {
 		this.recipe_of_the_month = recipe_of_the_month;
 	}
 
+	@Override
+	public String toString() {
+		return "AdminRecipeRequestDTO [user_id=" + user_id + ", recipe_title=" + recipe_title + ", recipe_contents="
+				+ recipe_contents + ", image=" + image + ", recipe_category=" + recipe_category + ", pet_category="
+				+ pet_category + ", main_category=" + main_category + ", sub_category=" + sub_category
+				+ ", recipe_of_the_month=" + recipe_of_the_month + "]";
+	}
+
 }

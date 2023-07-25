@@ -17,14 +17,8 @@ $(document).ready(function () {
 
 function ajaxData(keyword, page) {
   let select_category = $('.isOn').children('a').text();
-  let main_category = `${
-    select_category == '전체' || select_category == '이달의 레시피'
-      ? ''
-      : select_category
-  }`;
-  let recipe_of_the_month = `${
-    select_category == '이달의 레시피' ? true : false
-  }`;
+  let main_category = `${select_category == '전체' || select_category == '이달의 레시피' ? '' : select_category}`;
+  let recipe_of_the_month = `${select_category == '이달의 레시피' ? true : false}`;
 
   let formData = new FormData();
   formData.set('recipe_category', recipe_category);
@@ -35,11 +29,9 @@ function ajaxData(keyword, page) {
   formData.set('page', page);
 
   $.ajax({
-    url: `/admin/${
-      recipe_category == '전문가레시피'
+    url: `/admin/${recipe_category == '전문가레시피'
         ? 'expertrecipemanagement'
-        : 'myrecipemanagement'
-    }`,
+        : 'myrecipemanagement'}`,
     type: 'post',
     data: formData,
     contentType: false,
@@ -52,26 +44,21 @@ function ajaxData(keyword, page) {
       let totalCount = dataTable.length != 0 ? dataTable[0].count : 0;
       pagination(page, totalCount);
       tbody.innerHTML = dataTable
-        .map(
-          el => `
-          	<tr>
-              <td><input type="checkbox" id="${
-                el?.recipe_id
-              }" onclick="addCheck(this)" ${
-            el?.recipe_of_the_month == true ? 'checked' : ''
-          } ></td>
-              <td>${el?.main_category}${
-            el?.main_category == '기타' ? '' : ` [${el?.sub_category}]`
-          }</td>
+        .map(el => `
+          	<tr ${recipe_category == '전문가레시피'? `class="expert"` : ``}>
+              <td><input type="checkbox" id="${el?.recipe_id}" onclick="addCheck(this)" ${el?.recipe_of_the_month == true ? 'checked' : ''} ></td>
+              <td>${el?.main_category}${el?.main_category == '기타' ? '' : ` [${el?.sub_category}]`}</td>
               <td id="${el?.recipe_id}">${el?.recipe_title}</td>
               <td>${el?.name}</td>
               <td>${getDate(el?.recipe_created_at)}</td>
-              <td><span id="${
-                el?.recipe_id
-              }" onclick="clickModal(this)">삭제</span></td>
+              ${recipe_category == '전문가레시피'
+              ? `<td><a href="/admin/${pet_category == '강아지' 
+              	? 'getexpertrecipe' 
+              	: 'getexpertrecipe-cat'}?id=${el?.recipe_id}">수정</a></td>` 
+              : ""}
+              <td><span id="${el?.recipe_id}" onclick="clickModal(this)">삭제</span></td>
             </tr>`
-        )
-        .join('');
+        ).join('');
     },
     error: function (error) {
       console.log(error);

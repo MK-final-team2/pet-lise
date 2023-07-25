@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -15,8 +16,8 @@
     <title>Pet LiSe</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script>
-      let recipe_category = "전문가레시피";
-      let pet_category = "${pet_category}";
+      let recipe_category = '전문가레시피';
+      let pet_category = '${pet_category}';
     </script>
     <script src="/js/admin/recipeManagement.js"></script>
   </head>
@@ -38,10 +39,18 @@
               <li><a href="#tab6" class="btn">기타</a></li>
             </ul>
             <div class="inputWrap">
-            <object data="/images/search.svg"></object>
-            <input type="text" id="searchInput" placeholder="제목 or 작성자" />
+              <object data="/images/search.svg"></object>
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="제목 or 작성자"
+              />
             </div>
-            <a href="/admin/editexpertrecipe" class="editButton">등록</a>
+            <a
+              href="/admin/createexpertrecipe${pet_category == '고양이' ? '-cat' : ''}"
+              class="editButton"
+              >등록</a
+            >
           </div>
 
           <div class="tableWrap">
@@ -50,10 +59,10 @@
 
           <div id="pagination"></div>
         </div>
-    	<div id="modal"></div>
+        <div id="modal"></div>
       </main>
     </div>
-    
+
     <script src="/js/admin/aside.js"></script>
     <script src="/js/pagination.js"></script>
     <script src="/js/admin/recipeTabMenu.js"></script>
