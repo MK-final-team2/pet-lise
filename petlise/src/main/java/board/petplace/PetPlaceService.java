@@ -62,6 +62,11 @@ public class PetPlaceService {
         List<PetPlaceDTO> list = dao.getAllPetPlacePaging(dto);
         return new PagingResponse<>(list, pagination);
     }
+
+	public static int savePetPlace(PetPlaceDTO petPlaceDTO) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 
 }

@@ -67,4 +67,17 @@
 		</where>
 	</select>
 
+<!-- Insert a new pet place -->
+<insert id="insertPetPlace" parameterType="board.petplace.PetPlaceDTO">
+  INSERT INTO petlise.petplace (
+    view_count, like_count, user_id, title, category,
+    petplace_created, petplace_updated
+  ) VALUES (
+    #{viewCount}, #{likeCount}, #{userId}, #{title}, #{category},
+    #{petplaceCreated}, #{petplaceUpdated}
+  )
+</insert>
+
+
+
 </mapper>
