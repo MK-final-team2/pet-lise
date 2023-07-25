@@ -3,15 +3,14 @@ package shop.payment;
 import java.util.Date;
 
 public class ShopOrderInfoDTO {
-	int order_id;
-	String user_id, name, address, phone, require, status;
+	String user_id, name, address, phone, require, status, order_id;
 	Date date;
 	int total_point, total_payment;
 	
-	public int getOrder_id() {
+	public String getOrder_id() {
 		return order_id;
 	}
-	public void setOrder_id(int order_id) {
+	public void setOrder_id(String order_id) {
 		this.order_id = order_id;
 	}
 	public String getUser_id() {

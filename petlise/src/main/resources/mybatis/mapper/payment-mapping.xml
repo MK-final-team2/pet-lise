@@ -5,32 +5,32 @@
 
 <!-- 선택된 주문목록 불러오기 -->
 	<select id="getOrderList" resultType="orderproductdto">
-		SELECT * FROM `orderproduct` WHERE `user_id` = 'petlise' AND `order_id` IS NULL;
+		SELECT * FROM `orderproduct` WHERE `user_id` = #{user_id} AND `order_id` IS NULL;
 	</select>
 
 <!-- 회원정보 불러오기 -->
 	<select id="getUserInfo" resultType="userdto">
-		SELECT * FROM `user` WHERE `user_id` = 'petlise';
+		SELECT * FROM `user` WHERE `user_id` = #{user_id};
 	</select>
 
 <!-- 배송정보 저장하기 -->	
 	<insert id="saveOrderInfo" parameterType="orderinfodto">
 		INSERT INTO `order`
-					(`user_id`, `name`, `phone`, `address`, `require`, `total_point`, `total_payment`, `date`) 
-		VALUES 		(#{user_id}, #{name}, #{phone}, #{address}, #{require}, #{total_point}, #{total_payment}, DATE_FORMAT(NOW(), '%Y.%m.%d'));
+					(`order_id`, `user_id`, `name`, `phone`, `address`, `require`, `total_point`, `total_payment`, `date`, `status`) 
+		VALUES 		(#{order_id}, #{user_id}, #{name}, #{phone}, #{address}, #{require}, #{total_point}, #{total_payment}, DATE_FORMAT(NOW(), '%Y.%m.%d'), #{status});
 	</insert>
 	
 <!-- 주문번호 부여 -->	
 	<update id="orderConfirm" parameterType="orderproductdto">
 		UPDATE `orderproduct` 
-		SET    `order_id` = (SELECT `order_id` FROM `order` WHERE `user_id` = 'petlise' ORDER BY `order_id` DESC LIMIT 1) 
-		WHERE  `user_id` = 'petlise' AND `order_id` IS NULL;
+		SET    `order_id` = (SELECT `order_id` FROM `order` WHERE `user_id` = #{user_id} ORDER BY `order_id` DESC LIMIT 1) 
+		WHERE  `user_id` = #{user_id} AND `order_id` IS NULL;
 	</update>
 	
 <!-- 주문완료 후 장바구니 비우기 -->
 	<delete id="deleteCart" parameterType="String">
 		DELETE FROM `cart` 
-		WHERE `user_id` = 'petlise';
+		WHERE `user_id` = #{user_id};
 	</delete>
 	
 <!-- 상품목록 불러오기 -->

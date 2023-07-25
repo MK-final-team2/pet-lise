@@ -49,7 +49,7 @@
 			<c:forEach var="cart" items="${cart }" begin="0" end="2">
 				<div class="cart_product_container">
 					<div>
-						<p class="Else">${cart.user_id }</p>
+						<p class="Else" data-user_id="${cart.user_id}">${cart.user_id}</p>
 					</div>
 					<div>
 						<p class="Else" data-product_id="${cart.product_id }"></p>
@@ -64,7 +64,7 @@
 							<a href="#">${cart.product_name }</a>
 						</div>
 					</div>
-					<div style="width: 130px;" class="cart_quantity">${cart.quantity }</div>
+					<div style="width: 130px;" class="cart_quantity" data-quantity="${cart.quantity }">${cart.quantity }</div>
 					<div style="width: 130px;" data-product_price="${cart.product_price }">
 						<img src="/images/shop/shopdetail/coin2.svg" alt="cart"
 							style="width: 20px; margin-top: 2px; margin-right: 5px;" /><fmt:formatNumber value="${cart.product_price }" pattern="#,###" />

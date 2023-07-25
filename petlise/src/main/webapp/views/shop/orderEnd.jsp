@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <% java.util.Date orderDate = new java.util.Date(); %>
 <!DOCTYPE html>
 <html>
@@ -14,9 +15,6 @@
     <link rel="stylesheet" href="/css/style.css" />
     <title>주문완료</title>
     <script src="/js/jquery-3.6.4.min.js"></script>
-    <script>
-      $(document).ready(function () {});
-    </script>
   </head>
   <body>
     <div id="layout">
@@ -36,8 +34,9 @@
 
       <p style="font: var(--heading24)">주문이 완료되었습니다.</p>
       <c:forEach var="orderInfo" items="${orderInfo}">
+      	  <c:set var="truncatedOrderId" value="${fn:substring(orderInfo.order_id, 0, 20)}" />
 	      <p style="font: var(--heading18); margin-bottom: 30px">
-	        주문일 <fmt:formatDate value="${orderInfo.date}" pattern="yyyy.MM.dd" />ㅣ주문번호 ${orderInfo.order_id}
+	        주문일 <fmt:formatDate value="${orderInfo.date}" pattern="yyyy.MM.dd" />ㅣ주문번호 ${truncatedOrderId}
 	      </p>
       </c:forEach>
 

@@ -68,7 +68,7 @@
 			            </p>
 			        </div>
 			        <div id="table_Quantity">
-			            <p>${orderProduct.quantity}</p>
+			            <p class="product_quantity">${orderProduct.quantity}</p>
 			        </div>
 			        <div id="table_Price">
 			            <p class="product_price">
@@ -90,7 +90,7 @@
 							<table class="member_Info">
 								<tr class="Else">
 									<td class="col_1">아이디</td>
-									<td class="col_2" id="member_User_Id">${userInfo.user_id}</td>
+									<td class="col_2" id="member_User_Id" data-user_id="${user_id }">${userInfo.user_id}</td>
 								</tr>		
 								<tr>
 									<td class="col_1">이름</td>
@@ -195,7 +195,7 @@
 			</div>
 		</div>
 	</div>
-					
+			
 <script src="/js/shop/payment/payment.js"></script>
 <script src="/js/postcode.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

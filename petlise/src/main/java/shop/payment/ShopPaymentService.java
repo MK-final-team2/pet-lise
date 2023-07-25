@@ -14,20 +14,20 @@ public class ShopPaymentService {
 	@Autowired
 	ShopPaymentDAO dao;
 	
-	public List<ShopOrderProductDTO> getOrderList(ShopOrderProductDTO dto){
-		return dao.getOrderList(dto);
+	public List<ShopOrderProductDTO> getOrderList(String user_id){
+		return dao.getOrderList(user_id);
 	}
 	
-	public List<UserDTO> getUserInfo(UserDTO dto){
-		return dao.getUserInfo(dto);
+	public List<UserDTO> getUserInfo(String user_id){
+		return dao.getUserInfo(user_id);
 	}
 	
 	public int saveOrderInfo(ShopOrderInfoDTO dto){
 		return dao.saveOrderInfo(dto);
 	}
 	
-	public int orderConfirm(ShopOrderProductDTO dto) {
-		return dao.orderConfirm(dto);
+	public int orderConfirm(String user_id) {
+		return dao.orderConfirm(user_id);
 	}
 	
 	public int deleteCart(String user_id) {

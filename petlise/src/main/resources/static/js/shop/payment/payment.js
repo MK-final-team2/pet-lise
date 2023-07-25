@@ -23,9 +23,6 @@
 	
 	  $('#address_CheckBox').click(function() {
 	    if ($(this).is(':checked')) {
-	
-	      var memberName = $('#member_Name').text();
-	      $('#input_Name').val(memberName);
 	      
 	      var memberAddress = $('#member_Address').text();
 	      var addressParts = memberAddress.split(', ');
@@ -35,7 +32,6 @@
 	      $('#sample6_detailAddress').val(addressParts[2]);
 	    } else {
 	      
-	      $('#input_Name').val('');
 	      $('#sample6_postcode').val('');
 	      $('#sample6_address').val('');
 	      $('#sample6_detailAddress').val('');
@@ -87,79 +83,119 @@
 	change.innerText = formattedChange;
 
 
-//결제하기 버튼
-$('#order_Btn').click(function(){
-	if ($('#check_Delivery').is(':checked') && $('#check_Order').is(':checked')) {
-		
-		if (confirm("결제를 진행하시겠습니까?")) {
-			//구매자 정보 저장
-			$.ajax({
-				url: '/saveorderinfo',
-				type: 'POST',
-				dataType: 'json',
-				data: {
-					user_id: 'petlise',
-					name: $('#input_Name').val(),
-					phone: $('#input_Phone').val(),
-					address: $('#sample6_postcode').val() + ", " 
-							+ $('#sample6_address').val() + ", " 
-							+ $('#sample6_detailAddress').val(),
-					require: $('#input_Require').val(),
-					total_point: calcTotalPoint,
-					total_payment: calcTotalPoint + 3000		
-				},
-				complete: function(response){
-					var order_id = response.order_id;
-						if(order_id == null){					
-							//주문번호 저장
-							$.ajax({
-								url:'/orderconfirm',
-								type: 'POST',
-								dataType: 'json',
-								data: {
-									order_id: order_id
-								},
-								complete: function(response2){
-									//주문완료 후 장바구니 비우기
-									$.ajax({
-										url: '/deletecart',
-										type: 'POST',
-										data: {
-											user_id: 'petlise'
-										},
-										complete: function(response3){
-											//판매량 업데이트
-											var product_ids = [];
-												$('.product_id').each(function(){
-													var product_id = parseInt($(this).text());
-													product_ids.push(product_id);
-												});
-												$.ajax({
-													url: '/updatesales',
-													type: 'POST',
-													dataType: 'json',
-													traditional: true,
-													data:{
-														product_ids: product_ids
-													},
-													complete: function(response4){
-														location.href = "/orderend";
-																																			
-													}
-												});
-										}
-									});
-								}
-							});
-						} else { }
-				} //complete
-			});
-			
-		} else { }
-	} else {
-		alert("배송 및 주문정보를 확인해주세요.");
-		return false;
-	}
+// 결제하기 버튼
+$('#order_Btn').click(function() {
+    var user_id = $('#member_User_Id').text();
+
+    if ($('#check_Delivery').is(':checked') && $('#check_Order').is(':checked')) {
+        let inputName = $('#input_Name').val();
+        let inputPhone = $('#input_Phone').val();
+
+        // 이름 확인
+        if (inputName.trim() === '') {
+            alert('이름을 입력하세요.');
+            return false;
+        }
+
+        // 전화번호 확인
+        if (inputPhone.trim() === '') {
+            alert('전화번호를 입력하세요.');
+            return false;
+        }
+
+        if (confirm("결제를 진행하시겠습니까?")) {
+            // 구매자 정보 저장
+            $.ajax({
+                url: '/saveorderinfo',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    user_id: user_id,
+                    name: $('#input_Name').val(),
+                    phone: $('#input_Phone').val(),
+                    address: $('#sample6_postcode').val() + ", "
+                        + $('#sample6_address').val() + ", "
+                        + $('#sample6_detailAddress').val(),
+                    require: $('#input_Require').val(),
+                    total_point: calcTotalPoint,
+                    total_payment: calcTotalPoint + 3000,
+                    status: "주문완료"
+                },
+                success: function(response) {
+                    orderConfirm(user_id);
+                },
+                error: function(xhr, status, error) {
+                    console.log("구매자 정보 저장 에러:", error);
+                }
+            });
+        } else {
+            console.log("결제가 취소되었습니다.");
+        }
+    } else {
+        alert("배송 및 주문정보를 확인해주세요.");
+        return false;
+    }
 });
 
+// 주문번호 부여
+function orderConfirm(user_id) {
+    $.ajax({
+        url: '/orderconfirm',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            user_id: user_id
+        },
+        success: function(response) {
+            // 주문번호 확인 성공
+            deleteCart(user_id); // 주문완료 후 장바구니 비우기
+            updateSales(); // 판매량 업데이트
+        },
+        error: function(xhr, status, error) {
+            console.log("주문번호 저장 에러:", error);
+        }
+    });
+}
 
+// 장바구니 비우기 함수
+function deleteCart(user_id) {
+    $.ajax({
+        url: '/deletecart',
+        type: 'POST',
+        data: {
+            user_id: user_id
+        },
+        success: function(response) {
+            // 장바구니 비우기 성공
+            updateSales(); // 판매량 업데이트
+        },
+        error: function(xhr, status, error) {
+            console.log("장바구니 비우기 에러:", error);
+        }
+    });
+}
+
+// 판매량 업데이트 함수
+function updateSales() {
+    var product_ids = [];
+    $('.product_id').each(function() {
+        var product_id = parseInt($(this).text());
+        product_ids.push(product_id);
+    });
+
+    $.ajax({
+        url: '/updatesales',
+        type: 'POST',
+        dataType: 'json',
+        traditional: true,
+        data: {
+            product_ids: product_ids
+        },
+        success: function(response) {
+            location.href = "/orderend";
+        },
+        error: function(xhr, status, error) {
+            console.log("판매량 업데이트 에러:", error);
+        }
+    });
+}
