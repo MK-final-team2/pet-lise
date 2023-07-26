@@ -6,3 +6,12 @@ function getDate (data) {
 
   return `${yyyy}. ${mm}. ${dd}`
 }
+
+function getDay (data) {
+  const date = new Date(data)
+
+  const mm = date.getMonth() + 1
+  const dd = date.getDate()
+
+  return `${String(mm).padStart(2, '0')}. ${dd}`
+}
