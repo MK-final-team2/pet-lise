@@ -18,12 +18,12 @@
   align-items: start;
 }
 
-.menu,
+#mypageMenu,
 .contents {
   display: inline-block;
 }
 
-.menu {
+#mypageMenu {
   min-width: 255px;
   width: 255px;
   height: 750px;

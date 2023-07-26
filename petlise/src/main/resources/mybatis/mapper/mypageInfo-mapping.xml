@@ -21,6 +21,7 @@
 
 	<update id="updateUser" parameterType="string">
 		update user set
+		name=#{name},
 		address=#{address},
 		profile_image=#{profile_image},
 		pet_type=#{pet_type},
@@ -59,7 +60,7 @@
 	</select>
 
 	<select id="recipeCount" parameterType="string" resultType="int">
-		select count(rb.user_id) from recipeBoard rb
+		select count(rb.user_id) from recipe rb
 		left join user
 		on rb.user_id = user.user_id
 		where rb.user_id = #{id}

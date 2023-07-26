@@ -12,10 +12,6 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="/css/admin/aside.css" />
     <title>Pet LiSe</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script type="text/javascript">
-    	let date = new Date();
-    	let create_user = '${create_user}';
-    </script>
   </head>
   <body>
     <div class="container">

@@ -62,14 +62,24 @@
   margin-left: 50px;
   padding-top: 25px;
 }
-.contentWrap .infoWrap .nameWrap p:first-of-type {
-  font: var(--heading34);
+.contentWrap .infoWrap .nameWrap div {
   margin-bottom: 15px;
 }
-.contentWrap .infoWrap .nameWrap p:first-of-type span {
+#nameInput {
+  margin-bottom: 20px;
+}
+.contentWrap .infoWrap .nameWrap div span {
+  display: inline-block;
+  margin-right: 15px;
+}
+.contentWrap .infoWrap .nameWrap div span:first-of-type {
+  font: var(--heading34);
+  margin-right: 8px;
+}
+.contentWrap .infoWrap .nameWrap span:nth-of-type(2) {
   font: var(--heading24);
 }
-.contentWrap .infoWrap .nameWrap p:last-of-type {
+.contentWrap .infoWrap .nameWrap > p:last-of-type {
   font: var(--body16);
 }
 
@@ -89,7 +99,8 @@
 .inputWrap p:nth-of-type(5) {
   margin: 18px 0;
 }
-.inputWrap input {
+.inputWrap input,
+#nameInput {
   width: 100%;
   height: 45px;
   border: 1px solid var(--gray4);
@@ -194,9 +205,9 @@ input[id='animal2']:checked + label::before {
   border-radius: 8px;
 }
 .required {
-	position: relative;
-	/* top: -3px; */
-	padding-left: 5px;
-	color: red;
-	font: var(--body14);
+  position: relative;
+  /* top: -3px; */
+  padding-left: 5px;
+  color: red;
+  font: var(--body14);
 }
