@@ -1,6 +1,7 @@
 package admin.order;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,9 @@ public class OrderService {
 	
 	public int getCountWait() {
 		return dao.getCountWait();
+	}
+	
+	public int updateDelivery(HashMap<String, String> map) {
+		return dao.updateDelivery(map);
 	}
 }

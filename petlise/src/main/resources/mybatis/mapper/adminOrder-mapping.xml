@@ -85,6 +85,13 @@
                 </otherwise>
         	</choose>
 		</if>
+		
+		<if test="startDate != null and startDate != ''">
+			and `date` <![CDATA[>=]]> #{startDate}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			and `date` <![CDATA[<=]]> CONCAT(#{endDate}, " 23:59:59")
+		</if>
 		order by date desc
 		limit #{pagination.limitStart}, #{recordSize}
 	</select>
@@ -145,6 +152,12 @@
                 </otherwise>
         	</choose>
 		</if>
+		<if test="startDate != null and startDate != ''">
+			and `date` <![CDATA[>=]]> #{startDate}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			and `date` <![CDATA[<=]]> CONCAT(#{endDate}, " 23:59:59")
+		</if>
 	</select>
 	
 	<select id="getCountWait" resultType="int">
@@ -159,5 +172,12 @@
 		from `orderproduct`
 		where order_id=#{order_id};
 	</select>
+	
+<!-- 배송정보 업데이트 -->
+	<update id="updateDelivery" parameterType="HashMap">
+		UPDATE `order` 
+		SET status = "배송처리완료", delivery_com = #{delivery_com}, delivery_id = #{delivery_id}
+		WHERE order_id=#{order_id};
+	</update> 
 	
 </mapper>
