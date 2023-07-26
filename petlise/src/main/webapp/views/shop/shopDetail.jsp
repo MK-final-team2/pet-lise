@@ -302,7 +302,7 @@
 		<!-- categorys -->
 
 		<div id="detail_img_info">
-			<div id="img" style="background-image: url(${product.image_main});">
+			<div id="img" style="background-image: url(https://storage.googleapis.com/${product.image_main});">
 				<c:if test="${!product.isvisible}">
 					<div class="product_img_cover_soldout">
 						<div>
@@ -371,7 +371,7 @@
 		</div>
 
 		<div id="product_detail">
-			<img src="${product.image_detail}">
+			<img src="https://storage.googleapis.com/${product.image_detail}">
 		</div>
 
 		<div class="detail_tab">

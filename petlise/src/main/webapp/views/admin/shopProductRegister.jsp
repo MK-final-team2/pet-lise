@@ -14,10 +14,13 @@
 <link rel="stylesheet" href="/css/admin/aside.css" />
 <link rel="stylesheet" href="/css/admin/shopProductRegister.css" />
 <link rel="stylesheet" href="/css/admin/shop_dropdown.css" />
+<link rel="stylesheet" href="/css/admin/jquery-ui.css" />
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
 	rel="stylesheet" />
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <title>Pet LiSe</title>
 </head>
 <body>
@@ -30,16 +33,19 @@
 				<div class="edit_images">
 					<div class="fileWrap">
 						<p>상품 대표이미지</p>
-						<label for="file1"> <img id='fileimg1' src="/images/image-icon.svg"
+						<label for="file1">
+						<img id='fileimg1' src="/images/image-icon.svg"
 							alt="이미지아이콘" />
 						</label> 
 						<input type="file" id="file1" />
+						<input type="hidden" id="imageValue1" value="">
 					</div>
 					<div class="fileWrap">
 						<p>상품 상세이미지</p>
 						<label for="file2"> <img id='fileimg2' src="/images/image-icon.svg"
 							alt="이미지아이콘" />
 						</label> <input type="file" id="file2" />
+						<input type="hidden" id="imageValue2" value="">
 					</div>
 				</div>
 
@@ -84,14 +90,11 @@
 						<input type="number" id="product_quatity" />
 					</div>
 					
-					<% Date date = new Date(); 
-						SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd");
-						String today = simple.format(date);
-					%>
-					
 					<div class="Wrapper">
 						<p>상품 등록일</p>
-						<input type="date" id="product_regtime" min="<%=today%>" style="margin-bottom:5px"/>
+						<div>
+							<input type="text" id="product_regtime" placeholder="날짜 선택" readonly>
+						</div>
 						<p style="font: var(--body14); margin-top:0px">* 상품은 등록일 이후부터 상품목록에 노출됩니다.</p>
 					</div>
 				</div>

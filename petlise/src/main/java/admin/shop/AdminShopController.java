@@ -122,8 +122,6 @@ public class AdminShopController {
 		productCode += String.format("%03d", product_nextnum);
 
 		dto.setProduct_code(productCode);
-		dto.setImage_main(null);
-		dto.setImage_detail(null);
 		
 		service.insertProduct(dto);
 		int page = service.countTotalProductNum()%10==0?service.countTotalProductNum()/10:service.countTotalProductNum()/10+1;

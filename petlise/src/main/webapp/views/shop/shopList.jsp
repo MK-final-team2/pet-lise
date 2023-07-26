@@ -146,7 +146,7 @@
 				<c:if test="${product.isvisible}">
 					<div class="products" id="${product.product_id}">
 						<div class="product_img"
-							style="background-image: url(${product.image_main});">
+							style="background-image: url(https://storage.googleapis.com/${product.image_main});">
 							<!-- <div class="product_img_cover">
 								<button class="cartbtn">
 									<img src="/images/shop/shoplist/cart_yellow.svg" alt="cart" />
@@ -166,7 +166,7 @@
 				<c:if test="${!product.isvisible}">
 					<div class="products_soldout" id="${product.product_id}">
 						<div class="product_img_soldout"
-							style="background-image: url(${product.image_main});">
+							style="background-image: url(https://storage.googleapis.com/${product.image_main});">
 							<div class="product_img_cover_soldout">
 								<div>SOLD<br>OUT</div>
 							</div>
