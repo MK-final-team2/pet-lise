@@ -39,7 +39,7 @@
 .logo img {
 	width: 212px;
 	height: 80px;
-	margin-left: -10px;
+	margin-left: 42px;
 }
 
 .header .item-center {
@@ -47,14 +47,10 @@
 	margin-left: 20px;
 }
 
-/*헤더 아이콘위치*/
-.header-item.item-right {
-	margin-left: 15px;
-}
 
-/*네비 메뉴 센터고정*/
+/*네비 메뉴 센터*/
 .menu {
-	text-align: center;
+	margin-left: 125px;
 }
 
 /*네비 메뉴 가로나열*/
@@ -205,7 +201,7 @@
 .header .menu>ul>li .sub-menu {
 	position: absolute;
 	background-color: var(--light-sub);
-	padding: 40px 30px;
+	padding: 40px 250px;
 	transition: all 0.3s ease;
 	margin-top: 25px;
 	visibility: hidden;
@@ -222,7 +218,8 @@
 		display: flex;
 	}
 	.list-item:first-child {
-		margin-left: -150px; /* 앞 여백 조정 */
+		margin-left: 30px; /* 앞 여백 조정 */
+		margin-right: -100px;
 	}
 	.list-item-col {
 		flex: 1;
@@ -237,12 +234,12 @@
 		justify-content: center;
 	}
 	.header .menu>ul>li .sub-menu.mega-menu-column-4>.list-item {
-		flex: 0 0 25%;
+		flex: 0 0 30%;
 	}
 
 	/*커뮤니티, 공지사항 내부*/
 	.header .menu>ul>li .sub-menu.mega-menu-column-4>.list-item2 {
-		flex: 0 0 7%;
+		flex: 0 0 15%;
 		display: flex;
 		justify-content: center;
 		align-items: center;

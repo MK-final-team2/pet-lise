@@ -62,7 +62,7 @@
 		SELECT *
 		FROM recipe r
 		JOIN user u ON r.user_id = u.user_id
-		WHERE r.pet_category = #{searchType1} AND r.main_category = #{searchType2}
+		WHERE r.recipe_category = #{recipeType} AND r.pet_category = #{searchType1} AND r.main_category = #{searchType2}
 		<if test="searchType3 != null and searchType3 != ''  and !'전체'.equals(searchType3)">
 			AND r.sub_category = #{searchType3}
 		</if>
@@ -78,7 +78,7 @@
 		SELECT count(*)
 		FROM recipe r
 		JOIN user u ON r.user_id = u.user_id
-		WHERE r.pet_category = #{searchType1} AND r.main_category = #{searchType2}
+		WHERE r.recipe_category = #{recipeType} AND r.pet_category = #{searchType1} AND r.main_category = #{searchType2}
 		<if test="searchType3 != null and searchType3 != ''  and !'전체'.equals(searchType3)">
 			AND r.sub_category =#{searchType3}
 		</if>

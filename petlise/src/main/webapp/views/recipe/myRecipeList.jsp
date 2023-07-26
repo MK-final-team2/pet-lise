@@ -22,13 +22,16 @@
 <script>
 	$(document).ready(function() {
 	});
-</script>
+	
+	</script>
+
 
 </head>
 <body>
 	<div class="wrap">
 		<div id="nav"></div>
 		<div id="board_title">
+			<input type="hidden" id="recipeType" value="${param.recipeType}" />
 			<input type="hidden" id="searchType1" value="${param.searchType1}" />
 			<input type="hidden" id="searchType2" value="${param.searchType2}" />
 			<input type="hidden" id="searchType3" value="${param.searchType3}" />
@@ -47,8 +50,8 @@
 				</c:if>
 			</div>
 
-			<div class="title_recipe">
-				<span>나만의 레시피</span>
+			<div class="title_recipe">			
+				<span>${param.recipeType}</span>			
 			</div>
 			<div class="subtitle_recipe">
 				<span>${param.searchType2}</span>
@@ -60,31 +63,31 @@
 			<div class="category">
 				<c:if test="${param.searchType2 == '건강식'}">
 					<a class="${param.searchType3 eq '전체' ? 'on' : ''}"
-						href="recipelist?searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=전체">전체</a>
+						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=전체">전체</a>
 					<a class="${param.searchType3 eq '다이어트식' ? 'on' : ''}"
-						href="recipelist?searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=다이어트식">다이어트식</a>
+						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=다이어트식">다이어트식</a>
 					<a class="${param.searchType3 eq '병원식' ? 'on' : ''}"
-						href="recipelist?searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=병원식">병원식</a>
+						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=병원식">병원식</a>
 					<a	class="${param.searchType3 eq '영양식' ? 'on' : ''}"
-						href="recipelist?searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=영양식">영양식</a>
+						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=영양식">영양식</a>
 				</c:if>
 				<c:if test="${param.searchType2 == '일반식'}">
 					<a class="${param.searchType3 eq '전체' ? 'on' : ''}"
-						href="recipelist?searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=전체">전체</a>
+						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=전체">전체</a>
 					<a class="${param.searchType3 eq '습식' ? 'on' : ''}"
-						href="recipelist?searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=습식">습식</a>
+						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=습식">습식</a>
 					<a class="${param.searchType3 eq '건식' ? 'on' : ''}"
-						href="recipelist?searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=건식">건식</a>
+						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=건식">건식</a>
 				</c:if>
 				<c:if test="${param.searchType2 == '간식'}">
 					<a class="${param.searchType3 eq '전체' ? 'on' : ''}"
-						href="recipelist?searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=전체">전체</a>
+						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=전체">전체</a>
 					<a class="${param.searchType3 eq '건조간식' ? 'on' : ''}"
-						href="recipelist?searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=건조간식">건조간식</a>
+						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=건조간식">건조간식</a>
 					<a class="${param.searchType3 eq '화식간식' ? 'on' : ''}"
-						href="recipelist?searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=화식간식">화식간식</a>
+						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=화식간식">화식간식</a>
 				</c:if>
-				<c:if test="${param.searchType2 == '기타'}">					
+				<c:if test="recipeType=${param.recipeType}&searchType1=${param.searchType1}&${param.searchType2 == '기타'}">					
 				</c:if>
 			</div>
 			<div id="searchdiv">
@@ -127,7 +130,8 @@
 									<span>${recipe.recipe_title}</span>
 								</div>
 								<div class="info_content">
-									<span>${recipe.recipe_contents}</span>
+									 <span class="recipe_content">${recipe.recipe_contents}</span>
+
 								</div>
 								<div id="info_bottom">
 									<div class="info_writer">
@@ -216,6 +220,9 @@
 		});
 	});
 </script>
+
+
+
 <script src="/js/recipe/nav.js"></script>
 <script src="/js/recipe/recipeList.js"></script>
 

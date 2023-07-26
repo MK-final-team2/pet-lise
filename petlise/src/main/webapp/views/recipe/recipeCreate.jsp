@@ -42,10 +42,7 @@
 						<input type="hidden" id="imageValue" name="image" />
 					</label>
 					<input
-             			 type="file"
-           				 id="file"
-             			 accept="image/*"
-            			 onchange="imageUpload()"
+             			 type="file" id="file" accept="image/*" onchange="imageUpload()"
           			  />
 				</div>
 
@@ -83,8 +80,8 @@
 					</div><!-- 서브카테고리 -->
 				</div>
 
-				<div id="editor"></div>
-					<input type="hidden" id="quill_html" name="recipe_content">
+				 <div id="editor">${recipe.recipe_contents}</div>
+  					 <input type="hidden" id="quill_html" name="recipe_content" value="${recipe.recipe_contents}">
 				<div class="createButton">
 				
 					<button type="submit" id="submitButton" onclick="registerRecipe()">등록하기</button>
@@ -107,7 +104,7 @@
 		<script src="/js/recipe/editor.js"></script>
 		<script src="/js/recipe/recipeCategory.js"></script>
 		<script src="/js/recipe/recipeCreateValidation.js"></script>
-		<script src="/js/mypage/imageUpload.js"></script>
+		<script src="/js/imageUpload.js"></script>
 		<script src="/js/recipe/nav.js"></script>
 		
 
