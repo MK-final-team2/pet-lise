@@ -14,9 +14,9 @@ public class MypageServiceImpl implements MypageService {
 		return dao.userInfo(id);
 	}
 
-	public void updateUser(String address, String profile_image, String pet_type, String pet_name,
+	public void updateUser(String name, String address, String profile_image, String pet_type, String pet_name,
 			String pet_age, String id) {
-		dao.updateUser(address, profile_image, pet_type, pet_name, pet_age, id);
+		dao.updateUser(name, address, profile_image, pet_type, pet_name, pet_age, id);
 	}
 	
 	public void updateDelete (Date deleted_at, String id) {
@@ -67,7 +67,4 @@ public class MypageServiceImpl implements MypageService {
 		return dao.boardCommentsCounts(id);
 	}
 
-	
-
-	
 }

@@ -15,13 +15,9 @@ prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
     <link rel="stylesheet" href="/css/mypage/myInfo.css" />
     <link rel="stylesheet" href="/css/nav/nav.css" />
     <title>Pet LiSe</title>
-    <script type="text/javascript">
-      //let myinfo = '${my_info}';
-      //let total = ${my_total_info}
-    </script>
   </head>
   <body>
-  	<div id="nav"></div>
+    <div id="nav"></div>
     <p class="title">마이페이지</p>
 
     <div class="container">
@@ -124,7 +120,7 @@ prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
       </div>
     </div>
 
-	<script src="/js/recipe/nav.js"></script>
+    <script src="/js/recipe/nav.js"></script>
     <script src="/js/mypageMenu.js"></script>
   </body>
 </html>

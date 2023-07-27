@@ -82,7 +82,7 @@ public class MypageController {
 
 	@ResponseBody
 	@PostMapping("/updateuser")
-	public String updateUser(HttpSession session, String password, String new_password, String address,
+	public String updateUser(HttpSession session, String name, String password, String new_password, String address,
 			String profile_image, String pet_type, String pet_name, String pet_age) {
 		
 		if (session.getAttribute("user_id") != null) {
@@ -90,7 +90,7 @@ public class MypageController {
 			String checkPw = service.checkPw(user_id);
 
 			if (bCryptService.matchesBcrypt(password, checkPw, bcryptNum)) {
-				service.updateUser(address, profile_image, pet_type, pet_name, pet_age, user_id);
+				service.updateUser(name, address, profile_image, pet_type, pet_name, pet_age, user_id);
 				
 				if (!new_password.equals("")) {
 					String hashPassword = bCryptService.encodeBcrypt(new_password, bcryptNum);

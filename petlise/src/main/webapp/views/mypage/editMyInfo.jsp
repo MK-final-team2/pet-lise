@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglib prefix="fn"
-uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -22,7 +21,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
     <p class="title">마이페이지</p>
 
     <div class="container">
-      <div id="mypageMenu" class="menu"></div>
+      <div id="mypageMenu"></div>
 
       <div class="contentWrap">
         <div>
@@ -37,7 +36,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                   onerror="this.onerror=null; this.src='/images/default-profile.svg';"
                   id="imgUrl"
                 />
-                <input type="hidden" id="imageValue" name="profile_image" />
+                <input type="hidden" id="imageValue" name="profile_image" value="${my_info.profile_image}" />
               </div>
               <label for="file">사진변경</label>
               <input
@@ -49,10 +48,10 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
             </div>
 
             <div class="nameWrap">
-              <p>
-                ${my_info.name}
-                <span>님</span>
-              </p>
+              <div id="nameTextWrap">
+                <span id="nameText">${my_info.name}</span> <span>님</span> <button onclick="changeInput()">이름변경</button>
+              </div>
+              <input type="text" value="${my_info.name}" style="display: none;" id="nameInput">
               <p>${my_info.email}</p>
             </div>
           </div>

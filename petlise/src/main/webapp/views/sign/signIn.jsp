@@ -11,12 +11,9 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="/css/sign/signIn.css" />
     <link rel="stylesheet" href="/css/nav/nav.css" />
     <title>Pet LiSe</title>
-    <script>
-      let my_id = "<%=session.getAttribute("user_id")%>"
-    </script>
   </head>
   <body>
-  	<div id="nav"></div>
+    <div id="nav"></div>
     <main class="container">
       <div class="dogImage">
         <a href="/signin">
@@ -62,7 +59,7 @@ pageEncoding="UTF-8"%>
       </div>
     </main>
 
-	<script src="/js/recipe/nav.js"></script>
+    <script src="/js/recipe/nav.js"></script>
     <script src="/js/sign/checkLoginForm.js"></script>
   </body>
 </html>

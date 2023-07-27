@@ -12,15 +12,6 @@ pageEncoding="UTF-8"%>
     <title>Pet LiSe</title>
     <script src="/js/sign/text.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <%--
-    <script type="text/javascript">
-      let my_id = "<%=session.getAttribute("my_user_id")%>";
-
-      if(my_id !== "null"){
-      	location.href = "/";
-      }
-    </script>
-    --%>
   </head>
   <body>
     <main class="container">
@@ -82,8 +73,8 @@ pageEncoding="UTF-8"%>
           <span id="checkPwRequired"></span>
         </div>
         <div class="nameWrapper">
-          <p>이름</p>
-          <input type="text" placeholder="이름 입력" id="name" name="name" oninput="regName()" />
+          <p>별명</p>
+          <input type="text" placeholder="별명 입력" id="name" name="name" oninput="regName()" />
           <span id="nameRequired"></span>
         </div>
         <div class="addressWrapper">

@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -12,12 +13,9 @@
     <link rel="stylesheet" href="/css/nav/nav.css" />
     <title>Pet LiSe</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script type="text/javascript">
-    	let emp = ${userInfo};
-    </script>
   </head>
   <body>
-  	<div id="nav"></div>
+    <div id="nav"></div>
     <main class="container">
       <div class="dogImage">
         <a href="/signin">
@@ -34,11 +32,22 @@
             <div class="inputWrapper">
               <input type="hidden" name="email" value="${userInfo}" />
               <p>새 비밀번호</p>
-              <input type="password" maxlength="12" oninput="regPw()" id="password" name="password" />
+              <input
+                type="password"
+                maxlength="12"
+                oninput="regPw()"
+                id="password"
+                name="password"
+              />
               <span id="pwRequired"></span>
               <div class="emp"></div>
               <p>새 비밀번호 확인</p>
-              <input type="password" maxlength="12" oninput="checkPw()" id="checkPassword" />
+              <input
+                type="password"
+                maxlength="12"
+                oninput="checkPw()"
+                id="checkPassword"
+              />
               <span id="checkPwRequired"></span>
             </div>
           </div>
@@ -47,7 +56,7 @@
       </div>
     </main>
 
-	<script src="/js/recipe/nav.js"></script>
+    <script src="/js/recipe/nav.js"></script>
     <script src="/js/sign/checkPw.js"></script>
   </body>
 </html>

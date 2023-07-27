@@ -9,14 +9,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MypageDAO {
 	public MypageDTO userInfo(String id);
-
-	public void updateUser(String address, String profile_image, String pet_type, String pet_name,
+	public void updateUser(String name, String address, String profile_image, String pet_type, String pet_name,
 			String pet_age, String id);
-
 	public void updateDelete(Date deleted_at, String id);
-
 	public String checkPw(String id);
-
 	public void updatePw(String password, String id);
 	
 	public int orderCount(String id);

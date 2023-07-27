@@ -69,6 +69,7 @@ public class AdminRecipeController {
 		
 		int pages = (dto.getPage() - 1) * 10;
 		dto.setPage(pages);
+		
 		List<AdminRecipeResponseDTO> recipe_list = service.findAllRecipe(dto);
 
 		return recipe_list;
