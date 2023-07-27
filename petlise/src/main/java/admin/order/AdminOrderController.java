@@ -54,10 +54,6 @@ public class AdminOrderController {
 		map.put("delivery_com", delivery_com);
 		map.put("delivery_id", delivery_id);
 		
-		System.out.println(order_id);
-		System.out.println(delivery_com);
-		System.out.println(delivery_id);
-		
 		int result = service.updateDelivery(map);
 		
 		return "{\"result\":\""+result+"\"}";

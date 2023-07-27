@@ -1,27 +1,81 @@
-/* ---------- 이미지 프리뷰 ----------- */
+/* ---------- 이미지 업로드 ----------- */
 $("#file1").change(function() {
-	if (this.files && this.files[0]) {
-		var reader = new FileReader;
-		reader.onload = function(data) {
-			$("#fileimg1").attr("src", data.target.result).width(300);
-			$("#fileimg1").attr("src", data.target.result).height(300);
+	const file = document.getElementById("file1");
+	const url = file.files[0];
+
+	if (!url) {
+		alert("파일이 없습니다");
+		return;
+	}
+
+	const maxSize = 5 * 1024 * 1024;
+	const fileSize = url.size;
+
+	if (fileSize > maxSize) {
+		alert("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.");
+		$(this).val('');
+		return false;
+	}
+
+	let formData = new FormData();
+	formData.append("image", url)
+
+	$.ajax({
+		url: "/api/image-upload",
+		type: "post",
+		data: formData,
+		enctype: 'multipart/form-data',
+		contentType: false,
+		processData: false,
+		success: function(url) {
+			$("#fileimg1").attr("src", `https://storage.googleapis.com/${url}`);
+			$("#fileimg1").css('width','300px');
 			$("#fileimg1").css('border','2px solid var(--light-sub)');
 			$("#fileimg1").css('border-radius','10px');
+			$("#imageValue1").val(url);
+		},
+		error: function(error) {
+			console.log(error);
 		}
-		reader.readAsDataURL(this.files[0]);
-	}
+	})
 });
 
 $("#file2").change(function() {
-	if (this.files && this.files[0]) {
-		var reader = new FileReader;
-		reader.onload = function(data) {
-			$("#fileimg2").attr("src", data.target.result).width(300);
-			$("#fileimg2").css('border','2px solid var(--light-sub)');
-			$("#fileimg2").css('border-radius','10px');
-		}
-		reader.readAsDataURL(this.files[0]);
+	const file = document.getElementById("file2");
+	const url = file.files[0];
+
+	if (!url) {
+		alert("파일이 없습니다");
+		return;
 	}
+
+	const maxSize = 5 * 1024 * 1024;
+	const fileSize = url.size;
+
+	if (fileSize > maxSize) {
+		alert("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.");
+		$(this).val('');
+		return false;
+	}
+
+	let formData = new FormData();
+	formData.append("image", url)
+
+	$.ajax({
+		url: "/api/image-upload",
+		type: "post",
+		data: formData,
+		enctype: 'multipart/form-data',
+		contentType: false,
+		processData: false,
+		success: function(url) {
+			$("#fileimg2").attr("src", `https://storage.googleapis.com/${url}`);
+			$("#imageValue2").val(url);
+		},
+		error: function(error) {
+			console.log(error);
+		}
+	})
 });
 
 /* ---------- 드랍박스 ----------- */
@@ -87,6 +141,28 @@ $('#returnbtn').on('click', function(){
 	$('#code_after').css('color','var(--light-text)');
 });
 
+//달력
+//Datepicker
+$.datepicker.setDefaults({
+	dateFormat: 'yy-mm-dd',
+	prevText: '이전 달',
+	nextText: '다음 달',
+	monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+	dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+	dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+	showMonthAfterYear: true,
+	yearSuffix: '년',
+	showOn: "both",
+	buttonImage: "/images/shop/shopdetail/calendar.svg",
+	buttonImageOnly: true,
+	showButtonPanel:true,
+	minDate:$("product_regtime").val()
+});
+
+$("#product_regtime").datepicker();
+
 
 //전체 수정취소버튼
 $("#cancelButton").on("click",function(){
@@ -121,6 +197,8 @@ $(".modal_editbtn").on('click', function(){
 		url : '/editproduct',
 		dataType : 'json',
 		data : {
+			image_main : $("#imageValue1").val(),
+			image_detail : $("#imageValue2").val(),
 			product_id : $("#product_number").val(),
 			pet_type : $("#petType").val().replace("(D)","").replace("(C)",""),
 			category : $("#productType").val().replace("(01)","").replace("(02)","").replace("(03)","").replace("(04)",""),

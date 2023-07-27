@@ -43,7 +43,8 @@
 	<update id="updateProduct" parameterType="productdto">
 		UPDATE products 
 		SET pet_type=#{pet_type}, category=#{category}, product_code = #{product_code}, reg_date = #{reg_date}, 
-			product_name=#{product_name}, price=#{price}, quatity=#{quatity}, isvisible=#{isvisible}
+			product_name=#{product_name}, price=#{price}, quatity=#{quatity}, isvisible=#{isvisible},
+			image_main=#{image_main}, image_detail=#{image_detail}
 		WHERE product_id = #{product_id};
 	</update>
 	

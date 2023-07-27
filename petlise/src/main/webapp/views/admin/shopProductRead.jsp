@@ -32,15 +32,15 @@
 				<div class="edit_images">
 					<div class="fileWrap">
 						<p>상품 대표이미지</p>
-						<label for="file1">
-						<img id='fileimg1' src="${product.image_main}" alt="이미지아이콘" />
-						</label> <input type="file" id="file1" readonly="readonly" />
+						<label >
+						<img id='fileimg1' src="https://storage.googleapis.com/${product.image_main}" alt="이미지아이콘" />
+						</label> 
 					</div>
 					<div class="fileWrap">
 						<p>상품 상세이미지</p>
-						<label for="file2"> <img id='fileimg2'
-							src="${product.image_detail}" alt="이미지아이콘" />
-						</label> <input type="file" id="file2" readonly="readonly" />
+						<label > <img id='fileimg2'
+							src="https://storage.googleapis.com/${product.image_detail}" alt="이미지아이콘" />
+						</label> 
 					</div>
 				</div>
 
