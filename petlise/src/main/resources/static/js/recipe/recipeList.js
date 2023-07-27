@@ -1,7 +1,9 @@
 //로드 후 자동 css 실행 영역
+const recipeType = $('#recipeType').val();
 const SearchType1 = $('#searchType1').val();
 const SearchType2 = $('#searchType2').val();
 const SearchType3 = $('#searchType3').val();
+
 
 
 //결과 없을때 홈가기 버튼
@@ -21,6 +23,7 @@ $("#keyword").on("keyup", function(key) {
 $("#searchbtn").on('click', function() {
 	const queryparamsPage = {
 		page: 1,
+		recipeType: recipeType,
 		searchType1: SearchType1,
 		searchType2: SearchType2,
 		searchType3: SearchType3,
@@ -45,6 +48,7 @@ $(".modal_cancelbtn").on('click',function(){
 $(".pageNumber").on('click', function() {
 	const queryparamsPage = {
 		page: $(this).text(),
+		recipeType: recipeType,
 		searchType1: SearchType1,
 		searchType2: SearchType2,
 		searchType3: SearchType3,		
@@ -57,6 +61,7 @@ $(".pageNumber").on('click', function() {
 $(".pagefirst").on('click', function() {
 	const queryparamsPage = {
 		page: 1,
+		recipeType: recipeType,
 		searchType1: SearchType1,
 		searchType2: SearchType2,
 		searchType3: SearchType3,		
@@ -69,6 +74,7 @@ $(".pagefirst").on('click', function() {
 $(".prev").on('click', function() {
 	const queryparamsPage = {
 		page: $(this).attr("id"),
+		recipeType: recipeType,
 		searchType1: SearchType1,
 		searchType2: SearchType2,
 		searchType3: SearchType3,
@@ -81,6 +87,7 @@ $(".prev").on('click', function() {
 $(".next").on('click', function() {
 	const queryparamsPage = {
 		page: $(this).attr("id"),
+		recipeType: recipeType,
 		searchType1: SearchType1,
 		searchType2: SearchType2,
 		searchType3: SearchType3,
@@ -93,6 +100,7 @@ $(".next").on('click', function() {
 $(".pagelast").on('click', function() {
 	const queryparamsPage = {
 		page: $(this).attr("id"),
+		recipeType: recipeType,
 		searchType1: SearchType1,
 		searchType2: SearchType2,
 		searchType3: SearchType3,
@@ -103,3 +111,15 @@ $(".pagelast").on('click', function() {
 
 
 
+//컨텐츠 내용 길이 조절
+document.addEventListener("DOMContentLoaded", function() {
+	var recipeContentsElements = document.querySelectorAll(".recipe_content");
+
+	recipeContentsElements.forEach(function(element) {
+		var content = element.innerText;
+		var maxLength = 60;
+			if (content.length > maxLength) {
+			element.innerText = content.substring(0, maxLength) + "...";
+      }
+   });
+});

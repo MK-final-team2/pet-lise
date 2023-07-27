@@ -9,6 +9,7 @@ public class SearchDTO {
 	private String searchType1; // 검색 유형1
 	private String searchType2; // 검색 유형2
 	private String searchType3; // 검색 유형3
+	private String recipeType; //레시피 유형
 
 	private String sortType; // 정렬유형
 	
@@ -100,6 +101,16 @@ public class SearchDTO {
 	public void setSortType(String sortType) {
 		this.sortType = sortType;
 	}
+	
+	
+	public String getRecipeType() {
+		return recipeType;
+	}
+
+	public void setRecipeType(String recipeType) {
+		this.recipeType = recipeType;
+	}
+	
 
 	public String getStartDate() {
 		return startDate;

@@ -1,5 +1,6 @@
 package recipe;
 
+
 import java.sql.Timestamp;
 import java.util.UUID;
 
@@ -22,11 +23,14 @@ public class RecipeService {
         recipeDTO.setRecipe_category("나만의레시피");
         recipeDTO.setRecipe_of_the_month(0); //이달의 레시피 조건충족X false=0
         
-        
         // 이미지 URL 설정
         String imageUrl = recipeDTO.getImage();
         recipeDTO.setImage(imageUrl);
         
+        // Quill 에디터의 HTML 내용을 recipe_content로 설정
+        String recipeContents = recipeDTO.getRecipe_contents();
+        recipeDTO.setRecipe_contents(recipeContents);
+
         recipeDAO.insertRecipe(recipeDTO);  // 게시글 등록
     }
 }

@@ -12,8 +12,6 @@ import pagination.SearchDTO;
 @Repository
 public interface RecipeListDAO {
 	List<RecipeListDTO> getAllRecipe();
-	int deleteRecipe(String recipe_id);	
-	int updateRecipe(RecipeListDTO dto);
 	String getRecipeName(String recipe_id);
 	
 	//Pagination

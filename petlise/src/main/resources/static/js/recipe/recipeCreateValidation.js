@@ -56,7 +56,7 @@ function registerRecipe(event) {
     return false;
   }
 
-  hideModal(); // 수정된 부분: 등록하기 전에 모달창을 닫음
+  hideModal(); // 등록하기 전에 모달창을 닫음
   document.getElementById("recipeForm").submit();
 }
 
@@ -64,3 +64,19 @@ document.getElementById("submitButton").addEventListener("click", registerRecipe
 
 // 모달경고창 확인 버튼
 $("#alertmodal .okaybtn").on('click', function(){hideModal();});
+
+
+
+
+//에디터 내용 저장
+function create() {
+   // Quill 에디터의 HTML 내용 가져오기
+   let recipe_contents = quill.root.innerHTML;
+	
+   // 숨겨진 입력 필드의 값을 에디터 내용으로 설정
+   document.getElementById("quill_html").value = recipe_contents;
+
+   // 양식 제출
+   document.getElementById("recipeForm").submit();
+}
+

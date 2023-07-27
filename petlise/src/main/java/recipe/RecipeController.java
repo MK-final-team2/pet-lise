@@ -96,7 +96,7 @@ public class RecipeController {
         recipeService.createRecipe(recipeDTO);
         String redirectUrl;
         if (recipeDTO.getMain_category().equals("일반식")) {
-            redirectUrl = "redirect:/myrecipelistn";
+            redirectUrl = "redirect:/recipelist?recipeType=나만의레시피&searchType1=강아지&searchType2=일반식&searchType3=전체";
         } else if (recipeDTO.getMain_category().equals("건강식")) {
             redirectUrl = "redirect:/myrecipelisth";
         } else if (recipeDTO.getMain_category().equals("간식")) {

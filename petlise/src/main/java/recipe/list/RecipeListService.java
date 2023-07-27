@@ -24,14 +24,6 @@ public class RecipeListService {
         return dao.getRecipeName(recipe_id);
     } 
 	
-	public int deleteRecipe(String recipe_id) {
-		return dao.deleteRecipe(recipe_id);
-	}
-	
-	public int updateRecipe(RecipeListDTO dto) {
-		return dao.updateRecipe(dto);
-	}
-	
 	//Pagination
 	public PagingResponse<RecipeListDTO> getAllRecipePaging(SearchDTO dto) {
 
