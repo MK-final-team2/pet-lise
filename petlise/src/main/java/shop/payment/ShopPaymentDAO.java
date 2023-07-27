@@ -15,20 +15,20 @@ public class ShopPaymentDAO {
 	@Autowired
 	SqlSession session;
 	
-	public List<ShopOrderProductDTO> getOrderList(ShopOrderProductDTO dto){
-		return session.selectList("getOrderList", dto);
+	public List<ShopOrderProductDTO> getOrderList(String user_id){
+		return session.selectList("getOrderList", user_id);
 	}
 	
-	public List<UserDTO> getUserInfo(UserDTO dto){
-		return session.selectList("getUserInfo", dto);
+	public List<UserDTO> getUserInfo(String user_id){
+		return session.selectList("getUserInfo", user_id);
 	}
 	
 	public int saveOrderInfo(ShopOrderInfoDTO dto){
 		return session.insert("saveOrderInfo", dto);
 	}
 	
-	public int orderConfirm(ShopOrderProductDTO dto) {
-		return session.update("orderConfirm", dto);
+	public int orderConfirm(String user_id) {
+		return session.update("orderConfirm", user_id);
 	}
 	
 	public int deleteCart(String user_id) {

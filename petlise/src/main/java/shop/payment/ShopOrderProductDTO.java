@@ -2,10 +2,10 @@ package shop.payment;
 
 public class ShopOrderProductDTO {
 	
-	int order_detail_id, order_id;
+	int order_detail_id;
 	String user_id;
 	int product_id;
-	String product_image, product_name;
+	String product_image, product_name, order_id;
 	int product_price, quantity, price_total;
 	public int getOrder_detail_id() {
 		return order_detail_id;
@@ -13,10 +13,10 @@ public class ShopOrderProductDTO {
 	public void setOrder_detail_id(int order_detail_id) {
 		this.order_detail_id = order_detail_id;
 	}
-	public int getOrder_id() {
+	public String getOrder_id() {
 		return order_id;
 	}
-	public void setOrder_id(int order_id) {
+	public void setOrder_id(String order_id) {
 		this.order_id = order_id;
 	}
 	public String getUser_id() {

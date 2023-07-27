@@ -61,8 +61,9 @@ $(document).ready(function(){
     // 상품가격 부분
     var price = 0;
     $('.cart_product_container').each(function(){
+    	var productQuantity = parseInt($(this).find('[data-quantity]').data('quantity'));
         var productPrice = parseInt($(this).find('[data-product_price]').data('product_price'));
-        price += productPrice;
+        price += productQuantity * productPrice;
     }); 
 
     var formatPrice = price.toLocaleString();
@@ -73,8 +74,9 @@ $(document).ready(function(){
     var subTotal = 0;
     var total = 0;
     $('.cart_product_container').each(function(){
+    	var quantityTotal = parseInt($(this).find('[data-quantity]').data('quantity'));
         var priceTotal = parseInt($(this).find('[data-price_total]').data('price_total'));
-        subTotal += priceTotal;
+        subTotal += quantityTotal * priceTotal;
         total = subTotal + 3000;
     });
 
@@ -90,38 +92,48 @@ $(document).ready(function(){
     
     // 주문하러가기 버튼
 	$('#order_button').click(function() {
-	    $('.product_check:checked').each(function() {
-	    	var user_id = 'petlise';
-	        var container = $(this).closest('.cart_product_container');
-	    	var product_id =  container.find('[data-product_id]').data('product_id');
-	        var product_name = container.find('.cart_info a').text().trim();
-	        var product_image = container.find('.cart_product_image').attr('src');
-	        var product_price = parseInt(container.find('[data-product_price]').data('product_price'));
-	        var quantity = parseInt(container.find('.cart_quantity').text().trim());
-	        var price_total = parseInt(container.find('[data-price_total]').data('price_total'));
+	    
+	    $.ajax({
+	        url: '/getUserId',
+	        type: 'GET',
+	        dataType: 'json',
+	        success: function(response) {
+	            var user_id = response.user_id;
 	
-	        var dto = {
-	        	user_id: user_id,
-	        	product_id: product_id,
-	            product_name: product_name,
-	            product_image: product_image,
-	            product_price: product_price,
-	            quantity: quantity,
-	            price_total: price_total
-	        };
+	            $('.product_check:checked').each(function() {
+	                var container = $(this).closest('.cart_product_container');
+	                var product_id = container.find('[data-product_id]').data('product_id');
+	                var product_name = container.find('.cart_info a').text().trim();
+	                var product_image = container.find('.cart_product_image').attr('src');
+	                var product_price = parseInt(container.find('[data-product_price]').data('product_price'));
+	                var quantity = parseInt(container.find('.cart_quantity').text().trim());
+	                var price_total = parseInt(container.find('[data-price_total]').data('price_total'));
 	
-	        $.ajax({
-	            url: '/savecartlist',
-	            type: 'POST',
-	            contentType: 'application/json',
-	            data: JSON.stringify(dto),
-	            success: function(response) {
-	                location.href = "/payment";
-	            },
-	            error: function(xhr, status, error) {
-	                console.error(error);
-	            }
-	        });
+	                $.ajax({
+	                    url: '/savecartlist',
+	                    type: 'POST',
+	                    contentType: 'application/json',
+	                    data: JSON.stringify({
+	                        user_id: user_id,
+	                        product_id: product_id,
+	                        product_name: product_name,
+	                        product_image: product_image,
+	                        product_price: product_price,
+	                        quantity: quantity,
+	                        price_total: price_total
+	                    }),
+	                    success: function(response) {
+	                        location.href = "/payment";
+	                    },
+	                    error: function(xhr, status, error) {
+	                        console.error(error);
+	                    }
+	                });
+	            });
+	        },
+	        error: function(xhr, status, error) {
+	            console.error(error);
+	        }
 	    });
 	});
 
