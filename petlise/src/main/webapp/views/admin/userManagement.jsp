@@ -11,7 +11,10 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="/css/admin/aside.css" />
     <link rel="stylesheet" href="/css/admin/pagination.css" />
     <link rel="stylesheet" href="/css/admin/userManagement.css" />
+    <link rel="stylesheet" href="/css/admin/modal.css" />
     <title>Pet LiSe</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/js/admin/userManagement.js"></script>
   </head>
   <body>
     <div class="container">
@@ -19,6 +22,12 @@ pageEncoding="UTF-8"%>
       <main>
         <p>사용자 관리</p>
         <div>
+          <div class="tabWrap">
+            <div class="inputWrap">
+              <object data="/images/search.svg"></object>
+              <input type="text" id="searchInput" placeholder="이름 or 이메일" />
+            </div>
+          </div>
           <table>
             <thead>
               <tr>
@@ -30,27 +39,19 @@ pageEncoding="UTF-8"%>
                 <th>탈퇴일</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>강낭콩</td>
-                <td>kongkong0302@gmail.com</td>
-                <td>
-                  서울특별시 서초구 개포동 디에이치퍼스티어아이파크 6차 304동
-                  908호
-                </td>
-                <td>P <span>1000</span></td>
-                <td>2022.02.22</td>
-                <td>2022.02.22</td>
-              </tr>
-            </tbody>
+            <tbody id="tbody"></tbody>
           </table>
 
           <div id="pagination"></div>
         </div>
+        <div id="modal"></div>
       </main>
     </div>
 
     <script src="/js/admin/aside.js"></script>
-    <script src="/js/admin/pagination.js"></script>
+    <script src="/js/pagination.js"></script>
+    <script src="/js/admin/getDate.js"></script>
+    <script src="/js/admin/search.js"></script>
+    <script src="/js/admin/usermanagement.js"></script>
   </body>
 </html>

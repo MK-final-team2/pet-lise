@@ -11,6 +11,11 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="/css/admin/dashboard.css" />
     <link rel="stylesheet" href="/css/admin/aside.css" />
     <title>Pet LiSe</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript">
+    	let date = new Date();
+    	let create_user = '${create_user}';
+    </script>
   </head>
   <body>
     <div class="container">
@@ -21,16 +26,16 @@ pageEncoding="UTF-8"%>
           <p class="totalTitle">일일 유저 데이터 통계</p>
           <div class="totalWrapper">
             <div>
-              <p>오늘 신규 가입자 수</p>
-              <p>20<span>명</span></p>
+              <p>오늘 등록된 나만의 레시피 수</p>
+              <p>${todayRecipeCount}<span>개</span></p>
             </div>
             <div>
-              <p>오늘 등록된 나만의 레시피 수</p>
-              <p>10<span>개</span></p>
+              <p>오늘 제품 주문 수</p>
+              <p>${todayOrderCount}<span>개</span></p>
             </div>
             <div>
               <p>오늘 등록된 커뮤니티 수</p>
-              <p>12<span>개</span></p>
+              <p>${todayBoardCount+todayPetplaceCount}<span>개</span></p>
             </div>
           </div>
 
@@ -45,6 +50,7 @@ pageEncoding="UTF-8"%>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.js"></script>
+    <script src="/js/admin/getDate.js"></script>
     <script src="/js/admin/dashboard.js"></script>
     <script src="/js/admin/aside.js"></script>
   </body>
