@@ -14,7 +14,11 @@
 <link rel="stylesheet" href="/css/admin/aside.css" />
 <link rel="stylesheet" href="/css/admin/pagination.css" />
 <link rel="stylesheet" href="/css/admin/payDelivery.css" />
+<link rel="stylesheet" href="/css/shop/modal.css" />
+<link rel="stylesheet" href="/css/admin/jquery-ui.css" />
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <title>Pet LiSe</title>
 </head>
 <body>
@@ -32,7 +36,17 @@
 				<form action="adminorderlist" id="adminorderlist" method="post">
 					<input type="hidden" id="searchType1" name="searchType1" value="${param.searchType1}"> 
 					<input type="hidden" id="page" name="page" value="${param.page eq null?1:param.page}"> 
+					<div id="periodWrap">
+						<span>기간별 검색</span>
+						<input type="text" id="start_date" name="startDate" placeholder="검색 시작일 선택" value="${param.startDate}" readonly >
+						<span style="width:20px">~</span>
+						<input type="text" id="end_date" name="endDate" placeholder="검색 종료일 선택" value="${param.endDate}" readonly>
+						<input type="button" id="date_today" value="오늘">
+						<input type="button" id="date_week" value="1주일">
+						<input type="button" id="date_month" value="1달">
+					</div>
 					<div class="categoryWrap">
+						<span>유형별 검색</span>
 						<div class="category">
 							<div id="dropdown" class="dropdown">
 								<div class="select">
@@ -61,8 +75,8 @@
 							<input type="text" id="keyword" name="keyword" value="${param.keyword}" />
 						</c:otherwise>
 					</c:choose>
-					<input type="submit" id="searchbtn" value="검색" />
-					<button id="searchreturn">검색조건초기화</button>
+					<input type="button" id="searchbtn" value="검색" />
+					<input type="button" id="searchreturn" value="검색조건초기화" />
 					</div> <!-- categoryWrap -->
 				</form>
 				<div id="ordertable">
@@ -81,10 +95,10 @@
 						</thead>
 						<tbody>
 							<c:if test="${fn:length(response.list) < 1}">
-								<tr>
-									<td class="no_data_msg">
+								<tr class="no_data_msg">
+									<td >
 										<div>
-											검색된 결과가 없습니다.
+											해당되는 주문건이 없습니다.
 										</div>
 									</td>
 								</tr>
@@ -108,7 +122,7 @@
 											<div class="griditem">주문상세</div>
 											<div class="griditem">배송정보</div>
 											<div class="griditem">주문코드</div>
-											<div class="griditem">${order.order_id}</div>
+											<div class="griditem" id="grid_orderid">${order.order_id}</div>
 											<div class="griditem">실수령자 성함</div>
 											<div class="griditem">${order.name}</div>
 											<div class="griditem">주문상품</div>
@@ -140,23 +154,23 @@
 											<div class="griditem">
 												<c:choose>
 													<c:when test="${order.delivery_com eq null || order.delivery_com == ''}">
-														<input type="text" id="delivery_com" placeholder="택배사명입력" value="" >
+														<input type="text" class="delivery_com" placeholder="택배사명입력" value="" >
 													</c:when>
 													<c:otherwise>
-														<input type="text" id="delivery_com" placeholder="택배사명입력" value="${order.delivery_com}" readonly>
+														<input type="text" class="delivery_com exist" value="${order.delivery_com}" readonly>
 													</c:otherwise>
 												</c:choose>
 											</div>
 											<div class="griditem">운송장번호</div>
-											<div class="griditem">
+											<div class="griditem last">
 												<c:choose>
 													<c:when test="${order.delivery_id eq null || order.delivery_id == ''}">
-														<input type="text" id="delivery_id" placeholder="운송장번호입력" value="" >
-														<input type="button" id="updatedeliverybtn" class="deliverybtn" value="배송정보등록">
+														<input type="text" class="delivery_id" placeholder="운송장번호입력" value="" >
+														<input type="button" class="insertdeliverybtn" value="배송정보등록">
 													</c:when>
 													<c:otherwise>
-														<input type="text" id="delivery_com" placeholder="택배사명입력" value="${order.delivery_id}" readonly>
-														<input type="button" id="editdeliverybtn" class="deliverybtn" value="배송정보수정">
+														<input type="text" class="delivery_id exist" value="${order.delivery_id}" readonly>
+														<input type="button" class="editdeliverybtn" value="배송정보수정">
 													</c:otherwise>
 												</c:choose>
 											</div>
@@ -215,13 +229,45 @@
 						</div>
 					</c:if>
 				</div><!-- pagination -->
-				
 			</div>
 		</main>
+		
+		<div class="modal" id="alert_modal">
+			<div class="modal_contents">
+			<div class="modal_text"></div>
+			<div class="modal_btn">
+				<button class="modal_alertokaybtn">확인</button>
+			</div>
+			</div>
+		</div>
+		
+		<div class="modal" id="okay_modal">
+			<div class="modal_contents">
+			<div class="modal_text"></div>
+			<div class="modal_btn">
+				<button class="modal_okaybtn">확인</button>
+			</div>
+			</div>
+		</div>
+		
+		<div class="modal" id="delivery_insert_modal">
+			<div class="modal_contents">
+			<input type="hidden" name="order_id" value="" />
+			<input type="hidden" name="delivery_com" value="" >
+			<input type="hidden" name="delivery_id" value="" >
+			<div class="modal_text"></div>
+			<div class="modal_btn">
+				<button class="modal_cancelbtn">취소</button>
+				<button id="modal_editbtn">등록</button>
+			</div>
+			</div>
+		</div>
+		
+		
 	</div>
 
 	<script src="/js/admin/aside.js"></script>
-	<script src="/js/admin/shop/shopCategory_list.js"></script>
+	<!-- <script src="/js/admin/shop/shopCategory_list.js"></script> -->
 	<script src="/js/admin/shop/payDelivery.js"></script>
 </body>
 </html>

@@ -12,6 +12,9 @@ public class SearchDTO {
 
 	private String sortType; // 정렬유형
 	
+	private String startDate; //날짜검색 시작날짜
+	private String endDate; //날짜검색 종료날짜
+	
 	private Pagination pagination; // 페이지네이션 정보
 
 	public SearchDTO() {
@@ -96,6 +99,22 @@ public class SearchDTO {
 
 	public void setSortType(String sortType) {
 		this.sortType = sortType;
+	}
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
 
 	

@@ -1,10 +1,13 @@
 package admin.order;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import pagination.PagingResponse;
@@ -41,5 +44,22 @@ public class AdminOrderController {
 		mv.addObject("waitCnt", waitCnt);
 		mv.setViewName("admin/payDeliveryManagement");
 		return mv;
+	}
+	
+	@PostMapping("/insertdelivery")
+	@ResponseBody
+	public String insertdelivery(String order_id, String delivery_com, String delivery_id) {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("order_id", order_id);
+		map.put("delivery_com", delivery_com);
+		map.put("delivery_id", delivery_id);
+		
+		System.out.println(order_id);
+		System.out.println(delivery_com);
+		System.out.println(delivery_id);
+		
+		int result = service.updateDelivery(map);
+		
+		return "{\"result\":\""+result+"\"}";
 	}
 }
