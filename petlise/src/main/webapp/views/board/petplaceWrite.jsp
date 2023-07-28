@@ -1,23 +1,113 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
+
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/board/boardWrite.css">
-  <link rel="stylesheet" href="/css/style.css" />
-  <link rel="stylesheet" href="/css/board/petplaceWrite.css" />
-  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" />
-  <link rel="stylesheet" href="/css/editor.css" />
-  <link rel="stylesheet" href="/css/nav/nav.css" />
-  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-  <title>펫플레이스 등록</title>
-  <script src="/js/jquery-3.6.4.min.js"></script>
-  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=33ed4195d27024d4ef479d47cfa9ce6f&libraries=services&libraries=services"></script>
-  <script>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" href="/views/board/bread/style.css">
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/board/petplaceWrite.css" />
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
+	rel="stylesheet" />
+<link rel="stylesheet" href="/css/editor.css" />
+<link rel="stylesheet" href="/css/nav/nav.css" />
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<title>펫플레이스 등록</title>
+
+<script type="text/javascript">function getSessionUserId() {
+    // Java에서 세션을 가져오는 코드 예시
+    <% String user_id = (String) session.getAttribute("user_id"); %>
+    return "<%= user_id %>";
+}
+</script>    
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=33ed4195d27024d4ef479d47cfa9ce6f&libraries=services&libraries=services"></script>
+ <script  src="/js/board/cogibot.js"></script>
+
+</head>
+<header>
+	<div id="nav">
+		<script src="/js/recipe/nav.js"></script>
+	</div>
+</header>
+<body>
+	<div id="container">
+		<div class="board_title">
+			<p>펫플레이스 등록</p>
+		</div>
+
+		<p>제목</p>
+		<div class="write_title">
+			<input type="text" placeholder="제목" name="title"
+			size="80%"  maxlength="50"	value="${petplace.title}" />
+
+		</div>
+		<p>카테고리</p>
+		<div class="categoryWrap">
+			<div class="category" id="category">
+				<div id="dropdown" class="dropdown">
+					<div class="select">
+						<span>${fn:length(petplace.category) != 0 ? petplace.category : '카테고리 선택'}</span>
+					</div>
+					<input type="hidden" name="category"
+						value="${fn:length(petplace.category) != 0 ? petplace.category : ''}" />
+					<ul class="dropdown-menu">
+						<li>카페</li>
+						<li>산책</li>
+						<li>숙소</li>
+						<li>식당</li>
+					</ul>
+				</div>
+			</div>
+			
+			
+			<div class="adressWrap">
+			<p style="margin-bottom: 70px;">주소</p>
+				<input type="text" id="sample6_postcode" placeholder="우편번호"
+					style="padding-left: 16px; margin-left: -45px; pointer-events: none;" />
+				<button id="adressBtn" type="button">주소 검색</button>
+					
+				
+ 	<div class="mycanvas" style="width:150px; height: 150px;  margin-bottom: 200px; pointer-events: none; " >
+     <%@ include file="./bread/index.html" %>
+    </div>
+    
+ 	<div class="talkdog">
+     <button id="searchBtn" type="button" style="display: none;"></button>	
+					<p>
+					식빵이(3세) 
+				<br>주소를 모두 입력 하면<br> 
+				    위치를 보여드릴게요! 
+				</p>
+				</div>  
+			</div>
+			
+			<div class="addressLine">
+				<input type="text" id="sample6_address" name="p_address" value="${petplace.p_address}"
+					style="padding-left: 16px; pointer-events: none;" placeholder="주소" /> <input type="text"
+					id="sample6_detailAddress" placeholder="상세주소"
+					style="padding-left: 16px;" />
+			</div>
+			<div id="map"></div>
+				
+			<div class="editorWrap">
+				<div id="editor">${petplace.petplace_contents}</div>
+				<button class="writeButton" onclick="return edit()">등록하기</button>
+			</div>
+		</div>
+	</div>
+	
+
+<script>
     $(document).ready(function() {
       // Add click event listener to the "우편번호 검색" button
       $("#adressBtn").click(function() {
@@ -27,10 +117,11 @@
       $('#searchBtn').click(function() {
         // 버튼을 click했을때
         // 지도를 생성합니다    
+              $(".addressLine").css("margin-bottom", "0");
         var mapContainer = document.getElementById('map');
         var mapOption = {
           center : new kakao.maps.LatLng(37.501306, 127.039659), // 지도의 중심좌표
-          level : 3 // 지도의 확대 레벨
+          level : 2 // 지도의 확대 레벨
         };
         var map = new kakao.maps.Map(mapContainer, mapOption);
         // 주소-좌표 변환 객체를 생성합니다
@@ -72,61 +163,38 @@
       });
     });
   </script>
-</head>
-<header>
-  <div id="nav">
-    <script src="/js/recipe/nav.js"></script>
-  </div>
-</header>
-<body>
-  <div id="container">
-    <div class="board_title">
-      <p>펫플레이스 글쓰기</p>
-    </div>
-     <!-- 글쓰기 Form -->
-    <form action="/petplaceWrite" method="post">
-    <p>제목</p>
-    <div class="write_title">
-      <input type="text" placeholder="제목" name="title" />
-         
-    </div>
-    <p>카테고리</p>
-    <div class="categoryWrap">
-      <div id="category">
-        <select name= "category" id="dropdown">
-          <option value="카페"> 카페</option>
-          <option value="식당"> 식당</option>
-          <option value="산책"> 산책</option>
-          <option value="숙소"> 숙소</option>
-        </select>
-      </div>
-    </div>
-    <div class="talkdog">
-      <div id="map"></div>
-      <button id="searchBtn" type="button" style="background-image: url('/images/board/talkdog1.png'); background-size: contain; width: 150px; height: 150px;">&nbsp;</button>
-      <p>
-        노랑이(3세) <br> <br>주인님! 펫플레이스의 주소 검색 후<br> <br> 저를 누르면 위치를 보여드릴게요! <br> <br>
-      </p>
-    </div>
-    <div class="adressWrap">
-      <input type="text" id="sample6_postcode" placeholder="우편번호" style="padding-left: 16px;" />
-      <button id="adressBtn" type="button">주소 검색</button>
-    </div>
-    <div class="addressLine">
-      <input type="text" id="sample6_address" style="padding-left: 16px;" placeholder="주소" />
-      <input type="text" id="sample6_detailAddress" placeholder="상세주소" style="padding-left: 16px;" />
-    </div>
-    <div class="editorWrap">
-      <div id="editor">
-        <p>내용을 입력해주세요</p>
-        <br />
-        <p>* 저작권 침해, 음란, 청소년 유해물, 기타 위법자료 등을 게시할 경우 게시물은 경고 없이 삭제됩니다.</p>
-      </div>
-      <button class="writeButton" onclick="return edit()">등록하기</button>
-    </div>
-  </div>
-  <script src="/js/editor.js"></script>
-  <script src="/js/postcode.js"></script>
-   <script src="/js/board/editPetplace.js"></script>
+ 
+	 <script>
+  $('#dropdown').click(function () {
+	  $(this).attr('tabindex', 1).focus();
+	  $(this).toggleClass('active');
+	  $(this).find('.dropdown-menu').slideToggle(300);
+	});
+	$('#dropdown').focusout(function () {
+	  $(this).removeClass('active');
+	  $(this).find('.dropdown-menu').slideUp(300);
+	});
+	$('#dropdown .dropdown-menu li').click(function () {
+	  $(this).parents('.dropdown').find('span').text($(this).text());
+	  $(this).parents('.dropdown').find('input').attr('value', $(this).text());
+	});</script>
+	
+	<script>
+    $(document).ready(function() {
+      // Add change event listener to the "sample6_address" input field
+      $("#sample6_detailAddress").on("change", function() {
+        // Trigger the click event for the "searchBtn" button
+        $("#searchBtn").click();
+       /*  $(".talkdog").hide(); */
+        $(".addressLine").css("margin-bottom", "0");
+      });
+    });
+  </script>
+ 
+	
+ 
+	<script src="/js/postcode.js"></script>
+<script src="/js/board/editPetplace.js"></script>
+	<script src="/js/editor.js"></script>
 </body>
 </html>

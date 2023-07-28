@@ -111,7 +111,7 @@
 						</td>
 						<td class="writer">${petPlace.user_id}</td>
 						<td class="date">
-							<fmt:formatDate value="${petPlace.petplace_created}" pattern="yyyy-MM-dd :mm" />
+							<fmt:formatDate value="${petPlace.petplace_created}" pattern="yyyy-MM-dd H:mm" />
 						</td>
 						<td class="view">${petPlace.view_count}</td>
 						<td class="like">${petPlace.like_count}</td>
