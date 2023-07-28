@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,7 +29,7 @@ public class AdminRecipeController {
 		model.addAttribute("check", "등록");
 		model.addAttribute("pet_category", "강아지");
 
-		if (session.getAttribute("user_id") != null) {
+		if (session.getAttribute("user_id") != null && dto.getRecipe_title() != null) {
 			String user_id = session.getAttribute("user_id").toString();
 
 			dto.setUser_id(user_id);
@@ -93,7 +94,7 @@ public class AdminRecipeController {
 		model.addAttribute("check", "등록");
 		model.addAttribute("pet_category", "고양이");
 
-		if (session.getAttribute("user_id") != null) {
+		if (session.getAttribute("user_id") != null && dto.getRecipe_title() != null) {
 			String user_id = session.getAttribute("user_id").toString();
 
 			dto.setUser_id(user_id);

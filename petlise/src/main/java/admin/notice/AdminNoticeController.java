@@ -35,7 +35,7 @@ public class AdminNoticeController {
 	public String editNotice(Model model, HttpSession session, AdminNoticeRequestDTO dto) {
 		model.addAttribute("check", "등록");
 		
-		if (session.getAttribute("user_id") != null) {
+		if (session.getAttribute("user_id") != null && dto.getTitle() != null) {
 			String user_id = session.getAttribute("user_id").toString();
 
 			dto.setUser_id(user_id);
