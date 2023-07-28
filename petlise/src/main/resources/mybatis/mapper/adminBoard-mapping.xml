@@ -95,7 +95,7 @@
 	
 	<!-- petplace -->
 	<select id="findAllPetplace" parameterType="map" resultType="hashmap">
-		SELECT (SELECT count(*) FROM petplace p
+		SELECT (SELECT count(*) FROM petPlace p
 			LEFT JOIN user u ON p.user_id = u.user_id
 			WHERE p.deleted_at IS NULL
 			<if test="keyword != null and keyword != ''" >
@@ -106,7 +106,7 @@
 		(SELECT count(*) FROM petplaceComment WHERE place_id = p.place_id) AS 'comment_count',
 		(SELECT count(*) FROM petplaceLike WHERE place_id = p.place_id) AS 'like_count',
 		p.place_id as board_id, p.category, p.user_id, p.title, p.petplace_created as created_at, p.view_count, u.name
-		FROM petplace p
+		FROM petPlace p
 		LEFT JOIN user u ON p.user_id = u.user_id
 		WHERE p.deleted_at IS NULL
 		<if test="keyword != null and keyword != ''" >

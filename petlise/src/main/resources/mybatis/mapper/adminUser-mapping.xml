@@ -39,7 +39,7 @@
 		WHERE board_created > CURRENT_DATE();
 	</select>
 	<select id="findTodayPetplace"  resultType="int">
-		SELECT COUNT(*) FROM petplace 
+		SELECT COUNT(*) FROM petPlace 
 		WHERE petplace_created > CURRENT_DATE();
 	</select>
 
