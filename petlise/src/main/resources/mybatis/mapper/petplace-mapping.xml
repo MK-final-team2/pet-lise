@@ -2,82 +2,94 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board.petplace.PetPlaceDAO">
 
-	<!-- Retrieve a list of pet places by category -->
-	<select id="getPetPlaceList" resultType="board.petplace.PetPlaceDTO">
-		SELECT place_id, view_count, like_count, user_id, title,
-		category,
-		petplace_created, petplace_updated
-		FROM petlise.petplace
-	</select>
+    <!-- List -->
+    <select id="getPetPlaceList" resultType="petplacedto">
+        SELECT place_id, view_count, like_count, user_id, title,
+        category,
+        petplace_created, petplace_updated
+        FROM petplace
+    </select>
 
-	<!-- Pagination -->
-	<select id="getAllPetPlacePaging" resultType="board.petplace.PetPlaceDTO" parameterType="pagination.SearchDTO">
-		SELECT *
-		FROM petlise.petplace
-		<where>
-			<choose>
-				<when test="searchType1 != null and searchType1 != ''">
-					<if test="searchType1.equals('산책')">
-						AND category = '산책'
-					</if>
-					<if test="searchType1.equals('카페')">
-						AND category = '카페'
-					</if>
-					<if test="searchType1.equals('식당')">
-						AND category = '식당'
-					</if>
-					<if test="searchType1.equals('숙소')">
-						AND category = '숙소'
-					</if>
-				</when>
-			</choose>
-			<if test="keyword != null and keyword != ''">
-				AND title LIKE CONCAT('%', #{keyword}, '%')
-			</if>
-		</where>
-		LIMIT #{pagination.limitStart}, #{recordSize}
-	</select>
+    <!-- Pagination -->
+    <select id="getAllPetPlacePaging" resultType="petplacedto" parameterType="pagination.SearchDTO">
+        SELECT *
+        FROM petplace
+        <where>
+            <choose>
+                <when test="searchType1 != null and searchType1 != ''">
+                    <if test="searchType1.equals('산책')">
+                        AND category = '산책'
+                    </if>
+                    <if test="searchType1.equals('카페')">
+                        AND category = '카페'
+                    </if>
+                    <if test="searchType1.equals('식당')">
+                        AND category = '식당'
+                    </if>
+                    <if test="searchType1.equals('숙소')">
+                        AND category = '숙소'
+                    </if>
+                </when>
+            </choose>
+            <if test="keyword != null and keyword != ''">
+                AND title LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+        </where>
+        LIMIT #{pagination.limitStart}, #{recordSize}
+    </select>
 
-	<select id="getCount" resultType="int" parameterType="pagination.SearchDTO">
-		SELECT COUNT(*)
-		FROM petlise.petplace
-		<where>
-			<choose>
-				<when test="searchType1 != null and searchType1 != ''">
-					<if test="searchType1.equals('산책')">
-						AND category = '산책'
-					</if>
-					<if test="searchType1.equals('카페')">
-						AND category = '카페'
-					</if>
-					<if test="searchType1.equals('식당')">
-						AND category = '식당'
-					</if>
-					<if test="searchType1.equals('숙소')">
-						AND category = '숙소'
-					</if>
-				</when>
-				<otherwise>
-					AND 1=1
-				</otherwise>
-			</choose>
-			<if test="keyword != null and keyword != ''">
-				AND title LIKE CONCAT('%', #{keyword}, '%')
-			</if>
-		</where>
-	</select>
+    <select id="getCount" resultType="int" parameterType="pagination.SearchDTO">
+        SELECT COUNT(*)
+        FROM petplace
+        <where>
+            <choose>
+                <when test="searchType1 != null and searchType1 != ''">
+                    <if test="searchType1.equals('산책')">
+                        AND category = '산책'
+                    </if>
+                    <if test="searchType1.equals('카페')">
+                        AND category = '카페'
+                    </if>
+                    <if test="searchType1.equals('식당')">
+                        AND category = '식당'
+                    </if>
+                    <if test="searchType1.equals('숙소')">
+                        AND category = '숙소'
+                    </if>
+                </when>
+                <otherwise>
+                    AND 1=1
+                </otherwise>
+            </choose>
+            <if test="keyword != null and keyword != ''">
+                AND title LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+        </where>
+    </select>
 
-<!-- Insert a new pet place -->
-<insert id="insertPetPlace" parameterType="board.petplace.PetPlaceDTO">
-  INSERT INTO petlise.petplace (
-    view_count, like_count, user_id, title, category,
-    petplace_created, petplace_updated
-  ) VALUES (
-    #{viewCount}, #{likeCount}, #{userId}, #{title}, #{category},
-    #{petplaceCreated}, #{petplaceUpdated}
-  )
-</insert>
+    <!-- Insert a new pet place -->
+    <insert id="insertPetPlace" parameterType="board.petplace.PetPlaceDTO">
+       INSERT INTO petlise.petplace ( user_id, title, category, p_address, petplace_contents)
+        ) VALUES (
+            #{user_id}, #{title}, #{category},  #{p_address},#{petplace_contents},
+        )
+    </insert>
 
+    <update id="updatepetplace" parameterType="Map">
+        UPDATE petplace SET
+        title=#{title}, petplace_contents=#{petplace_contents}, category=#{category}
+        WHERE place_id=#{place_id}
+    </update>
 
+    <select id="findpetplace" parameterType="int" resultType="PetPlaceDTO">
+        SELECT title, petplace_contents, category, p_address
+        FROM petplace
+        WHERE place_id=#{place_id}
+    </select>
+
+    <delete id="deletepetplace" parameterType="int">
+        DELETE FROM petplace
+        WHERE place_id=#{place_id}
+    </delete>
 
 </mapper>

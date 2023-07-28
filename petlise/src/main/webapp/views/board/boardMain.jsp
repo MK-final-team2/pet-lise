@@ -92,7 +92,7 @@
 						</td>
 						<td class="writer">${boards.user_id}</td>
 						<td class="date">
-							<fmt:formatDate value="${boards.board_created}" pattern="yyyy-MM-dd :mm" />
+							<fmt:formatDate value="${boards.board_created}" pattern="yyyy-MM-dd H:mm" />
 						</td>
 						<td class="view">${boards.board_view}</td>
 						<td class="like">${boards.like}</td>

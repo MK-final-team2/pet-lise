@@ -6,12 +6,47 @@ public class PetPlaceDTO {
     int place_id;
     int view_count;
     int like_count;
+    int comments;
     String user_id;
     String title;
     String category;
     String p_address;
-	Date petplace_created;
+    String petplace_contents;
+    Date deleted_at;    
+    Date petplace_created;
     Date petplace_updated;
+    
+    public int getComments() {
+		return comments;
+	}
+
+	public void setComments(int comments) {
+		this.comments = comments;
+	}
+
+	public String getP_address() {
+		return p_address;
+	}
+
+	public void setP_address(String p_address) {
+		this.p_address = p_address;
+	}
+
+	public String getPetplace_contents() {
+		return petplace_contents;
+	}
+
+	public void setPetplace_contents(String petplace_contents) {
+		this.petplace_contents = petplace_contents;
+	}
+
+	public Date getDeleted_at() {
+		return deleted_at;
+	}
+
+	public void setDeleted_at(Date deleted_at) {
+		this.deleted_at = deleted_at;
+	}
     
     public int getPlace_id() {
         return place_id;
@@ -59,13 +94,6 @@ public class PetPlaceDTO {
     
     public void setCategory(String category) {
         this.category = category;
-    }
-    public String getP_address() {
-    	return p_address;
-    }
-    
-    public void setP_address(String p_address) {
-    	this.p_address = p_address;
     }
     
     public Date getPetplace_created() {
