@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,6 +10,7 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="/css/mypage/orderDetail.css" />
     <link rel="stylesheet" href="/css/mypage/myPageForm.css" />
     <link rel="stylesheet" href="/css/style.css" />
+    <script src="/js/jquery-3.6.4.min.js"></script>
   </head>
   <body>
     <p class="title">마이페이지</p>
@@ -25,79 +28,81 @@ pageEncoding="UTF-8"%>
             </div>
           </div>
         </div>
-        <!--			<c:forEach class="table_Column"> -->
+		<c:forEach var="myOrderProduct" items="${myOrderProduct}">
         <div class="table_Column">
+          <div style="display: none;">${myOrderProduct.user_id}</div>
+          <div style="display: none;" class="order_id">${myOrderProduct.order_id}</div>        
           <div id="table_Product_Img">
             <p>
               <a href="#">
-                <img src="/images/kangnangkong.png" />
+                <img src="${myOrderProduct.product_image}" />
               </a>
             </p>
           </div>
           <div id="table_Product_Info">
             <p>
               <a href="#">
-                <span>상품 A</span>
+                <span>${myOrderProduct.product_name}</span>
               </a>
             </p>
           </div>
           <div id="table_Quantity">
-            <p>1개</p>
+            <p>${myOrderProduct.quantity}</p>
           </div>
           <div id="table_Price">
-            <p><img src="/images/mypage/coin2.svg" id="point_Icon" /> 10,000</p>
+            <p><img src="/images/mypage/coin2.svg" id="point_Icon" /><fmt:formatNumber value="${myOrderProduct.product_price}" pattern="#,###" /></p>
           </div>
           <div id="table_Total">
-            <p><img src="/images/mypage/coin2.svg" id="point_Icon" /> 10,000</p>
+            <p><img src="/images/mypage/coin2.svg" id="point_Icon" /><fmt:formatNumber value="${myOrderProduct.price_total}" pattern="#,###" /></p>
           </div>
         </div>
-        <!-- 		</c:forEach> -->
-
+		</c:forEach>
         <div class="order_Detail">
           <div class="order_Info">
             <div class="member_Info_Title">회원 정보</div>
             <table class="member_Info">
               <tr id="member_Name">
+ 			  <c:forEach var="myUserInfo" items="${myUserInfo}">
+			  <div style="display: none;">${myUserInfo.user_id}</div>
                 <td class="col_1">이름</td>
-                <td class="col_2">이름이름</td>
+                <td class="col_2">${myUserInfo.name}</td>
               </tr>
               <tr id="member_Email">
                 <td class="col_1">이메일</td>
-                <td class="col_2">이메일@이메일</td>
-              </tr>
-              <tr id="member_Phone">
-                <td class="col_1">휴대폰 번호</td>
-                <td class="col_2">휴대폰 번호</td>
+                <td class="col_2">${myUserInfo.email}</td>
               </tr>
             </table>
-
+			</c:forEach>
             <div class="delivery_Info_Title">배송 정보</div>
             <table class="delivery_Info">
+            <c:forEach var="myDeliveryInfo" items="${myDeliveryInfo}">
+            <div style="display: none;">${myDeliveryInfo.order_id}</div>
               <tr id="delivery_Name">
                 <td class="col_1">받는분 성함</td>
-                <td class="col_2">이름이름</td>
+                <td class="col_2">${myDeliveryInfo.name}</td>
               </tr>
               <tr id="delivery_Address">
                 <td class="col_1">배송 주소</td>
-                <td class="col_2">주소주소</td>
+                <td class="col_2">${myDeliveryInfo.address}</td>
               </tr>
               <tr id="delivery_Phone">
                 <td class="col_1">연락처</td>
-                <td class="col_2">연락처</td>
+                <td class="col_2">${myDeliveryInfo.phone}</td>
               </tr>
               <tr id="delivery_Detail">
                 <td class="col_1">배송 요청사항</td>
-                <td class="col_2">요청사항</td>
+                <td class="col_2">${myDeliveryInfo.require}</td>
               </tr>
               <tr id="delivery_Status">
                 <td class="col_1">배송 현황</td>
-                <td class="col_2">배송 현황</td>
+                <td class="col_2">${myDeliveryInfo.status}</td>
               </tr>
             </table>
             <p id="delivery_Caption">
               ※ 배송지 정보는 주문 완료시 수정이 불가능하므로 정보를 꼭
               확인해주시기 바랍니다.
             </p>
+            </c:forEach>
           </div>
 
           <div class="receipt">
@@ -108,6 +113,7 @@ pageEncoding="UTF-8"%>
               </div>
               <div class="receipt_Contents">
                 <div class="receipt_Col_1">
+                <c:forEach var="myDeliveryInfo" items="${myDeliveryInfo}">
                   <div class="receipt_Row_0">
                     <p>주문날짜</p>
                   </div>
@@ -125,35 +131,36 @@ pageEncoding="UTF-8"%>
                 </div>
                 <div class="receipt_Col_2">
                   <div class="receipt_Row_0">
-                    <p>2023.06.30</p>
+                    <p><fmt:formatDate value="${myDeliveryInfo.date}" pattern="yyyy.MM.dd" /></p>
                   </div>
                   <div class="receipt_Row_1">
                     <p>
                       <img src="/images/mypage/coin2.svg" id="point_Icon" />
-                      2,500
+                      <fmt:formatNumber value="${myDeliveryInfo.total_point}" pattern="#,###"/>
                     </p>
                     <p>
                       <img src="/images/mypage/coin2.svg" id="point_Icon" />
-                      30,000
+                      3,000
                     </p>
                   </div>
                   <div class="receipt_Row_2">
                     <p>
                       <img src="/images/mypage/coin2.svg" id="point_Icon" />
-                      32,500
+                      <span id="total_payment"><fmt:formatNumber value="${myDeliveryInfo.total_payment}" pattern="#,###"/></span>
                     </p>
                     <p>
                       <img src="/images/mypage/coin2.svg" id="point_Icon" />
-                      45,000
+                      <span id="affordable"><fmt:formatNumber value="45000" pattern="#,###"/></span>
                     </p>
                   </div>
                   <div class="receipt_Row_3">
                     <p>
                       <img src="/images/mypage/coin2.svg" id="point_Icon" />
-                      12,500
+                      <span id="change"></span>
                     </p>
                   </div>
                 </div>
+                </c:forEach>
                 <div id="logo"><img src="/images/logo.png" /></div>
               </div>
             </div>
@@ -170,7 +177,7 @@ pageEncoding="UTF-8"%>
         </div>
       </div>
     </div>
-
+    <script src="/js/mypage/orderDetail.js"></script>
     <script src="/js/mypageMenu.js"></script>
   </body>
 </html>
