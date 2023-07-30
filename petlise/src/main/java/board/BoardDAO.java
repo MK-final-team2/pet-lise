@@ -6,23 +6,21 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import pagination.SearchDTO;
-
-
-
 @Mapper
 @Repository
 public interface BoardDAO {
-	int insertBoard(BoardDTO dto);
-	int maxBoardNum();
-	int countTotalBoardNum();
-	List<BoardDTO> getAllBoard();
-	int deleteBoard(String _id);	
-	BoardDTO getBoardById(String Board_id);
-	int updateBoard(BoardDTO dto);
-	
-	//Pagination
-	List<BoardDTO> getAllBoardPaging(SearchDTO dto);
-	int getCount(SearchDTO dto);
-	
-	
+    int insertBoard(BoardDTO dto);
+  
+    List<BoardDTO> getAllBoard();
+   
+    // Pagination
+    List<BoardDTO> getAllBoardPaging(SearchDTO dto);
+    int getCount(SearchDTO dto);
+    
+	public BoardDTO findBoard (int place_id);
+	public void updateBoard(BoardDTO dto);
+	public void deleteBoard(int place_id);
+
+
+
 }

@@ -9,7 +9,6 @@ import pagination.SearchDTO;
 @Mapper
 @Repository
 public interface PetPlaceDAO {
-    int insertPetPlace(PetPlaceDTO dto);
   
     List<PetPlaceDTO> getAllPetPlace();
    
@@ -17,8 +16,12 @@ public interface PetPlaceDAO {
     List<PetPlaceDTO> getAllPetPlacePaging(SearchDTO dto);
     int getCount(SearchDTO dto);
     
+    int insertPetPlace(PetPlaceDTO dto);
+    
 	public PetPlaceDTO findpetplace (int place_id);
+	
 	public void updatepetplace(PetPlaceDTO dto);
+	
 	public void deletepetplace(int place_id);
 
 

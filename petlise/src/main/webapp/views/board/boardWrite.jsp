@@ -28,16 +28,16 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <div id="container">
      
 
-      <main>
         <div class="board_title">
-        <p>자유게시판 글쓰기</p>
+        <p>자유게시판 등록</p>
 		</div>
-		
-        <div class="contents">
-        <P>제목</P> 
-      <div class="write_title">
-         <input type="text"  />
-          </div>
+		<p>제목</p>
+     
+        <div class="write_title">
+    	<input type="text" placeholder="제목" name="board_title"
+			size="80%"  maxlength="50"	style="font-size: 24px;" value="${board.board_title}" />
+			        </div>
+   
           
           
   
@@ -45,20 +45,14 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <div class="editorWrap">
-          <div id="editor">
-            <p>내용을 입력해주세요</p>
-            <br />
-            <p>
-              * 저작권 침해, 음란, 청소년 유해물, 기타 위법자료 등을 게시할 경우
-              게시물은 경고 없이 삭제됩니다.
-            </p>
-          </div>
-          <button class="writeButton">등록하기</button>
+				<div id="editor">${board.board_contents}</div>
+				<button class="writeButton" onclick="return edit()">등록하기</button>
+			</div>
         </div>
-        </div>
-      </main>
-    </div>
-    
+        Wx`
+       
+
+    <script src="/js/board/editBoard.js"></script>
  <script src="/js/editor.js"></script>
 
 

@@ -2,6 +2,11 @@ package board.petplace;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
+import user.UserDTO;
+
+@Component
 public class PetPlaceDTO {
     int place_id;
     int view_count;
@@ -11,11 +16,24 @@ public class PetPlaceDTO {
     String title;
     String category;
     String p_address;
-    String petplace_contents;
+    String p_detailaddress;
+   	String petplace_contents;
     Date deleted_at;    
     Date petplace_created;
     Date petplace_updated;
     
+    private UserDTO user;
+    
+    
+    
+    public String getP_detailaddress() {
+		return p_detailaddress;
+	}
+
+	public void setP_detailaddress(String p_detailaddress) {
+		this.p_detailaddress = p_detailaddress;
+	}
+
     public int getComments() {
 		return comments;
 	}
@@ -111,4 +129,12 @@ public class PetPlaceDTO {
     public void setPetplace_updated(Date petplace_updated) {
         this.petplace_updated = petplace_updated;
     }
+    public UserDTO getUser() {
+		return user;
+	}
+	public void setUser(UserDTO user) {
+		this.user = user;
+	}
+    
+    
 }
