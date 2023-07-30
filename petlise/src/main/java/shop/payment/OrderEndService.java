@@ -11,7 +11,7 @@ public class OrderEndService {
 	@Autowired
 	OrderEndDAO dao;
 	
-	public List<ShopOrderInfoDTO> getOrderInfo(ShopOrderInfoDTO dto){
-		return dao.getOrderInfo(dto);
+	public List<ShopOrderInfoDTO> getOrderInfo(String user_id){
+		return dao.getOrderInfo(user_id);
 	}
 }
