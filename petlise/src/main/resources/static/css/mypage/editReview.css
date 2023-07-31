@@ -212,12 +212,36 @@ html::-webkit-scrollbar-thumb:hover {
 	display: none;
 }
 
+#imgbox{
+	position: relative;
+	overflow: hidden;
+	border-radius: 10px;
+}
+
 #previewimg{
 	display: inline-flex;
 	width: 100px;
 	height: 100px;
 	border-radius: 10px;
 	border: 1px solid var(--light-sub, #FBC252);
+	cursor: pointer;
+}
+
+#imgcover{
+	width: 100px;
+	height: 100px;
+	top:0; left:0;
+	background-color: rgb(0,0,0,0.3);
+	position: absolute;
+	font:var(--highlight16);
+	color:white;
+	display:none;
+	cursor: pointer;
+}	
+
+#imgcover>div{
+	margin: 26px auto;
+	text-align: center;
 }
 
 #previewbox>span{
@@ -235,12 +259,15 @@ html::-webkit-scrollbar-thumb:hover {
 	height: 100px;
 	display: flex;
 }
+
+
 #previewimg_review{
 	display: inline-flex;
 	width: 100px;
 	height: 100px;
 	border-radius: 10px;
 	border: 1px solid var(--light-sub, #FBC252);
+	cursor: pointer;
 }
 
 #previewbox_review>span{

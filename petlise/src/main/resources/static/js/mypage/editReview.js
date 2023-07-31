@@ -109,6 +109,21 @@ $("#reviewcontents_review").on('change',"input[type='file']",function(){
 	})
 });
 
+$("#previewimg,#previewimg_review").on({
+	"mouseover" : function(){
+		$("#imgcover").show();
+	},
+	"mouseout" : function(){
+		$("#imgcover").hide();
+	},
+});
+
+$("#imgcover").on('click',function(){
+	$("#imageValue").val("");
+	$("#previewimg,#previewimg_review").attr("src","");
+	$("#previewbox,#previewbox_review").hide();
+});
+
 $("#savebtn").on('click',function(){
 	if($("#score").text()=="0점"){
 		$("#alert_modal .modal_text").html(

@@ -70,7 +70,12 @@
 							</div>
 						</div>
 						<div id="previewbox">
-							<img id="previewimg" />
+							<div id="imgbox">
+							<img id="previewimg"/>
+								<div id="imgcover">
+									<div>클릭하여<br>삭제</div>
+								</div>							
+							</div>
 							<span>
 							첨부된 사진을 확인해 주세요.<br><br>
 							상품과 무관한 사진/동영상을 첨부한 리뷰는<br>
@@ -103,7 +108,12 @@
 							</c:when>
 							<c:otherwise>
 								<div id="previewbox_review">
+									<div id="imgbox">
 									<img id="previewimg_review" src="https://storage.googleapis.com/${reviewdto.review_img}" />
+										<div id="imgcover">
+											<div>클릭하여<br>삭제</div>
+										</div>							
+									</div>
 									<span>
 									첨부된 사진을 확인해 주세요.<br><br>
 									상품과 무관한 사진/동영상을 첨부한 리뷰는<br>
