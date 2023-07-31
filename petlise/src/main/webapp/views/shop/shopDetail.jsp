@@ -14,7 +14,6 @@
 <link rel="stylesheet" href="css/shop/shopDetail.css" />
 <link rel="stylesheet" href="css/shop/pagination_shop.css" />
 <link rel="stylesheet" href="css/shop/modal_main.css" />
-<link rel="stylesheet" href="/css/nav/nav.css" />
 <link rel="icon" href="/images/favicon.ico" />
 <link rel="apple-touch-icon" href="/images/favicon.ico" />
 <title>Pet LiSe</title>
@@ -294,7 +293,6 @@
     </script>
 </head>
 <body>
-	<!-- <div id="nav"></div> -->
 	<div id='layout'>
 		<div id="categorys">
 			<p>라이스샵 > ${product.pet_type} > ${product.category}</p>
@@ -519,7 +517,7 @@
 					<c:if
 						test="${review.review_img != '' && review.review_img != null}">
 						<div class="review_img_box">
-							<img class="review_img" src="${review.review_img}">
+							<img class="review_img" src="https://storage.googleapis.com/${review.review_img}">
 						</div>
 					</c:if>
 
@@ -606,17 +604,15 @@
 	<div class="modal" id="delete_confirm_modal">
 		<div class="modal_contents">
 			<div class="modal_text">
-				<img src="/images/logo-icon.png" style="margin-bottom:10px; width:25px;"/>
-				<div>
-					삭제된 후기는 복구하실 수 없으며,<br>
-					후기 작성으로 지급된 포인트는 회수됩니다.<br>
-					해당 후기를 정말 삭제하시겠습니까?
-				</div>
+			<img src="images/mypage/warning.svg">
+			후기 삭제 시 후기 복구 및 <br>
+			해당 상품 후기 재작성이 불가합니다.<br>
+			정말 후기를 삭제하시겠습니까?
 			</div>
 			<div class="modal_btn">
 				<button class="modal_cancelbtn">취소</button>
-				<button class="modal_deletebtn">후기삭제하기</button>
-				<input type="hidden" value=""/>
+				<button class="modal_deletebtn">삭제</button>
+				<input type="hidden" id="delete_review_id" value=""/>
 			</div>
 		</div>
 	</div>
@@ -694,7 +690,6 @@
 		</div>
 	</div>
 	
-	<script src="/js/recipe/nav.js"></script>
 	<script src="/js/shop/shopDetail.js"></script>
 </body>
 </html>

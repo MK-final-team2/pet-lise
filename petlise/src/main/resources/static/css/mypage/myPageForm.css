@@ -34,7 +34,8 @@
 .contents {
   min-width: 970px;
   width: 970px;
-  height: 750px;
+  min-height: 750px;
+  padding-bottom:20px;
   border-radius: 10px;
   border: 0.5px #fbc252 solid;
   margin-left: 16px;

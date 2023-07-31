@@ -24,7 +24,7 @@ public class ShopListController {
 		PagingResponse<ProductDTO> productlist = service.getAllProductPaging(searchdto);
 		
 		//임의 세션처리 (로그인)
-		session.setAttribute("user_id", "9a86c657-232b-11ee-b6f4-00ff2f3d08fa");
+		/* session.setAttribute("user_id", "9a86c657-232b-11ee-b6f4-00ff2f3d08fa"); */
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("response", productlist);

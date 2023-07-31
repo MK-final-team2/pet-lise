@@ -28,7 +28,7 @@
 		from product_review as p 
 		inner join user as u 
 		on u.user_id = p.user_id 
-		where p.product_id=#{searchType1}
+		where p.product_id=#{searchType1} and p.deleted_at is null
 		<if test="'photo'.equals( searchType3 )">
 			and review_img is not null
 		</if>
@@ -43,8 +43,10 @@
 	
 	<select id="getCount" parameterType="pagination.SearchDTO" resultType="int">
 		select count(*)
-		from product_review
-		where product_id=#{searchType1}
+		from product_review as p 
+		inner join user as u 
+		on u.user_id = p.user_id 
+		where p.product_id=#{searchType1} and p.deleted_at is null
 		<if test="'photo'.equals( searchType3 )">
 			and review_img is not null
 		</if>
@@ -53,30 +55,32 @@
 	<select id="getCountAllPhotoReviews" parameterType="String" resultType="int">
 		select count(*)
 		from product_review
-		where product_id=#{product_id} and review_img is not null;
+		where product_id=#{product_id} and review_img is not null and deleted_at is null;
 	</select>
 
 	<select id="getCountAllReviews" parameterType="String" resultType="int">
 		select count(*)
 		from product_review
-		where product_id=#{product_id};
+		where product_id=#{product_id} and deleted_at is null;
 	</select>
 
 	<select id="getCountReviewsScore" parameterType="HashMap" resultType="int">
 		select count(*)
 		from product_review
-		where product_id=#{product_id} and score = #{score};
+		where product_id=#{product_id} and score = #{score} and deleted_at is null;
 	</select>
 
 	<select id="getAvgReviews" parameterType="String" resultType="java.lang.Double">
 		select avg(score)
 		from product_review
-		where product_id=#{product_id};
+		where product_id=#{product_id} and deleted_at is null;
 	</select>
 	
-	<delete id="deleteReview" parameterType="String">
-		delete from product_review where review_id=#{review_id};
-	</delete>
+	<update id="deleteReview" parameterType="String">
+		UPDATE product_review
+		SET deleted_at = now()
+		WHERE review_id=#{review_id} 
+	</update>
 	
 	<!-- 좋아요 등록 +1 -->
 	<update id="likeUp" parameterType="String">
