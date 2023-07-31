@@ -1,6 +1,15 @@
 @charset "UTF-8";
+
+.contents {
+	overflow: auto;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
 .table {
+	width: 100%;
 	margin-left: 10px;
+	overflow: hidden;
 }
 
 .table_Header {
