@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import shop.payment.ShopOrderInfoDTO;
@@ -31,6 +33,13 @@ public class OrderDetailController {
 		mv.addObject("myDeliveryInfo", myDeliveryInfo);
 		mv.setViewName("/mypage/orderDetail");
 		return mv;
+	}
+	
+	@PostMapping("/cancelorderdetail")
+	@ResponseBody
+	public String cancelOrder(@RequestParam("order_id") String order_id) {
+	    int result = service.cancelOrderDetail(order_id);
+	    return "{\"result\":\"" + result + "\"}";
 	}
 
 }

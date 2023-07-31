@@ -7,9 +7,7 @@
 	        (SELECT op.product_name FROM orderproduct op WHERE o.order_id = op.order_id LIMIT 1) AS product_name,
 	        (SELECT op.product_image FROM orderproduct op WHERE o.order_id = op.order_id LIMIT 1) AS product_image
 	    FROM `order` o
-	    WHERE o.`user_id` = #{user_id}
-	        AND o.order_id NOT IN (
-         	   SELECT order_id FROM `orderproduct` WHERE status = '주문취소')  
+	    WHERE o.`user_id` = #{user_id} 
 	    ORDER BY o.order_id DESC;
 	</select>
 	

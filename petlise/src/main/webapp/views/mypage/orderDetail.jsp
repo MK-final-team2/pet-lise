@@ -76,7 +76,7 @@
             <div class="delivery_Info_Title">배송 정보</div>
             <table class="delivery_Info">
             <c:forEach var="myDeliveryInfo" items="${myDeliveryInfo}">
-            <div style="display: none;">${myDeliveryInfo.order_id}</div>
+            <div id="order_id" style="display: none;">${myDeliveryInfo.order_id}</div>
               <tr id="delivery_Name">
                 <td class="col_1">받는분 성함</td>
                 <td class="col_2">${myDeliveryInfo.name}</td>
@@ -171,9 +171,9 @@
             type="button"
             value="주문목록"
             id="orderList_Btn"
-            onclick="#"
+            onclick="redirectToOrderList()"
           />
-          <input type="button" value="주문취소" id="cancel_Btn" onclick="#" />
+          <input type="button" value="주문취소" id="cancel_Btn" onclick="cancelOrderDetail()" />
         </div>
       </div>
     </div>

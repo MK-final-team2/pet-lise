@@ -166,7 +166,7 @@
             style="width: 25px; margin-left: 5px"
           />
         </button>
-        <button>
+        <button onclick="redirectOrderList()">
           주문내역보기
           <img
             src="/images/shop/shopdetail/pawprint_black.svg"
