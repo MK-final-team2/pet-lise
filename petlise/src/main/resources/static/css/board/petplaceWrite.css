@@ -30,9 +30,10 @@ p {
 	background-image: url('/images/board/bloon.svg'); 
 	background-repeat: no-repeat;
 	background-size:contain;
-	padding :35px;
-	padding-top :25px;
-	padding-bottom:40px;
+	padding :40px;
+	padding-top :30px;
+	padding-bottom:54px;
+	padding-left:30px;
 	background-position:center;
 
 	margin-left:-70px;

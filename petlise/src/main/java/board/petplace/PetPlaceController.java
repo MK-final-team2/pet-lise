@@ -5,8 +5,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
+
 import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -39,40 +40,43 @@ public class PetPlaceController {
         return mv;
     }
     
+    
     @RequestMapping("/petplaceWrite")
-    @Transactional
-    public String petplaceWrite( HttpSession session, PetPlaceDTO dto) {
+    public String petplaceWrite(HttpSession session, PetPlaceDTO dto) {
+        // 로그인 여부 확인
         
+        if (session.getAttribute("user_id") != null && dto.getTitle() != null) {
+        	System.out.println(dto.toString());
+            String user_id = session.getAttribute("user_id").toString();
+            dto.setUser_id(user_id);
+            service.insertPetPlace(dto);
+        }
         
-    	if (session.getAttribute("user_id") != null) {
-			String user_id = session.getAttribute("user_id").toString();
-
-			dto.setUser_id(user_id);
-			service.insertPetPlace(dto);
-		}
-
         return "board/petplaceWrite";
     }
 
     
     
-    @GetMapping("/getpetplace")
-	public String getFindpetplace(Model model, @RequestParam("id") int id) {
-		
-		PetPlaceDTO petplaceInfo = service.findpetplace(id);
-
-		model.addAttribute("petplaceInfo", petplaceInfo);
-		
-		return "board/petplaceDetail";
-	}
+    
+    
 	
-	@RequestMapping("/petplaceDetail")
-	public ResponseEntity<Void> petplaceDetailpetplace(PetPlaceDTO dto) {
-		service.updatepetplace(dto);
-		
-		return new ResponseEntity(HttpStatus.OK);
-	}
-
+	  @RequestMapping("/petplaceDetail") public ResponseEntity<Void>
+	  petplaceDetailpetplace(PetPlaceDTO dto) { service.updatepetplace(dto);
+	  
+	  return new ResponseEntity(HttpStatus.OK); }
+	  
+	  @GetMapping("/getpetplace") public String getFindpetplace(Model
+	  model, @RequestParam("place_id") int place_id) {
+	  
+	  PetPlaceDTO petplaceInfo = service.findpetplace(place_id);
+	  
+	  model.addAttribute("petplaceInfo", petplaceInfo);
+	  
+	  return "board/petplaceDetail"; }
+	 
+	
+	
+	
 	@RequestMapping("/deletepetplace")
 	public ResponseEntity<Void> deletepetplace(int place_id) {
 		service.deletepetplace(place_id);

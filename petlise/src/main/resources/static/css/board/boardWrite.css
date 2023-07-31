@@ -5,7 +5,10 @@
   width: 1240px;
   
 }
-
+p {
+	margin-bottom: 5px;
+	margin-left: 15px;
+}
 .board_title{
 	color: var(--light-text);
 	font:var(--heading24);
@@ -18,13 +21,13 @@
 }
 
 .write_title {
-  width: 1240px;
- height: 50px;
- padding: 0 25px;
-  border: 2px solid var(--light-stroke);
-  border-radius: 10px;
-  margin-bottom: 20px;
-  font-size: 24px;
+	width: 1040px ;
+	height: 50px;
+	padding: 0 25px;
+	padding-top: 8px;
+	border: 2px solid var(--light-stroke);
+	border-radius: 10px;
+	margin-bottom: 60px;
 }
 
 .writeButton{

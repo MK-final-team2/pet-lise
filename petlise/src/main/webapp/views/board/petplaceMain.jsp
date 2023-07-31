@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +16,8 @@
 <link rel="stylesheet" href="/css/nav/nav.css" />
 <title>펫플레이스메인</title>
 <script src="/js/jquery-3.6.4.min.js"></script>
+
+
 </head>
 <header>
  <div id="nav">
@@ -22,6 +25,7 @@
 </div>
 </header>
 <body>
+
 <div class="container">
 	<!-- 본문 -->
 	<div class="board_wrap">
@@ -78,9 +82,33 @@
 		</div>
 
 
+<script>
+  // 세션에서 user_id 값을 가져와서 JavaScript 변수에 할당
+  var user_id = '<%= session.getAttribute("user_id") %>';
+
+
+  // user_id 값을 확인하기 위해 JavaScript에서 출력
+  console.log('user_id:', user_id);
+
+  function checkLoginAndGoToWrite() {
+    if (user_id =='null') {
+      alert('로그인이 필요합니다. 로그인 페이지로 이동합니다.');
+      window.location.href = '/signin'; // 로그인 페이지로 이동
+      // 글쓰기 기능 막기
+      return; // 이동을 막기 위해 return 추가
+    }
+
+    else{// user_id가 존재하면 글쓰기 페이지로 이동
+    window.location.href = '/petplaceWrite';
+  }
+  }
+</script>
+
+
 		<div class="bt_wrap">
-			<a href="petplaceWrite" class="on">글쓰기</a>
-		</div>
+    <a  onclick="checkLoginAndGoToWrite()">글쓰기</a>
+</div>
+
 
 		<div class="board_list">
 			<div class="top">
@@ -105,11 +133,11 @@
 				<c:forEach var="petPlace" items="${response.list}">
 					<tr>
 						<td class="title">
-							<a href="petPlaceDetail.jsp?title=${petPlace.title}">
+							<a href="/getpetplace?place_id=${petPlace.place_id}">
 								${petPlace.title}
 							</a>
 						</td>
-						<td class="writer">${petPlace.user_id}</td>
+						<td class="writer">${petPlace.user.name}</td>
 						<td class="date">
 							<fmt:formatDate value="${petPlace.petplace_created}" pattern="yyyy-MM-dd H:mm" />
 						</td>
@@ -175,13 +203,18 @@
         <div class="dogImg_S">
             <img src="/images/board/dogfourth.png" alt="dogImg_S">
         </div>
-        <div class="dogImg_Up">
-            <img src="/images/board/searchdog.png" alt="dogImg_up">
+        <div class="dogImg_Up" style="pointer-events: none;">
+            <img src="/images/board/searchdog.png" alt="dogImg_up" >
         </div>
         
 
 </div>
+
 	<!-- pagination -->
 	<script src="/js/board/PetPlace.js"></script>
+	
+	
+	
+
 </body>
 </html>

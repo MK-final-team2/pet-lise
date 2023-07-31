@@ -2,33 +2,65 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board.BoardDAO">
 
-	<!-- Retrieve a list of pet places by category -->
-	<select id="getboardList" resultType="board.BoardDTO">
-		SELECT board_id, board_view, like, user_id, board_title,
-		board_created, board_updated
-		FROM petlise.board
-	</select>
+	
+<resultMap id="boarddto" type="board.BoardDTO">
+    <id property="board_id" column="board_id"/>
+    <result property="user_id" column="user_id"/>
+    <result property="board_title" column="board_title"/>
+    <result property="board_contents" column="board_contents"/>
+    <result property="board_created" column="board_created"/>
+    <result property="board_view" column="board_view"/>
+    <result property="like" column="like"/>
+    <result property="user.name" column="name"/>
+</resultMap>
 
-	<!-- Pagination -->
-	<select id="getAllBoardPaging" resultType="board.BoardDTO" parameterType="pagination.SearchDTO">
-		SELECT *
-		FROM petlise.board
-		<where>
-			<if test="keyword != null and keyword != ''">
-				AND board_title LIKE CONCAT('%', #{keyword}, '%')
-			</if>
-		</where>
-		LIMIT #{pagination.limitStart}, #{recordSize}
-	</select>
 
-	<select id="getCount" resultType="int" parameterType="pagination.SearchDTO">
-		SELECT COUNT(*)
-		FROM petlise.board
-		<where>
-			<if test="keyword != null and keyword != ''">
-				AND board_title LIKE CONCAT('%', #{keyword}, '%')
-			</if>
-		</where>
-	</select>
+    <!-- Pagination -->
+    <select id="getAllBoardPaging" resultMap="boarddto" parameterType="pagination.SearchDTO">
+        SELECT *
+        FROM board b
+         LEFT JOIN user u ON b.user_id = u.user_id
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND board_title LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+        </where>
+        ORDER BY board_created DESC
+        LIMIT #{pagination.limitStart}, #{recordSize}
+    </select>
+
+    <select id="getCount" resultType="int" parameterType="pagination.SearchDTO">
+        SELECT COUNT(*)
+        FROM board
+        <where>
+           
+            <if test="keyword != null and keyword != ''">
+                AND board_title LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+        </where>
+    </select>
+
+    <!-- Insert a new pet board -->
+    <insert id="insertBoard" parameterType="board.BoardDTO">
+       INSERT INTO board ( user_id, board_title,  board_contents)
+VALUES (#{user_id}, #{board_title},#{board_contents});
+    </insert>
+
+    <update id="updateboard" parameterType="Map">
+        UPDATE board SET
+        board_title=#{board_title}, board_contents=#{board_contents}, category=#{category}
+        WHERE board_id=#{board_id}
+    </update>
+
+    <select id="findboard" parameterType="int" resultType="BoardDTO">
+        SELECT board_title, board_contents, category, p_address
+        FROM board
+        WHERE board_id=#{board_id}
+    </select>
+
+    <delete id="deleteboard" parameterType="int">
+        DELETE FROM board
+        WHERE board_id=#{board_id}
+    </delete>
 
 </mapper>
