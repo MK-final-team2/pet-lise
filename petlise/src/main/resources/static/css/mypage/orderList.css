@@ -100,34 +100,35 @@
 
 #table_Product a {
 	width: 100%;
-	padding: 0 10px;
+	padding: 0 30px;
 	display: flex;
-	flex-direction: column;
 	align-items: start;
-	justify-contents: center;
 }
 
-#table_Product a p {
-	text-align: left;
+#product_Image {
+	width: 100px;
+	height: 80px;
+	border: 1px solid var(--light-sub, #FBC252);
+	border-radius: 10px;
 }
 
+#product_Name {
+	margin-left: 20px;
+	padding-top: 30px;
+}
+	
 #table_Product {
 	font: var(--highlight16);
 }
 
-#table_Price,
-#table_Status {
+#table_Price {
 	min-width: 100px;
 	width: 100px;
 }
 
-#table_Review {
+#table_Status {
 	min-width: 100px;
 	width: 100px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
 }
 
 #review_Img {

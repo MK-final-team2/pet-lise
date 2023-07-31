@@ -19,7 +19,7 @@
 		<typeAlias type="recipe.RecipeDTO" alias="recipedto" />
 		<typeAlias type="shop.cart.ShopCartDTO" alias="cartdto" />
 		<typeAlias type="shop.payment.ShopOrderProductDTO" alias="orderproductdto" />
-		<typeAlias type="shop.payment.ShopOrderInfoDTO" alias="orderinfodto" />
+		<typeAlias type="shop.payment.ShopOrderInfoDTO" alias="orderinfodto" />		
 		<typeAlias alias="recipelistdto" type="recipe.list.RecipeListDTO"/>
 	</typeAliases>
 

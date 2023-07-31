@@ -5,7 +5,7 @@
 
 <!-- 배송정보 불러오기 -->
 	<select id="getOrderInfo" resultType="orderinfodto">
-		SELECT * FROM `order` WHERE `user_id` = 'petlise' ORDER BY `order_id` DESC LIMIT 1;
+		SELECT * FROM `order` WHERE `user_id` = #{user_id} ORDER BY `order_id` DESC LIMIT 1;
 	</select>
 
 </mapper>
