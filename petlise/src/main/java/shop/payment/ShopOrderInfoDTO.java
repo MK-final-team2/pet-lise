@@ -3,7 +3,7 @@ package shop.payment;
 import java.util.Date;
 
 public class ShopOrderInfoDTO {
-	String user_id, name, address, phone, require, status, order_id;
+	String user_id, name, address, phone, require, status, order_id, product_name, product_image;
 	Date date;
 	int total_point, total_payment;
 	
@@ -66,6 +66,18 @@ public class ShopOrderInfoDTO {
 	}
 	public void setTotal_payment(int total_payment) {
 		this.total_payment = total_payment;
+	}
+	public String getProduct_name() {
+		return product_name;
+	}
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
+	public String getProduct_image() {
+		return product_image;
+	}
+	public void setProduct_image(String product_image) {
+		this.product_image = product_image;
 	}
 	
 }

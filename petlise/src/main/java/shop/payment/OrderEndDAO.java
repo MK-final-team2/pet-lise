@@ -12,7 +12,7 @@ public class OrderEndDAO {
 	@Autowired
 	SqlSession session;
 	
-	public List<ShopOrderInfoDTO> getOrderInfo(ShopOrderInfoDTO dto){
-		return session.selectList("getOrderInfo", dto);
+	public List<ShopOrderInfoDTO> getOrderInfo(String user_id){
+		return session.selectList("getOrderInfo", user_id);
 	}
 }

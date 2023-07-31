@@ -1,5 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<% java.util.Date orderDate = new java.util.Date(); %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,6 +11,7 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="/css/mypage/orderList.css" />
     <link rel="stylesheet" href="/css/mypage/myPageForm.css" />
     <link rel="stylesheet" href="/css/style.css" />
+	<script src="/js/jquery-3.6.4.min.js"></script>
   </head>
   <body>
     <p class="title">마이페이지</p>
@@ -24,37 +28,40 @@ pageEncoding="UTF-8"%>
               <p id="table_Header_Product">주문상품</p>
               <p id="table_Header_Price">총포인트</p>
               <p id="table_Header_Status">주문현황</p>
-              <p id="table_Header_Review">리뷰작성</p>
             </div>
-            <!--				<c:forEach class="table_Column"> -->
+			<c:forEach var="myOrder" items="${myOrder}">
             <div class="table_Column">
+              <div style="display: none;">${myOrder.user_id}</div>
+              <div style="display: none;" class="order_id">${myOrder.order_id}</div>
               <div id="table_Date">
-                <p>2023-06-28</p>
-                <p>dOG20230626A001</p>
-                <input type="button" id="cancel_Btn" value="주문취소" />
+                <p><fmt:formatDate value="${myOrder.date}" pattern="yyyy.MM.dd" /></p>
+	            <c:set var="truncatedOrderId" value="${fn:substring(myOrder.order_id, 0, 20)}" />
+                <p>${truncatedOrderId }</p>
+                <input type="button" class="cancel_Btn" value="주문취소" onclick="cancelOrder('${myOrder.order_id}')" />
               </div>
               <div id="table_Product">
-                <a href="#">
-                  <span>상품 A</span>
+                <a href="/orderdetail?order_id=${myOrder.order_id}&user_id=${myOrder.user_id}">
+                  <img src="${myOrder.product_image}" id="product_Image"/>
+                  <span id="product_Name">${myOrder.product_name} 등</span>
                 </a>
               </div>
-              <div id="table_Price">1000</div>
-              <div id="table_Status">배송중</div>
-              <div id="table_Review">
-                <span>작성하기</span>
-                <a href="#">
-                  <span class="material-symbols-outlined" id="review_Img">
-                    rate_review
-                  </span>
-                </a>
-              </div>
+              <div id="table_Price">
+              	<div style="display: flex; align-items: center;">
+              	<img
+	                src="/images/shop/shopdetail/coin2.svg"
+	                alt="coin"
+	                style="width: 15px; margin-right: 5px"
+	            /><fmt:formatNumber value="${myOrder.total_payment}" pattern="#,###"/></div>
+              	</div>	              
+              <div id="table_Status">${myOrder.status}</div>
             </div>
-            <!-- 				</c:forEach> -->
+            </c:forEach>
           </div>
         </div>
       </div>
     </div>
 
+    <script src="/js/mypage/orderList.js"></script>
     <script src="/js/mypageMenu.js"></script>
   </body>
 </html>
