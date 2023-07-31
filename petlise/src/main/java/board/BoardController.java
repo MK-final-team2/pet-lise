@@ -1,15 +1,14 @@
 package board;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import jakarta.servlet.http.HttpSession;
 import pagination.PagingResponse;
 import pagination.SearchDTO;
 
@@ -19,7 +18,8 @@ public class BoardController {
 	
 
 
-	    @Autowired
+	 @Autowired
+	    @Qualifier("boardServiceImpl")
 	    private BoardService service;
 
 	    
@@ -37,6 +37,19 @@ public class BoardController {
 	
 	
 
+		@RequestMapping("/boardWrite")
+	    public String BoardWrite(HttpSession session, BoardDTO dto) {
+	        // 로그인 여부 확인
+	        
+	        if (session.getAttribute("user_id") != null && dto.getBoard_title() != null) {
+	        	System.out.println(dto.toString());
+	            String user_id = session.getAttribute("user_id").toString();
+	            dto.setUser_id(user_id);
+	            service.insertBoard(dto);
+	        }
+	        
+	        return "board/boardWrite";
+	    }
 
 	@GetMapping("/boardWrite")
 	public String boardWrite() {

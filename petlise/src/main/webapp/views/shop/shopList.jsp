@@ -35,7 +35,7 @@
 
 			<!--강아지 카테고리-->
 			<div class="petTitle">
-				<div class="title">
+				<div class="titleimg">
 					<img src="/images/shop/shoplist/category_dog.svg" /> <span>강아지</span>
 				</div>
 				<div class="category" id="category_dog">
@@ -65,7 +65,7 @@
 
 			<!--고양이 카테고리-->
 			<div class="petTitle">
-				<div class="title">
+				<div class="titleimg">
 					<img src="/images/shop/shoplist/category_cat.svg" /> <span>고양이</span>
 				</div>
 				<div class="category"  id="category_cat">

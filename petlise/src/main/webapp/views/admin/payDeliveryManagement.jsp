@@ -267,7 +267,6 @@
 	</div>
 
 	<script src="/js/admin/aside.js"></script>
-	<!-- <script src="/js/admin/shop/shopCategory_list.js"></script> -->
 	<script src="/js/admin/shop/payDelivery.js"></script>
 </body>
 </html>

@@ -58,8 +58,9 @@ font: var(--heading24);
     gap: 10px;
    display:flex;
     border-radius: 25px;
+    align-items:center;
   	height:35px;
-  	width:130px;
+  	width:132px;
     border: 1px solid var(--light-sub);
     transition: background-color 0.5s ease;
   }
@@ -104,6 +105,7 @@ font: var(--button14);
     margin-top: 20px;
     width: 106px;
     height: 37px;
+    cursor:pointer;
     border-radius: 5px;
     border: 1px solid var(--light-sub);
     transition: background-color 0.5s ease;

@@ -59,9 +59,32 @@
 </div>
 
 
+		<script>
+  // 세션에서 user_id 값을 가져와서 JavaScript 변수에 할당
+  var user_id = '<%= session.getAttribute("user_id") %>';
+
+
+  // user_id 값을 확인하기 위해 JavaScript에서 출력
+  console.log('user_id:', user_id);
+
+  function checkLoginAndGoToWrite() {
+    if (user_id =='null') {
+      alert('로그인이 필요합니다. 로그인 페이지로 이동합니다.');
+      window.location.href = '/signin'; // 로그인 페이지로 이동
+      // 글쓰기 기능 막기
+      return; // 이동을 막기 위해 return 추가
+    }
+
+    else{// user_id가 존재하면 글쓰기 페이지로 이동
+    window.location.href = '/boardWrite';
+  }
+  }
+</script>
+		
 		<div class="bt_wrap">
-			<a href="boardWrite" class="on">글쓰기</a>
-		</div>
+    <a  onclick="checkLoginAndGoToWrite()">글쓰기</a>
+</div>
+
 
 		<div class="board_list">
 			<div class="top">
@@ -90,9 +113,9 @@
 								${boards.board_title}
 							</a>
 						</td>
-						<td class="writer">${boards.user_id}</td>
+						<td class="writer">${boards.user.name}</td>
 						<td class="date">
-							<fmt:formatDate value="${boards.board_created}" pattern="yyyy-MM-dd :mm" />
+							<fmt:formatDate value="${boards.board_created}" pattern="yyyy-MM-dd H:mm" />
 						</td>
 						<td class="view">${boards.board_view}</td>
 						<td class="like">${boards.like}</td>
@@ -156,7 +179,7 @@
         <div class="dogImg_S">
             <img src="/images/board/dogsecond.png" alt="dogImg_S">
         </div>
-        <div class="dogImg_Up">
+        <div class="dogImg_Up" style="pointer-events: none;">
             <img src="/images/board/searchdog.png" alt="dogImg_up">
         </div>
         

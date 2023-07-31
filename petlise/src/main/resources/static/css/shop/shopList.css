@@ -63,7 +63,7 @@
 	align-items: center;
 }
 
-.title{
+.titleimg{
 	width: 500px;
 	height: 50px;
 	display: flex;
@@ -72,11 +72,11 @@
 	cursor: pointer;
 }
 
-.title>img{
+.titleimg>img{
 	height: 50px;
 }
 
-.title>span{
+.titleimg>span{
 	color: var(--light-text, #1F1F1F);
 	margin-left: 15px;
 	font-size: 24px;
@@ -84,7 +84,7 @@
 	text-transform: capitalize;
 }
 
-.title:hover>span{
+.titleimg:hover>span{
 	color: var(--light-main);
 }
 

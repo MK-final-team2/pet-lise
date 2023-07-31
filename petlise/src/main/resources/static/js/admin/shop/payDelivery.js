@@ -36,8 +36,13 @@ $("#start_date").datepicker();
 $("#end_date").datepicker();
 
 $("#start_date").on('change',function(){
-	/*$("#end_date").datepicker("option","minDate",$("#start_date").val());*/
-	$("#end_date").datepicker("option","minDate",-30);
+	mindate = $("#start_date").val();
+	$("#end_date").datepicker("option","minDate",mindate);
+})
+
+$("#end_date").on('change',function(){
+	maxdate = $("#end_date").val();
+	$("#start_date").datepicker("option","maxDate",maxdate);
 })
 
 $("#date_today").on('click',function(){
