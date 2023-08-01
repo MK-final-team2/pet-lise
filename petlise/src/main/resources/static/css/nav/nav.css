@@ -2,13 +2,12 @@
 
 /* header */
 .header {
-	position: sticky;
-	padding-top: 32px;
+	position: sticky;	
 	display: block;
 	width: 100%;
 	z-index: 99;
 	background-color: white;
-	padding: 5px 100px 5px 100px;
+	padding: 10px 100px 10px 100px;
 	border-bottom: 1px solid #BDBDBD;
 	margin: auto;
 	min-width: 1670px;
@@ -16,16 +15,9 @@
 
 
 
-.sticky {
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index: 99;
-}
-
 .header.active {
 	transform: translateY(-100%);
-	transition: transform 0.5s ease;
+	transition: transform 0.9s ease;
 }
 
 .row {
@@ -202,7 +194,7 @@
 .header .menu>ul>li .sub-menu {
 	position: absolute;
 	background-color: var(--light-sub);
-	padding: 40px 250px;
+	padding: 30px 250px;
 	transition: all 0.3s ease;
 	margin-top: 25px;
 	visibility: hidden;

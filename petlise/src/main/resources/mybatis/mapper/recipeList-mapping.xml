@@ -11,6 +11,7 @@
     <result column="recipe_created_at" property="recipe_created_at" />
     <result column="recipe_updated_at" property="recipe_updated_at" />
     <result column="image" property="image" />
+    <result column="view_cnt" property="view_cnt"/>
     <result column="recipe_category" property="recipe_category" />
     <result column="pet_category" property="pet_category" />
     <result column="main_category" property="main_category" />
@@ -40,21 +41,6 @@
 </select>
 
 
-<delete id="deleteRecipe" parameterType="String">
-	delete from recipe where
-	recipe_id = #{recipe_id};
-</delete>
-
-	
-<update id="updateRecipe" parameterType="recipelistdto">
-	UPDATE recipe
-	SET pet_category=#{pet_category}, main_category=#{main_category},
-	sub_category=#{sub_category}, recipe_title = #{recipe_title},
-	recipe_contents=#{recipe_contents},
-	recipe_updated_at = #{recipe_updated_at},
-	recipe_of_the_month=#{recipe_of_the_month};
-	WHERE recipe_id = #{recipe_id};
-</update>
 
 	<!-- ▼▼▼▼Pagination▼▼▼▼ -->
 	<select id="getAllRecipePaging" resultMap="recipelistdtomap"

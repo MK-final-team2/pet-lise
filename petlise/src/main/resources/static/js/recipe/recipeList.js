@@ -5,7 +5,6 @@ const SearchType2 = $('#searchType2').val();
 const SearchType3 = $('#searchType3').val();
 
 
-
 //결과 없을때 홈가기 버튼
 $("#noresult>button").on('click', function() {
 	location.href = location.pathname;
@@ -32,16 +31,6 @@ $("#searchbtn").on('click', function() {
 	location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
 });
 
-// ----- 상세페이지 넘어가기 -----
-
-$(".products").on('click',function(){
-	location.href = '/shopdetail?product_id='+$(this).attr('id') ;
-});
-
-// ----- 모달이벤트 -----
-$(".modal_cancelbtn").on('click',function(){
-	$(this).parents(".modal").css('display', 'none');
-});
 
 // ----- 페이징버튼 ----- (모든조건유지)
 //숫자 페이징버튼 
@@ -113,13 +102,33 @@ $(".pagelast").on('click', function() {
 
 //컨텐츠 내용 길이 조절
 document.addEventListener("DOMContentLoaded", function() {
-	var recipeContentsElements = document.querySelectorAll(".recipe_content");
+  var recipeContentsElements = document.querySelectorAll(".recipe_content");
 
-	recipeContentsElements.forEach(function(element) {
-		var content = element.innerText;
-		var maxLength = 60;
-			if (content.length > maxLength) {
-			element.innerText = content.substring(0, maxLength) + "...";
-      }
-   });
+  recipeContentsElements.forEach(function(element) {
+    var content = element.innerHTML;
+
+    // 정규식으로 <p> 태그와 </p> 태그 제거
+    var strippedContent = content.replace(/<\/?p[^>]*>/g, '');
+
+    // 정규식으로 <br> 태그 제거
+    strippedContent = strippedContent.replace(/<br\s*\/?>/gi, '');
+
+    var maxLength = 60;
+    if (strippedContent.length > maxLength) {
+      element.innerHTML = strippedContent.substring(0, maxLength) + "...";
+    } else {
+      element.innerHTML = strippedContent;
+    }
+  });
 });
+
+// ----- 상세페이지 클릭-----
+
+$(".recipe").on('click',function(){
+	location.href = '/recipedetail?recipe_id='+$(this).attr('id') ;
+});
+
+
+
+
+
