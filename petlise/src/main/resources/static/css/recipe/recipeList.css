@@ -1,6 +1,7 @@
 .wrap {	
   margin: 0;   
   padding-bottom: 50px; 
+  min-width: 1670px;
 }
 
 .pet_icon {

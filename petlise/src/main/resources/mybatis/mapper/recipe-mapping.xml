@@ -3,15 +3,30 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="recipe.RecipeDAO">
 
-    <insert id="insertRecipe" parameterType="recipedto">
-        insert into recipe(recipe_id, user_id, recipe_title, recipe_contents, recipe_created_at, recipe_updated_at,
+<resultMap type="recipe.RecipeDTO" id="recipedto">
+    <result column="recipe_id" property="recipe_id" />
+    <result column="user_id" property="user_id" />
+    <result column="recipe_title" property="recipe_title" />
+    <result column="recipe_contents" property="recipe_contents" />
+    <result column="recipe_created_at" property="recipe_created_at" />
+    <result column="recipe_updated_at" property="recipe_updated_at" />
+    <result column="image" property="image" />
+    <result column="recipe_category" property="recipe_category" />
+    <result column="pet_category" property="pet_category" />
+    <result column="main_category" property="main_category" />
+    <result column="sub_category" property="sub_category" />
+    <result column="recipe_of_the_month_registration_date" property="recipe_of_the_month_registration_date" />
+</resultMap>
+
+
+    <insert id="insertRecipe" parameterType="recipe.RecipeDTO">
+        INSERT INTO recipe(recipe_id, user_id, recipe_title, recipe_contents, recipe_created_at, recipe_updated_at,
             image, recipe_category, pet_category, main_category, sub_category, recipe_of_the_month_registration_date,
             view_cnt, recipe_of_the_month)
-        values (#{recipe_id}, #{user_id}, #{recipe_title}, #{recipe_contents}, #{recipe_created_at}, #{recipe_updated_at},
+        VALUES (#{recipe_id}, #{user_id}, #{recipe_title}, #{recipe_contents}, #{recipe_created_at}, #{recipe_updated_at},
             #{image}, #{recipe_category}, #{pet_category}, #{main_category}, #{sub_category},
             #{recipe_of_the_month_registration_date}, #{view_cnt}, #{recipe_of_the_month})
     </insert> 
-    
     
 
 </mapper>

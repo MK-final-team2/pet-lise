@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -29,8 +31,6 @@
 					<span>레시피 등록</span>
 				</div>
 			</div>
-
-			<form action="/recipecreate" method="post" id="recipeForm">
 				<div class="title_input">
 					<input type="text" name="recipe_title" id="recipeTitle" placeholder="레시피 제목">
 				</div>
@@ -80,15 +80,12 @@
 					</div><!-- 서브카테고리 -->
 				</div>
 
-				 <div id="editor">${recipe.recipe_contents}</div>
-  					 <input type="hidden" id="quill_html" name="recipe_content" value="${recipe.recipe_contents}">
-				<div class="createButton">
-				
-					<button type="submit" id="submitButton" onclick="registerRecipe()">등록하기</button>
+				 <div id="editor">${recipe.recipe_contents}</div>  					 
+				<div class="createButton">				
+ 					 <button type="button" id="submitButton">등록하기</button>
 				</div>
+
 				
-		
-			</form>
 		</div>
 		
 		<!-- 경고창 -->
@@ -101,11 +98,12 @@
 			</div>
 		</div>
 		
+		
 		<script src="/js/recipe/editor.js"></script>
-		<script src="/js/recipe/recipeCategory.js"></script>
-		<script src="/js/recipe/recipeCreateValidation.js"></script>
+		<script src="/js/recipe/recipeCategory.js"></script>		
 		<script src="/js/imageUpload.js"></script>
 		<script src="/js/recipe/nav.js"></script>
+		<script src="/js/recipe/recipeCreate.js"></script>
 		
 
 		
