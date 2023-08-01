@@ -27,4 +27,7 @@ public class OrderDetailDAO {
 	public List<ShopOrderInfoDTO> myDeliveryInfo(String order_id){
 		return session.selectList("myDeliveryInfo", order_id);
 	}
+	public int cancelOrderDetail(String order_id) {
+		return session.update("cancelOrderDetail", order_id);
+	}	
 }

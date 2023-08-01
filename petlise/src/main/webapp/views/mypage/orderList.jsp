@@ -31,13 +31,15 @@
             </div>
 			<c:forEach var="myOrder" items="${myOrder}">
             <div class="table_Column">
-              <div style="display: none;">${myOrder.user_id}</div>
+              <div style="display: none;" class="user_id">${myOrder.user_id}</div>
               <div style="display: none;" class="order_id">${myOrder.order_id}</div>
               <div id="table_Date">
                 <p><fmt:formatDate value="${myOrder.date}" pattern="yyyy.MM.dd" /></p>
 	            <c:set var="truncatedOrderId" value="${fn:substring(myOrder.order_id, 0, 20)}" />
                 <p>${truncatedOrderId }</p>
+              <c:if test="${myOrder.status ne '주문취소'}">
                 <input type="button" class="cancel_Btn" value="주문취소" onclick="cancelOrder('${myOrder.order_id}')" />
+              </c:if>
               </div>
               <div id="table_Product">
                 <a href="/orderdetail?order_id=${myOrder.order_id}&user_id=${myOrder.user_id}">

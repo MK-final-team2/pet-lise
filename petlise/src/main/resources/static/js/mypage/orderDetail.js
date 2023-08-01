@@ -17,3 +17,26 @@
 
   const changeElement = document.getElementById('change');
   changeElement.innerText = change.toLocaleString(); 
+
+//주문목록 버튼  
+function redirectToOrderList() {
+  window.location.href = "/orderlist";
+}
+
+//주문취소 버튼
+function cancelOrderDetail() {
+  var order_id = $('#order_id').text();
+
+  $.ajax({
+    url: "/cancelorderdetail",
+    method: "POST", 
+    data: { order_id: order_id },
+    success: function (response) {
+      console.log("주문이 취소되었습니다.");
+      location.href = "/orderlist";
+    },
+    error: function (xhr, status, error) {
+      console.error("주문 취소 오류: " + error);
+    }
+  });
+}  

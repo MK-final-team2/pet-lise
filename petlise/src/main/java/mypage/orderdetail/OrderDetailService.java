@@ -26,4 +26,7 @@ public class OrderDetailService {
 	public List<ShopOrderInfoDTO> myDeliveryInfo(String order_id){
 		return dao.myDeliveryInfo(order_id);
 	}
+	public int cancelOrderDetail(String order_id) {
+		return dao.cancelOrderDetail(order_id);
+	}	
 }

@@ -14,4 +14,9 @@
 		SELECT * FROM `order` WHERE `order_id` = #{order_id};
 	</select>
 
+	<update id="cancelOrderDetail" parameterType="orderInfodto">
+		UPDATE `order` 
+		SET    `status` = "주문취소" 
+		WHERE  `order_id` = #{order_id};
+	</update>
 </mapper>
