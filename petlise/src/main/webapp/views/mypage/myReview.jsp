@@ -37,7 +37,7 @@
 							<div class="select">
 								<span> ${param.searchType2 eq null || param.searchType2 ==''?'전체':param.searchType2}	</span>
 							</div>
-							<input type="hidden" id="searchType2" value="${param.searchType2 eq null || param.searchType2 ==''?'후기전체':param.searchType2}" />
+							<input type="hidden" id="searchType2" value="${param.searchType2 eq null || param.searchType2 ==''?'전체':param.searchType2}" />
 							<ul class="dropdown-menu">
 								<li>전체</li>
 								<li>후기작성상품</li>
