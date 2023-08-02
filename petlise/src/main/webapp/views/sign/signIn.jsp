@@ -11,6 +11,7 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="/css/sign/signIn.css" />
     <link rel="stylesheet" href="/css/nav/nav.css" />
     <title>Pet LiSe</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   </head>
   <body>
     <div id="nav"></div>
@@ -43,13 +44,9 @@ pageEncoding="UTF-8"%>
         <div class="line"></div>
         <div class="snsWrapper">
           <p>다음 계정으로 간편 로그인</p>
-          <a href="#">
+          <a href="/login/oauth2/google">
             <object data="/images/google.svg" alt="구글아이콘"></object>
             <span>Google로 로그인</span>
-          </a>
-          <a href="#">
-            <object data="/images/kakao.svg" alt="카카오아이콘"></object>
-            <span>카카오 계정으로 로그인</span>
           </a>
         </div>
         <div class="movetosignup">
@@ -58,7 +55,7 @@ pageEncoding="UTF-8"%>
         </div>
       </div>
     </main>
-
+    
     <script src="/js/recipe/nav.js"></script>
     <script src="/js/sign/checkLoginForm.js"></script>
   </body>

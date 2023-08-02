@@ -106,7 +106,7 @@
   font: var(--body14);
   margin-bottom: 15px;
 }
-.snsWrapper a {
+.snsWrapper > div {
   width: 275px;
   height: 40px;
   border-radius: 3px;
@@ -114,24 +114,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.snsWrapper a:first-of-type {
   background-color: #df4f3d;
   color: var(--white);
   margin-bottom: 10px;
+  box-shadow: var(--shadow200);
 }
-.snsWrapper a:last-of-type {
-  background-color: #fee500;
-  color: #392020;
-}
-.snsWrapper a:hover span {
+.snsWrapper > div:hover span {
   font: var(--button14);
 }
-.snsWrapper a object {
+.snsWrapper > div object {
   height: 24px;
   margin-right: 8px;
 }
-.snsWrapper a span {
+.snsWrapper > div span {
   width: 100%;
   text-align: center;
   font: var(--body14);

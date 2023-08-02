@@ -15,6 +15,7 @@ prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
     <link rel="stylesheet" href="/css/mypage/myInfo.css" />
     <link rel="stylesheet" href="/css/nav/nav.css" />
     <title>Pet LiSe</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   </head>
   <body>
     <div id="nav"></div>

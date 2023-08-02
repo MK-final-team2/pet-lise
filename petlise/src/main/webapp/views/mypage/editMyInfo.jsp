@@ -32,7 +32,7 @@
             <div class="imgWrap">
               <div class="img">
                 <img
-                  src="https://storage.googleapis.com/${my_info.profile_image}"
+                  <%-- src="https://storage.googleapis.com/${my_info.profile_image}" --%>
                   onerror="this.onerror=null; this.src='/images/default-profile.svg';"
                   id="imgUrl"
                 />
