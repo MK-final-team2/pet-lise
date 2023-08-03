@@ -98,7 +98,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 35px;
+  margin-bottom: 30px;
 }
 .snsWrapper > p {
   width: 100%;
@@ -106,7 +106,7 @@
   font: var(--body14);
   margin-bottom: 15px;
 }
-.snsWrapper > div {
+.snsWrapper a {
   width: 275px;
   height: 40px;
   border-radius: 3px;
@@ -116,17 +116,16 @@
   align-items: center;
   background-color: #df4f3d;
   color: var(--white);
-  margin-bottom: 10px;
   box-shadow: var(--shadow200);
 }
-.snsWrapper > div:hover span {
+.snsWrapper a:hover span {
   font: var(--button14);
 }
-.snsWrapper > div object {
+.snsWrapper a object {
   height: 24px;
   margin-right: 8px;
 }
-.snsWrapper > div span {
+.snsWrapper a span {
   width: 100%;
   text-align: center;
   font: var(--body14);
