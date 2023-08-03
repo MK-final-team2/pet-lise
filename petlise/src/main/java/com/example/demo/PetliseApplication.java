@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
-@ComponentScan(basePackages = {"mypage", "shop", "user", "recipe", "admin", "upload", "board"})
-@MapperScan(basePackages = {"mypage", "shop", "user", "recipe", "admin","board"})
+@ComponentScan(basePackages = {"mypage", "shop", "user", "recipe", "admin", "upload", "board", "home"})
+@MapperScan(basePackages = {"mypage", "shop", "user", "recipe", "admin","board", "home"})
 
 public class PetliseApplication {
 

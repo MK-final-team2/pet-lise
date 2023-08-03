@@ -24,10 +24,9 @@ public class UserController {
 	@Value("${spring.bcrypt.number}")
 	private int bcryptNum;
 
-	@RequestMapping("/")
-	public String home() {
-		return "home";
-	}
+	/*
+	 * @RequestMapping("/") public String home() { return "home"; }
+	 */
 
 	@GetMapping("/signup")
 	public String getSignUp() {
