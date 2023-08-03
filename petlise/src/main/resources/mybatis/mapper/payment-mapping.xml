@@ -16,8 +16,8 @@
 <!-- 배송정보 저장하기 -->	
 	<insert id="saveOrderInfo" parameterType="orderinfodto">
 		INSERT INTO `order`
-					(`order_id`, `user_id`, `name`, `phone`, `address`, `require`, `total_point`, `total_payment`, `date`, `status`) 
-		VALUES 		(#{order_id}, #{user_id}, #{name}, #{phone}, #{address}, #{require}, #{total_point}, #{total_payment}, DATE_FORMAT(NOW(), '%Y.%m.%d'), #{status});
+					(`order_id`, `user_id`, `name`, `phone`, `address`, `require`, `total_product`, `total_payment`, `date`, `status`) 
+		VALUES 		(#{order_id}, #{user_id}, #{name}, #{phone}, #{address}, #{require}, #{total_product}, #{total_payment}, DATE_FORMAT(NOW(), '%Y.%m.%d'), #{status});
 	</insert>
 	
 <!-- 주문번호 부여 -->	

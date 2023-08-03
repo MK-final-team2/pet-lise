@@ -117,7 +117,7 @@ $('#order_Btn').click(function() {
                         + $('#sample6_address').val() + ", "
                         + $('#sample6_detailAddress').val(),
                     require: $('#input_Require').val(),
-                    total_point: calcTotalPoint,
+                    total_product: calcTotalPoint,
                     total_payment: calcTotalPoint + 3000,
                     status: "주문완료"
                 },

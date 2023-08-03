@@ -136,7 +136,7 @@
                   <div class="receipt_Row_1">
                     <p>
                       <img src="/images/mypage/coin2.svg" id="point_Icon" />
-                      <fmt:formatNumber value="${myDeliveryInfo.total_point}" pattern="#,###"/>
+                      <fmt:formatNumber value="${myDeliveryInfo.total_product}" pattern="#,###"/>
                     </p>
                     <p>
                       <img src="/images/mypage/coin2.svg" id="point_Icon" />
