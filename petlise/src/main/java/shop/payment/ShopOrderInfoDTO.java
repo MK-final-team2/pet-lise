@@ -5,7 +5,7 @@ import java.util.Date;
 public class ShopOrderInfoDTO {
 	String user_id, name, address, phone, require, status, order_id, product_name, product_image;
 	Date date;
-	int total_point, total_payment;
+	int available_point, total_product, total_payment;
 	
 	public String getOrder_id() {
 		return order_id;
@@ -55,11 +55,11 @@ public class ShopOrderInfoDTO {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public int getTotal_point() {
-		return total_point;
+	public int getTotal_product() {
+		return total_product;
 	}
-	public void setTotal_point(int total_point) {
-		this.total_point = total_point;
+	public void setTotal_product(int total_product) {
+		this.total_product = total_product;
 	}
 	public int getTotal_payment() {
 		return total_payment;
@@ -78,6 +78,12 @@ public class ShopOrderInfoDTO {
 	}
 	public void setProduct_image(String product_image) {
 		this.product_image = product_image;
+	}
+	public int getAvailable_point() {
+		return available_point;
+	}
+	public void setAvailable_point(int available_point) {
+		this.available_point = available_point;
 	}
 	
 }

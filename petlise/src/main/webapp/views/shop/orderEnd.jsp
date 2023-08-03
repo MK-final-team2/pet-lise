@@ -92,7 +92,7 @@
 	                alt="coin"
 	                style="width: 20px; margin-right: 5px"
 	              />
-	              <span class="total_point"><fmt:formatNumber value="${orderInfo.total_point}" pattern="#,###"/></span>
+	              <span class="total_point"><fmt:formatNumber value="${orderInfo.total_product}" pattern="#,###"/></span>
 	            </div>
 	          </div>
 	          <div class="receipt_contents">
