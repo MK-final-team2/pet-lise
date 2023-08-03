@@ -22,9 +22,10 @@ public class UploadService extends HttpServlet {
 
 	@Value("${spring.cloud.gcp.storage.bucket}")
 	private String bucketName;
-	@Value("${spring.cloud.gcp.storage.credentials.location}")
+	@Value("${spring.cloud.gcp.storage.credentials.json}")
 	private String location;
-	private String resourcePath = "../src/main/resources/";
+	
+	private String resourcePath = "classpath:../src/main/resources/";
 
 	private static Storage storage = null;
 
