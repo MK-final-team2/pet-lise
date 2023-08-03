@@ -2,8 +2,8 @@
 .metadata
 .prettierrc
 .vscode
-*.properties
-**/src/main/resources/*.json
+**/src/main/resources/application.properties
+**/src/main/resources/json/*.json
 
 # Compiled class file
 *.class
