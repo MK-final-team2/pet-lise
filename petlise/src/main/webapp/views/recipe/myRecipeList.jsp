@@ -115,9 +115,9 @@
 				</div>
 			</c:if>
 				<c:forEach var="recipe" items="${response.list}">
-					<div class="recipe">
+					<div class="recipe" id="${recipe.recipe_id}">
 						<div class="recipe_img"
-							style="background-image: url(${recipe.image});">
+							style="background-image: url(https://storage.googleapis.com/${recipe.image});">
 							<div class="recipe_cover">
 								<button>
 									<div class="love_this">0</div>
@@ -137,8 +137,9 @@
 									<div class="info_writer">
 										<span>${recipe.user.name}</span>
 									</div>
-									<div class="info_date">					
-										<span><fmt:formatDate value="${recipe.recipe_created_at}" pattern="yyyy.MM.dd" /></span>
+									<div class="info_date">														
+										<span style="margin-right:10px;"><fmt:formatDate value="${recipe.recipe_created_at}" pattern="yyyy.MM.dd" /></span>
+										<span>조회수 ${recipe.view_cnt}</span>	
 									</div>
 								</div>
 							</div>
@@ -148,13 +149,39 @@
 			</div>
 		</div>
 
+
+<script>
+  // 세션에서 user_id 값을 가져와서 JavaScript 변수에 할당
+  var user_id = '<%= session.getAttribute("user_id") %>';
+
+
+  // user_id 값을 확인하기 위해 JavaScript에서 출력
+  console.log('user_id:', user_id);
+
+  function checkLoginAndGoToWrite() {
+    if (user_id =='null') {
+      alert('로그인이 필요합니다. 로그인 페이지로 이동합니다.');
+      window.location.href = '/signin'; // 로그인 페이지로 이동
+      // 글쓰기 기능 막기
+      return; // 이동을 막기 위해 return 추가
+    }
+
+    else{// user_id가 존재하면 글쓰기 페이지로 이동
+    window.location.href = '/recipecreate';
+  }
+  }
+</script>
 		<!-- 글쓰기 -->
-		<div id="recipe_write">
-			<a href="/recipecreate"><div class="write">
-					<button>글쓰기</button>
-				</div></a>
-		</div>
-		
+
+		<c:if test="${param.recipeType eq '나만의레시피'}">
+			<div id="recipe_write">				
+					<div class="write">
+						<button onclick="checkLoginAndGoToWrite()">글쓰기</button>
+					</div>
+				</a>
+			</div>
+		</c:if>
+
 		<div class="page">
 			<div id="pagination">
 				<c:if test="${fn:length(response.list) != 0}">

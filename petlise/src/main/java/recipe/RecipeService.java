@@ -13,20 +13,18 @@ import org.springframework.stereotype.Service;
 public class RecipeService {
     private final RecipeDAO recipeDAO;
     
-    
-   
-
     @Autowired
     public RecipeService(RecipeDAO recipeDAO) {
         this.recipeDAO = recipeDAO;
     }
     
-    public void insertRecipe(RecipeDTO recipeDTO) {
+    public void insertRecipe(RecipeDTO recipeDTO, String user_id) {
         recipeDTO.setRecipe_id(UUID.randomUUID().toString());  // 게시글 ID 설정 (UUID 사용)
         recipeDTO.setRecipe_created_at(new Timestamp(System.currentTimeMillis()));  // 게시글 생성 시간 설정
         recipeDTO.setRecipe_updated_at(new Timestamp(System.currentTimeMillis()));  // 게시글 수정 시간 설정
         recipeDTO.setRecipe_category("나만의레시피");
         recipeDTO.setRecipe_of_the_month(0); //이달의 레시피 조건충족X false=0
+        recipeDTO.setUser_id(user_id);
         
         // 이미지 URL 설정
         String imageUrl = recipeDTO.getImage();

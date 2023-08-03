@@ -51,7 +51,7 @@ function edit() {
   let sub_category = document.querySelector("#dropdown2 .select span").textContent; // 수정된 부분
   let recipe_contents = quill.root.innerHTML;
   let imageValue = $('#imageValue').val();
-  let profile_image = imageValue.length == 0 ? '' : imageValue;
+  let image = imageValue.length == 0 ? '' : imageValue;
 
   // 유효성 검사 추가
   if (recipe_title === "") {
