@@ -42,6 +42,7 @@
               	alt="대표이미지" id="imgUrl" />
               <input type="hidden" id="imageValue" name="image" value="${recipeInfo.image}" />
             </label>
+            <input type="file" id="file" accept="image/*" onchange="imageUpload()" />
           </div>
           <div class="categoryWrap">
             <div class="category">

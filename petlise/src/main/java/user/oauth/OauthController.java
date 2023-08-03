@@ -53,10 +53,11 @@ public class OauthController {
 			
 			service.joinGoogle(user);
 			dto = service.loginGoogle(googleUserInfo.getEmail());
+			
+			session.setAttribute("user_id", dto.getUser_id());
+			session.setAttribute("role", dto.getRole());
 		}
 		
-		session.setAttribute("user_id", dto.getUser_id());
-		session.setAttribute("role", dto.getRole());
 		mv.setViewName("redirect:/");
 
 		return mv;
