@@ -21,7 +21,7 @@
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=33ed4195d27024d4ef479d47cfa9ce6f&libraries=services&libraries=services"></script>
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
  
-  <title>펫플레이스 등록</title>
+  <title>펫플레이스 수정</title>
 </head>
 <body>
   <header>
@@ -29,23 +29,23 @@
     <script src="/js/recipe/nav.js"></script>
   </header>
   <div id="container">
-    <div  class="board_title">
-      <a href="/petplaceMain" >펫플레이스 등록</a>
+    <div class="board_title">
+      <p>펫플레이스 수정</p>
     </div>
   <input type="hidden" name="seq" id="seq" value="${seq}" />
 
     <p>제목</p>
     <div class="write_title">
-      <input type="text" placeholder="제목" name="title" size="80%" maxlength="50" value="${petplace.title}" />
+      <input type="text" placeholder="제목" name="title" size="80%" maxlength="50" value="${petplaceInfo.title}" />
     </div>
     <p>카테고리</p>
     <div class="categoryWrap">
       <div class="category" id="category">
         <div id="dropdown" class="dropdown">
           <div class="select">
-            <span>${fn:length(petplace.category) != 0 ? petplace.category : '카테고리 선택'}</span>
+            <span>${fn:length(petplaceInfo.category) != 0 ? petplaceInfo.category : '카테고리 선택'}</span>
           </div>
-          <input type="hidden" name="category" value="${fn:length(petplace.category) != 0 ? petplace.category : ''}" />
+          <input type="hidden" name="category" value="${fn:length(petplaceInfo.category) != 0 ? petplaceInfo.category : ''}" />
           <ul class="dropdown-menu">
             <li>카페</li>
             <li>산책</li>
@@ -57,7 +57,7 @@
       <!-- 주소 및 지도 관련 요소 -->
       <div class="adressWrap">
         <p style="margin-bottom: 70px;">주소</p>
-        <input type="text" id="sample6_postcode" name="petplace_address0" value="${fn:split(petplaceInfo.petplace_address,',')[0]}" placeholder="우편번호" style="padding-left: 16px; margin-left: -45px; pointer-events: none;" />
+        <input type="text" id="sample6_postcode" placeholder="우편번호" name="petplace_address0"  value="${fn:split(petplaceInfo.petplace_address, ',')[0]}" style="padding-left: 16px; margin-left: -45px; pointer-events: none;" />
         <button id="adressBtn" type="button">주소 검색</button>
         <div class="mycanvas" style="width: 150px; height: 150px; margin-bottom: 200px; pointer-events: none;">
           <%@ include file="./bread/index.html"%>
@@ -70,14 +70,14 @@
           </p>
         </div>
       </div>
-      <div class="addressLine">
-        <input type="text" id="sample6_address" name="petplace_address1" value="${fn:split(petplaceInfo.petplace_address,',')[1]}" style="padding-left: 16px; pointer-events: none;" placeholder="주소" />
-        <input type="text" id="sample6_detailAddress" name="petplace_address2" value="${fn:split(petplaceInfo.petplace_address,',')[2]}"placeholder="상세주소" style="padding-left: 16px;" />
+       <div class="addressLine">
+        <input type="text" id="sample6_address" name="petplace_address1" value="${fn:split(petplaceInfo.petplace_address, ',')[1]}" style="padding-left: 16px; pointer-events: none;" placeholder="주소" />
+        <input type="text" id="sample6_detailAddress" name="petplace_address2" value="${fn:split(petplaceInfo.petplace_address, ',')[2]}"placeholder="상세주소" style="padding-left: 16px;" />
       </div>
       <div id="map"></div>
       <div class="editorWrap">
-        <div id="editor">${petplace.petplace_contents}</div>
-        <button class="writeButton" onclick="edit()" >등록하기</button>
+       <div id="editor">${petplaceInfo.petplace_contents}</div>
+        <button class="writeButton" onclick="edit()" >수정하기</button>
 </div>
     </div>
   </div>
@@ -168,7 +168,7 @@
   </script>
   <script src="/js/postcode.js"></script>
   <script src="/js/editor.js"></script>
-   <script src="/js/board/editPetplace.js"></script>
+   <script src="/js/board/UpdatePetplace.js"></script>
  
   
 </body>

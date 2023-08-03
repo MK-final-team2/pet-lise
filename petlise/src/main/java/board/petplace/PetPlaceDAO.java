@@ -18,11 +18,14 @@ public interface PetPlaceDAO {
     
     int insertPetPlace(PetPlaceDTO dto);
     
-	public PetPlaceDTO findpetplace (int place_id);
+	public PetPlaceDTO findpetplace (int seq);
+	
+	public int viewCnt(int seq);
+	
 	
 	public void updatepetplace(PetPlaceDTO dto);
 	
-	public void deletepetplace(int place_id);
+	public void deletepetplace(int seq);
 
 
 

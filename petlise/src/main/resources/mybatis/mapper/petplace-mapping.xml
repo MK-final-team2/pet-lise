@@ -5,16 +5,16 @@
 
 
 <resultMap id="petplacedto" type="board.petplace.PetPlaceDTO">
-    <id property="place_id" column="place_id"/>
+    <id property="seq" column="seq"/>
     <result property="user_id" column="user_id"/>
     <result property="title" column="title"/>
     <result property="category" column="category"/>
-    <result property="p_address" column="p_address"/>
+    <result property="petplace_address" column="petplace_address"/>
      <result property="p_detailaddress" column="p_detailaddress"/>
     <result property="petplace_contents" column="petplace_contents"/>
     <result property="petplace_created" column="petplace_created"/>
     <result property="view_count" column="view_count"/>
-    <result property="like_count" column="like_count"/>
+   <result property="place_id" column="place_id"/>
     <result property="user.name" column="name"/>
 </resultMap>
 
@@ -79,29 +79,40 @@
     </select>
 
     <!-- Insert a new pet place -->
-    <insert id="insertPetPlace" parameterType="board.petplace.PetPlaceDTO">
-       INSERT INTO petplace ( user_id, title, category, p_address, p_detailaddress, petplace_contents)
-VALUES (#{user_id}, #{title}, #{category}, #{p_address}, #{p_detailaddress}, #{petplace_contents});
+    <insert id="insertPetPlace" parameterType="board.petplace.PetPlaceDTO" >
+       INSERT INTO petplace ( view_count , user_id, title, category, petplace_address,  petplace_contents)
+VALUES (0, #{user_id}, #{title}, #{category}, #{petplace_address},  #{petplace_contents});
+    <selectKey resultType="int" keyProperty="seq" order="AFTER">
+        SELECT LAST_INSERT_ID()
+    </selectKey>
     </insert>
+
+<update id="viewCnt" parameterType="int">
+  UPDATE petplace SET view_count = view_count + 1 
+  WHERE seq = #{seq}
+</update>
+
     
     
   <select id="findpetplace" parameterType="int" resultMap="petplacedto">
        SELECT *
         FROM petplace p
          LEFT JOIN user u ON p.user_id = u.user_id
-        WHERE place_id = #{place_id}
+        WHERE seq = #{seq}
     </select>
 
-    <update id="updatepetplace" parameterType="Map">
+
+
+    <update id="updatepetplace" parameterType="Map" useGeneratedKeys="true" keyProperty="seq">
         UPDATE petplace SET
-        title=#{title}, petplace_contents=#{petplace_contents}, category=#{category}
-        WHERE place_id=#{place_id}
+        seq=#{seq}, title=#{title}, petplace_contents=#{petplace_contents}, category=#{category},petplace_address=#{petplace_address}
+        WHERE seq=#{seq}
     </update>
 
 
     <delete id="deletepetplace" parameterType="int">
         DELETE FROM petplace
-        WHERE place_id=#{place_id}
+        WHERE seq=#{seq}
     </delete>
 
 </mapper>

@@ -10,6 +10,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <link rel="stylesheet" href="/css/board/boardWrite.css">
     <link rel="stylesheet" href="/css/style.css" />  
         <link rel="stylesheet" href="/css/board/petplaceWrite.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
             <link
       href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
@@ -18,10 +19,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     
     <title>자유게시판 등록</title>
-    <script src="/js/jquery-3.6.4.min.js"></script>
-        <script>
-      $(document).ready(function () {});
-    </script>  
+      
 </head>
 
 <body>
@@ -49,9 +47,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 				<button class="writeButton" onclick="return edit()">등록하기</button>
 			</div>
         </div>
-        Wx`
-       
-
+    
     <script src="/js/board/editBoard.js"></script>
  <script src="/js/editor.js"></script>
 

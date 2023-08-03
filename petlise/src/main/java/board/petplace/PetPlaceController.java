@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import jakarta.servlet.http.HttpSession;
 import pagination.PagingResponse;
 import pagination.SearchDTO;
@@ -24,66 +23,87 @@ import pagination.SearchDTO;
 
 public class PetPlaceController {
 
-    @Autowired
-    @Qualifier("petPlaceServiceImpl")
-    private PetPlaceService service;
+	@Autowired
+	@Qualifier("petPlaceServiceImpl")
+	private PetPlaceService service;
 
-  
-    // 펫플레이스 리스트 
-    @GetMapping("/petplaceMain")
-    public ModelAndView petPlaceList(@ModelAttribute SearchDTO searchdto) {
-        PagingResponse<PetPlaceDTO> petPlaces = service.getAllPetPlacePaging(searchdto);
+	// 펫플레이스 리스트
+	@GetMapping("/petplaceMain")
+	public ModelAndView petPlaceList(@ModelAttribute SearchDTO searchdto) {
+		PagingResponse<PetPlaceDTO> petPlaces = service.getAllPetPlacePaging(searchdto);
 
-        ModelAndView mv = new ModelAndView();
-        mv.addObject("response", petPlaces);
-        mv.setViewName("board/petplaceMain");
-        return mv;
-    }
-    
-    
-    @RequestMapping("/petplaceWrite")
-    public String petplaceWrite(HttpSession session, PetPlaceDTO dto) {
-        // 로그인 여부 확인
-        
-        if (session.getAttribute("user_id") != null && dto.getTitle() != null) {
-        	System.out.println(dto.toString());
-            String user_id = session.getAttribute("user_id").toString();
-            dto.setUser_id(user_id);
-            service.insertPetPlace(dto);
-        }
-        
-        return "board/petplaceWrite";
-    }
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("response", petPlaces);
+		mv.setViewName("board/petplaceMain");
+		return mv;
+	}
 
-    
-    
-    
-    
-	
-	  @RequestMapping("/petplaceDetail") public ResponseEntity<Void>
-	  petplaceDetailpetplace(PetPlaceDTO dto) { service.updatepetplace(dto);
-	  
-	  return new ResponseEntity(HttpStatus.OK); }
-	  
-	  @GetMapping("/getpetplace") public String getFindpetplace(Model
-	  model, @RequestParam("place_id") int place_id) {
-	  
-	  PetPlaceDTO petplaceInfo = service.findpetplace(place_id);
-	  
-	  model.addAttribute("petplaceInfo", petplaceInfo);
-	  
-	  return "board/petplaceDetail"; }
-	 
-	
-	
-	
-	@RequestMapping("/deletepetplace")
-	public ResponseEntity<Void> deletepetplace(int place_id) {
-		service.deletepetplace(place_id);
+//펫플레이스 작성
+	@RequestMapping("/petplaceWriteform")
+	public ResponseEntity<Integer> petplaceWriteform(HttpSession session, PetPlaceDTO dto, Model model) {
+		// 로그인 여부 확인
+		if (session.getAttribute("user_id") != null && dto.getTitle() != null) {
+			String user_id = session.getAttribute("user_id").toString();
+			dto.setUser_id(user_id);
+		}
+
+		int seq = service.insertPetPlace(dto); // 새로 생성된 seq를 얻어옵니다.
+
+		// ResponseEntity를 사용하여 seq를 응답합니다.
+		return new ResponseEntity<Integer>(seq, HttpStatus.OK);
+	}
+
+	@GetMapping("/petplaceWrite")
+	public String petplacewrite() {
+		// 펫 플레이스 등록으로 이동합니다.
+		return "board/petplaceWrite";
+	}
+
+	// delete
+	@RequestMapping("/petplaceDelete")
+	public ResponseEntity<Void> petplaceDetail(PetPlaceDTO dto, HttpSession session) {
+		Integer seq = (Integer) session.getAttribute("seq");
+		dto.setSeq(seq);
+
+		service.deletepetplace(seq);
 
 		return new ResponseEntity(HttpStatus.OK);
 	}
 
-   
-    }
+	@RequestMapping("/getpetplace")
+	public String getFindpetplace(Model model, @RequestParam("seq") int seq, HttpSession session) {
+		PetPlaceDTO petplaceInfo = service.findpetplace(seq);
+		service.viewCnt(seq);
+		model.addAttribute("petplaceInfo", petplaceInfo);
+		model.addAttribute("seq", seq);
+		session.setAttribute("seq", seq);
+		return "board/petplaceDetail";
+	}
 
+	// update
+	@RequestMapping("/getUpdatepetplace")
+	public String getUpdatepetplace(Model model, @RequestParam("seq") int seq, HttpSession session) {
+		PetPlaceDTO petplaceInfo = service.findpetplace(seq);
+		model.addAttribute("petplaceInfo", petplaceInfo);
+		model.addAttribute("seq", seq); // seq를 모델 속성으로 추가
+		session.setAttribute("seq", seq);
+
+		return "board/petplaceUpdate";
+	}
+
+	@RequestMapping("/petplaceUpdate")
+	public ResponseEntity<Integer> petplaceUpdate(PetPlaceDTO dto, HttpSession session) {
+		// 세션에서 seq를 읽어옴
+		Integer seq = (Integer) session.getAttribute("seq");
+
+		// DTO에 세션에서 읽어온 seq를 설정
+		dto.setSeq(seq);
+
+		// 서비스를 호출하여 쿼리 실행
+		 seq = service.updatepetplace(dto); // 새로 생성된 seq를 얻어옵니다.
+
+		// ResponseEntity를 사용하여 seq를 응답합니다.
+		return new ResponseEntity<Integer>(seq, HttpStatus.OK);
+	}
+
+}
