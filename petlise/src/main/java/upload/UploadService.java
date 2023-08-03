@@ -24,6 +24,7 @@ public class UploadService extends HttpServlet {
 	private String bucketName;
 	@Value("${spring.cloud.gcp.storage.credentials.location}")
 	private String location;
+	private String resourcePath = "../src/main/resources/";
 
 	private static Storage storage = null;
 
@@ -31,7 +32,7 @@ public class UploadService extends HttpServlet {
 		String uuid = UUID.randomUUID().toString();
 		String ext = image.getContentType();
 		
-		InputStream keyFile = ResourceUtils.getURL(location).openStream();
+		InputStream keyFile = ResourceUtils.getURL(resourcePath + location).openStream();
 
 		StorageOptions storageOptions = StorageOptions.newBuilder().setProjectId(bucketName)
 				.setCredentials(GoogleCredentials.fromStream(keyFile)).build();
