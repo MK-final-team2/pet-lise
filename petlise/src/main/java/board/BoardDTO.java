@@ -3,7 +3,6 @@ package board;
 import java.util.Date;
 
 import user.UserDTO;
-
 public class BoardDTO {
     private String board_id;
     private String user_id;
@@ -12,13 +11,12 @@ public class BoardDTO {
     private Date board_created;
     private Date board_updated;
     private int board_view;
-    private int like;
-    private int comments;
     private Date deleted_at;
-    
+    private int comments;
+    private int seq;
     private UserDTO user;
-
-	public String getBoard_id() {
+    
+    public String getBoard_id() {
 		return board_id;
 	}
 
@@ -74,12 +72,12 @@ public class BoardDTO {
 		this.board_view = board_view;
 	}
 
-	public int getLike() {
-		return like;
+	public Date getDeleted_at() {
+		return deleted_at;
 	}
 
-	public void setLike(int like) {
-		this.like = like;
+	public void setDeleted_at(Date deleted_at) {
+		this.deleted_at = deleted_at;
 	}
 
 	public int getComments() {
@@ -90,12 +88,12 @@ public class BoardDTO {
 		this.comments = comments;
 	}
 
-	public Date getDeleted_at() {
-		return deleted_at;
+	public int getSeq() {
+		return seq;
 	}
 
-	public void setDeleted_at(Date deleted_at) {
-		this.deleted_at = deleted_at;
+	public void setSeq(int seq) {
+		this.seq = seq;
 	}
 
 	public UserDTO getUser() {
@@ -105,5 +103,7 @@ public class BoardDTO {
 	public void setUser(UserDTO user) {
 		this.user = user;
 	}
+
+	
+
 }
- 

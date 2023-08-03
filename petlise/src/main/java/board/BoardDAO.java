@@ -9,7 +9,6 @@ import pagination.SearchDTO;
 @Mapper
 @Repository
 public interface BoardDAO {
-    int insertBoard(BoardDTO dto);
   
     List<BoardDTO> getAllBoard();
    
@@ -17,9 +16,16 @@ public interface BoardDAO {
     List<BoardDTO> getAllBoardPaging(SearchDTO dto);
     int getCount(SearchDTO dto);
     
-	public BoardDTO findBoard (int place_id);
-	public void updateBoard(BoardDTO dto);
-	public void deleteBoard(int place_id);
+    int insertBoard(BoardDTO dto);
+    
+	public BoardDTO findboard (int seq);
+	
+	public int viewCnt(int seq);
+	
+	
+	public void updateboard(BoardDTO dto);
+	
+	public void deleteboard(int seq);
 
 
 

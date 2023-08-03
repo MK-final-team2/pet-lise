@@ -1,10 +1,10 @@
 package board.petplace;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.Collections;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import pagination.Pagination;
 import pagination.PagingResponse;
@@ -32,32 +32,49 @@ public class PetPlaceServiceImpl implements PetPlaceService {
         return dao.getAllPetPlace();
     }
     
-	public void insertPetPlace(PetPlaceDTO dto) {
-	dao.insertPetPlace(dto);
+    @Override
+    public int insertPetPlace(PetPlaceDTO dto) {
+        // Your logic to insert the pet place into the database
+
+        // Assuming you have a method in the mapper to insert the pet place
+        dao.insertPetPlace(dto);
+
+        // Get the generated seq after insertion and set it in the DTO
+        int generatedPlaceId = dto.getSeq();
+        dto.setSeq(generatedPlaceId);
+		return generatedPlaceId;
+    }
+
+
+
+
+	public int viewCnt(int seq) {
+		// TODO Auto-generated method stub
+		return dao.viewCnt(seq);
+	}
+
+	
+	public PetPlaceDTO findpetplace(int seq) {
+		return dao.findpetplace(seq);
+	}
+
+
+
+
+	@Override
+	public int updatepetplace(PetPlaceDTO dto) {
+		dao.updatepetplace(dto);
+		 int generatedPlaceId = dto.getSeq();
+	        dto.setSeq(generatedPlaceId);
+			return generatedPlaceId;
 		
 	}
 
 
 
 
-
-	public PetPlaceDTO findpetplace(int place_id) {
-		return dao.findpetplace(place_id);
-	}
-
-
-
-
-
-	public void updatepetplace(PetPlaceDTO dto) {
-		dao.updatepetplace(dto);
-	}
-
-
-
-
-	public void deletepetplace(int place_id) {
-		dao.deletepetplace(place_id);
+	public void deletepetplace(int seq) {
+		dao.deletepetplace(seq);
 	}
 
 	
