@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -34,6 +35,7 @@ public class GoogleOauth implements SocialOauth {
 	@Value("${spring.OAuth2.google.scope}")
 	private String GOOGLE_DATA_ACCESS_SCOPE;
 
+	@Autowired
 	private ObjectMapper objectMapper;
 
 	public GoogleOauth(ObjectMapper objectMapper) {
