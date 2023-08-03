@@ -11,4 +11,5 @@ public interface UserDAO {
 	public UserDTO loginUser(String email);
 	public String searchUser(String name, String email);
 	public void newPassword(String password, String email);	
+	public UserDTO checkUserInfo(String email);	
 }

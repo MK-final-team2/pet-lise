@@ -24,6 +24,10 @@
 		update user set password=#{password} where email=#{email} 
 	</update>
 
+	<select id="checkUserInfo" parameterType="string" resultType="userdto">
+  		select * from user where email=#{email}
+  	</select>
+  	
 </mapper>
 
 

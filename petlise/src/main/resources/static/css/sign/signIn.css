@@ -98,7 +98,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 35px;
+  margin-bottom: 30px;
 }
 .snsWrapper > p {
   width: 100%;
@@ -114,15 +114,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.snsWrapper a:first-of-type {
   background-color: #df4f3d;
   color: var(--white);
-  margin-bottom: 10px;
-}
-.snsWrapper a:last-of-type {
-  background-color: #fee500;
-  color: #392020;
+  box-shadow: var(--shadow200);
 }
 .snsWrapper a:hover span {
   font: var(--button14);

@@ -37,12 +37,11 @@
             <p>대표이미지</p>
             <label for="file">
               <img 
-              	src="https://storage.googleapis.com/${recipeInfo.image}"
+              	src="${recipeInfo.image == '' ? ('https://storage.googleapis.com/' + recipeInfo.image) :''}"
               	onerror="this.onerror=null; this.src='/images/image-icon.svg';" 
               	alt="대표이미지" id="imgUrl" />
               <input type="hidden" id="imageValue" name="image" value="${recipeInfo.image}" />
             </label>
-            <input type="file" id="file" accept="image/*" onchange="imageUpload()" />
           </div>
           <div class="categoryWrap">
             <div class="category">

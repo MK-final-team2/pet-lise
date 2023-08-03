@@ -27,7 +27,7 @@ public class AdminBoardController {
 		
 		return "admin/boardManagement";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/boardmanagement")
 	public List<AdminBoardResponseDTO> board(String keyword, int page) {

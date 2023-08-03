@@ -27,8 +27,6 @@ function ajaxData(keyword, page) {
   formData.set('keyword', keyword);
   formData.set('recipe_of_the_month', recipe_of_the_month);
   formData.set('page', page);
-  
-  console.log(new URLSearchParams(formData).toString())
 
   $.ajax({
     url: `/admin/${recipe_category == '전문가레시피'
