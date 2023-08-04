@@ -25,7 +25,7 @@ $(document).ready(function() {
 	<Footer id="footer">
 		<div id="footer_container">
 			<div id="footer_logo">
-				<img src="images/footer-logo.svg" alt="Logo" title="Pet LiSe Home">
+				<img src="/images/footer-logo.svg" alt="Logo" title="Pet LiSe Home">
 			</div>
 			<div id="footer_info">
 				<span>ABOUT</span>
@@ -35,7 +35,7 @@ $(document).ready(function() {
 				<span>Copyrightⓒ 2023.Pet LiSe.All Rights Reserved</span>
 			</div>
 			<div id="footer_github">
-				<img src="images/footer-github.svg" alt="github" id="github" title="Pet LiSe github">
+				<img src="/images/footer-github.svg" alt="github" id="github" title="Pet LiSe github">
 			</div>
 		</div>
 	</Footer>
