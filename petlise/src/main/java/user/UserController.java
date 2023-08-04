@@ -24,13 +24,18 @@ public class UserController {
 	@Value("${spring.bcrypt.number}")
 	private int bcryptNum;
 
-	/*
-	 * @RequestMapping("/") public String home() { return "home"; }
-	 */
-
 	@GetMapping("/signup")
-	public String getSignUp() {
-		return "sign/signUp";
+	public ModelAndView getSignUp(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+
+		if (session.getAttribute("user_id") != null) {
+			mv.setViewName("redirect:/");
+
+		} else {
+			mv.setViewName("sign/signUp");
+		}
+
+		return mv;
 	}
 
 	@PostMapping("/signup")
@@ -49,10 +54,19 @@ public class UserController {
 	}
 
 	@GetMapping("/signin")
-	public String getSignIn(HttpSession session) {
+	public ModelAndView getSignIn(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+
 		session.setAttribute("error_message", "");
 
-		return "sign/signIn";
+		if (session.getAttribute("user_id") != null) {
+			mv.setViewName("redirect:/");
+
+		} else {
+			mv.setViewName("sign/signIn");
+		}
+
+		return mv;
 	}
 
 	@PostMapping("/signin")
@@ -68,10 +82,10 @@ public class UserController {
 
 					if (dto.getRole().equals("admin")) {
 						mv.setViewName("redirect:/admin");
-					} else {						
+					} else {
 						mv.setViewName("redirect:/");
 					}
-					
+
 				} else {
 					session.setAttribute("error_message", "로그인이 불가한 이메일입니다.");
 					mv.setViewName("sign/signIn");
@@ -98,8 +112,17 @@ public class UserController {
 	}
 
 	@GetMapping("/searchuser")
-	public String searchUser() {
-		return "sign/searchUser";
+	public ModelAndView searchUser(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+
+		if (session.getAttribute("user_id") != null) {
+			mv.setViewName("redirect:/");
+
+		} else {
+			mv.setViewName("sign/searchUser");
+		}
+
+		return mv;
 	}
 
 	@PostMapping("/findpw")

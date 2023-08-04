@@ -12,12 +12,12 @@
     <link rel="stylesheet" href="/css/mypage/myPageForm.css" />
     <link rel="stylesheet" href="/css/mypage/editMyInfo.css" />
     <link rel="stylesheet" href="/css/mypage/modal.css" />
-    <link rel="stylesheet" href="/css/nav/nav.css" />
     <title>Pet LiSe</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   </head>
   <body>
-    <div id="nav"></div>
+    <jsp:include page="../header.jsp" />
+    
     <p class="title">마이페이지</p>
 
     <div class="container">
@@ -156,7 +156,6 @@
 
     <div id="modal"></div>
 
-    <script src="/js/recipe/nav.js"></script>
     <script src="/js/mypageMenu.js"></script>
     <script src="/js/mypage/updateUser.js"></script>
     <script src="/js/imageUpload.js"></script>

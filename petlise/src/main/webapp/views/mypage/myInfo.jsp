@@ -13,12 +13,12 @@ prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/mypage/myPageForm.css" />
     <link rel="stylesheet" href="/css/mypage/myInfo.css" />
-    <link rel="stylesheet" href="/css/nav/nav.css" />
     <title>Pet LiSe</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   </head>
   <body>
-    <div id="nav"></div>
+    <jsp:include page="../header.jsp" />
+    
     <p class="title">마이페이지</p>
 
     <div class="container">
@@ -32,7 +32,7 @@ prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
             <div class="userWrap">
               <div class="imgWrap">
                 <img
-                  src="https://storage.googleapis.com/${my_info.profile_image}"
+                  src="${my_info.profile_image == '' ? ('https://storage.googleapis.com/' + my_info.profile_image) :''}"
                   onerror="this.onerror=null; this.src='/images/default-profile.svg';"
                 />
               </div>
@@ -121,7 +121,6 @@ prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
       </div>
     </div>
 
-    <script src="/js/recipe/nav.js"></script>
     <script src="/js/mypageMenu.js"></script>
   </body>
 </html>

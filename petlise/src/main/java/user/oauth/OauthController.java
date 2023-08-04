@@ -56,9 +56,15 @@ public class OauthController {
 			
 			session.setAttribute("user_id", dto.getUser_id());
 			session.setAttribute("role", dto.getRole());
+			
+			mv.setViewName("redirect:/");
+		} else if (dto != null) {
+			session.setAttribute("user_id", dto.getUser_id());
+			session.setAttribute("role", dto.getRole());
+			
+			mv.setViewName("redirect:/");
 		}
 		
-		mv.setViewName("redirect:/");
 
 		return mv;
 	}
