@@ -1,30 +1,29 @@
 
 package recipe;
 
-import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
+import admin.shop.ProductDTO;
 import jakarta.servlet.http.HttpSession;
-import upload.UploadService;
+import upload.UploadController;
 
 @Controller
 @RequestMapping
 public class RecipeController {
 	private final RecipeService recipeService;
-
-	@Autowired
-	public RecipeController(RecipeService recipeService) {
-		this.recipeService = recipeService;
-	}
+    private final UploadController uploadController; // UploadController 인스턴스 생성
+ 
+    @Autowired
+    public RecipeController(RecipeService recipeService, UploadController uploadController) {
+        this.recipeService = recipeService;
+        this.uploadController = uploadController;
+    }
+    
 
 	@GetMapping("/recipecreate")
 	public String showRecipeCreateForm() {
@@ -64,19 +63,20 @@ public class RecipeController {
 		return "recipe/recipeCreate";
 	}
 	
-
-	
-	@Value("${spring.cloud.gcp.storage.bucket}")
-	private String bucketName;
-
-	@Autowired
-	UploadService upload;
-
+	@PostMapping("/recipe/likeup")
 	@ResponseBody
-	@RequestMapping(value = "/api/image-upload-recipe", method = RequestMethod.POST)
-	public String imageUpload(MultipartFile image, HttpSession session) throws IOException {
-		String imageUrl = upload.uploadFile(image);
-
-		return bucketName + "/" + imageUrl;
+	public String likeup(String user_id, String recipe_id) {
+		int result = recipeService.likeUp(user_id, recipe_id);
+		return "{\"result\":\""+result+"\"}";
 	}
+
+	@PostMapping("/recipe/likedown")
+	@ResponseBody
+	public String likedown(String user_id, String recipe_id) {
+		int result = recipeService.likeDown(user_id, recipe_id);
+		return "{\"result\":\""+result+"\"}";
+	}
+	
 }
+	
+

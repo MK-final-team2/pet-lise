@@ -12,7 +12,6 @@
     	<link rel="stylesheet" href="/css/recipe/recipeCreate.css" /> 
     	<link rel="stylesheet" href="/css/recipe/modal.css" />
     	<link rel="stylesheet" href="/css/admin/expertRecipeCategory.css" />
-    	<link rel="stylesheet" href="/css/nav/nav.css" />
     	<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"/>
     	<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -20,7 +19,7 @@
 		<title>PetLiSe</title>
 	</head>
 	<body>
-	<div id="nav"></div>
+	<jsp:include page="../header.jsp" />
 		<div class="wrap">
 		
 			<div id="board_title">
@@ -34,19 +33,21 @@
 				<div class="title_input">
 					<input type="text" name="recipe_title" id="recipeTitle" placeholder="레시피 제목">
 				</div>
-				<div class="thumbnail">
-					<p>대표이미지</p>
-					<label for="file">
-						<img id="fileimg" src="/images/image-icon.svg" alt="이미지아이콘" />
-						
-						<input type="hidden" id="imageValue" name="image" />
-					</label>
-					<input
-             			 type="file" id="file" accept="image/*" onchange="imageUpload()"
-          			  />
-				</div>
+				
+		<div class="thumbnail">
+			<p>대표이미지</p>
+			<label for="file"> 
+				<img
+				src="${recipe.image == '' ? ('https://storage.googleapis.com/' + recipe.image) :''}"
+				onerror="this.onerror=null; this.src='/images/image-icon.svg';"
+				alt="대표이미지" id="fileimg" /> 
+				<input type="hidden" id="imageValue" name="image" value="${recipe.image}" />
+			</label> 			
+			<input type="file" id="file" accept="image/*" onchange="imageUpload()" />
+		</div>
+		
 
-				<div class="dog_cat"><span>어떤 반려동물을 위한 레시피인가요?</span></div>
+		<div class="dog_cat"><span>어떤 반려동물을 위한 레시피인가요?</span></div>
 				<div class="pet_choose">
 					<label class="dog">
 						<input type="radio" name="pet_category" value="강아지">
@@ -82,7 +83,7 @@
 
 				 <div id="editor">${recipe.recipe_contents}</div>  					 
 				<div class="createButton">				
- 					 <button type="button" id="submitButton">등록하기</button>
+ 					 <button type="button" id="submitButton" onclick="edit()">등록하기</button>
 				</div>
 
 				
@@ -102,7 +103,6 @@
 		<script src="/js/recipe/editor.js"></script>
 		<script src="/js/recipe/recipeCategory.js"></script>		
 		<script src="/js/imageUpload.js"></script>
-		<script src="/js/recipe/nav.js"></script>
 		<script src="/js/recipe/recipeCreate.js"></script>
 		
 

@@ -1,3 +1,4 @@
+
 //로드 후 자동 css 실행 영역
 const recipeType = $('#recipeType').val();
 const SearchType1 = $('#searchType1').val();
@@ -122,13 +123,18 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
+
+
+	
 // ----- 상세페이지 클릭-----
 
-$(".recipe").on('click',function(){
-	location.href = '/recipedetail?recipe_id='+$(this).attr('id') ;
+$(".recipe").on('click', function(event) {
+    // 이벤트를 버블링하는 것을 방지하기 위해 클릭된 요소가 버튼인지 확인
+    if (!$(event.target).is("button")) {
+        // 클릭한 요소가 버튼이 아니라면 상세페이지로 이동
+        location.href = '/recipedetail?recipe_id=' + $(this).attr('id');
+    }
 });
-
-
 
 
 

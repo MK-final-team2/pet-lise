@@ -20,22 +20,6 @@ function hideModal() {
   modal.style.display = "none";
 }
 
-// 등록 버튼 클릭 시
-document.getElementById("submitButton").addEventListener("click", function() {
-  // 이미 이벤트가 등록되어 있다면, 더 이상 실행하지 않음
-  if (this.getAttribute("data-clicked") === "true") {
-    return;
-  }
-  
-  // 등록 버튼 비활성화
-  document.getElementById("submitButton").disabled = true;
-  
- // 이벤트 등록 상태 표시
-  this.setAttribute("data-clicked", "true");
-
-// 등록 처리
-  edit(); // edit() 함수 호출
-});
 
 
 // 모달 확인 버튼 클릭 시 모달 닫기
@@ -56,6 +40,12 @@ function edit() {
   // 유효성 검사 추가
   if (recipe_title === "") {
     document.querySelector(".modal_text div").textContent = "레시피 제목을 입력해주세요.";
+    showModal();
+    return false;
+  }
+  
+  if (image === "") {
+    document.querySelector(".modal_text div").textContent = "레시피 대표이미지를 등록해주세요.";
     showModal();
     return false;
   }
@@ -126,6 +116,7 @@ function edit() {
       redirectUrl = `recipelist?recipeType=나만의레시피&searchType1=${petCategory}&searchType2=${main_category}&searchType3=전체`;
       window.location.replace(redirectUrl);
     },
+    
     error: function(error) {
       // 저장 중 오류가 발생했을 때 처리
       console.log(error);
@@ -134,5 +125,4 @@ function edit() {
     }
   });
 
-  return false; // 이벤트 전파를 막음
 }
