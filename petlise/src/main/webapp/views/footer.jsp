@@ -23,18 +23,20 @@ $(document).ready(function() {
 </head>
 <body>
 	<Footer id="footer">
-		<div id="footer_logo">
-			<img src="images/footer-logo.svg" alt="Logo" title="Pet LiSe Home">
-		</div>
-		<div id="footer_info">
-			<span>ABOUT</span>
-			<span>Project : Pet LiSe(펫라이스)</span>
-			<span>Project Period : 2023.06.19 ~ 2023.8.9 </span>
-			<span>Code by Pet LiSe, Group 2 of MultiCampus Camp 13th</span>
-			<span>Copyrightⓒ 2023.Pet LiSe.All Rights Reserved</span>
-		</div>
-		<div id="footer_github">
-			<img src="images/footer-github.svg" alt="github" id="github" title="Pet LiSe github">
+		<div id="footer_container">
+			<div id="footer_logo">
+				<img src="images/footer-logo.svg" alt="Logo" title="Pet LiSe Home">
+			</div>
+			<div id="footer_info">
+				<span>ABOUT</span>
+				<span>Project : Pet LiSe(펫라이스)</span>
+				<span>Project Period : 2023.06.19 ~ 2023.8.9 </span>
+				<span>Code by Pet LiSe, Group 2 of MultiCampus Camp 13th</span>
+				<span>Copyrightⓒ 2023.Pet LiSe.All Rights Reserved</span>
+			</div>
+			<div id="footer_github">
+				<img src="images/footer-github.svg" alt="github" id="github" title="Pet LiSe github">
+			</div>
 		</div>
 	</Footer>
 </body>
