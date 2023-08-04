@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="recipe.detail.RecipeDetailDAO">
+	
+	<!-- 유저 정보 호출 -->
+	<select id="getUserInfoRecipe" resultType="userdto">
+		SELECT * FROM `user` WHERE `user_id` = #{user_id};
+	</select>
+	
+	<!-- 레시피 게시글 불러오기 -->
+	<select id="getRecipeDetail" resultType="recipedto" parameterType="String">
+		SELECT * FROM `recipe` WHERE `recipe_id` = #{recipe_id};
+	</select>
+
+	<!-- 해당 레시피 댓글 불러오기 -->
+	<select id="getRecipeComment" resultType="recipecommentdto" parameterType="String">
+		SELECT * FROM `recipecomment` WHERE `recipe_id` = #{recipe_id} AND `parent_id` IS NULL;
+	</select>
+
+	<!-- 대댓글 불러오기 -->
+	<select id="getReply" resultType="recipecommentdto" parameterType="String">
+		SELECT * FROM `recipecomment` WHERE `parent_id` = #{comment_id};
+	</select>
+	
+	<!-- 댓글 작성하기 -->
+	<insert id="writeRecipeComment" parameterType="recipecommentdto">
+		INSERT INTO `recipecomment`(`recipe_id`, `user_id`, `profile_image`, `created_at`, `contents`) 
+		VALUES  ( #{recipe_id}, #{user_id}, #{profile_image}, now(), #{contents} );
+	</insert>
+	
+	<!-- 좋아요수 업데이트 -->
+	<insert id="likeCount" parameterType="recipelikedto">
+		INSERT INTO `recipelike` (`recipe_id`, `user_id`, `is_like`) 
+		VALUE ( #{recipe_id}, #{user_id}, #{is_like});
+	</insert>
+</mapper>
