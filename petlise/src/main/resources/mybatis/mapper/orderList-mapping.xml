@@ -4,8 +4,8 @@
 <mapper namespace="orderList">
 	<select id="getMyOrder" resultMap="orderInfoResultMap">
 	    SELECT o.*, 
-	        (SELECT op.product_name FROM orderproduct op WHERE o.order_id = op.order_id LIMIT 1) AS product_name,
-	        (SELECT op.product_image FROM orderproduct op WHERE o.order_id = op.order_id LIMIT 1) AS product_image
+	        (SELECT op.product_name FROM orderProduct op WHERE o.order_id = op.order_id LIMIT 1) AS product_name,
+	        (SELECT op.product_image FROM orderProduct op WHERE o.order_id = op.order_id LIMIT 1) AS product_image
 	    FROM `order` o
 	    WHERE o.`user_id` = #{user_id} 
 	    ORDER BY o.order_id DESC;

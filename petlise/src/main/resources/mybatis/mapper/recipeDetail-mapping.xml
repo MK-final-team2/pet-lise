@@ -15,23 +15,23 @@
 
 	<!-- 해당 레시피 댓글 불러오기 -->
 	<select id="getRecipeComment" resultType="recipecommentdto" parameterType="String">
-		SELECT * FROM `recipecomment` WHERE `recipe_id` = #{recipe_id} AND `parent_id` IS NULL;
+		SELECT * FROM `recipeComment` WHERE `recipe_id` = #{recipe_id} AND `parent_id` IS NULL;
 	</select>
 
 	<!-- 대댓글 불러오기 -->
 	<select id="getReply" resultType="recipecommentdto" parameterType="String">
-		SELECT * FROM `recipecomment` WHERE `parent_id` = #{comment_id};
+		SELECT * FROM `recipeComment` WHERE `parent_id` = #{comment_id};
 	</select>
 	
 	<!-- 댓글 작성하기 -->
 	<insert id="writeRecipeComment" parameterType="recipecommentdto">
-		INSERT INTO `recipecomment`(`recipe_id`, `user_id`, `profile_image`, `created_at`, `contents`) 
+		INSERT INTO `recipeComment`(`recipe_id`, `user_id`, `profile_image`, `created_at`, `contents`) 
 		VALUES  ( #{recipe_id}, #{user_id}, #{profile_image}, now(), #{contents} );
 	</insert>
 	
 	<!-- 좋아요수 업데이트 -->
 	<insert id="likeCount" parameterType="recipelikedto">
-		INSERT INTO `recipelike` (`recipe_id`, `user_id`, `is_like`) 
+		INSERT INTO `recipeLike` (`recipe_id`, `user_id`, `is_like`) 
 		VALUE ( #{recipe_id}, #{user_id}, #{is_like});
 	</insert>
 </mapper>
