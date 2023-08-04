@@ -23,6 +23,8 @@ function ajaxData(keyword, page) {
     async: false,
     success: function (data) {
       let dataTable = data;
+      console.log(data)
+      console.log(new Date())
       let tbody = document.querySelector('tbody');
       let totalCount = dataTable.length != 0 ? dataTable[0].count : 0;
       pagination(page, totalCount);

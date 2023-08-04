@@ -42,6 +42,7 @@ $(document).ready(function () {
     async: false,
     success: function (data) {
       let dataTable = data;
+
       for (let i = 0; i < dataTable.length; i++) {
 
         if (getDay(new Date()) == getDay(dataTable[i].created_at)) today_count++;
