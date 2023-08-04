@@ -146,7 +146,7 @@ $(document).ready(function() {
 				</div>
 			</c:forEach>
 		</div>
-		
 	</div>
+	<jsp:include page="footer.jsp" />
 </body>
 </html>

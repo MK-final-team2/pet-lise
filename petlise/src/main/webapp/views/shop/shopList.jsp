@@ -234,6 +234,8 @@
 		<!-- pagination -->
 	</div>
 	<!-- layout -->
+	<jsp:include page="../footer.jsp" />
+	
 	<script src="/js/shop/shopList.js"></script>
 </body>
 </html>

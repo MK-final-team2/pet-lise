@@ -603,6 +603,8 @@
 	</div>
 	<!-- Layout -->
 	
+	<jsp:include page="../footer.jsp" />
+	
 	<div class="modal" id="delete_confirm_modal">
 		<div class="modal_contents">
 			<div class="modal_text">

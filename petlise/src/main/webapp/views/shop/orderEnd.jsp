@@ -17,6 +17,7 @@
     <script src="/js/jquery-3.6.4.min.js"></script>
   </head>
   <body>
+  	<jsp:include page="../header.jsp" />
     <div id="layout">
       <div id="title">
         <div id="first">
@@ -176,6 +177,7 @@
       </div>
     </div>
     <!--layout end-->
+    <jsp:include page="../footer.jsp" />
   </body>
 <script src="/js/shop/payment/orderEnd.js"></script>  
 </html>
