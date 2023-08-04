@@ -29,9 +29,22 @@ public class PetPlaceServiceImpl implements PetPlaceService {
         return new PagingResponse<>(list, pagination);
     }
 
-    public List<PetPlaceDTO> getAllPetPlace() {
-        return dao.getAllPetPlace();
+    
+    
+    public PagingResponse<PetPlaceCommentDTO> getAllCommentPaging(SearchDTO dto) {
+        int count = dao.getCCount(dto);
+        if (count < 1) {
+            return new PagingResponse<>(Collections.emptyList(), null);
+        }
+
+        Pagination pagination = new Pagination(count, dto);
+        dto.setPagination(pagination);
+
+        List<PetPlaceCommentDTO> list = dao.getAllCommentPaging(dto);
+        return new PagingResponse<>(list, pagination);
     }
+
+    
     
     @Override
     public int insertPetPlace(PetPlaceDTO dto) {
@@ -43,6 +56,13 @@ public class PetPlaceServiceImpl implements PetPlaceService {
 		return generatedPlaceId;
     }
 
+    @Override
+    public int insertComment(PetPlaceCommentDTO dto) {
+  
+        return dao.insertComment(dto);
+
+    
+    }
 
 
 
@@ -75,18 +95,15 @@ public class PetPlaceServiceImpl implements PetPlaceService {
 		dao.deletepetplace(seq);
 	}
 
-	@Override
-	public void insertComment(PetPlaceCommentDTO petplacecommentdto) {
-		PetPlaceDAO.insertComment(petplacecommentdto);
-		
-	}
-
-	@Override
-	public List<PetPlaceCommentDTO> getCommentList(PetPlaceCommentDTO petplacecommentdto) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	/*
+	 * @Override public void insertComment(PetPlaceCommentDTO petplacecommentdto) {
+	 * PetPlaceDAO.insertComment(petplacecommentdto);
+	 * 
+	 * }
+	 * 
+	 * @Override public List<PetPlaceCommentDTO> getCommentList(PetPlaceCommentDTO
+	 * petplacecommentdto) { // TODO Auto-generated method stub return null; }
+	 */
 	/*
 	 * //좋아요 증가 public int likeUp(String user_id,String place_id,String comment_id)
 	 * { System.out.println("user_id: " + user_id + ", place_id: " + place_id);

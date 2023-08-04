@@ -31,16 +31,7 @@ public class PetPlaceController {
 	@Qualifier("petPlaceServiceImpl")
 	private PetPlaceService service;
 
-	// 펫플레이스 리스트
-	@GetMapping("/petplaceMain")
-	public ModelAndView petPlaceList(@ModelAttribute SearchDTO searchdto) {
-		PagingResponse<PetPlaceDTO> petPlaces = service.getAllPetPlacePaging(searchdto);
 
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("response", petPlaces);
-		mv.setViewName("board/petplaceMain");
-		return mv;
-	}
 
 //펫플레이스 작성
 	@RequestMapping("/petplaceWriteform")
@@ -56,20 +47,33 @@ public class PetPlaceController {
 		// ResponseEntity를 사용하여 seq를 응답합니다.
 		return new ResponseEntity<Integer>(seq, HttpStatus.OK);
 	}
-	@RequestMapping("/petplacecommentWrite")
-	private String insertComment(@RequestParam("comment_id")String comment_id, 
-	@RequestParam("comment_contents")String comment_contents, HttpSession session)throws Exception{
-	PetPlaceCommentDTO petplacecommentdto = new PetPlaceCommentDTO();
-	petplacecommentdto.setComment_contents(comment_contents);
-	petplacecommentdto.setComment_id(comment_id);
-	service.insertComment(petplacecommentdto);
-	int seq = (int) session.getAttribute("seq");
-	String redirect_url = "redirect:/petplaceDetail?seq="+seq;
 	
-		
-		return redirect_url;
-		
+	@RequestMapping("/petplaceCommentform")
+	public ResponseEntity<String> petplaceCommentform(HttpSession session, PetPlaceCommentDTO dto, Model model) {
+	    String user_id = (String) session.getAttribute("user_id");
+	    String place_id = (String) session.getAttribute("place_id");
+
+	    if (user_id == null || place_id == null) {
+	        // Handle the case where session attributes user_id or place_id are not available
+	        return new ResponseEntity<>("Session expired", HttpStatus.UNAUTHORIZED);
+	    }
+
+	    dto.setUser_id(user_id);
+	    dto.setPlace_id(place_id);
+	    model.addAttribute("petplaceInfo", dto);
+
+	    service.insertComment(dto); // 새로 생성된 seq를 얻어옵니다.
+	    // Create a response string with data separated by a delimiter
+	    String response =   user_id + "|" + place_id;
+
+	    // Send the response string as AJAX response
+	    return new ResponseEntity<>(response, HttpStatus.OK);
 	}
+
+	
+	
+	
+	
 
 	@GetMapping("/petplaceWrite")
 	public String petplacewrite() {
@@ -85,15 +89,34 @@ public class PetPlaceController {
 
 		service.deletepetplace(seq);
 
-		return new ResponseEntity(HttpStatus.OK);
+		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
-//상세페이지
-	@RequestMapping("/getpetplace")
-	public String getFindpetplace(Model model, @RequestParam("seq") int seq, HttpSession session) {
-	    PetPlaceDTO petplaceInfo = service.findpetplace(seq);
-	    service.viewCnt(seq);
+	
+	// 펫플레이스 리스트
+	@GetMapping("/petplaceMain")
+	public ModelAndView petPlaceList(@ModelAttribute SearchDTO searchdto) {
+		PagingResponse<PetPlaceDTO> petPlaces = service.getAllPetPlacePaging(searchdto);
 
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("response", petPlaces);
+		mv.setViewName("board/petplaceMain");
+		return mv;
+	}
+
+	/* model.addAttribute("petplaceInfo", petplaceInfo); */
+//상세페이지 리스트
+	@RequestMapping("/getpetplace")
+	public ModelAndView petplaceDetail(Model model, String place_id,@RequestParam("seq") int seq, HttpSession session,
+			@ModelAttribute SearchDTO searchdto) {
+		service.viewCnt(seq);
+	    PetPlaceDTO petplaceInfo = service.findpetplace(seq);
+	    
+	    
+	  
+		searchdto.setRecordSize(10);
+	    PagingResponse<PetPlaceCommentDTO> comment = service.getAllCommentPaging(searchdto);
+	    model.addAttribute("comment", comment);
 		/*
 		 * // 후기 좋아요 여부 String user_id = (String) session.getAttribute("user_id");
 		 * 
@@ -104,48 +127,52 @@ public class PetPlaceController {
 		 * petplaceInfo.getPetplacelike().setIs_like(false); } } }
 		 */
 
-	    model.addAttribute("petplaceInfo", petplaceInfo);
-
-	    model.addAttribute("seq", seq);
-	    session.setAttribute("seq", seq);
-
-	    return "board/petplaceDetail";
+	    ModelAndView mv = new ModelAndView();
+	    mv.addObject("petplaceInfo", petplaceInfo);
+	    mv.addObject("response", comment);
+	    mv.setViewName("board/petplaceDetail");
+		return mv;
+	  
+	   
 	}
 
 
-	// update
-	@RequestMapping("/getUpdatepetplace")
-	public String getUpdatepetplace(Model model, @RequestParam("seq") int seq, HttpSession session) {
-		PetPlaceDTO petplaceInfo = service.findpetplace(seq);
-		model.addAttribute("petplaceInfo", petplaceInfo);
-		model.addAttribute("seq", seq); // seq를 모델 속성으로 추가
-		session.setAttribute("seq", seq);
-
-		return "board/petplaceUpdate";
-	}
-
-	@RequestMapping("/petplaceUpdate")
-	public ResponseEntity<Integer> petplaceUpdate(PetPlaceDTO dto, HttpSession session) {
-		// 세션에서 seq를 읽어옴
-		Integer seq = (Integer) session.getAttribute("seq");
-
-		// DTO에 세션에서 읽어온 seq를 설정
-		dto.setSeq(seq);
-
-		// 서비스를 호출하여 쿼리 실행
-		seq = service.updatepetplace(dto); // 새로 생성된 seq를 얻어옵니다.
-
-		// ResponseEntity를 사용하여 seq를 응답합니다.
-		return new ResponseEntity<Integer>(seq, HttpStatus.OK);
-	}
 	
-	@GetMapping("/getCommentList")
-	@ResponseBody
-	private List<PetPlaceCommentDTO> getCommentList(@RequestParam("Comment_id")String Comment_id)throws Exception{
-		PetPlaceCommentDTO petplacecommentdto = new PetPlaceCommentDTO();
-		petplacecommentdto.setComment_id(Comment_id);
-		return service.getCommentList(petplacecommentdto);
- 	}
+	// update
+		@RequestMapping("/getUpdatepetplace")
+		public String getUpdatepetplace(Model model, @RequestParam("seq") int seq, HttpSession session) {
+			PetPlaceDTO petplaceInfo = service.findpetplace(seq);
+			model.addAttribute("petplaceInfo", petplaceInfo);
+			model.addAttribute("seq", seq); // seq를 모델 속성으로 추가
+			session.setAttribute("seq", seq);
+
+			return "board/petplaceUpdate";
+		}
+
+		@RequestMapping("/petplaceUpdate")
+		public ResponseEntity<Integer> petplaceUpdate(PetPlaceDTO dto, HttpSession session) {
+			// 세션에서 seq를 읽어옴
+			Integer seq = (Integer) session.getAttribute("seq");
+
+			// DTO에 세션에서 읽어온 seq를 설정
+			dto.setSeq(seq);
+
+			// 서비스를 호출하여 쿼리 실행
+			seq = service.updatepetplace(dto); // 새로 생성된 seq를 얻어옵니다.
+
+			// ResponseEntity를 사용하여 seq를 응답합니다.
+			return new ResponseEntity<Integer>(seq, HttpStatus.OK);
+		}
+		
+	/*
+	 * @GetMapping("/getCommentList")
+	 * 
+	 * @ResponseBody private List<PetPlaceCommentDTO>
+	 * getCommentList(@RequestParam("Comment_id")String Comment_id)throws Exception{
+	 * PetPlaceCommentDTO petplacecommentdto = new PetPlaceCommentDTO();
+	 * petplacecommentdto.setComment_id(Comment_id); return
+	 * service.getCommentList(petplacecommentdto); }
+	 */
 			
 
 	/*
