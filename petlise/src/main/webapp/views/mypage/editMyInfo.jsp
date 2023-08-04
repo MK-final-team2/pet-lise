@@ -32,7 +32,7 @@
             <div class="imgWrap">
               <div class="img">
                 <img
-                  src="${my_info.profile_image == '' ? ('https://storage.googleapis.com/' + my_info.profile_image) :''}"
+                  src="${fn:length(my_info.profile_image) != 0 ? ('https://storage.googleapis.com/' += my_info.profile_image) :''}"
                   onerror="this.onerror=null; this.src='/images/default-profile.svg';"
                   id="imgUrl"
                 />
@@ -66,18 +66,22 @@
                   value="${fn:split(my_info.address, ',')[0]}"
                   readonly
                 />
-                <button>우표번호 검색</button>
+                <button onclick="sample6_execDaumPostcode()">우표번호 검색</button>
               </div>
               <input
                 type="text"
                 class="address1"
+                id="sample6_address"
                 name="address"
+                placeholder="주소"
                 value="${fn:split(my_info.address, ',')[1]}"
               />
               <input
                 type="text"
                 class="address2"
+                id="sample6_detailAddress"
                 name="address"
+                placeholder="상세주소"
                 value="${fn:split(my_info.address, ',')[2]}"
               />
             </div>
@@ -160,5 +164,7 @@
     <script src="/js/mypage/updateUser.js"></script>
     <script src="/js/imageUpload.js"></script>
     <script src="/js/mypage/deleteUser.js"></script>
+    <script src="/js/postcode.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   </body>
 </html>
