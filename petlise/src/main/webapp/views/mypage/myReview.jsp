@@ -22,6 +22,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
+	<jsp:include page="../header.jsp" />
+
 	<p class="title">마이페이지</p>
 
 	<div class="container">
@@ -224,8 +226,9 @@
 			</div>
 		</div>
 	</div>
-
 	</div>
+	
+	<jsp:include page="../footer.jsp" />
 
 	<script src="/js/mypageMenu.js"></script>
 	<script src="/js/mypage/myReview.js"></script>
