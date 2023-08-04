@@ -1,5 +1,6 @@
 package board.petplace;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -26,7 +27,20 @@ public interface PetPlaceDAO {
 	public void updatepetplace(PetPlaceDTO dto);
 	
 	public void deletepetplace(int seq);
+	/*
+	 * int likeUp(String place_id); int likeDown(String place_id);
+	 * 
+	 * int insertLike(HashMap<String, String> map); int deleteLike(HashMap<String,
+	 * String> map);
+	 * 
+	 * int isLikeReview(HashMap<String, String> map); int likeCntReview(String
+	 * place_id);
+	 * 
+	 */
 
-
+	static void insertComment(PetPlaceCommentDTO petplacecommentdto) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
