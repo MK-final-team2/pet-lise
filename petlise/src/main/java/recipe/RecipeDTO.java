@@ -3,6 +3,8 @@ package recipe;
 import java.sql.Timestamp;
 import org.springframework.stereotype.Component;
 
+import user.UserDTO;
+
 @Component
 public class RecipeDTO {
 	String recipe_id, user_id, recipe_title, recipe_contents, image, recipe_category, pet_category, main_category,
@@ -10,6 +12,10 @@ public class RecipeDTO {
 	int view_cnt, recipe_of_the_month;
 	String recipe_of_the_month_registration_date;
 	Timestamp recipe_created_at, recipe_updated_at;
+	
+	
+	private UserDTO point;
+	
 	
 	public String getRecipe_id() {
 		return recipe_id;
@@ -95,4 +101,11 @@ public class RecipeDTO {
 	public void setRecipe_of_the_month_registration_date(String recipe_of_the_month_registration_date) {
 		this.recipe_of_the_month_registration_date = recipe_of_the_month_registration_date;
 	} 
+	
+	public UserDTO getPoint() {
+		return point;
+	}
+	public void setPoint(UserDTO point) {
+		this.point = point;
+	}
 }

@@ -9,16 +9,26 @@ import org.springframework.stereotype.Service;
 import pagination.Pagination;
 import pagination.PagingResponse;
 import pagination.SearchDTO;
+import recipe.RecipeService;
 
 @Service
 public class RecipeListService {
 	@Autowired
 	RecipeListDAO dao;
 	
+	@Autowired
+    RecipeService recipeService;
+
+	
 	public List<RecipeListDTO> getAllRecipe() {
 		return dao.getAllRecipe();
 	}
 	
+	
+	public int viewCnt(int seq) {
+		return dao.viewCnt(seq);
+	}
+
 		
 	public String getRecipeName(String recipe_id) {
         return dao.getRecipeName(recipe_id);
@@ -44,4 +54,5 @@ public class RecipeListService {
 	
 	
 	
+
 }

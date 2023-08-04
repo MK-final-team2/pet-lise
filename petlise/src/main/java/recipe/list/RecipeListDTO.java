@@ -10,12 +10,41 @@ import user.UserDTO;
 public class RecipeListDTO {
 	private String recipe_id, user_id, recipe_title, recipe_contents, image, recipe_category, pet_category, main_category,
 			sub_category;
-	private int view_cnt, recipe_of_the_month;
+	private int view_cnt, likes, comments;
+	private boolean recipe_of_the_month;
 	private String recipe_of_the_month_registration_date;
 	private Timestamp recipe_created_at, recipe_updated_at;
+	private boolean is_like;
+	private int seq;
 	
 	private UserDTO user;
 	
+		
+
+	public boolean isIs_like() {
+		return is_like;
+	}
+	public void setIs_like(boolean is_like) {
+		this.is_like = is_like;
+	}
+	public boolean isRecipe_of_the_month() {
+		return recipe_of_the_month;
+	}
+	public void setRecipe_of_the_month(boolean recipe_of_the_month) {
+		this.recipe_of_the_month = recipe_of_the_month;
+	}
+	public int getLikes() {
+		return likes;
+	}
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
+	public int getComments() {
+		return comments;
+	}
+	public void setComments(int comments) {
+		this.comments = comments;
+	}	
 	public String getRecipe_id() {
 		return recipe_id;
 	}
@@ -88,12 +117,7 @@ public class RecipeListDTO {
 	public void setView_cnt(int view_cnt) {
 		this.view_cnt = view_cnt;
 	}
-	public int getRecipe_of_the_month() {
-	    return recipe_of_the_month;
-	}
-	public void setRecipe_of_the_month(int recipe_of_the_month) {
-	    this.recipe_of_the_month = recipe_of_the_month;
-	}
+	
 	public String getRecipe_of_the_month_registration_date() {
 		return recipe_of_the_month_registration_date;
 	}
@@ -107,4 +131,12 @@ public class RecipeListDTO {
 	public void setUser(UserDTO user) {
 		this.user = user;
 	}
+	public int getSeq() {
+		return seq;
+	}
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
+	
+	
 }

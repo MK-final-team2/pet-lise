@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/css/recipe/recipeList.css" />
 <link rel="stylesheet" href="/css/style.css" />
 <link rel="stylesheet" href="css/shop/pagination_shop.css" />
-<link rel="stylesheet" href="/css/nav/nav.css" />
+<link rel="stylesheet" href="css/recipe/modal_main.css" />
 
 <title>PetLiSe</title>
 <script src="/js/jquery-3.6.4.min.js"></script>
@@ -29,12 +29,13 @@
 </head>
 <body>
 	<div class="wrap">
-		<div id="nav"></div>
+		<jsp:include page="../header.jsp" />
 		<div id="board_title">
 			<input type="hidden" id="recipeType" value="${param.recipeType}" />
 			<input type="hidden" id="searchType1" value="${param.searchType1}" />
 			<input type="hidden" id="searchType2" value="${param.searchType2}" />
 			<input type="hidden" id="searchType3" value="${param.searchType3}" />
+			
 			
 			
 			<div class="pet_icon">
@@ -118,13 +119,28 @@
 					<div class="recipe" id="${recipe.recipe_id}">
 						<div class="recipe_img"
 							style="background-image: url(https://storage.googleapis.com/${recipe.image});">
-							<div class="recipe_cover">
-								<button>
-									<div class="love_this">0</div>
-								</button>
+
+
+								<c:if test="${!recipe.is_like}">
+    <div class="recipe_cover">
+        <button class="like-button" data-recipe-id="${recipe.recipe_id}">
+            <div class="likes_num">${recipe.likes}</div>
+        </button>
+    </div>
+</c:if>
+<c:if test="${recipe.is_like}">
+    <div class="recipe_cover_active">
+        <button class="like-button" data-recipe-id="${recipe.recipe_id}">
+            <div class="likes_num">${recipe.likes}</div>
+        </button>
+    </div>
+</c:if>
+
+								
+
+
 							</div>
-						</div>
-						<a href="#">
+						
 							<div id="recipe_info">
 								<div class="info_title">
 									<span>${recipe.recipe_title}</span>
@@ -139,11 +155,12 @@
 									</div>
 									<div class="info_date">														
 										<span style="margin-right:10px;"><fmt:formatDate value="${recipe.recipe_created_at}" pattern="yyyy.MM.dd" /></span>
-										<span>조회수 ${recipe.view_cnt}</span>	
+										<span style="margin-right:5px;">조회수 ${recipe.view_cnt}</span>
+										<span>댓글수 ${recipe.comments}</span>	
 									</div>
 								</div>
 							</div>
-						</a>
+						
 					</div>
 				</c:forEach>
 			</div>
@@ -235,22 +252,110 @@
 		</div>
 		
 	</div>
+	<div class="modal" id="login_modal">
+		<div class="modal_contents">
+			<div class="modal_text">
+			<div>
+			<img src="/images/logo-icon.png" style="margin-bottom:10px; width:25px;"/><br>
+			로그인이 필요한 항목입니다.<br>
+			로그인 페이지로 이동하시겠습니까?
+			</div>
+			</div>
+			<div class="modal_btn">
+				<button class="modal_cancelbtn">취소</button>
+				<button class="modal_loginbtn">이동</button>
+			</div>
+		</div>
+	</div>
 </body>
 
 <script>
-<!--버튼 script-->
-	const buttons = document.querySelectorAll('.recipe_cover > button');
+$("#recipe_container").on('click', '.like-button', function () {
+    var button = $(this);
+    var likesNum = button.find(".likes_num");
+    var isLiked = button.closest('.recipe_cover_active').length > 0;
+    var recipeId = button.attr('data-recipe-id'); // 해당 레시피의 ID
 
-	buttons.forEach(function(button) {
-		button.addEventListener('click', function() {
-			button.classList.toggle('active');
-		});
-	});
+    if ("${user_id}" == "") {
+        // 로그인되지 않은 경우 로그인 모달을 보여줍니다.
+        $("#login_modal").css("top", $(window).scrollTop() + "px");
+        $("#login_modal").css('display', 'block');
+
+        $('#login_modal').on('scroll touchmove mousewheel', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            return false;
+        });
+    } else {
+        if (!isLiked) {
+            // 좋아요를 추가하는 경우
+            if (confirm("이 레시피에 좋아요 표시를 하시겠습니까?")) {
+                $(this).addClass("recipe_cover_active");
+                $(this).css("background-image", "url('/images/recipe/hit_f.svg')");
+                likesNum.text(Number(likesNum.text()) + 1);
+
+                $.ajax({
+                    type: 'post',
+                    url: '/recipe/likeup',
+                    dataType: 'json',
+                    data: {
+                        user_id: "${sessionScope.user_id}",
+                        recipe_id: recipeId
+                    },
+                    success: function (result) { // 결과 성공 콜백함수
+                        // 변경된 좋아요 수를 업데이트합니다.
+                        likesNum.text(result.likes);
+                    },
+                    error: function (request, status, error) { // 결과 에러 콜백함수
+                        console.log(error)
+                    }
+                }); // ajax end
+            }
+        } else {
+            // 좋아요를 취소하는 경우
+            if (confirm("이 레시피의 좋아요를 취소하시겠습니까?")) {
+                $(this).removeClass("recipe_cover_active");
+                $(this).css("background-image", "url('/images/recipe/hit.svg')");
+                likesNum.text(Number(likesNum.text()) - 1);
+
+                $.ajax({
+                    type: 'post',
+                    url: '/recipe/likedown',
+                    dataType: 'json',
+                    data: {
+                        user_id: "${sessionScope.user_id}",
+                        recipe_id: recipeId
+                    },
+                    success: function (result) { // 결과 성공 콜백함수
+                        // 변경된 좋아요 수를 업데이트합니다.
+                        likesNum.text(result.likes);
+                    },
+                    error: function (request, status, error) { // 결과 에러 콜백함수
+                        console.log(error)
+                    }
+                }); // ajax end
+            }
+        }
+    }
+});
+
+
+//----- 모달이벤트(모달 내 취소버튼) -----
+$(".modal_cancelbtn").on('click',function(){
+	$(this).parents(".modal").css('display', 'none');
+});
+
+//----- 모달창 로그인 이동 버튼 -----
+$(".modal_loginbtn").on('click',function(){
+	location.href = "/signin";
+});
 </script>
 
 
 
-<script src="/js/recipe/nav.js"></script>
+
+
+
 <script src="/js/recipe/recipeList.js"></script>
 
 

@@ -1,9 +1,9 @@
 package recipe.list;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import pagination.SearchDTO;
@@ -18,6 +18,9 @@ public interface RecipeListDAO {
     List<RecipeListDTO> getAllRecipePaging(SearchDTO dto);
     Integer getCount(SearchDTO dto); 
     
-   
-   
+	int isLikeRecipe(HashMap<String, String> map);
+
+	RecipeListDTO getRecipeById(String recipe_id);
+	
+	public int viewCnt(int seq);
 }
