@@ -16,11 +16,11 @@ import org.springframework.context.annotation.ComponentScan;
 
 public class PetliseApplication {
 
-//	@PostConstruct
-//    public void started() {
-//		TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
-////        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
-//    }
+	@PostConstruct
+    public void started() {
+		TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
+//        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+    }
 	
 	public static void main(String[] args) {
 		SpringApplication.run(PetliseApplication.class, args);
