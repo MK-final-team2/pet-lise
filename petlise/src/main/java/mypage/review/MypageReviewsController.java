@@ -22,7 +22,7 @@ public class MypageReviewsController {
 	@Autowired
 	MyOrderProductService service;
 
-	@GetMapping("/myreview")
+	@GetMapping("/mypage/review")
 	public ModelAndView myreview(@ModelAttribute SearchDTO searchdto, HttpSession session) {
 		searchdto.setRecordSize(5);
 		String userId = (String)session.getAttribute("user_id");

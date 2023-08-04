@@ -115,7 +115,7 @@
 				<!-- checkboxdiv -->
 				<div id="searchdiv">
 					<button id="searchbtn">
-						<img src="/images/shop/shopList/search_main.svg">
+						<img src="/images/shop/shoplist/search_main.svg">
 					</button>
 					<c:choose>
 						<c:when test="${param.keyword == '' || param.keyword eq null}">

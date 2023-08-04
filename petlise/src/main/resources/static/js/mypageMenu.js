@@ -14,10 +14,9 @@ document.getElementById('mypageMenu').innerHTML += `
         <span class="material-symbols-outlined">pets</span> Pet LiSe
       </div>
       <ul>
-        <li><a href="#">찜 레시피</a></li>
         <li><a href="#">좋아요 레시피</a></li>
         <li><a href="#">내가 쓴 레시피</a></li>
-        <li><a href="#">내가 쓴 게시글</a></li>
+        <li><a href="/mypage/board">내가 쓴 게시글</a></li>
         <li><a href="#">내가 쓴 댓글</a></li>
       </ul>
     </div>
@@ -28,7 +27,7 @@ document.getElementById('mypageMenu').innerHTML += `
       </div>
       <ul>
         <li><a href="#">주문목록</a></li>
-        <li><a href="#">내가 쓴 후기</a></li>
+        <li><a href="/mypage/review">구매상품 후기</a></li>
       </ul>
     </div>
     <div class="menu_QnA">
