@@ -293,6 +293,8 @@
     </script>
 </head>
 <body>
+	<jsp:include page="../header.jsp" />
+	
 	<div id='layout'>
 		<div id="categorys">
 			<p>라이스샵 > ${product.pet_type} > ${product.category}</p>

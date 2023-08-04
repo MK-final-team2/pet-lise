@@ -13,14 +13,13 @@
 <link rel="stylesheet" href="css/shop/shopList.css" />
 <link rel="stylesheet" href="css/shop/pagination_shop.css" />
 <link rel="stylesheet" href="css/shop/modal_main.css" />
-<link rel="stylesheet" href="/css/nav/nav.css" />
 <link rel="icon" href="/images/favicon.ico" />
 <link rel="apple-touch-icon" href="/images/favicon.ico" />
 <title>Pet LiSe</title>
 <script src="/js/jquery-3.6.4.min.js"></script>
 </head>
 <body style="height: auto;">
-	<div id="nav"></div>
+	<jsp:include page="../header.jsp" />
 	<div id='layout' >
 		<div id="titlediv">
 			<input type="hidden" id="searchType1" value="${param.searchType1}" />
@@ -235,7 +234,6 @@
 		<!-- pagination -->
 	</div>
 	<!-- layout -->
-	<script src="/js/recipe/nav.js"></script>
 	<script src="/js/shop/shopList.js"></script>
 </body>
 </html>
