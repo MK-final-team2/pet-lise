@@ -75,7 +75,7 @@ $(document).ready(function(){
     var total = 0;
     $('.cart_product_container').each(function(){
     	var quantityTotal = parseInt($(this).find('[data-quantity]').data('quantity'));
-        var priceTotal = parseInt($(this).find('[data-price_total]').data('price_total'));
+        var priceTotal = parseInt($(this).find('[data-product_price]').data('product_price'));
         subTotal += quantityTotal * priceTotal;
         total = subTotal + 3000;
     });
