@@ -160,6 +160,8 @@
     </div>
 
     <div id="modal"></div>
+    
+    <jsp:include page="../footer.jsp" />
 
     <script src="/js/mypageMenu.js"></script>
     <script src="/js/mypage/updateUser.js"></script>

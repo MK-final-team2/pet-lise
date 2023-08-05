@@ -118,6 +118,8 @@
         </div>
       </div>
     </div>
+    
+    <jsp:include page="../footer.jsp" />
 
     <script src="/js/mypageMenu.js"></script>
   </body>
