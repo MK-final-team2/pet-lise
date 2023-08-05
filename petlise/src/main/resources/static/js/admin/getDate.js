@@ -4,7 +4,7 @@ function getDate (data) {
   const mm = date.getMonth() + 1
   const dd = date.getDate()
 
-  return `${yyyy}. ${mm}. ${dd}`
+  return `${yyyy}. ${String(mm).padStart(2, '0')}. ${String(dd).padStart(2, '0')}`
 }
 
 function getDay (data) {

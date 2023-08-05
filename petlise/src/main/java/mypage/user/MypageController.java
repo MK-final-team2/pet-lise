@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import user.BCryptService;
 
@@ -28,7 +29,7 @@ public class MypageController {
 	MypageService service;
 
 	@GetMapping("/mypage")
-	public ModelAndView userInfo(HttpSession session) {
+	public ModelAndView userInfo(HttpSession session, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 
 		if (session.getAttribute("user_id") != null) {
@@ -57,13 +58,17 @@ public class MypageController {
 			mv.addObject("my_info", my_info);
 			mv.addObject("my_total_info", myTotalInfo);
 			mv.setViewName("mypage/myInfo");
+		} else {
+			request.setAttribute("msg", "로그인 후 이용가능합니다.");
+			request.setAttribute("url", "/");
+			mv.setViewName("alert");
 		}
 
 		return mv;
 	}
 
 	@RequestMapping("/mypage/edit")
-	public ModelAndView editUser(HttpSession session) {
+	public ModelAndView editUser(HttpSession session, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 
 		if (session.getAttribute("user_id") != null) {
@@ -72,6 +77,10 @@ public class MypageController {
 
 			mv.addObject("my_info", my_info);
 			mv.setViewName("mypage/editMyInfo");
+		} else {
+			request.setAttribute("msg", "로그인 후 이용가능합니다.");
+			request.setAttribute("url", "/");
+			mv.setViewName("alert");
 		}
 
 		return mv;
@@ -101,6 +110,7 @@ public class MypageController {
 				return "{\"response\" :  \"비밀번호가 틀렸습니다.\"}";
 			}
 		}
+		
 		return "{\"response\" :  \"수정이 완료되었습니다.\"}";
 	}
 

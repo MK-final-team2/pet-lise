@@ -63,10 +63,11 @@
                 <input
                   type="text"
                   name="address"
+                  placeholder="우편번호"
                   value="${fn:split(my_info.address, ',')[0]}"
                   readonly
                 />
-                <button onclick="sample6_execDaumPostcode()">우표번호 검색</button>
+                <button onclick="sample6_execDaumPostcode()">우편번호 검색</button>
               </div>
               <input
                 type="text"
@@ -150,7 +151,7 @@
 
           <div class="inputWrap">
             <p>반려동물 나이</p>
-            <input type="text" class="petAge" value="${my_info.pet_age}" />
+            <input type="text" class="petAge" maxlength="2" value="${my_info.pet_age}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
           </div>
         </div>
         <p class="deleteUser" onclick="clickModal()">회원탈퇴하기</p>
