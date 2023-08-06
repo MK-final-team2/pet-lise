@@ -24,40 +24,68 @@
 	</script>
 </head>
 <body>
-    <div class="wrap">
-     <div id="nav"></div>
+   	<div class="wrap">
+		<jsp:include page="../header.jsp" />
 		<div id="board_title">
-
 			<input type="hidden" id="recipeType" value="${param.recipeType}" />
 			<input type="hidden" id="searchType1" value="${param.searchType1}" />
 			<input type="hidden" id="searchType2" value="${param.searchType2}" />
 			<input type="hidden" id="searchType3" value="${param.searchType3}" />
-
-
+			
+			
+			
 			<div class="pet_icon">
-
-				<div class="dog_icon">
-					<img src="/images/recipe/crown.png">
-				</div>
-
+				<c:if test="${param.searchType1 == '강아지'}">
+					<div class="dog_icon">
+						<img src="/images/recipe/dog_icon.svg">
+					</div>
+				</c:if>
+				<c:if test="${param.searchType1 == '고양이'}">
+					<div class="cat_icon">
+			   			<img src="/images/recipe/cat_icon.svg" style="margin-left: 5px;">
+			   		</div>
+				</c:if>
 			</div>
-			<div class="title_recipe">
-				<c:if test="${param.recipeType == '전문가레시피'}">
-					<span>전문가 레시피</span>
-				</c:if>
-				<c:if test="${param.recipeType == '나만의레시피'}">
-					<span>나만의 레시피</span>
-				</c:if>
+
+			<div class="title_recipe">			
+				<span>${param.recipeType}</span>			
 			</div>
 			<div class="subtitle_recipe">
-				<span>이달의 레시피</span>
+				<span>${param.searchType2}</span>
 			</div>
 		</div>
 
 		<div id="search_container">
 			
 			<div class="category">
-				
+				<c:if test="${param.searchType2 == '건강식'}">
+					<a class="${param.searchType3 eq '전체' ? 'on' : ''}"
+						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=전체">전체</a>
+					<a class="${param.searchType3 eq '다이어트식' ? 'on' : ''}"
+						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=다이어트식">다이어트식</a>
+					<a class="${param.searchType3 eq '병원식' ? 'on' : ''}"
+						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=병원식">병원식</a>
+					<a	class="${param.searchType3 eq '영양식' ? 'on' : ''}"
+						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=영양식">영양식</a>
+				</c:if>
+				<c:if test="${param.searchType2 == '일반식'}">
+					<a class="${param.searchType3 eq '전체' ? 'on' : ''}"
+						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=전체">전체</a>
+					<a class="${param.searchType3 eq '습식' ? 'on' : ''}"
+						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=습식">습식</a>
+					<a class="${param.searchType3 eq '건식' ? 'on' : ''}"
+						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=건식">건식</a>
+				</c:if>
+				<c:if test="${param.searchType2 == '간식'}">
+					<a class="${param.searchType3 eq '전체' ? 'on' : ''}"
+						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=전체">전체</a>
+					<a class="${param.searchType3 eq '건조간식' ? 'on' : ''}"
+						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=건조간식">건조간식</a>
+					<a class="${param.searchType3 eq '화식간식' ? 'on' : ''}"
+						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=화식간식">화식간식</a>
+				</c:if>
+				<c:if test="recipeType=${param.recipeType}&searchType1=${param.searchType1}&${param.searchType2 == '기타'}">					
+				</c:if>
 			</div>
 			<div id="searchdiv">
 				<c:choose>
@@ -73,80 +101,98 @@
 				</button>
 			</div>
 		</div>
-		
-        
-        <div id="recipe_container">
-        	  
-			<div class="recipe-line"> 
-	            <div class="recipe">
-	                <div class="recipe_img">
-	                    <div class="recipe_cover"> 
-	                        <button>
-                                <div class="love_this">50</div>
-                            </button>
-	                    </div>
-	                </div>
-					<a href="#">
-	                <div id="recipe_info">
-	                    <div class="info_title"><span>강아지화식 수제사료</span></div>
-	                    <div class="info_content"><span>오리고기를 메인으로한 어쩌구</span></div>
-                        <div class="info_date"><span>2023-07-01</span></div>
-	                </div>
-					</a>
-	            </div>
-                <div class="recipe">
-	                <div class="recipe_img">
-	                    <div class="recipe_cover"> 
-	                        <button>
-                                <div class="love_this">50</div>
-                            </button>
-	                    </div>
-	                </div>
-					<a href="#">
-	                <div id="recipe_info">
-	                    <div class="info_title"><span>강아지화식 수제사료</span></div>
-	                    <div class="info_content"><span>닭고기를 메인으로한 어쩌구</span></div>
-                        <div class="info_date"><span>2023-07-01</span></div>
-	                </div>
-					</a>
-	            </div>
-                <div class="recipe">
-	                <div class="recipe_img">
-	                    <div class="recipe_cover"> 
-	                        <button>
-                                <div class="love_this">50</div>
-                            </button>
-	                    </div>
-	                </div>
-					<a href="#">
-	                <div id="recipe_info">
-                        <div class="info_title"><span>강아지화식 수제사료</span></div>
-	                    <div class="info_content"><span>신장수치 조절을 위한 어쩌구</span></div>
-                        <div class="info_date"><span>2023-07-01</span></div>
-	                </div>
-					</a>
-	            </div>
-                <div class="recipe">
-	                <div class="recipe_img">
-	                    <div class="recipe_cover"> 
-	                        <button>
-                                <div class="love_this">50</div>
-                            </button>
-	                    </div>
-	                </div>
-					<a href="#">
-	                <div id="recipe_info">
-                        <div class="info_title"><span>강아지화식 수제사료</span></div>
-	                    <div class="info_content"><span>양고기를 메인으로한 화식이 어쩌구</span></div>
-                        <div class="info_date"><span>2023-07-01</span></div>                       
-	                </div>
-					</a>
-	            </div>
-            </div>
+
+		<div id="recipe_container">
 			
-	            </div>
-					
-				<div class="page">
+
+			<div class="recipe-line">
+				<c:if test="${fn:length(response.list) == 0}">
+					<div id="noresult">해당하는 레시피가 없습니다.</div>
+				</c:if>
+				<c:forEach var="recipe" items="${response.list}">
+					<div class="recipe" id="${recipe.recipe_id}">
+						<div class="recipe_img"
+							style="background-image: url(https://storage.googleapis.com/${recipe.image});">
+
+
+							<c:if test="${!recipe.is_like}">
+								<div class="recipe_cover">
+									<button class="like-button"
+										data-recipe-id="${recipe.recipe_id}">
+										<div class="likes_num">${recipe.likes}</div>
+									</button>
+								</div>
+							</c:if>
+							<c:if test="${recipe.is_like}">
+								<div class="recipe_cover active"> 
+									<button class="like-button"
+										data-recipe-id="${recipe.recipe_id}">
+										<div class="likes_num">${recipe.likes}</div>
+									</button>
+								</div>
+							</c:if>
+						</div>
+
+						<div id="recipe_info">
+							<div class="info_title">
+								<span>${recipe.recipe_title}</span>
+							</div>
+							<div class="info_content">
+								<span class="recipe_content">${recipe.recipe_contents}</span>
+
+							</div>
+							<div id="info_bottom">
+								<div class="info_writer">
+									<span>${recipe.user.name}</span>
+								</div>
+								<div class="info_date">
+									<span style="margin-right: 10px;"><fmt:formatDate
+											value="${recipe.recipe_created_at}" pattern="yyyy.MM.dd" /></span>
+									<span style="margin-right: 5px;">조회수 ${recipe.view_cnt}</span>									
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</c:forEach>
+			</div>
+		</div>
+		
+		
+
+<script>
+  // 세션에서 user_id 값을 가져와서 JavaScript 변수에 할당
+  var user_id = '<%= session.getAttribute("user_id") %>';
+
+
+  // user_id 값을 확인하기 위해 JavaScript에서 출력
+  console.log('user_id:', user_id);
+
+  function checkLoginAndGoToWrite() {
+    if (user_id =='null') {
+      alert('로그인이 필요합니다. 로그인 페이지로 이동합니다.');
+      window.location.href = '/signin'; // 로그인 페이지로 이동
+      // 글쓰기 기능 막기
+      return; // 이동을 막기 위해 return 추가
+    }
+
+    else{// user_id가 존재하면 글쓰기 페이지로 이동
+    window.location.href = '/recipecreate';
+  }
+  }
+</script>
+		<!-- 글쓰기 -->
+
+		<c:if test="${param.recipeType eq '나만의레시피'}">
+			<div id="recipe_write">				
+					<div class="write">
+						<button onclick="checkLoginAndGoToWrite()">글쓰기</button>
+					</div>
+				</a>
+			</div>
+		</c:if>
+
+		<div class="page">
 			<div id="pagination">
 				<c:if test="${fn:length(response.list) != 0}">
 					<div class="pagefirst"
@@ -197,18 +243,147 @@
 			</div>
 			<!-- pagination -->
 		</div>
-		</div> 	
+		
+	</div>
+	<div class="modal" id="login_modal">
+		<div class="modal_contents">
+			<div class="modal_text">
+			<div>
+			<img src="/images/logo-icon.png" style="margin-bottom:10px; width:25px;"/><br>
+			로그인이 필요한 항목입니다.<br>
+			로그인 페이지로 이동하시겠습니까?
+			</div>
+			</div>
+			<div class="modal_btn">
+				<button class="modal_cancelbtn">취소</button>
+				<button class="modal_loginbtn">이동</button>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal" id="like_modal">
+		<div class="modal_contents">
+			<div class="modal_text">
+			<div>
+			<img src="/images/logo-icon.png" style="margin-bottom:10px; width:25px;"/><br>
+			이 레시피에 좋아요 표시를 하시겠습니까?
+			</div>
+			</div>
+			<div class="modal_btn">
+				<button class="modal_cancelbtn">취소</button>
+				<button class="modal_okbtn">확인</button>
+			</div>
+		</div>
+	</div>
+		<div class="modal" id="like_delete_modal">
+		<div class="modal_contents">
+			<div class="modal_text">
+			<div>
+			<img src="/images/logo-icon.png" style="margin-bottom:10px; width:25px;"/><br>
+			이 레시피의 좋아요를 취소하시겠습니까?
+			</div>
+			</div>
+			<div class="modal_btn">
+				<button class="modal_cancelbtn">취소</button>
+				<button class="modal_okbtn">확인</button>
+			</div>
+		</div>
+	</div>
+	
+	<jsp:include page="../footer.jsp" />
+	
 </body>
 
 <script>
-    const buttons = document.querySelectorAll('.recipe_cover > button'); 
-    
-    buttons.forEach(function(button) { 
-        button.addEventListener('click', function() {
-            button.classList.toggle('active');
-        });
-    });
+$("#recipe_container").on('click', '.like-button', function () {
+    var button = $(this);
+    var likesNum = button.find(".likes_num");
+    var isIs_Like = button.parents().hasClass('active');
+    var recipeId = button.attr('data-recipe-id'); // 해당 레시피의 ID
 
+    if ("${user_id}" == "") {
+        // 로그인되지 않은 경우 로그인 모달을 보여줍니다.
+        $("#login_modal").css("top", $(window).scrollTop() + "px");
+        $("#login_modal").css('display', 'block');
+
+        $('#login_modal').on('scroll touchmove mousewheel', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            return false;
+        });
+    } else {
+        if (!isIs_Like) {
+            // 모달 창을 보여줍니다.
+            $("#like_modal").css('display', 'block');
+
+            // 확인 버튼을 누를 때 좋아요 추가 함수를 실행하는 이벤트 핸들러 등록
+            $(".modal_okbtn").off("click").on("click", function () {
+                $("#like_modal").css('display', 'none'); // 모달 창 닫기
+                button.parents().addClass("active");
+                button.css("background-image", "url('/images/recipe/hit_f.svg')");
+                likesNum.text(Number(likesNum.text()) + 1);
+
+                // 좋아요 추가 함수 실행
+                $.ajax({
+                    type: 'post',
+                    url: '/recipe/likeup',
+                    dataType: 'json',
+                    data: {
+                        user_id: "${sessionScope.user_id}",
+                        recipe_id: recipeId
+                    },
+                    success: function (result) { // 결과 성공 콜백함수
+                        // 변경된 좋아요 수를 업데이트합니다.
+                        likesNum.text(result.likes);
+                    },
+                    error: function (request, status, error) { // 결과 에러 콜백함수
+                        console.log(error);
+                    }
+                }); // ajax end
+            });
+        } else {
+            // 모달 창을 보여줍니다.
+            $("#like_delete_modal").css('display', 'block');
+
+            // 확인 버튼을 누를 때 좋아요 취소 함수를 실행하는 이벤트 핸들러 등록
+            $(".modal_okbtn").off("click").on("click", function () {
+                $("#like_delete_modal").css('display', 'none'); // 모달 창 닫기
+                button.parents().removeClass("active");
+                button.css("background-image", "url('/images/recipe/hit.svg')");
+                likesNum.text(Number(likesNum.text()) - 1);
+
+                // 좋아요 취소 함수 실행
+                $.ajax({
+                    type: 'post',
+                    url: '/recipe/likedown',
+                    dataType: 'json',
+                    data: {
+                        user_id: "${sessionScope.user_id}",
+                        recipe_id: recipeId
+                    },
+                    success: function (result) { // 결과 성공 콜백함수
+                        // 변경된 좋아요 수를 업데이트합니다.
+                        likesNum.text(result.likes);
+                    },
+                    error: function (request, status, error) { // 결과 에러 콜백함수
+                        console.log(error);
+                    }
+                }); // ajax end
+            });
+        }
+    }
+});
+
+
+//----- 모달이벤트(모달 내 취소버튼) -----
+$(".modal_cancelbtn").on('click',function(){
+	$(this).parents(".modal").css('display', 'none');
+});
+
+//----- 모달창 로그인 이동 버튼 -----
+$(".modal_loginbtn").on('click',function(){
+	location.href = "/signin";
+});
 </script>
 <script src="/js/recipe/nav.js"></script>
 <script src="/js/recipe/recipeList.js"></script>
