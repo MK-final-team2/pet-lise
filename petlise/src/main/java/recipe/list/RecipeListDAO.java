@@ -18,9 +18,4 @@ public interface RecipeListDAO {
     List<RecipeListDTO> getAllRecipePaging(SearchDTO dto);
     Integer getCount(SearchDTO dto); 
     
-	int isLikeRecipe(HashMap<String, String> map);
-
-	RecipeListDTO getRecipeById(String recipe_id);
-	
-	public int viewCnt(int seq);
 }

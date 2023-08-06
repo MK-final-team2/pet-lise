@@ -25,12 +25,13 @@ public class RecipeListController {
     // 상품목록페이지
     @GetMapping("/recipelist")
     public ModelAndView recipelist(String recipe_id, @ModelAttribute SearchDTO searchdto,HttpSession session) {
-
-    	
     	searchdto.setRecordSize(12);
         PagingResponse<RecipeListDTO> recipelist = service.getAllRecipePaging(searchdto);
         
-        System.out.println(recipelist.getList().size());
+        String userId = (String) session.getAttribute("user_id");
+        for(RecipeListDTO recipe : recipelist.getList()) {
+        	recipe.setIs_like(service.recipeService.isRecipeLiked(userId, recipe.getRecipe_id()));
+        }
 
         ModelAndView mv = new ModelAndView();
         mv.addObject("response", recipelist);
@@ -38,5 +39,4 @@ public class RecipeListController {
         return mv;
     }
     
-
 }

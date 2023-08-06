@@ -1,6 +1,7 @@
 package recipe;
 
 import java.sql.Timestamp;
+
 import org.springframework.stereotype.Component;
 
 import user.UserDTO;
@@ -12,7 +13,7 @@ public class RecipeDTO {
 	int view_cnt, recipe_of_the_month;
 	String recipe_of_the_month_registration_date;
 	Timestamp recipe_created_at, recipe_updated_at;
-	
+	boolean is_like;
 	
 	private UserDTO point;
 	
@@ -108,4 +109,11 @@ public class RecipeDTO {
 	public void setPoint(UserDTO point) {
 		this.point = point;
 	}
+	public boolean isIs_like() {
+		return is_like;
+	}
+	public void setIs_like(boolean is_like) {
+		this.is_like = is_like;
+	}
+	
 }

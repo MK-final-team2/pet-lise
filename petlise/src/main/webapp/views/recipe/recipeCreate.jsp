@@ -100,7 +100,7 @@
 		</div>
 		
 		
-		<script src="/js/recipe/editor.js"></script>
+		<script src="/js/editor.js"></script>
 		<script src="/js/recipe/recipeCategory.js"></script>		
 		<script src="/js/imageUpload.js"></script>
 		<script src="/js/recipe/recipeCreate.js"></script>
@@ -108,4 +108,5 @@
 
 		
 	</body>
+	
 </html>

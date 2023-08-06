@@ -77,23 +77,7 @@
 	</select>
 	<!-- ▲▲▲▲Pagination▲▲▲▲ -->
 	
-	<select id="getRecipeById" resultType="recipelistdto"
-		parameterType="String">
-		select * from recipe where recipe_id=#{recipe_id}
-	</select>
-	
-	<!-- 좋아요 여부 검사 -->
-	<select id="isLikeRecipe" parameterType="HashMap"
-		resultType="int">
-		select count(*) from recipeLike where recipe_id=#{review_id} and
-		user_id=#{user_id} and is_like=true;
-	</select>
-	
-	<!--조회수-->
-	<update id="viewCnt" parameterType="int">
-		UPDATE recipe SET view_cnt = view_cnt + 1
-		WHERE seq = #{seq}
-	</update>
+
 	
 
 </mapper>
