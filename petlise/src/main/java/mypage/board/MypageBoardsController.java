@@ -79,4 +79,17 @@ public class MypageBoardsController {
 		int result = service.deleteMyWriteRecipe(recipe_id);
 		return "{\"result\":\""+result+"\"}";
 	}
+
+	@GetMapping("/mypage/mylikerecipe")
+	public ModelAndView mylikerecipe(@ModelAttribute SearchDTO searchdto, HttpSession session) {
+		String userId = (String)session.getAttribute("user_id");
+		searchdto.setSearchType1(userId);
+		PagingResponse<MyRecipeLikeDTO> response = service.getMyLikeRecipe(searchdto);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("response", response);
+		mv.setViewName("/mypage/myLikeRecipe");
+		return mv;
+	}
+	
 }
