@@ -9,8 +9,6 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import recipe.list.RecipeListDTO;
-
 
 @Service
 public class RecipeService {
@@ -69,6 +67,19 @@ public class RecipeService {
   		return result1+result2;
   	};
   	
-  	
+  	 
+  	public boolean isRecipeLiked(String user_id, String recipe_id) {
+  	    return recipeDAO.isRecipeLiked(user_id, recipe_id);
+  	}
+  	 
+  	public RecipeDTO getRecipeDetailById(String recipe_id) {
+        return recipeDAO.getRecipeDetailById(recipe_id);
+    }
+  	 
+  	 // 레시피 조회수 증가 메소드
+    public void recipeViewCount(String recipe_id) {
+        recipeDAO.recipeViewCount(recipe_id);
+    }
+  	 
 }
 

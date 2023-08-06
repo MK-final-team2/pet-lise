@@ -110,57 +110,53 @@
 			
 
 			<div class="recipe-line">
-			<c:if test="${fn:length(response.list) == 0}">
-				<div id="noresult">
-				해당하는 레시피가 없습니다.				
-				</div>
-			</c:if>
+				<c:if test="${fn:length(response.list) == 0}">
+					<div id="noresult">해당하는 레시피가 없습니다.</div>
+				</c:if>
 				<c:forEach var="recipe" items="${response.list}">
 					<div class="recipe" id="${recipe.recipe_id}">
 						<div class="recipe_img"
 							style="background-image: url(https://storage.googleapis.com/${recipe.image});">
 
 
-								<c:if test="${!recipe.is_like}">
-    <div class="recipe_cover">
-        <button class="like-button" data-recipe-id="${recipe.recipe_id}">
-            <div class="likes_num">${recipe.likes}</div>
-        </button>
-    </div>
-</c:if>
-<c:if test="${recipe.is_like}">
-    <div class="recipe_cover_active">
-        <button class="like-button" data-recipe-id="${recipe.recipe_id}">
-            <div class="likes_num">${recipe.likes}</div>
-        </button>
-    </div>
-</c:if>
+							<c:if test="${!recipe.is_like}">
+								<div class="recipe_cover">
+									<button class="like-button"
+										data-recipe-id="${recipe.recipe_id}">
+										<div class="likes_num">${recipe.likes}</div>
+									</button>
+								</div>
+							</c:if>
+							<c:if test="${recipe.is_like}">
+								<div class="recipe_cover active"> 
+									<button class="like-button"
+										data-recipe-id="${recipe.recipe_id}">
+										<div class="likes_num">${recipe.likes}</div>
+									</button>
+								</div>
+							</c:if>
+						</div>
 
-								
-
+						<div id="recipe_info">
+							<div class="info_title">
+								<span>${recipe.recipe_title}</span>
+							</div>
+							<div class="info_content">
+								<span class="recipe_content">${recipe.recipe_contents}</span>
 
 							</div>
-						
-							<div id="recipe_info">
-								<div class="info_title">
-									<span>${recipe.recipe_title}</span>
+							<div id="info_bottom">
+								<div class="info_writer">
+									<span>${recipe.user.name}</span>
 								</div>
-								<div class="info_content">
-									 <span class="recipe_content">${recipe.recipe_contents}</span>
-
-								</div>
-								<div id="info_bottom">
-									<div class="info_writer">
-										<span>${recipe.user.name}</span>
-									</div>
-									<div class="info_date">														
-										<span style="margin-right:10px;"><fmt:formatDate value="${recipe.recipe_created_at}" pattern="yyyy.MM.dd" /></span>
-										<span style="margin-right:5px;">조회수 ${recipe.view_cnt}</span>
-										<span>댓글수 ${recipe.comments}</span>	
-									</div>
+								<div class="info_date">
+									<span style="margin-right: 10px;"><fmt:formatDate
+											value="${recipe.recipe_created_at}" pattern="yyyy.MM.dd" /></span>
+									<span style="margin-right: 5px;">조회수 ${recipe.view_cnt}</span>									
 								</div>
 							</div>
-						
+						</div>
+
 					</div>
 				</c:forEach>
 			</div>
@@ -267,13 +263,45 @@
 			</div>
 		</div>
 	</div>
+	
+	<div class="modal" id="like_modal">
+		<div class="modal_contents">
+			<div class="modal_text">
+			<div>
+			<img src="/images/logo-icon.png" style="margin-bottom:10px; width:25px;"/><br>
+			이 레시피에 좋아요 표시를 하시겠습니까?
+			</div>
+			</div>
+			<div class="modal_btn">
+				<button class="modal_cancelbtn">취소</button>
+				<button class="modal_okbtn">확인</button>
+			</div>
+		</div>
+	</div>
+		<div class="modal" id="like_delete_modal">
+		<div class="modal_contents">
+			<div class="modal_text">
+			<div>
+			<img src="/images/logo-icon.png" style="margin-bottom:10px; width:25px;"/><br>
+			이 레시피의 좋아요를 취소하시겠습니까?
+			</div>
+			</div>
+			<div class="modal_btn">
+				<button class="modal_cancelbtn">취소</button>
+				<button class="modal_okbtn">확인</button>
+			</div>
+		</div>
+	</div>
+	
+	
+	
 </body>
 
 <script>
 $("#recipe_container").on('click', '.like-button', function () {
     var button = $(this);
     var likesNum = button.find(".likes_num");
-    var isLiked = button.closest('.recipe_cover_active').length > 0;
+    var isIs_Like = button.parents().hasClass('active');
     var recipeId = button.attr('data-recipe-id'); // 해당 레시피의 ID
 
     if ("${user_id}" == "") {
@@ -287,13 +315,18 @@ $("#recipe_container").on('click', '.like-button', function () {
             return false;
         });
     } else {
-        if (!isLiked) {
-            // 좋아요를 추가하는 경우
-            if (confirm("이 레시피에 좋아요 표시를 하시겠습니까?")) {
-                $(this).addClass("recipe_cover_active");
-                $(this).css("background-image", "url('/images/recipe/hit_f.svg')");
+        if (!isIs_Like) {
+            // 모달 창을 보여줍니다.
+            $("#like_modal").css('display', 'block');
+
+            // 확인 버튼을 누를 때 좋아요 추가 함수를 실행하는 이벤트 핸들러 등록
+            $(".modal_okbtn").off("click").on("click", function () {
+                $("#like_modal").css('display', 'none'); // 모달 창 닫기
+                button.parents().addClass("active");
+                button.css("background-image", "url('/images/recipe/hit_f.svg')");
                 likesNum.text(Number(likesNum.text()) + 1);
 
+                // 좋아요 추가 함수 실행
                 $.ajax({
                     type: 'post',
                     url: '/recipe/likeup',
@@ -307,17 +340,22 @@ $("#recipe_container").on('click', '.like-button', function () {
                         likesNum.text(result.likes);
                     },
                     error: function (request, status, error) { // 결과 에러 콜백함수
-                        console.log(error)
+                        console.log(error);
                     }
                 }); // ajax end
-            }
+            });
         } else {
-            // 좋아요를 취소하는 경우
-            if (confirm("이 레시피의 좋아요를 취소하시겠습니까?")) {
-                $(this).removeClass("recipe_cover_active");
-                $(this).css("background-image", "url('/images/recipe/hit.svg')");
+            // 모달 창을 보여줍니다.
+            $("#like_delete_modal").css('display', 'block');
+
+            // 확인 버튼을 누를 때 좋아요 취소 함수를 실행하는 이벤트 핸들러 등록
+            $(".modal_okbtn").off("click").on("click", function () {
+                $("#like_delete_modal").css('display', 'none'); // 모달 창 닫기
+                button.parents().removeClass("active");
+                button.css("background-image", "url('/images/recipe/hit.svg')");
                 likesNum.text(Number(likesNum.text()) - 1);
 
+                // 좋아요 취소 함수 실행
                 $.ajax({
                     type: 'post',
                     url: '/recipe/likedown',
@@ -331,10 +369,10 @@ $("#recipe_container").on('click', '.like-button', function () {
                         likesNum.text(result.likes);
                     },
                     error: function (request, status, error) { // 결과 에러 콜백함수
-                        console.log(error)
+                        console.log(error);
                     }
                 }); // ajax end
-            }
+            });
         }
     }
 });

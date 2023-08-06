@@ -23,11 +23,6 @@ public class RecipeListService {
 	public List<RecipeListDTO> getAllRecipe() {
 		return dao.getAllRecipe();
 	}
-	
-	
-	public int viewCnt(int seq) {
-		return dao.viewCnt(seq);
-	}
 
 		
 	public String getRecipeName(String recipe_id) {
@@ -47,7 +42,6 @@ public class RecipeListService {
         dto.setPagination(pagination);  
         // 계산된 페이지 정보의 일부(limitStart, recordSize)를 기준으로 리스트 데이터 조회 후 응답 데이터 반환
         List<RecipeListDTO> list = dao.getAllRecipePaging(dto);
-        
        
         return new PagingResponse<>(list, pagination);
     }

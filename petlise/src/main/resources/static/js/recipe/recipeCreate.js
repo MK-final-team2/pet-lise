@@ -56,13 +56,15 @@ function edit() {
     return false;
   }
 
-  if (main_category === "카테고리 선택"&& main_category !== "기타") {
-    document.querySelector(".modal_text div").textContent = "메인 카테고리를 선택해주세요.";
-    showModal();
-    return false;
+  if (main_category === "카테고리 선택" && main_category !== "기타") {
+  document.querySelector(".modal_text div").textContent = "메인 카테고리를 선택해주세요.";
+  showModal();
+  return false;
   }
 
-  if (sub_category === "카테고리 선택") {
+  if (main_category === "기타") {
+  // main_category가 '기타'일 때는 sub_category 검사를 제외  
+} else if (sub_category === "카테고리 선택") {
   document.querySelector(".modal_text div").textContent = "서브 카테고리를 선택해주세요.";
   showModal();
   return false;
@@ -126,3 +128,16 @@ function edit() {
   });
 
 }
+
+
+//-----제목 글자 수 제한-----
+document.addEventListener("DOMContentLoaded", function() {
+	 var inputElement = document.getElementById("recipeTitle");
+	 var maxLength = 45;
+
+	 inputElement.addEventListener("input", function() {
+     if (this.value.length > maxLength) {
+     this.value = this.value.substring(0, maxLength);
+     }
+	});
+});

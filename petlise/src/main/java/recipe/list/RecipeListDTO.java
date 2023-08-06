@@ -15,7 +15,7 @@ public class RecipeListDTO {
 	private String recipe_of_the_month_registration_date;
 	private Timestamp recipe_created_at, recipe_updated_at;
 	private boolean is_like;
-	private int seq;
+	
 	
 	private UserDTO user;
 	
@@ -131,12 +131,6 @@ public class RecipeListDTO {
 	public void setUser(UserDTO user) {
 		this.user = user;
 	}
-	public int getSeq() {
-		return seq;
-	}
-	public void setSeq(int seq) {
-		this.seq = seq;
-	}
-	
+
 	
 }

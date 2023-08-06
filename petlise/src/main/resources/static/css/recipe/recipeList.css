@@ -189,12 +189,12 @@
   }
 
 
-  .recipe_cover_active{
-      
+  .recipe_cover.active{
+      visibility:visible;
       width: 290px;
       height: 290px;
       border-radius: 10px;
-      background: rgba(0, 0, 0, 0.20);
+      background: rgba(0, 0, 0, 0);
 
       >button {
           position: absolute;

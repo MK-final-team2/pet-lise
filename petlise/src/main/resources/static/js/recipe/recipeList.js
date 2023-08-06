@@ -100,34 +100,38 @@ $(".pagelast").on('click', function() {
 });
 
 
-
-//컨텐츠 내용 길이 조절
+// -----레시피 리스트 info 본문 노출 60자 제한, 태그제외, 제한함수에서 태그 길이 제외-----
 document.addEventListener("DOMContentLoaded", function() {
   var recipeContentsElements = document.querySelectorAll(".recipe_content");
 
   recipeContentsElements.forEach(function(element) {
-    var content = element.innerHTML;
-
-    // 정규식으로 <p> 태그와 </p> 태그 제거
-    var strippedContent = content.replace(/<\/?p[^>]*>/g, '');
-
-    // 정규식으로 <br> 태그 제거
-    strippedContent = strippedContent.replace(/<br\s*\/?>/gi, '');
+    // 정규식으로 태그를 제거
+    var strippedContent = element.textContent;
 
     var maxLength = 60;
     if (strippedContent.length > maxLength) {
-      element.innerHTML = strippedContent.substring(0, maxLength) + "...";
+      element.textContent = strippedContent.substring(0, maxLength) + "...";
     } else {
-      element.innerHTML = strippedContent;
+      element.textContent = strippedContent;
     }
   });
 });
 
 
 
-	
-// ----- 상세페이지 클릭-----
+//----공백포함 제목 길이제한----
+document.addEventListener("DOMContentLoaded", function() {
+  var recipeTitleElement = document.querySelector(".info_title > span");
 
+  var content = recipeTitleElement.textContent;
+  var maxLength = 18;
+  if (content.length > maxLength) {
+    recipeTitleElement.textContent = content.substring(0, maxLength) + "...";
+  }
+});
+
+
+// ----- 상세페이지 클릭-----
 $(".recipe").on('click', function(event) {
     // 이벤트를 버블링하는 것을 방지하기 위해 클릭된 요소가 버튼인지 확인
     if (!$(event.target).is("button")) {
@@ -135,6 +139,8 @@ $(".recipe").on('click', function(event) {
         location.href = '/recipedetail?recipe_id=' + $(this).attr('id');
     }
 });
+
+
 
 
 
