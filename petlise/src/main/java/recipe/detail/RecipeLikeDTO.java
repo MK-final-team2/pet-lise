@@ -4,6 +4,7 @@ public class RecipeLikeDTO {
 	String like_id, recipe_id, user_id, comment_id, like_type;
 	int likes;
 	boolean is_like;
+	
 	public String getLike_id() {
 		return like_id;
 	}

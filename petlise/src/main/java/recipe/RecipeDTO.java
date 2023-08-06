@@ -9,7 +9,7 @@ import user.UserDTO;
 public class RecipeDTO {
 	String recipe_id, user_id, recipe_title, recipe_contents, image, recipe_category, pet_category, main_category,
 			sub_category;
-	int view_cnt, recipe_of_the_month;
+	int view_cnt, recipe_of_the_month, likes;
 	String recipe_of_the_month_registration_date;
 	Timestamp recipe_created_at, recipe_updated_at;
 	
@@ -101,7 +101,12 @@ public class RecipeDTO {
 	public void setRecipe_of_the_month_registration_date(String recipe_of_the_month_registration_date) {
 		this.recipe_of_the_month_registration_date = recipe_of_the_month_registration_date;
 	} 
-	
+	public int getLikes() {
+		return likes;
+	}
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
 	public UserDTO getPoint() {
 		return point;
 	}

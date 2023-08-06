@@ -25,13 +25,48 @@
 	
 	<!-- 댓글 작성하기 -->
 	<insert id="writeRecipeComment" parameterType="recipecommentdto">
-		INSERT INTO `recipeComment`(`recipe_id`, `user_id`, `profile_image`, `created_at`, `contents`) 
-		VALUES  ( #{recipe_id}, #{user_id}, #{profile_image}, now(), #{contents} );
+		INSERT INTO `recipeComment`(`recipe_id`, `user_id`, `comment_created_at`, `comment_contents`) 
+		VALUES  ( #{recipe_id}, #{user_id}, now(), #{comment_contents} );
 	</insert>
 	
-	<!-- 좋아요수 업데이트 -->
+	<!-- 댓글 수정하기	-->
+	<update id="editComment" parameterType="recipecommentdto">
+		UPDATE `recipeComment` 
+		SET    `comment_contents` = #{comment_contents}, comment_image = #{comment_image} 
+		WHERE  `user_id` = #{user_id} AND `recipe_id` = #{recipe_id};
+	</update>
+	
+	<!-- 좋아요 레코드 확인 -->
+	<select id="checkLike" resultType="boolean">
+	    SELECT EXISTS(SELECT 1 FROM `recipeLike`
+	                WHERE `recipe_id` = #{recipe_id} AND `user_id` = #{user_id});
+	</select>
+		 
+	<!-- 좋아요 여부 -->
+	<select id="liked" resultType="boolean">
+		SELECT `is_like` 
+		FROM   `recipeLike` 
+		WHERE  `user_id` = #{user_id} AND `recipe_id` = #{recipe_id};
+	</select>
+	
+	<!-- 좋아요 수 업데이트 -->
 	<insert id="likeCount" parameterType="recipelikedto">
-		INSERT INTO `recipeLike` (`recipe_id`, `user_id`, `is_like`) 
-		VALUE ( #{recipe_id}, #{user_id}, #{is_like});
+		INSERT INTO `recipeLike` (`like_id`, `recipe_id`, `user_id`, `likes`, `is_like`) 
+		VALUES ( #{like_id}, #{recipe_id}, #{user_id}, #{likes}, #{is_like} );
 	</insert>
+	
+	<!-- 좋아요 수 수정 -->
+	<update id="updateLike" parameterType="recipelikedto">
+		UPDATE `recipeLike`  
+		SET    `is_like` = #{is_like}, `likes` = #{likes} 
+		WHERE  `recipe_id` = #{recipe_id} AND `user_id` = #{user_id};
+	</update>
+
+	<!-- 좋아요 합계 업데이트 -->
+	<update id="recipeLike" parameterType="recipedto">
+		UPDATE `recipe` 
+		SET    `likes` = #{likes}
+		WHERE  `recipe_id` = #{recipe_id};
+	</update>	
+	
 </mapper>
