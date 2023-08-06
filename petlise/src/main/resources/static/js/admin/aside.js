@@ -1,7 +1,7 @@
 let link = document.location.pathname;
 
 document.getElementById('asideMenu').innerHTML += `
-  <img src="/images/login-logo.png" alt="로고" />
+  <img src="/images/login-logo.png" alt="로고" onClick="location.href='/'" />
   <ul class="menuWrapper">
     <li onClick="location.href='/admin'" style="background:${
       link === '/admin' ? '#181818' : ''

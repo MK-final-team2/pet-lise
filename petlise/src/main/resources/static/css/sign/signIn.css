@@ -1,10 +1,10 @@
+body {
+  height: 110% !important;
+}
+
 .container {
   width: 1240px;
-  /* position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
-  margin: 100px auto 0;
+  margin: 50px auto;
   padding: 55px 60px;
   display: flex;
   flex-direction: row;

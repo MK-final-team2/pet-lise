@@ -23,8 +23,6 @@ function ajaxData(keyword, page) {
     async: false,
     success: function (data) {
       let dataTable = data;
-      console.log(data)
-      console.log(new Date())
       let tbody = document.querySelector('tbody');
       let totalCount = dataTable.length != 0 ? dataTable[0].count : 0;
       pagination(page, totalCount);
@@ -34,7 +32,7 @@ function ajaxData(keyword, page) {
             <td>${el.name}</td>
             <td>${el.email}</td>
             <td>${el.address.split(",").join(" ")}</td>
-            <td>P <span>${el.point ? el.point : 0}</span></td>
+            <td>${el.point ? el.point.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") : 0}</td>
             <td>${getDate(el.created_at)}</td>
             <td>${el.deleted_at ? getDate(el.deleted_at) : '0000. 00. 00'}</td>
           </tr>`

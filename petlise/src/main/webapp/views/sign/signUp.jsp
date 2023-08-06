@@ -88,7 +88,7 @@ pageEncoding="UTF-8"%>
               readonly
             />
             <button type="button" onclick="sample6_execDaumPostcode()">
-              우표번호 검색
+              우편번호 검색
             </button>
           </div>
           <input
@@ -131,7 +131,7 @@ pageEncoding="UTF-8"%>
           <p>반려동물 이름 (선택)</p>
           <input type="text" class="petName" name="pet_name" maxlength="20" value="" />
           <p>반려동물 나이 (선택)</p>
-          <input type="number" class="petAge" name="pet_age" maxlength="2" value=null />
+          <input type="number" class="petAge" name="pet_age" maxlength="2" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
         </div>
         <ul>
           <li class="list">

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -40,17 +41,13 @@ public class UserController {
 
 	@PostMapping("/signup")
 	public ModelAndView signUp(UserDTO userDTO) {
-		ModelAndView mv = new ModelAndView();
-
 		String password = userDTO.password;
 		String hashPassword = bCryptService.encodeBcrypt(password, bcryptNum);
-		userDTO.setPassword(hashPassword);
 
+		userDTO.setPassword(hashPassword);
 		service.insertUser(userDTO);
 
-		mv.setViewName("redirect:/signin");
-
-		return mv;
+		return new ModelAndView("redirect:/signin");
 	}
 
 	@GetMapping("/signin")
@@ -142,13 +139,26 @@ public class UserController {
 
 	@PostMapping("/newpw")
 	public ModelAndView NewPw(String email, String password) {
-		ModelAndView mv = new ModelAndView();
-
 		String hashPassword = bCryptService.encodeBcrypt(password, bcryptNum);
 
 		service.newPassword(hashPassword, email);
 
-		mv.setViewName("redirect:/signin");
+		return new ModelAndView("redirect:/signin");
+	}
+
+	@RequestMapping("/logout")
+	public ModelAndView Logout(HttpSession session, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		
+		if (session.getAttribute("user_id") != null) {
+			session.removeAttribute("user_id");
+			session.removeAttribute("role");
+			
+			request.setAttribute("msg", "로그아웃 되었습니다.");
+			request.setAttribute("url", "/");
+			
+			mv.setViewName("alert");
+		}
 
 		return mv;
 	}
