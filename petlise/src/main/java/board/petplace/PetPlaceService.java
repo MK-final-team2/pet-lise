@@ -11,11 +11,12 @@ import pagination.SearchDTO;
 @Service
 public interface PetPlaceService {
 
-	List<PetPlaceDTO> getAllPetPlace();
-
 	PagingResponse<PetPlaceDTO> getAllPetPlacePaging(SearchDTO dto);
+	PagingResponse<PetPlaceCommentDTO> getAllCommentPaging(SearchDTO dto);
 
 	public int insertPetPlace(PetPlaceDTO dto);
+
+	public int insertComment(PetPlaceCommentDTO dto);
 
 	public PetPlaceDTO findpetplace(int seq);
 
@@ -25,9 +26,7 @@ public interface PetPlaceService {
 
 	public void deletepetplace(int seq);
 
-	public void insertComment(PetPlaceCommentDTO petplacecommentdto);
 
-	List<PetPlaceCommentDTO> getCommentList(PetPlaceCommentDTO petplacecommentdto);
 
 	/*
 	 * int insertLike(HashMap<String, String> map); int likeUp(String user_id,

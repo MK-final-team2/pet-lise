@@ -30,6 +30,8 @@
 <resultMap id="userResultMap" type="user.UserDTO">
     <result property="user_id" column="user_id"/>
     <result property="name" column="name"/>
+    <result property="profile_image" column="profile_image"/>
+
     <!-- 다른 필드들도 필요하다면 추가 -->
 </resultMap>
 
@@ -54,6 +56,8 @@
     <result property="comment_created_at" column="comment_created_at" />
     <result property="comment_updated" column="comment_updated" />
     <result property="deleted_at" column="deleted_at" />
+     <association property="petPlace" resultMap="petplacedto" />
+     <association property="user" resultMap="userResultMap" />
     <!-- 다른 필드들도 필요하다면 추가 -->
 </resultMap>
 
@@ -63,10 +67,36 @@
 
 
     <!-- Pagination -->
-    <select id="getAllPetPlacePaging" resultMap="petplacedto" parameterType="pagination.SearchDTO">
+    <select id="getAllCommentPaging" resultMap="petplacecommentResultMap" parameterType="pagination.SearchDTO">
+        SELECT c.*,u.name,u.profile_image
+        FROM petplaceComment c
+         inner JOIN petPlace p ON p.place_id = c.place_id
+         INNER JOIN user u ON c.user_id = u.user_id
+        where  p.deleted_at is null
+          ORDER BY c.comment_created_at DESC
+       LIMIT #{pagination.limitStart}, #{recordSize}
+    
+    </select>
+
+    <select id="getCCount" resultType="int" parameterType="pagination.SearchDTO">
+        SELECT COUNT(*)
+        FROM petplaceComment c
+         inner JOIN petPlace p ON p.place_id = c.place_id
+        where  p.deleted_at is null
+          
+   
+    </select>
+
+<select id="getListWithPage" resultMap="petplacedto">
+    SELECT * FROM petplaceComment WHERE place_id = #{place_id}
+</select>
+
+
+
+<select id="getAllPetPlacePaging" resultMap="petplacedto" parameterType="pagination.SearchDTO">
         SELECT *
         FROM petPlace p
-         LEFT JOIN user u ON p.user_id = u.user_id
+         inner JOIN user u ON p.user_id = u.user_id
         <where>
             <choose>
                 <when test="searchType1 != null and searchType1 != ''">
@@ -123,6 +153,14 @@
         </where>
     </select>
 
+
+
+
+
+
+
+
+
     <!-- Insert a new pet place -->
     <insert id="insertPetPlace" parameterType="board.petplace.PetPlaceDTO" >
        INSERT INTO petPlace ( view_count , user_id, title, category, petplace_address,  petplace_contents)
@@ -131,6 +169,13 @@ VALUES (0, #{user_id}, #{title}, #{category}, #{petplace_address},  #{petplace_c
         SELECT LAST_INSERT_ID()
     </selectKey>
     </insert>
+
+<insert id="insertComment" parameterType="board.petplace.PetPlaceCommentDTO">
+  INSERT INTO petplaceComment(user_id, place_id, comment_contents)
+    VALUES (#{user_id}, #{place_id},#{comment_contents});  
+  </insert>
+
+
 
 <update id="viewCnt" parameterType="int">
   UPDATE petPlace SET view_count = view_count + 1 
@@ -143,8 +188,8 @@ VALUES (0, #{user_id}, #{title}, #{category}, #{petplace_address},  #{petplace_c
     SELECT *
     FROM petPlace p
     LEFT JOIN user u ON p.user_id = u.user_id
-    LEFT JOIN petplacelike l ON p.place_id = l.place_id
-    WHERE seq = #{seq}
+    LEFT JOIN petplaceLike l ON p.place_id = l.place_id
+    WHERE seQ = #{seQ}
 </select>
 
 
@@ -160,10 +205,7 @@ VALUES (0, #{user_id}, #{title}, #{category}, #{petplace_address},  #{petplace_c
         WHERE seq=#{seq}
     </delete>
 
-  <insert id="insertComment" parameterType="board.petplace.PetPlaceCommentDTO">
-  INSERT INTO petplacecomment(user_id, place_id, comment_contents, parent_id)
-    VALUES (#{user_id}, #{place_id},#{comment_contents},#{parent_id});  </insert>
-
+  
 <select id="selectCommentList" resultType="board.petplace.PetPlaceCommentDTO">
     SELECT pc.*
     FROM petplacecomment pc
@@ -178,7 +220,7 @@ VALUES (0, #{user_id}, #{title}, #{category}, #{petplace_address},  #{petplace_c
 		select *
 			<!-- p.review_id,p.place_id,p.user_id,p.contents,p.score,p.created_at,p.review_img,p.likes,
 			u.email, u.profile_image -->
-		from petplacecomment as p 
+		from petplaceComment as p 
 		inner join user as u 
 		on u.user_id = p.user_id 
 		where p.place_id=#{searchType1} and p.deleted_at is null
@@ -186,21 +228,8 @@ VALUES (0, #{user_id}, #{title}, #{category}, #{petplace_address},  #{petplace_c
 		limit #{pagination.limitStart}, #{recordSize}
 	</select>
 	
-	<select id="getCCount" parameterType="pagination.SearchDTO" resultType="int">
-		select count(*)
-		from petplacecomment as p 
-		inner join user as u 
-		on u.user_id = p.user_id 
-		where p.place_id=#{searchType1} and p.deleted_at is null
-		
-	</select>
+	
 
-
-<select id="getCountAllComments" parameterType="String" resultType="int">
-		select count(*)
-		from petplacecomment
-		where place_id=#{place_id} and deleted_at is null;
-	</select>
 
 
 <update id="updateDeleteAtCommnet" parameterType="String">

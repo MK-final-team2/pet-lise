@@ -17,7 +17,7 @@ public class PetPlaceCommentDTO {
     
     private PetPlaceLikeDTO petplacelike;
     private UserDTO user;
-    private PetPlaceDTO petplace;
+    private PetPlaceDTO petPlace;
     
     
     public PetPlaceLikeDTO getPetplacelike() {
@@ -33,10 +33,10 @@ public class PetPlaceCommentDTO {
 		this.user = user;
 	}
 	public PetPlaceDTO getPetplace() {
-		return petplace;
+		return petPlace;
 	}
-	public void setPetplace(PetPlaceDTO petplace) {
-		this.petplace = petplace;
+	public void setPetplace(PetPlaceDTO petPlace) {
+		this.petPlace = petPlace;
 	}
 	public String getComment_id() {
 		return comment_id;
