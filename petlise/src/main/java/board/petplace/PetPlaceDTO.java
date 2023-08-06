@@ -2,7 +2,10 @@ package board.petplace;
 
 import java.util.Date;
 
+
 import user.UserDTO;
+
+
 
 public class PetPlaceDTO {
     private String place_id;
@@ -13,17 +16,19 @@ public class PetPlaceDTO {
     private String petplace_contents;
     private String petplace_address;
     private Date petplace_created;
-    private Date petplace_updated;
+   private Date petplace_updated;
     private Date deleted_at;
     private int seq;
-    
+    private PetPlaceLikeDTO petplacelike;
     private UserDTO user;
+    private PetPlaceCommentDTO petplacecomment;
     
-	public UserDTO getUser() {
-		return user;
+ 
+	public PetPlaceCommentDTO getPetplacecomment() {
+		return petplacecomment;
 	}
-	public void setUser(UserDTO user) {
-		this.user = user;
+	public void setPetplacecomment(PetPlaceCommentDTO petplacecomment) {
+		this.petplacecomment = petplacecomment;
 	}
 	public String getPlace_id() {
 		return place_id;
@@ -91,5 +96,18 @@ public class PetPlaceDTO {
 	public void setSeq(int seq) {
 		this.seq = seq;
 	}
+	 public PetPlaceLikeDTO getPetplacelike() {
+			return petplacelike;
+		}
+		public void setPetplacelike(PetPlaceLikeDTO petplacelike) {
+			this.petplacelike = petplacelike;
+		}
+		public UserDTO getUser() {
+			return user;
+		}
+		public void setUser(UserDTO user) {
+			this.user = user;
+		}
+		
     
 }

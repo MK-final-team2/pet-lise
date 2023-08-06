@@ -14,14 +14,16 @@
 <link rel="stylesheet" href="/css/mypage/myPageForm.css" />
 <link rel="stylesheet" href="/css/mypage/mypageshop_dropdown.css" />
 <link rel="stylesheet" href="/css/mypage/jquery-ui_shop.css" />
-<link rel="stylesheet" href="css/shop/pagination_shop.css" />
-<link rel="stylesheet" href="css/shop/modal_main.css" />
+<link rel="stylesheet" href="/css/shop/pagination_shop.css" />
+<link rel="stylesheet" href="/css/shop/modal_main.css" />
 <link rel="stylesheet" href="/css/style.css" />
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
+	<jsp:include page="../header.jsp" />
+
 	<p class="title">마이페이지</p>
 
 	<div class="container">
@@ -224,8 +226,9 @@
 			</div>
 		</div>
 	</div>
-
 	</div>
+	
+	<jsp:include page="../footer.jsp" />
 
 	<script src="/js/mypageMenu.js"></script>
 	<script src="/js/mypage/myReview.js"></script>

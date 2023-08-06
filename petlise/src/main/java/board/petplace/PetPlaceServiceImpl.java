@@ -1,6 +1,7 @@
 package board.petplace;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,23 +29,40 @@ public class PetPlaceServiceImpl implements PetPlaceService {
         return new PagingResponse<>(list, pagination);
     }
 
-    public List<PetPlaceDTO> getAllPetPlace() {
-        return dao.getAllPetPlace();
+    
+    
+    public PagingResponse<PetPlaceCommentDTO> getAllCommentPaging(SearchDTO dto) {
+        int count = dao.getCCount(dto);
+        if (count < 1) {
+            return new PagingResponse<>(Collections.emptyList(), null);
+        }
+
+        Pagination pagination = new Pagination(count, dto);
+        dto.setPagination(pagination);
+
+        List<PetPlaceCommentDTO> list = dao.getAllCommentPaging(dto);
+        return new PagingResponse<>(list, pagination);
     }
+
+    
     
     @Override
     public int insertPetPlace(PetPlaceDTO dto) {
-        // Your logic to insert the pet place into the database
-
-        // Assuming you have a method in the mapper to insert the pet place
+  
         dao.insertPetPlace(dto);
 
-        // Get the generated seq after insertion and set it in the DTO
         int generatedPlaceId = dto.getSeq();
         dto.setSeq(generatedPlaceId);
 		return generatedPlaceId;
     }
 
+    @Override
+    public int insertComment(PetPlaceCommentDTO dto) {
+  
+        return dao.insertComment(dto);
+
+    
+    }
 
 
 
@@ -77,10 +95,46 @@ public class PetPlaceServiceImpl implements PetPlaceService {
 		dao.deletepetplace(seq);
 	}
 
-	
+	/*
+	 * @Override public void insertComment(PetPlaceCommentDTO petplacecommentdto) {
+	 * PetPlaceDAO.insertComment(petplacecommentdto);
+	 * 
+	 * }
+	 * 
+	 * @Override public List<PetPlaceCommentDTO> getCommentList(PetPlaceCommentDTO
+	 * petplacecommentdto) { // TODO Auto-generated method stub return null; }
+	 */
+	/*
+	 * //좋아요 증가 public int likeUp(String user_id,String place_id,String comment_id)
+	 * { System.out.println("user_id: " + user_id + ", place_id: " + place_id);
+	 * 
+	 * HashMap<String, String> map = new HashMap<>(); map.put("user_id", user_id);
+	 * map.put("place_id", place_id); map.put("comment_id", comment_id);
+	 * 
+	 * int result1 = dao.likeUp(place_id); int result2 = dao.insertLike(map);
+	 * 
+	 * return result1; };
+	 * 
+	 * //좋아요 감소 public int likeDown(String user_id,String place_id){ HashMap<String,
+	 * String> map = new HashMap<>(); map.put("user_id", user_id);
+	 * map.put("place_id", place_id);
+	 * 
+	 * int result1 = dao.likeDown(place_id); int result2 = dao.deleteLike(map);
+	 * 
+	 * return result1; };
+	 * 
+	 * public int isLikeReview(String user_id,String place_id) { HashMap<String,
+	 * String> map = new HashMap<>(); map.put("user_id", user_id);
+	 * map.put("place_id", place_id);
+	 * 
+	 * return dao.isLikeReview(map); }
+	 * 
+	 */
+		
+	}
 
 
 
 
 	
-}
+

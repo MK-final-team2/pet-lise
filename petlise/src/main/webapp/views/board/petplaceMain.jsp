@@ -21,9 +21,7 @@
 
 </head>
 <header>
-	<div id="nav">
-		<script src="/js/recipe/nav.js"></script>
-	</div>
+	<jsp:include page="../header.jsp" />
 </header>
 <body>
 

@@ -34,7 +34,6 @@ public class RecipeController {
         return "recipe/recipeListBest";
     }
 
-
     @PostMapping("/recipecreate")
     public String createRecipe(RecipeDTO recipeDTO, HttpSession session) {
         String user_id = (String) session.getAttribute("user_id");

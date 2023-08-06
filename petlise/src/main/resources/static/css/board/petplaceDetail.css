@@ -116,7 +116,7 @@ margin-top: 37px;
 	margin-top: 10px;
 	margin-bottom: 40px;
 	width: 750px;
-	height: 250px;
+	height: 300px;
 	border: solid 3px var(--light-stroke);
 
 }
@@ -212,7 +212,10 @@ margin-top: 37px;
 .cmt_info {
   display: flex;
   align-items: center;
+  flex: 1;
+ 
 }
+
 
 .user_profile {
   margin-right: 10px;
@@ -283,6 +286,20 @@ text-align: right;
   right: 25px;
 }
 
+.comment {
+	width: 1240px;
+	margin:0 auto;
+	align-items: center;
+	
+}
+
+.commentUl{
+	 border: 2px solid var(--light-stroke);
+	   border-radius: 0 0 10px 10px;
+}
+.new-comment{
+	border-bottom: 2px solid var(--light-stroke);
+}
 #comment-input {
   width: 94%;
   height: 105px;
@@ -301,16 +318,16 @@ text-align: right;
   border: 2px solid var(--light-stroke);
   border-top: 0;
   border-radius: 0 0 10px 10px;
-  margin-left: 78px;
-  margin-top: -30px;
+  margin-left: 74px;
+  margin-top: -29px;
   margin-bottom: 40px;
 }
 
 .cmt_actions {
   display: flex;
-  justify-content: flex-start;
+  
   gap: 0.5rem;
-  margin: 25px 0;
+  margin-left: -10px;
   align-items: center;
   gap: 0.5rem;
   margin: 25px 0;
@@ -388,9 +405,93 @@ text-align: right;
   height: 50px;
 }
 	
+.tud{
+	display: flex;
+  justify-content: flex-end;
+	
+}
 
+ /*pagination*/
+#pagination {
+	margin: 30px 0px; 
+	display : flex;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+}
 
+#pagination .pagefirst, 
+#pagination .pagelast, 
+#pagination .prev,
+#pagination .next, 
+#pagination .pageNumber {
+	width: 25px;
+	height: 25px;
+	border-radius: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
 
+#pagination .prevArrow, 
+#pagination .nextArrow {
+	height: 8px;
+	width: 8px;
+	border: solid var(--light-point);
+	border-width: 2px 2px 0 0;
+}
+
+.pageNumber {
+	font: var(--body14);
+	margin-right: 10px;
+	border-radius: 50% !important;
+}
+
+.pageNumber.active {
+	background-color: var(--light-sub);
+}
+
+.pageNumber:last-of-type {
+	margin-right: 0 !important;
+}
+
+.pagefirst, .prev {
+	margin-right: 10px;
+	background-color: var(--white);
+	border: 1px solid var(--light-stroke);
+}
+
+.pagefirst {
+	margin-right: 3px;
+}
+
+.prevArrow {
+	transform: rotate(-135deg);
+	margin-left: 3px;
+}
+
+.pagelast, .next {
+	margin-right: 3px;
+	border: 1px solid var(--light-stroke);
+}
+
+.nextArrow {
+	transform: rotate(45deg);
+	margin-right: 3px;
+}
+
+#pagination *:hover {
+	background-color: var(--light-sub);
+}
+
+#pagination *:hover .prevArrow, 
+#pagination *:hover .nextArrow {
+	border: solid var(--white);
+	border-width: 2px 2px 0 0;
+	background-color: transparent;
+}
+  
 
 
 

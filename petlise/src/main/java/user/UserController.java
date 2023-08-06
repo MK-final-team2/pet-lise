@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -24,35 +25,45 @@ public class UserController {
 	@Value("${spring.bcrypt.number}")
 	private int bcryptNum;
 
-	/*
-	 * @RequestMapping("/") public String home() { return "home"; }
-	 */
-
 	@GetMapping("/signup")
-	public String getSignUp() {
-		return "sign/signUp";
-	}
-
-	@PostMapping("/signup")
-	public ModelAndView signUp(UserDTO userDTO) {
+	public ModelAndView getSignUp(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 
-		String password = userDTO.password;
-		String hashPassword = bCryptService.encodeBcrypt(password, bcryptNum);
-		userDTO.setPassword(hashPassword);
+		if (session.getAttribute("user_id") != null) {
+			mv.setViewName("redirect:/");
 
-		service.insertUser(userDTO);
-
-		mv.setViewName("redirect:/signin");
+		} else {
+			mv.setViewName("sign/signUp");
+		}
 
 		return mv;
 	}
 
+	@PostMapping("/signup")
+	public ModelAndView signUp(UserDTO userDTO) {
+		String password = userDTO.password;
+		String hashPassword = bCryptService.encodeBcrypt(password, bcryptNum);
+
+		userDTO.setPassword(hashPassword);
+		service.insertUser(userDTO);
+
+		return new ModelAndView("redirect:/signin");
+	}
+
 	@GetMapping("/signin")
-	public String getSignIn(HttpSession session) {
+	public ModelAndView getSignIn(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+
 		session.setAttribute("error_message", "");
 
-		return "sign/signIn";
+		if (session.getAttribute("user_id") != null) {
+			mv.setViewName("redirect:/");
+
+		} else {
+			mv.setViewName("sign/signIn");
+		}
+
+		return mv;
 	}
 
 	@PostMapping("/signin")
@@ -68,10 +79,10 @@ public class UserController {
 
 					if (dto.getRole().equals("admin")) {
 						mv.setViewName("redirect:/admin");
-					} else {						
+					} else {
 						mv.setViewName("redirect:/");
 					}
-					
+
 				} else {
 					session.setAttribute("error_message", "로그인이 불가한 이메일입니다.");
 					mv.setViewName("sign/signIn");
@@ -98,8 +109,17 @@ public class UserController {
 	}
 
 	@GetMapping("/searchuser")
-	public String searchUser() {
-		return "sign/searchUser";
+	public ModelAndView searchUser(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+
+		if (session.getAttribute("user_id") != null) {
+			mv.setViewName("redirect:/");
+
+		} else {
+			mv.setViewName("sign/searchUser");
+		}
+
+		return mv;
 	}
 
 	@PostMapping("/findpw")
@@ -119,13 +139,26 @@ public class UserController {
 
 	@PostMapping("/newpw")
 	public ModelAndView NewPw(String email, String password) {
-		ModelAndView mv = new ModelAndView();
-
 		String hashPassword = bCryptService.encodeBcrypt(password, bcryptNum);
 
 		service.newPassword(hashPassword, email);
 
-		mv.setViewName("redirect:/signin");
+		return new ModelAndView("redirect:/signin");
+	}
+
+	@RequestMapping("/logout")
+	public ModelAndView Logout(HttpSession session, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		
+		if (session.getAttribute("user_id") != null) {
+			session.removeAttribute("user_id");
+			session.removeAttribute("role");
+			
+			request.setAttribute("msg", "로그아웃 되었습니다.");
+			request.setAttribute("url", "/");
+			
+			mv.setViewName("alert");
+		}
 
 		return mv;
 	}

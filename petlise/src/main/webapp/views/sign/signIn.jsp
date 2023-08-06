@@ -9,12 +9,11 @@ pageEncoding="UTF-8"%>
     <link rel="apple-touch-icon" href="/images/favicon.ico" />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/sign/signIn.css" />
-    <link rel="stylesheet" href="/css/nav/nav.css" />
     <title>Pet LiSe</title>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   </head>
   <body>
-    <div id="nav"></div>
+    <jsp:include page="../header.jsp" />
+    
     <main class="container">
       <div class="dogImage">
         <a href="/signin">
@@ -56,7 +55,6 @@ pageEncoding="UTF-8"%>
       </div>
     </main>
     
-    <script src="/js/recipe/nav.js"></script>
     <script src="/js/sign/checkLoginForm.js"></script>
   </body>
 </html>

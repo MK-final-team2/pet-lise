@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminUserController {
@@ -19,18 +22,29 @@ public class AdminUserController {
 	AdminUserService service;
 
 	@RequestMapping
-	public String getAdminHome(Model model) {
-		int todayRecipeCount = service.findTodayRecipe();
-		int todayOrderCount = service.findTodayOrder();
-		int todayBoardCount = service.findTodayBoard();
-		int todayPetplaceCount = service.findTodayPetplace();
-		
-		model.addAttribute("todayRecipeCount", todayRecipeCount);
-		model.addAttribute("todayOrderCount", todayOrderCount);
-		model.addAttribute("todayBoardCount", todayBoardCount);
-		model.addAttribute("todayPetplaceCount", todayPetplaceCount);
-		
-		return "admin/dashboard";
+	public String getAdminHome(Model model, HttpSession session, HttpServletRequest request) {
+		try {
+			if (!session.getAttribute("role").equals("admin")) {
+				throw new Exception();
+			} else {
+				int todayRecipeCount = service.findTodayRecipe();
+				int todayOrderCount = service.findTodayOrder();
+				int todayBoardCount = service.findTodayBoard();
+				int todayPetplaceCount = service.findTodayPetplace();
+				
+				model.addAttribute("todayRecipeCount", todayRecipeCount);
+				model.addAttribute("todayOrderCount", todayOrderCount);
+				model.addAttribute("todayBoardCount", todayBoardCount);
+				model.addAttribute("todayPetplaceCount", todayPetplaceCount);
+								
+				return "admin/dashboard";
+				
+			}
+		} catch(Exception e) {
+			request.setAttribute("msg", "접근 불가한 페이지입니다.");
+			request.setAttribute("url", "/");
+			return "alert";
+		}
 	}
 	
 	@ResponseBody
@@ -42,8 +56,19 @@ public class AdminUserController {
 	}
 	
 	@GetMapping("/usermanagement")
-	public String getUserManagement() {
-		return "admin/userManagement";
+	public String getUserManagement(HttpSession session, HttpServletRequest request) {
+
+		try {
+			if (!session.getAttribute("role").equals("admin")) {
+				throw new Exception();
+			} else {
+				return "admin/userManagement";
+			}
+		} catch(Exception e) {
+			request.setAttribute("msg", "접근 불가한 페이지입니다.");
+			request.setAttribute("url", "/");
+			return "alert";
+		}
 	}
 
 	@ResponseBody

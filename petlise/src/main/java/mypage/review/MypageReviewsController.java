@@ -22,11 +22,11 @@ public class MypageReviewsController {
 	@Autowired
 	MyOrderProductService service;
 
-	@GetMapping("/myreview")
+	@GetMapping("/mypage/review")
 	public ModelAndView myreview(@ModelAttribute SearchDTO searchdto, HttpSession session) {
 		searchdto.setRecordSize(5);
-		searchdto.setSearchType1("9a86c657-232b-11ee-b6f4-00ff2f3d08fa");
-		session.setAttribute("user_id", "9a86c657-232b-11ee-b6f4-00ff2f3d08fa");
+		String userId = (String)session.getAttribute("user_id");
+		searchdto.setSearchType1(userId);
 		
 		PagingResponse<MyOrderProductDTO> list = service.getMyOrderDetail(searchdto);
 		

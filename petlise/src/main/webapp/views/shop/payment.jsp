@@ -15,6 +15,7 @@
 <script src="/js/jquery-3.6.4.min.js"></script>
 </head>
 <body>
+	<jsp:include page="../header.jsp" />
 	<div id="layout">
      <div id="title">
          <div id="first">
@@ -195,7 +196,7 @@
 			</div>
 		</div>
 	</div>
-			
+	<jsp:include page="../footer.jsp" />
 <script src="/js/shop/payment/payment.js"></script>
 <script src="/js/postcode.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

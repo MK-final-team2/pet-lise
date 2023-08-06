@@ -61,7 +61,7 @@ $(document).ready(function() {
 			<!--로고-->
 			<div class="header-item">
 				<div id="header_logo">
-					<img src="images/nav/yellow.png" alt="Logo" title="Pet LiSe Home">
+					<img src="/images/nav/yellow.png" alt="Logo" title="Pet LiSe Home">
 				</div>
 			</div>
 			<!-- 메뉴시작 -->
@@ -114,7 +114,7 @@ $(document).ready(function() {
 	
 	<div class="header-list header-expert-recipe">
 		<div class="header-best-recipe">
-			<a href="">이달의 레시피</a>
+			<a href="recipelistbest?recipeType=전문가레시피">이달의 레시피</a>
 		</div>
 		<div class="header-grid-dog">
 			<div class="header-grid-title">강아지</div>
@@ -156,7 +156,7 @@ $(document).ready(function() {
 	
 	<div class="header-list header-my-recipe">
 		<div class="header-best-recipe">
-			<a href="">이달의 레시피</a>
+			<a href="recipelistbest?recipeType=나만의레시피">이달의 레시피</a>
 		</div>
 		<div class="header-grid-dog">
 			<div class="header-grid-title">강아지</div>
@@ -221,10 +221,10 @@ $(document).ready(function() {
 			<c:otherwise>style="margin-right: 120px;"</c:otherwise>
 		</c:choose> >
 			<div class="header-list-title">
-				<a href="">자유게시판</a>
+				<a href="/boardMain">자유게시판</a>
 			</div>
 			<div class="header-list-title">
-				<a href="">펫플레이스</a>
+				<a href="/petplaceMain">펫플레이스</a>
 			</div>
 		</div>
 	</div>
@@ -236,7 +236,7 @@ $(document).ready(function() {
 			<c:otherwise>style="margin-right: 50px;"</c:otherwise>
 		</c:choose> >
 			<div class="header-list-title">
-				<a href="">공지사항</a>
+				<a href="/noticeMain">공지사항</a>
 			</div>
 			<div class="header-list-title">
 				<a href="">문의사항</a>

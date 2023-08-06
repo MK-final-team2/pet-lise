@@ -12,12 +12,12 @@
     <link rel="stylesheet" href="/css/mypage/myPageForm.css" />
     <link rel="stylesheet" href="/css/mypage/editMyInfo.css" />
     <link rel="stylesheet" href="/css/mypage/modal.css" />
-    <link rel="stylesheet" href="/css/nav/nav.css" />
     <title>Pet LiSe</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   </head>
   <body>
-    <div id="nav"></div>
+    <jsp:include page="../header.jsp" />
+    
     <p class="title">마이페이지</p>
 
     <div class="container">
@@ -32,7 +32,7 @@
             <div class="imgWrap">
               <div class="img">
                 <img
-                  src="${my_info.profile_image == '' ? ('https://storage.googleapis.com/' + my_info.profile_image) :''}"
+                  src="${fn:length(my_info.profile_image) != 0 ? ('https://storage.googleapis.com/' += my_info.profile_image) :''}"
                   onerror="this.onerror=null; this.src='/images/default-profile.svg';"
                   id="imgUrl"
                 />
@@ -63,21 +63,26 @@
                 <input
                   type="text"
                   name="address"
+                  placeholder="우편번호"
                   value="${fn:split(my_info.address, ',')[0]}"
                   readonly
                 />
-                <button>우표번호 검색</button>
+                <button onclick="sample6_execDaumPostcode()">우편번호 검색</button>
               </div>
               <input
                 type="text"
                 class="address1"
+                id="sample6_address"
                 name="address"
+                placeholder="주소"
                 value="${fn:split(my_info.address, ',')[1]}"
               />
               <input
                 type="text"
                 class="address2"
+                id="sample6_detailAddress"
                 name="address"
+                placeholder="상세주소"
                 value="${fn:split(my_info.address, ',')[2]}"
               />
             </div>
@@ -146,7 +151,7 @@
 
           <div class="inputWrap">
             <p>반려동물 나이</p>
-            <input type="text" class="petAge" value="${my_info.pet_age}" />
+            <input type="text" class="petAge" maxlength="2" value="${my_info.pet_age}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
           </div>
         </div>
         <p class="deleteUser" onclick="clickModal()">회원탈퇴하기</p>
@@ -155,11 +160,14 @@
     </div>
 
     <div id="modal"></div>
+    
+    <jsp:include page="../footer.jsp" />
 
-    <script src="/js/recipe/nav.js"></script>
     <script src="/js/mypageMenu.js"></script>
     <script src="/js/mypage/updateUser.js"></script>
     <script src="/js/imageUpload.js"></script>
     <script src="/js/mypage/deleteUser.js"></script>
+    <script src="/js/postcode.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   </body>
 </html>

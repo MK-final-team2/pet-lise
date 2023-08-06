@@ -1,8 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core" %> <%@ taglib
-uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> <%@ taglib
-prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -13,12 +12,12 @@ prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/mypage/myPageForm.css" />
     <link rel="stylesheet" href="/css/mypage/myInfo.css" />
-    <link rel="stylesheet" href="/css/nav/nav.css" />
     <title>Pet LiSe</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   </head>
   <body>
-    <div id="nav"></div>
+    <jsp:include page="../header.jsp" />
+    
     <p class="title">마이페이지</p>
 
     <div class="container">
@@ -32,7 +31,7 @@ prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
             <div class="userWrap">
               <div class="imgWrap">
                 <img
-                  src="https://storage.googleapis.com/${my_info.profile_image}"
+                  src="${fn:length(my_info.profile_image) != 0 ? ('https://storage.googleapis.com/' += my_info.profile_image) :''}"
                   onerror="this.onerror=null; this.src='/images/default-profile.svg';"
                 />
               </div>
@@ -49,15 +48,14 @@ prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
                     <c:choose>
                       <c:when test="${my_info.pet_type == 'dog'}">
                         <img src="/images/dog-icon.svg" alt="강아지" />
+                    	<p>${my_info.pet_name} <span>(${my_info.pet_age}살)</span></p>
                       </c:when>
 
                       <c:when test="${my_info.pet_type == 'cat'}">
                         <img src="/images/cat-icon.svg" alt="고양이" />
+                    	<p>${my_info.pet_name} <span>(${my_info.pet_age}살)</span></p>
                       </c:when>
                     </c:choose>
-                    <p>
-                      ${my_info.pet_name} <span>(${my_info.pet_age}살)</span>
-                    </p>
                   </div>
                 </c:if>
               </div>
@@ -120,8 +118,9 @@ prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
         </div>
       </div>
     </div>
+    
+    <jsp:include page="../footer.jsp" />
 
-    <script src="/js/recipe/nav.js"></script>
     <script src="/js/mypageMenu.js"></script>
   </body>
 </html>
