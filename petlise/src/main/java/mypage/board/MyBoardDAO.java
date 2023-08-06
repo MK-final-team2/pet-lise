@@ -15,10 +15,12 @@ public interface MyBoardDAO {
 	List<MyBoardDTO> getMyBoard(SearchDTO dto);
 	Integer getMyBoardCount(SearchDTO dto);
 	Integer getMyBoardlike(String board_id);
+	int deleteMyBoard(String board_id);
 
 	List<MyPetPlaceDTO> getMyPetPlace(SearchDTO dto);
 	Integer getMyPetPlaceCount(SearchDTO dto);
 	Integer getMyPetPlacelike(String place_id);
+	int deleteMyPetPlace(String place_id);
 	
 	List<MyRecipeDTO> getMyWriteRecipe(SearchDTO dto);
 	Integer getMyWriteRecipeCount(SearchDTO dto);

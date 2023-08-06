@@ -40,6 +40,10 @@ public class MyBoardService {
         }
         return new PagingResponse<>(list, pagination);
     }
+	
+	int deleteMyBoard(String board_id) {
+		return dao.deleteMyBoard(board_id);
+	}
 
 	//Pagination-petplace
 	public PagingResponse<MyPetPlaceDTO> getMyPetPlace(SearchDTO dto) {
@@ -61,6 +65,10 @@ public class MyBoardService {
 			petplace.setLikes(dao.getMyPetPlacelike(petplace.getPlace_id()));
 		}
 		return new PagingResponse<>(list, pagination);
+	}
+	
+	int deleteMyPetPlace(String place_id) {
+		return dao.deleteMyPetPlace(place_id);
 	}
 
 	//Pagination-myWriteRecipe

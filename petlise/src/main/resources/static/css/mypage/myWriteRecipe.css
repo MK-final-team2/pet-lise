@@ -123,7 +123,7 @@
 
 #boardtable thead tr {
 	display: grid;
-	grid-template-columns: 100px 100px 100px 250px 100px 100px 100px 100px;
+	grid-template-columns: 100px 100px 100px 250px 150px 90px 90px 70px;
 }
 
 #boardtable thead th {
@@ -139,7 +139,7 @@
 
 #boardtable tbody tr {
 	display: grid;
-	grid-template-columns: 100px 100px 100px 250px 100px 100px 100px 100px;
+	grid-template-columns: 100px 100px 100px 250px 150px 90px 90px 70px;
 	border-bottom: 1px solid var(--light-point);
 }
 

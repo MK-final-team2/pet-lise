@@ -34,6 +34,13 @@ public class MypageBoardsController {
 		mv.setViewName("/mypage/myBoard");
 		return mv;
 	}
+	
+	@PostMapping("/mypage/deletemyboard")
+	@ResponseBody
+	public String getMyBoardDelete(String board_id) {
+		int result = service.deleteMyBoard(board_id);
+		return "{\"result\":\""+result+"\"}";
+	}
 
 	@GetMapping("/mypage/petplace")
 	public ModelAndView mypetplace(@ModelAttribute SearchDTO searchdto, HttpSession session) {
@@ -45,6 +52,13 @@ public class MypageBoardsController {
 		mv.addObject("response", response);
 		mv.setViewName("/mypage/myPetPlace");
 		return mv;
+	}
+	
+	@PostMapping("/mypage/deletemypetplace")
+	@ResponseBody
+	public String deletemypetplace(String place_id) {
+		int result = service.deleteMyPetPlace(place_id);
+		return "{\"result\":\""+result+"\"}";
 	}
 
 	@GetMapping("/mypage/mywriterecipe")

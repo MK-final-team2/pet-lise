@@ -114,6 +114,11 @@
 	padding: 0 10px;
 }
 
+.deletebtns:hover{
+	color:var(--light-main);
+	cursor: pointer;
+}
+
 .no_data_msg {
 	grid-column: 1/8;
 	height: auto;
