@@ -13,6 +13,7 @@
     <script src="/js/jquery-3.6.4.min.js"></script>
   </head>
   <body>
+	<jsp:include page="../header.jsp" />  
     <p class="title">마이페이지</p>
     <div class="container">
       <div id="mypageMenu" class="menu"></div>
@@ -177,6 +178,7 @@
         </div>
       </div>
     </div>
+	<jsp:include page="../footer.jsp" />    
     <script src="/js/mypage/orderDetail.js"></script>
     <script src="/js/mypageMenu.js"></script>
   </body>
