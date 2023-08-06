@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mypage.board.MyBoardDAO">
+<!-- 자유게시판 -->		
+	<select id="getMyBoard" parameterType="pagination.SearchDTO" resultType="mypage.board.MyBoardDTO">
+		select * 
+		from `board`
+		where user_id = #{searchType1}
+		<if test="keyword != null and keyword != ''">
+			and board_title LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		order by `board_created` desc
+		limit #{pagination.limitStart}, #{recordSize}
+	</select>
+	
+	<select id="getMyBoardCount" parameterType="pagination.SearchDTO" resultType="int">
+		select count(*)
+		from `board`
+		where user_id = #{searchType1}
+		<if test="keyword != null and keyword != ''">
+			and board_title LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+	</select>
+
+	<select id="getMyBoardlike" parameterType="String" resultType="int">
+		select count(*)
+		from `boardlike`
+		where board_id = #{board_id}
+	</select>
+	
+<!-- 펫플레이스 -->	
+	<select id="getMyPetPlace" parameterType="pagination.SearchDTO" resultType="mypage.board.MyPetPlaceDTO">
+		select * 
+		from `petPlace`
+		where user_id = #{searchType1}
+		<if test="keyword != null and keyword != ''">
+			and title LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		order by `petplace_created` desc
+		limit #{pagination.limitStart}, #{recordSize}
+	</select>
+	
+	<select id="getMyPetPlaceCount" parameterType="pagination.SearchDTO" resultType="int">
+		select count(*)
+		from `petPlace`
+		where user_id = #{searchType1}
+		<if test="keyword != null and keyword != ''">
+			and title LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+	</select>
+	
+	<select id="getMyPetPlacelike" parameterType="String" resultType="int">
+		select count(*)
+		from `petplacelike`
+		where place_id = #{place_id}
+	</select>
+	
+	
+	
+</mapper>
