@@ -222,19 +222,19 @@
   font-weight: bold; 
 }
 
-#sticker {
-  margin-left: 20px;
-  color: var(--light-sub);
-}
-
-#sticker, #picture {
+#cmt_save {
+  width: 50px;
+  height: 35px;
+  font: var(--button14);
   gap: 5px;
 }
 
-#cmt_save, #sticker, #picture {
-  width: 80px;
+#picture {
+  width: 70px;
   height: 35px;
   font: var(--button14);
+  gap: 5px;
+  margin-left: 20px;
 }
 
 .cmt_actions > button {
@@ -260,8 +260,58 @@
 
 /*댓글 리스트*/
 .cmt_unit {
-	margin: 20px auto;
-	border: 1px solid var(--light-sub, #fbc252);
-	border-radius: 10px;
-	font: var(--caption14);
+  margin-bottom: 20px;
 }
+
+.cmt_user {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.cmt_user .cmt_user_id {
+  margin-left: 10px; 
+  font-weight: bold; 
+}
+
+.cmt_util {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.cmt_btns {
+  margin-left: 10px;	
+  margin-right: 10px;
+}
+
+.cmt_btns span {
+  display: inline-block;
+  margin-right: -5px;
+  margin-left: -5px;
+}
+
+/*댓글 수정 모드*/
+.edit_mode {
+  width: 1300px;
+  height: 70px;
+  display: flex;
+  
+  > textarea {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border: 2px solid var(--light-stroke);
+    border-radius: 10px;
+  }
+  
+  > .edit_btns {
+    float: right;
+    margin-left: auto;
+  }
+}
+
+
+
+

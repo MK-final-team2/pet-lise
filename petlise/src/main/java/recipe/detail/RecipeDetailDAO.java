@@ -15,6 +15,11 @@ public interface RecipeDetailDAO {
 	List<RecipeCommentDTO> getRecipeComment(String recipe_id);
 	List<RecipeCommentDTO> getReply(String comment_id);
 	int writeRecipeComment(RecipeCommentDTO dto);
+	int editComment(RecipeCommentDTO dto);
 	UserDTO getUserInfoRecipe(String user_id);
+	boolean checkLike(RecipeLikeDTO dto);
+	boolean liked(RecipeLikeDTO dto);
 	int likeCount(RecipeLikeDTO dto); 
+	int updateLike(RecipeLikeDTO dto);
+	int recipeLike(RecipeDTO dto);
 }

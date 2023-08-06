@@ -4,8 +4,9 @@ import java.util.Date;
 
 public class RecipeCommentDTO {
 	
-	String comment_id, recipe_id, user_id, contents, image, parent_id, profile_image;
-	Date created_at;
+	String comment_id, recipe_id, user_id, comment_contents, comment_image, parent_id;
+	Date comment_created_at;
+	
 	public String getComment_id() {
 		return comment_id;
 	}
@@ -24,17 +25,17 @@ public class RecipeCommentDTO {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
-	public String getContents() {
-		return contents;
+	public String getComment_contents() {
+		return comment_contents;
 	}
-	public void setContents(String contents) {
-		this.contents = contents;
+	public void setComment_contents(String comment_contents) {
+		this.comment_contents = comment_contents;
 	}
-	public String getImage() {
-		return image;
+	public String getComment_image() {
+		return comment_image;
 	}
-	public void setImage(String image) {
-		this.image = image;
+	public void setComment_image(String comment_image) {
+		this.comment_image = comment_image;
 	}
 	public String getParent_id() {
 		return parent_id;
@@ -42,18 +43,11 @@ public class RecipeCommentDTO {
 	public void setParent_id(String parent_id) {
 		this.parent_id = parent_id;
 	}
-	public String getProfile_image() {
-		return profile_image;
+	public Date getComment_created_at() {
+		return comment_created_at;
 	}
-	public void setProfile_image(String profile_image) {
-		this.profile_image = profile_image;
-	}
-	public Date getCreated_at() {
-		return created_at;
-	}
-	public void setCreated_at(Date created_at) {
-		this.created_at = created_at;
-	}
-	
+	public void setComment_created_at(Date comment_created_at) {
+		this.comment_created_at = comment_created_at;
+	}	
 	
 }

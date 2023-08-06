@@ -26,10 +26,25 @@ public class RecipeDetailService {
 	public int writeRecipeComment(RecipeCommentDTO dto) {
 		return dao.writeRecipeComment(dto);
 	}
+	public int editComment(RecipeCommentDTO dto) {
+		return dao.editComment(dto);
+	}
 	public UserDTO getUserInfoRecipe(String user_id){
 		return dao.getUserInfoRecipe(user_id);
 	}
+	public boolean checkLike(RecipeLikeDTO dto) {
+		return dao.checkLike(dto);
+	}
+	public boolean liked(RecipeLikeDTO dto) {
+		return dao.liked(dto);
+	}
 	public int likeCount(RecipeLikeDTO dto) {
 		return dao.likeCount(dto);
+	}
+	public int updateLike(RecipeLikeDTO dto) {
+		return dao.updateLike(dto);
+	}
+	public int recipeLike(RecipeDTO dto) {
+		return dao.recipeLike(dto);
 	}
 }

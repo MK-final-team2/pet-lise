@@ -1,6 +1,9 @@
 package recipe.detail;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,10 +50,52 @@ public class RecipeDetailController {
 		return "{\"result\":\"" + result + "\"}";
 	}
 	
+	@PostMapping("/editcomment")
+	@ResponseBody
+	public String editComment(@RequestBody RecipeCommentDTO dto) {
+		int result = service.editComment(dto);
+		return "{\"result\":\"" + result + "\"}";
+	}
+	
+	@PostMapping("/checklike")
+	@ResponseBody
+	public Map<String, Boolean> checkLike(@RequestBody RecipeLikeDTO dto) {
+	    Map<String, Boolean> response = new HashMap<>();	    
+	    boolean exists = service.checkLike(dto);
+	    response.put("exists", exists);
+	    return response;
+	}
+	
+	@PostMapping("/liked")
+	@ResponseBody
+	public Map<String, Boolean> liked(@RequestBody RecipeLikeDTO dto){
+		Map<String, Boolean> response2 = new HashMap<>();
+		boolean liked = service.liked(dto);
+		response2.put("liked", liked);
+		return response2;
+	}
+	
 	@PostMapping("/likecount")
 	@ResponseBody
-	public String likeCount(RecipeLikeDTO dto) {
+	public String likeCount(@RequestBody RecipeLikeDTO dto) {
+	    UUID uuid = UUID.randomUUID();
+	    dto.setLike_id(uuid.toString());
+	    
 		int result = service.likeCount(dto);
 		return "{\"result\":\"" + result + "\"}";		
+	}
+	
+	@PostMapping("/updatelike")
+	@ResponseBody
+	public String updateLike(@RequestBody RecipeLikeDTO dto) {
+		int result = service.updateLike(dto);
+		return "{\"result\":\"" + result + "\"}";
+	}
+	
+	@PostMapping("/recipelike")
+	@ResponseBody
+	public String decreasLikse(@RequestBody RecipeDTO dto) {
+		int result = service.recipeLike(dto);
+		return "{\"result\":\"" + result + "\"}";
 	}
 }
