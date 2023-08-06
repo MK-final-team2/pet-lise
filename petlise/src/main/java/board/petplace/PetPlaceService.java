@@ -16,7 +16,7 @@ public interface PetPlaceService {
 
 	public int insertPetPlace(PetPlaceDTO dto);
 
-	public int insertComment(PetPlaceCommentDTO dto);
+	public int insertComment(PetPlaceCommentDTO comment);
 
 	public PetPlaceDTO findpetplace(int seq);
 

@@ -161,8 +161,8 @@ $(document).on('click', '.comment_likebtn_active', function() {
 			</div>
 		</div>
 		<!-- HTML 입력 폼 -->
-		<input type="hidden" id="user_id" value="<%=user_id%>"> <input
-			type="hidden" id="place_id" value="<%=place_id%>">
+		<input type="hidden" name="user_id" value="<%=user_id%>"> <input
+			type="hidden" name="place_id" value="${ petplaceInfo.place_id}">
 
 
 		<!-- 댓글작성 -->
@@ -349,7 +349,16 @@ $(document).on('click', '.comment_likebtn_active', function() {
         }
       });
     });
+    
   </script>
+  <script type="text/javascript">
+  
+  
+  
+  
+  </script>
+  
+  
 		<script src="/js/board/DeletePetplace.js"></script>
 		<script src="/js/board/editComments.js"></script>
 		<script src="/js/board/Comment.js"></script>

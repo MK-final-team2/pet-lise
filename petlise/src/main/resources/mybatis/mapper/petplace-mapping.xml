@@ -15,6 +15,7 @@
     <result property="petplace_created" column="petplace_created"/>
     <result property="view_count" column="view_count"/>
     <result property="place_id" column="place_id"/>
+    <association property="petplacecomment" resultMap="petplacecommentResultMap" />
 
     <!-- UserDTO를 매핑하는 association -->
     <association property="user" resultMap="userResultMap" />
@@ -23,7 +24,6 @@
     <association property="petplacelike" resultMap="petplacelikeResultMap" />
 
     <!-- PetPlaceCommentDTO 매핑 추가 -->
-    <association property="petplacecomment" resultMap="petplacecommentResultMap" />
 </resultMap>
 
 <!-- UserDTO의 resultMap -->
@@ -66,26 +66,23 @@
 
 
 
-    <!-- Pagination -->
-    <select id="getAllCommentPaging" resultMap="petplacecommentResultMap" parameterType="pagination.SearchDTO">
-        SELECT c.*,u.name,u.profile_image
-        FROM petplaceComment c
-         inner JOIN petPlace p ON p.place_id = c.place_id
-         INNER JOIN user u ON c.user_id = u.user_id
-        where  p.deleted_at is null
-          ORDER BY c.comment_created_at DESC
-       LIMIT #{pagination.limitStart}, #{recordSize}
-    
-    </select>
+   <!-- Pagination -->
+<select id="getAllCommentPaging" resultMap="petplacecommentResultMap" parameterType="pagination.SearchDTO">
+    SELECT c.*, u.name, u.profile_image, p.place_id AS place_id  <!-- Add p.place_id here -->
+    FROM petplaceComment c
+    INNER JOIN petPlace p ON p.place_id = c.place_id
+    INNER JOIN user u ON c.user_id = u.user_id
+    WHERE p.deleted_at is null
+    ORDER BY c.comment_created_at DESC
+    LIMIT #{pagination.limitStart}, #{recordSize}
+</select>
 
-    <select id="getCCount" resultType="int" parameterType="pagination.SearchDTO">
-        SELECT COUNT(*)
-        FROM petplaceComment c
-         inner JOIN petPlace p ON p.place_id = c.place_id
-        where  p.deleted_at is null
-          
-   
-    </select>
+<select id="getCCount" resultType="int" parameterType="pagination.SearchDTO">
+    SELECT COUNT(*)
+    FROM petplaceComment c
+    INNER JOIN petPlace p ON p.place_id = c.place_id
+    WHERE p.deleted_at is null
+</select>
 
 <select id="getListWithPage" resultMap="petplacedto">
     SELECT * FROM petplaceComment WHERE place_id = #{place_id}
@@ -170,7 +167,7 @@ VALUES (0, #{user_id}, #{title}, #{category}, #{petplace_address},  #{petplace_c
     </selectKey>
     </insert>
 
-<insert id="insertComment" parameterType="board.petplace.PetPlaceCommentDTO">
+<insert id="insertComment" parameterType="board.petplace.PetPlaceDTO">
   INSERT INTO petplaceComment(user_id, place_id, comment_contents)
     VALUES (#{user_id}, #{place_id},#{comment_contents});  
   </insert>

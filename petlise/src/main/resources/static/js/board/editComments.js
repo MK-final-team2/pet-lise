@@ -1,7 +1,7 @@
 function edit() {
     let comment_contents = document.getElementsByName('comment_contents')[0].value;
-    let user_id = document.getElementById('user_id').value;
-    let place_id = document.getElementById('place_id').value;
+    let place_id = document.getElementsByName('place_id')[0].value;
+    let user_id = document.getElementsByName('user_id')[0].value;
 
     if (comment_contents === '') {
         alert('제목을 입력해주세요.');
@@ -20,15 +20,10 @@ function edit() {
         contentType: false,
         processData: false,
         success: function (data) {
-            var dataArray = data.split("|");
-          
-            var user_id = dataArray[1];
-            var place_id = dataArray[2];
-
-           
+        
         alert('등록이 완료되었습니다.');
         // Refresh the page
-        location.reload();
+       location.reload();
     
     
 },

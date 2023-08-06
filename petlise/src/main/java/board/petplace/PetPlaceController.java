@@ -49,26 +49,15 @@ public class PetPlaceController {
 	}
 	
 	@RequestMapping("/petplaceCommentform")
-	public ResponseEntity<String> petplaceCommentform(HttpSession session, PetPlaceCommentDTO dto, Model model) {
-	    String user_id = (String) session.getAttribute("user_id");
-	    String place_id = (String) session.getAttribute("place_id");
-
-	    if (user_id == null || place_id == null) {
-	        // Handle the case where session attributes user_id or place_id are not available
-	        return new ResponseEntity<>("Session expired", HttpStatus.UNAUTHORIZED);
-	    }
-
-	    dto.setUser_id(user_id);
-	    dto.setPlace_id(place_id);
-	    model.addAttribute("petplaceInfo", dto);
-
-	    service.insertComment(dto); // 새로 생성된 seq를 얻어옵니다.
-	    // Create a response string with data separated by a delimiter
-	    String response =   user_id + "|" + place_id;
-
-	    // Send the response string as AJAX response
-	    return new ResponseEntity<>(response, HttpStatus.OK);
-	}
+	public ResponseEntity<Integer> insertComment(HttpSession session, PetPlaceDTO dto,PetPlaceCommentDTO comment, Model model) {
+		if (session.getAttribute("user_id") != null && dto.getTitle() != null) {
+			String user_id = session.getAttribute("user_id").toString();
+			dto.setUser_id(user_id);
+		}
+		int seq = service.insertComment(comment);; // 새로 생성된 seq를 얻어옵니다.
+			
+		return new ResponseEntity<Integer>(seq, HttpStatus.OK);
+			}
 
 	
 	
@@ -113,7 +102,7 @@ public class PetPlaceController {
 	    PetPlaceDTO petplaceInfo = service.findpetplace(seq);
 	    
 	    
-	  
+	    searchdto.setSearchType1(place_id);
 		searchdto.setRecordSize(10);
 	    PagingResponse<PetPlaceCommentDTO> comment = service.getAllCommentPaging(searchdto);
 	    model.addAttribute("comment", comment);
@@ -131,6 +120,11 @@ public class PetPlaceController {
 	    mv.addObject("petplaceInfo", petplaceInfo);
 	    mv.addObject("response", comment);
 	    mv.setViewName("board/petplaceDetail");
+	    model.addAttribute("petplaceInfo", petplaceInfo);
+
+	    model.addAttribute("seq", seq);
+	    session.setAttribute("seq", seq);
+
 		return mv;
 	  
 	   
