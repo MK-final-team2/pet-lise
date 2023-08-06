@@ -62,8 +62,8 @@ document.getElementById('asideMenu').innerHTML += `
       ></object>
       <span>라이스샵 관리</span>
     </li>
-    <li onClick="location.href='/admin/paydeliverymanagement'" style="background:${
-      link === '/admin/paydeliverymanagement' ? '#181818' : ''
+    <li onClick="location.href='/adminorderlist'" style="background:${
+      link === '/adminorderlist' ? '#181818' : ''
     }">
       <object
         data="/images/delivery-icon.svg"
