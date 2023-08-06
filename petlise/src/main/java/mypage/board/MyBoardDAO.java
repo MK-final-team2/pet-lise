@@ -20,4 +20,8 @@ public interface MyBoardDAO {
 	Integer getMyPetPlaceCount(SearchDTO dto);
 	Integer getMyPetPlacelike(String place_id);
 	
+	List<MyRecipeDTO> getMyWriteRecipe(SearchDTO dto);
+	Integer getMyWriteRecipeCount(SearchDTO dto);
+	int deleteMyWriteRecipe(String recipe_id);
+	
 }
