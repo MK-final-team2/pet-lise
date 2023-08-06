@@ -99,6 +99,7 @@
 			</div>
 		</div>
 		
+		<jsp:include page="../footer.jsp" />
 		
 		<script src="/js/editor.js"></script>
 		<script src="/js/recipe/recipeCategory.js"></script>		

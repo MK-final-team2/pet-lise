@@ -1,17 +1,15 @@
 package recipe;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -110,16 +108,11 @@ public class RecipeController {
 //        return ResponseEntity.ok(result);
 //    }
 //    
-    @GetMapping("/recipedetail")
-    public String showRecipeDetail(@RequestParam("recipe_id") String recipe_id, Model model) {
-        // 조회수 증가를 위해 RecipeService의 recipeViewCount 메서드를 호출
-        recipeService.recipeViewCount(recipe_id);
-
-        // 나머지 레시피 상세 정보를 가져오는 로직 추가
-        RecipeDTO recipe = recipeService.getRecipeDetailById(recipe_id);
-        model.addAttribute("recipe", recipe);
-
-        return "recipe/recipeDetail";
-    }
-
+//    @PatchMapping("/recipedetail")
+//    public String showRecipeDetail(@RequestParam("recipe_id") String recipe_id, Model model) {
+//        // 조회수 증가를 위해 RecipeService의 recipeViewCount 메서드를 호출
+//        recipeService.recipeViewCount(recipe_id);
+//
+//        return "recipe/recipeDetail";
+//   }
 }
