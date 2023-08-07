@@ -289,6 +289,23 @@
 				});//ajax end
    			}//else
 	   	});
+   		
+	   	// ----- 구매목록가기 버튼 -----
+	   	$("#gomyorder").on('click',function(){
+	   		if("${user_id}"==""){
+   				$("#login_modal").css("top", $(window).scrollTop()+"px");
+				$("#login_modal").css('display', 'block');
+				
+				$('#login_modal').on('scroll touchmove mousewheel', function(event) {
+					event.preventDefault();
+					event.stopPropagation();
+					return false;
+				});
+   			}//if
+   			else{
+   				location.href = "/mypage/review";
+   			}//else
+	   	});
     });
     </script>
 </head>
@@ -414,7 +431,7 @@
 						있습니다.
 					</p>
 				</div>
-				<button>구매목록가기</button>
+				<button id="gomyorder">구매상품후기 바로가기</button>
 			</div>
 
 			<div id="review_statistic">
@@ -689,7 +706,7 @@
 			</div>
 			<div class="modal_btn">
 				<button class="modal_cancelbtn">취소</button>
-				<button class="modal_loginbtn">이동</button>
+				<button onclick="location.href='/signin'" class="modal_loginbtn">이동</button>
 			</div>
 		</div>
 	</div>

@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import admin.shop.ProductDTO;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import pagination.PagingResponse;
 import pagination.SearchDTO;
 
@@ -19,17 +22,28 @@ public class AdminOrderController {
 	OrderService service;
 
 	@GetMapping("/adminorderlist")
-	public ModelAndView adminorderlist(@ModelAttribute SearchDTO searchdto) {
-		PagingResponse<OrderDTO> productlist = service.getOrdersPaging(searchdto);
-
-		// 처리대기건수
-		int waitCnt = service.getCountWait();
-
+	public ModelAndView adminorderlist(@ModelAttribute SearchDTO searchdto, HttpSession session, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("response", productlist);
-		mv.addObject("waitCnt", waitCnt);
-		mv.setViewName("admin/payDeliveryManagement");
-		return mv;
+		try {
+			if (!session.getAttribute("role").equals("admin")) {
+				throw new Exception();
+			} else {
+				PagingResponse<OrderDTO> productlist = service.getOrdersPaging(searchdto);
+				
+				// 처리대기건수
+				int waitCnt = service.getCountWait();
+				
+				mv.addObject("response", productlist);
+				mv.addObject("waitCnt", waitCnt);
+				mv.setViewName("admin/payDeliveryManagement");
+				return mv;
+			}
+		} catch(Exception e) {
+			request.setAttribute("msg", "접근 불가한 페이지입니다.");
+			request.setAttribute("url", "/");
+			mv.setViewName("alert");
+			return mv;
+		}
 	}
 
 	@PostMapping("/adminorderlist")

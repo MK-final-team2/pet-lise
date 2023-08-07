@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import pagination.PagingResponse;
 import pagination.SearchDTO;
 
@@ -19,13 +21,24 @@ public class AdminShopController {
 	
 	//상품목록페이지
 	@GetMapping("/adminshoplist")
-	public ModelAndView adminproductlist(@ModelAttribute SearchDTO searchdto) {
-		PagingResponse<ProductDTO> productlist = service.getAllProductPaging(searchdto);
-		
+	public ModelAndView adminproductlist(@ModelAttribute SearchDTO searchdto, HttpSession session, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("response", productlist);
-		mv.setViewName("admin/shopManagement");
-		return mv;
+		try {
+			if (!session.getAttribute("role").equals("admin")) {
+				throw new Exception();
+			} else {
+				PagingResponse<ProductDTO> productlist = service.getAllProductPaging(searchdto);
+				
+				mv.addObject("response", productlist);
+				mv.setViewName("admin/shopManagement");
+				return mv;
+			}
+		} catch(Exception e) {
+			request.setAttribute("msg", "접근 불가한 페이지입니다.");
+			request.setAttribute("url", "/");
+			mv.setViewName("alert");
+			return mv;
+		}
 	}
 
 	//상품목록페이지(Post)

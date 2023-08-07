@@ -8,11 +8,11 @@
 		<!-- product_name / price / quatity / image_main / image_detail / isvisible -->
 		insert into products(
 		pet_type,category,product_code,reg_date,
-		product_name,price,quatity,image_main,image_detail
+		product_name,price,quatity,image_main,image_detail,isvisible
 		)
 		values(
 		#{pet_type},#{category},#{product_code},#{reg_date},
-		#{product_name},#{price},#{quatity},#{image_main},#{image_detail}
+		#{product_name},#{price},#{quatity},#{image_main},#{image_detail},true
 		)
 	</insert>
 
