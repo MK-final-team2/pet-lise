@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="/css/editor.css" />
   <link rel="icon" type="image/x-icon" href="/path/to/favicon.ico">
   
-  <link rel="stylesheet" href="/css/nav/nav.css" />
+ 
   <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=33ed4195d27024d4ef479d47cfa9ce6f&libraries=services&libraries=services"></script>
@@ -25,9 +25,8 @@
 </head>
 <body>
   <header>
-    <div id="nav"></div>
-    <script src="/js/recipe/nav.js"></script>
-  </header>
+	<jsp:include page="../header.jsp" />
+</header>
   <div id="container">
     <div class="board_title">
       <p>펫플레이스 수정</p>
@@ -81,7 +80,12 @@
 </div>
     </div>
   </div>
+<footer>
+	<div>
 
+		<jsp:include page="../footer.jsp" />
+	</div>
+	</footer>
   <!-- 나머지 스크립트들 -->
   <script>
     $(document).ready(function() {

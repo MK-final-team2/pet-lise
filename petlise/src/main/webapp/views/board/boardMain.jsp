@@ -3,6 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%
+// 서버 사이드 코드에서 세션에서 user_id 값을 가져옵니다.
+var user_id = (String) session.getAttribute("user_id");
+var place_id = (String) session.getAttribute("place_id");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,16 +18,16 @@
 <link rel="apple-touch-icon" href="/images/favicon.ico" />
 <link rel="stylesheet" href="/css/board/boardMain.css">
 <link rel="stylesheet" href="/css/style.css" />
-<link rel="stylesheet" href="/css/nav/nav.css" />
+
 <title>자유게시판메인</title>
 <script src="/js/jquery-3.6.4.min.js"></script>
+
 </head>
-<header>
-	<div id="nav">
-		<script src="/js/recipe/nav.js"></script>
-	</div>
-</header>
 <body>
+ <header>
+		<jsp:include page="../header.jsp" />
+	</header>
+
 	<div class="container">
 		<!-- 본문 -->
 		<div class="board_wrap">
@@ -112,7 +117,7 @@
 									value="${boards.board_created}" pattern="yyyy-MM-dd H:mm" /></td>
 							<td class="view">${boards.board_view}</td>
 							<td class="like">
-								<%-- ${boards.like} --%>
+								 ${boards.boardlike.likes} 
 							</td>
 						</tr>
 					</c:forEach>
@@ -182,6 +187,13 @@
 
 
 	</div>
+	
+	<footer>
+	<div>
+
+		<jsp:include page="../footer.jsp" />
+	</div>
+	</footer>
 	<!-- pagination -->
 	<script src="/js/board/Board.js"></script>
 </body>

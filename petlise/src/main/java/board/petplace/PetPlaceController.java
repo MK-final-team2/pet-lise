@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import jakarta.servlet.http.HttpSession;
 import pagination.PagingResponse;
 import pagination.SearchDTO;
+import user.UserDTO;
 
 
 @Controller
@@ -73,12 +74,17 @@ public class PetPlaceController {
 	// delete
 	@RequestMapping("/petplaceDelete")
 	public ResponseEntity<Void> petplaceDetail(PetPlaceDTO dto, HttpSession session) {
-		Integer seq = (Integer) session.getAttribute("seq");
-		dto.setSeq(seq);
+	    Integer seq = (Integer) session.getAttribute("seq");
+	    dto.setSeq(seq);
+	    
+	    String place_id = (String) session.getAttribute("place_id");
+	    dto.setPlace_id(place_id);
+	    service.deleteAllComment(place_id);
+	    
+	    // 플레이스 삭제
+	    service.deletepetplace(seq);
 
-		service.deletepetplace(seq);
-
-		return new ResponseEntity<Void>(HttpStatus.OK);
+	    return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
 	
@@ -96,25 +102,44 @@ public class PetPlaceController {
 	@RequestMapping("/getpetplace")
 	public ModelAndView petplaceDetail(Model model, String place_id, @RequestParam("seq") int seq, HttpSession session,
 	        @ModelAttribute SearchDTO searchdto) {
+	    String user_id = (String) session.getAttribute("user_id");
+	    
+	    if (user_id == null) {
+	        // user_id가 null인 경우 처리
+	        // 예를 들어, 로그인 페이지로 리다이렉트 또는 다른 처리 수행
+	        // 이때 userInfo를 가져오지 않도록 주의
+	    	
+	    	service.viewCnt(seq);
+		    PetPlaceDTO petplaceInfo = service.findpetplace(seq);
+		    session.setAttribute("place_id", place_id);
+		    place_id = petplaceInfo.getPlace_id() ;
+		    searchdto.setSearchType1(place_id);
+		    searchdto.setRecordSize(10);
+		    PagingResponse<PetPlaceCommentDTO> comment = service.getAllCommentPaging(searchdto);
+
+	        ModelAndView mv = new ModelAndView();
+	        mv.addObject("petplaceInfo", petplaceInfo);
+	        mv.addObject("response", comment);
+	        mv.setViewName("board/petplaceDetail");
+
+	        model.addAttribute("seq", seq);
+	        session.setAttribute("seq", seq);
+
+	        return mv;
+	    }
+
 	    service.viewCnt(seq);
 	    PetPlaceDTO petplaceInfo = service.findpetplace(seq);
 	    session.setAttribute("place_id", place_id);
 
+	    UserDTO userInfo = service.getUserInfoPetplace(user_id);
+	    place_id = petplaceInfo.getPlace_id() ;
 	    searchdto.setSearchType1(place_id);
-	    searchdto.setRecordSize(5);
+	    searchdto.setRecordSize(10);
 	    PagingResponse<PetPlaceCommentDTO> comment = service.getAllCommentPaging(searchdto);
 
-	    // 후기 좋아요 여부
-	    String user_id = (String) session.getAttribute("user_id");
-
-		/*
-		 * // Null check for PetPlaceLike if (petplaceInfo.getPetplacelike() != null &&
-		 * user_id != null) { if (service.isLikeReview(user_id,
-		 * petplaceInfo.getPetplacelike().getPlace_id()) > 0) {
-		 * petplaceInfo.getPetplacelike().setIs_like(true); } else {
-		 * petplaceInfo.getPetplacelike().setIs_like(false); } }
-		 */
 	    ModelAndView mv = new ModelAndView();
+	    mv.addObject("userInfo", userInfo);
 	    mv.addObject("petplaceInfo", petplaceInfo);
 	    mv.addObject("response", comment);
 	    mv.setViewName("board/petplaceDetail");
@@ -151,18 +176,25 @@ public class PetPlaceController {
 			// ResponseEntity를 사용하여 seq를 응답합니다.
 			return new ResponseEntity<Integer>(seq, HttpStatus.OK);
 		}
-		
-	/*
-	 * @GetMapping("/getCommentList")
-	 * 
-	 * @ResponseBody private List<PetPlaceCommentDTO>
-	 * getCommentList(@RequestParam("Comment_id")String Comment_id)throws Exception{
-	 * PetPlaceCommentDTO petplacecommentdto = new PetPlaceCommentDTO();
-	 * petplacecommentdto.setComment_id(Comment_id); return
-	 * service.getCommentList(petplacecommentdto); }
-	 */
-			
 
+		@PostMapping("/deletecomment")
+		@ResponseBody
+		public String deletereview(String comment_id) {
+			int result = service.deleteComment(comment_id);
+			return "{\"result\":\""+result+"\"}";
+		}
+		
+		 // 후기 좋아요 여부
+//	    String user_id = (String) session.getAttribute("user_id");
+
+		/*
+		 * // Null check for PetPlaceLike if (petplaceInfo.getPetplacelike() != null &&
+		 * user_id != null) { if (service.isLikeReview(user_id,
+		 * petplaceInfo.getPetplacelike().getPlace_id()) > 0) {
+		 * petplaceInfo.getPetplacelike().setIs_like(true); } else {
+		 * petplaceInfo.getPetplacelike().setIs_like(false); } }
+		 */
+		
 	/*
 	 * @RequestMapping("/petplacelikeup")
 	 * 

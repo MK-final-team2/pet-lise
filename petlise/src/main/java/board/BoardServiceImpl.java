@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import pagination.Pagination;
 import pagination.PagingResponse;
 import pagination.SearchDTO;
+import user.UserDTO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -27,11 +28,20 @@ public class BoardServiceImpl implements BoardService {
         List<BoardDTO> list = dao.getAllBoardPaging(dto);
         return new PagingResponse<>(list, pagination);
     }
+    public PagingResponse<BoardCommentDTO> getAllCommentPaging(SearchDTO dto) {
+        int count = dao.getCCount(dto);
+        if (count < 1) {
+            return new PagingResponse<>(Collections.emptyList(), null);
+        }
 
-    public List<BoardDTO> getAllBoard() {
-        return dao.getAllBoard();
+        Pagination pagination = new Pagination(count, dto);
+        dto.setPagination(pagination);
+
+        List<BoardCommentDTO> list = dao.getAllCommentPaging(dto);
+        return new PagingResponse<>(list, pagination);
     }
-    
+
+   
     @Override
     public int insertBoard(BoardDTO dto) {
         // Your logic to insert the pet place into the database
@@ -75,6 +85,18 @@ public class BoardServiceImpl implements BoardService {
 
 	public void deleteboard(int seq) {
 		dao.deleteboard(seq);
+	}
+	@Override
+	public int insertBcomment(BoardCommentDTO dto) {
+		 return dao.insertBcomment(dto);	}
+	
+	@Override
+	public int deleteBcomment(String comment_id) {
+		return dao.deleteBcomment(comment_id);
+	}
+	@Override
+	public UserDTO getUserInfoBoard(String user_id) {
+		return dao.getUserInfoBoard(user_id);
 	}
 
 	

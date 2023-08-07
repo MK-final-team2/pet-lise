@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import pagination.SearchDTO;
+import user.UserDTO;
 @Mapper
 @Repository
 public interface PetPlaceDAO {
@@ -17,6 +18,7 @@ public interface PetPlaceDAO {
     List<PetPlaceCommentDTO> getAllCommentPaging(SearchDTO dto);
     int getCCount(SearchDTO dto);
     int getCount(SearchDTO dto);
+    int deleteComment(String comment_id);
     
     
     
@@ -25,11 +27,13 @@ public interface PetPlaceDAO {
     int insertComment(PetPlaceCommentDTO dto) ;
     public void updatepetplace(PetPlaceDTO dto);
     
-    public void deletepetplace(int seq);
+    public int deletepetplace(int seq);
     
 	public PetPlaceDTO findpetplace (int seq);
 	
 	public int viewCnt(int seq);
+	UserDTO getUserInfoPetplace(String user_id);
+	int deleteAllComment(String place_id);
 	
 	/*
 	 * int likeUp(String place_id); int likeDown(String place_id);

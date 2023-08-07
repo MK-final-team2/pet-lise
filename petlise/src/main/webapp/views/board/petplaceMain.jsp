@@ -14,7 +14,7 @@
 <link rel="apple-touch-icon" href="/images/favicon.ico" />
 <link rel="stylesheet" href="/css/board/petplaceMain.css">
 <link rel="stylesheet" href="/css/style.css" />
-<link rel="stylesheet" href="/css/nav/nav.css" />
+
 <title>펫플레이스메인</title>
 <script src="/js/jquery-3.6.4.min.js"></script>
 
@@ -206,7 +206,12 @@
 
 
 	</div>
+<footer>
+	<div>
 
+		<jsp:include page="../footer.jsp" />
+	</div>
+	</footer>
 	<!-- pagination -->
 	<script src="/js/board/PetPlace.js"></script>
 

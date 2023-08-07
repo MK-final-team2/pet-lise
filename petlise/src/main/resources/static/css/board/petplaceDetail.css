@@ -220,11 +220,15 @@ margin-top: 37px;
 .user_profile {
   margin-right: 10px;
 }
+.cmt_unit {
+    display: flex;
+    align-items: flex-start;
+}
 
 .cmt_left {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+     width: 10%;
+     /* 오른쪽과의 간격을 조정할 수 있습니다. */
+    box-sizing: border-box;
 }
 
 .cmt_right {
@@ -252,6 +256,16 @@ margin-top: 37px;
 .cmt_right .siren_reply {
   font: var(--caption12);
   color: var(--light-text);
+}
+
+
+#replyButton{
+		display: flex;
+  justify-content: flex-end;
+  width: 10%;
+  padding-top: 50px;
+  gap:10px;	
+  
 }
 
 .cmt_right img {
@@ -292,10 +306,16 @@ text-align: right;
 	align-items: center;
 	
 }
-
+.comment_contents{
+	display: inline-block;
+	width: 60%;
+	text-align: left;
+	padding-top: 5px;
+}
 .commentUl{
 	 border: 2px solid var(--light-stroke);
 	   border-radius: 0 0 10px 10px;
+	   font: var(--body16);
 }
 .new-comment{
 	border-bottom: 2px solid var(--light-stroke);
@@ -406,12 +426,14 @@ text-align: right;
 }
 	
 .tud{
+	width:15%;
 	display: flex;
   justify-content: flex-end;
-	
+	padding-top: 48px;
 }
 
- /*pagination*/
+  
+  /*pagination*/
 #pagination {
 	margin: 30px 0px; 
 	display : flex;
@@ -492,6 +514,7 @@ text-align: right;
 	background-color: transparent;
 }
   
+
 
 
 
