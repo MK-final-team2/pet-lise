@@ -25,24 +25,24 @@
 </head>
 <body>
 <jsp:include page="../header.jsp" />
-   	<div class="wrap">
+	<div class="wrap">
 		<div id="board_title">
-			<input type="hidden" id="recipeType" value="${param.recipeType}" />			
-			
-			
+			<input type="hidden" id="recipeType" value="${param.recipeType}" />
+			<input type="hidden" id="searchType1" value="${param.searchType1}" />
+
 			<div class="pet_icon">
 				<div class="dog_icon">
 					<img src="/images/recipe/crown.png">
 				</div>
 			</div>
 
-			<div class="title_recipe">			
+			<div class="title_recipe">
 				<c:if test="${param.recipeType == '전문가레시피'}">
 					<span>전문가 레시피</span>
 				</c:if>
 				<c:if test="${param.recipeType == '나만의레시피'}">
 					<span>나만의 레시피</span>
-				</c:if>		
+				</c:if>
 			</div>
 			<div class="subtitle_recipe">
 				<span>이달의 레시피</span>
@@ -50,7 +50,7 @@
 		</div>
 
 		<div id="search_container">
-			
+
 			<div id="searchdiv" style="margin-left: 1036px;">
 				<c:choose>
 					<c:when test="${param.keyword == '' || param.keyword eq null}">
@@ -79,6 +79,14 @@
 							<div class="recipe_img"
 								style="background-image: url(https://storage.googleapis.com/${recipe.image});">
 								<c:if test="${!recipe.is_like}">
+									<c:choose>
+										<c:when test="${recipe.pet_category == '강아지'}">
+											<img src="/images/recipe/dog_recipe.png">
+										</c:when>
+										<c:when test="${recipe.pet_category == '고양이'}">
+											<img src="/images/recipe/cat_recipe.png">
+										</c:when>
+									</c:choose>
 									<div class="recipe_cover">
 										<button class="like-button"
 											data-recipe-id="${recipe.recipe_id}">
@@ -87,6 +95,20 @@
 									</div>
 								</c:if>
 								<c:if test="${recipe.is_like}">
+									<c:choose>
+										<c:when test="${recipe.pet_category == '강아지'}">
+											<img src="/images/recipe/dog_recipe.png">
+										</c:when>
+										<c:when test="${recipe.pet_category == '고양이'}">
+											<img src="/images/recipe/cat_recipe.png">
+										</c:when>
+									</c:choose>
+									<div class="recipe_cover">
+										<button class="like-button"
+											data-recipe-id="${recipe.recipe_id}">
+											<div class="likes_num">${recipe.likes}</div>
+										</button>
+									</div>
 									<div class="recipe_cover active">
 										<button class="like-button"
 											data-recipe-id="${recipe.recipe_id}">
@@ -120,7 +142,7 @@
 
 		</div>
 
-		
+
 		<div class="page">
 			<div id="pagination">
 				<c:if test="${fn:length(response.list) != 0}">
@@ -217,10 +239,9 @@
 				<button class="modal_okbtn">확인</button>
 			</div>
 		</div>
-	</div>
-	
+	</div>	
 	<jsp:include page="../footer.jsp" />
-	
+	<jsp:include page="../topButton.jsp" />	
 </body>
 
 <script>

@@ -1,23 +1,26 @@
-.modal{
-	position: absolute;
-	width:100%;
-	height: 1100px;
-	background: rgba(0,0,0,0.2);
-	top:0;
-	left:0;		
-	display:none;
+.modal {
+  position: fixed; /* 스크롤 기준으로 고정 */
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: none;
+  background: rgba(0,0,0,0.2);	
 }
 
-.modal_contents{
-	width: 400px;
-	height: 250px;
-	position:relative; top:50%; left:50%;
-	margin-top:-125px; margin-left:-200px;	
-	border-radius: 5px;
-	border: 3px solid var(--light-main);
-	background: var(--gray-white, #FFF);
-
+.modal_contents {
+  width: 400px;
+  height: 250px;
+  position: fixed; /* 모달창도 스크롤 기준으로 고정 */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* 중앙 정렬을 위한 트랜스폼 */
+  border-radius: 5px;
+  border: 3px solid var(--light-main);
+  background: var(--gray-white, #FFF);
 }
+
+
 .modal_text{
 	margin:0;
 	width:100%;

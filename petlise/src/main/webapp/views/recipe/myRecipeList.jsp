@@ -117,10 +117,8 @@
 					<div class="recipe" id="${recipe.recipe_id}">
 						<div class="recipe_img"
 							style="background-image: url(https://storage.googleapis.com/${recipe.image});">
-
-
-							<c:if test="${!recipe.is_like}">
-								<div class="recipe_cover">
+						<c:if test="${!recipe.is_like}">
+								<div class="recipelist_cover">
 									<button class="like-button"
 										data-recipe-id="${recipe.recipe_id}">
 										<div class="likes_num">${recipe.likes}</div>
@@ -299,10 +297,13 @@
 	</div>
 	
 	<jsp:include page="../footer.jsp" />
+	<jsp:include page="../topButton.jsp" />	
 	
 </body>
 
 <script>
+
+
 $("#recipe_container").on('click', '.like-button', function () {
     var button = $(this);
     var likesNum = button.find(".likes_num");

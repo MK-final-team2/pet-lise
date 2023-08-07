@@ -43,29 +43,30 @@
 	recipe_created_at DESC;
 </select>
 
-	<select id="getRecipeOfTheMonth" resultMap="recipelistdtomap"
-		parameterType="pagination.SearchDTO">
-	    SELECT *
-	    FROM recipe r
-	    JOIN user u ON r.user_id = u.user_id AND r.recipe_category = #{recipeType}
-	    WHERE r.recipe_of_the_month = true
-	    <if test="keyword != null and keyword != ''">
-			AND r.recipe_title LIKE CONCAT('%', #{keyword}, '%')
-		</if>
-		ORDER BY r.recipe_created_at DESC
-		LIMIT #{pagination.limitStart}, #{recordSize}
-	</select>
-	
-	<select id="getRecipeOfTheMonthCount" resultType="int"
-		parameterType="pagination.SearchDTO">
-	    SELECT count(*)
-	    FROM recipe r
-	    JOIN user u ON r.user_id = u.user_id AND r.recipe_category = #{recipeType}
-	    WHERE r.recipe_of_the_month = true
-	    <if test="keyword != null and keyword != ''">
-			AND r.recipe_title LIKE CONCAT('%', #{keyword}, '%')
-		</if>
-	</select>
+	<!-- getRecipeOfTheMonth 쿼리 수정 -->
+<select id="getRecipeOfTheMonth" resultMap="recipelistdtomap" parameterType="pagination.SearchDTO">
+    SELECT *
+    FROM recipe r
+    JOIN user u ON r.user_id = u.user_id AND r.recipe_category = #{recipeType}
+    WHERE r.recipe_of_the_month = true
+    <if test="keyword != null and keyword != ''">
+        AND r.recipe_title LIKE CONCAT('%', #{keyword}, '%')
+    </if>
+    ORDER BY r.likes DESC, r.recipe_created_at DESC <!-- likes 수로 정렬 -->
+    LIMIT #{pagination.limitStart}, #{recordSize}
+</select>
+
+<!-- getRecipeOfTheMonthCount 쿼리 수정 -->
+<select id="getRecipeOfTheMonthCount" resultType="int" parameterType="pagination.SearchDTO">
+    SELECT count(*)
+    FROM recipe r
+    JOIN user u ON r.user_id = u.user_id AND r.recipe_category = #{recipeType}
+    WHERE r.recipe_of_the_month = true
+    <if test="keyword != null and keyword != ''">
+        AND r.recipe_title LIKE CONCAT('%', #{keyword}, '%')
+    </if>
+</select>
+
 	
 
 
