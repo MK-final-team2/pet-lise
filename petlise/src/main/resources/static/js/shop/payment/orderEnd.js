@@ -3,6 +3,12 @@
 	var change = 45000 - totalPayment;
 	$('.change').text(change.toLocaleString());
 
+//홈으로 가기 버튼
+	function redirectToHome(){
+		window.location.href = "/";
+	}
+
+
 //주문내역보기 버튼
 	function redirectOrderList(){
 		var user_id = $('.user_id').text();

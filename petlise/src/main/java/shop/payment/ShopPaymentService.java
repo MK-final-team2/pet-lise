@@ -18,7 +18,7 @@ public class ShopPaymentService {
 		return dao.getOrderList(user_id);
 	}
 	
-	public List<UserDTO> getUserInfo(String user_id){
+	public UserDTO getUserInfo(String user_id){
 		return dao.getUserInfo(user_id);
 	}
 	
@@ -40,5 +40,9 @@ public class ShopPaymentService {
 	
 	public int updateSales(int product_id) {
 		return dao.updateSales(product_id);
+	}
+	
+	public int updatePointPayment(String user_id) {
+		return dao.updatePointPayment(user_id);
 	}
 }

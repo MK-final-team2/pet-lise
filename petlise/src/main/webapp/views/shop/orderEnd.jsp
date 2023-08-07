@@ -46,6 +46,7 @@
         <div id="order_info">
           <div id="info_title">배송지 정보</div>
 	          <c:forEach var="orderInfo" items="${orderInfo}">
+	          	  <div class="user_id" style="display:none;">${orderInfo.user_id}</div>
 		          <div class="info_contents">
 		            <div>이름</div>
 		            <div>${orderInfo.name}</div>
@@ -160,7 +161,7 @@
       <hr class="line" />
 
       <div id="orderend_btns">
-        <button>
+        <button onclick="redirectToHome()">
           홈으로 가기
           <img
             src="/images/shop/shopdetail/pawprint_black.svg"
