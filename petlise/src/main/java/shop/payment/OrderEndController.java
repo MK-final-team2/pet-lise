@@ -18,7 +18,6 @@ public class OrderEndController {
 	
 	@GetMapping("/orderend")
 	public ModelAndView orderEnd(HttpSession session) {
-		session.setAttribute("user_id", "petlise");
 		String user_id = session.getAttribute("user_id").toString();
 		
 		ModelAndView mv = new ModelAndView();
