@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import shop.payment.ShopOrderInfoDTO;
 import shop.payment.ShopOrderProductDTO;
 import user.UserDTO;
@@ -21,17 +23,23 @@ public class OrderDetailController {
 	OrderDetailService service;
 	
 	@GetMapping("/orderdetail")
-	public ModelAndView orderDetail(@RequestParam("order_id") String order_id, @RequestParam("user_id") String user_id) {
-		
-		List<ShopOrderProductDTO> myOrderProduct = service.myOrderProduct(order_id);
-		List<UserDTO> myUserInfo = service.myUserInfo(user_id);
-		List<ShopOrderInfoDTO> myDeliveryInfo = service.myDeliveryInfo(order_id);
-		
+	public ModelAndView orderDetail(@RequestParam("order_id") String order_id, @RequestParam("user_id") String user_id, 
+										HttpSession session, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("myOrderProduct", myOrderProduct);
-		mv.addObject("myUserInfo", myUserInfo);
-		mv.addObject("myDeliveryInfo", myDeliveryInfo);
-		mv.setViewName("/mypage/orderDetail");
+		if (session.getAttribute("user_id") != null) {
+			List<ShopOrderProductDTO> myOrderProduct = service.myOrderProduct(order_id);
+			List<UserDTO> myUserInfo = service.myUserInfo(user_id);
+			List<ShopOrderInfoDTO> myDeliveryInfo = service.myDeliveryInfo(order_id);
+			
+			mv.addObject("myOrderProduct", myOrderProduct);
+			mv.addObject("myUserInfo", myUserInfo);
+			mv.addObject("myDeliveryInfo", myDeliveryInfo);
+			mv.setViewName("/mypage/orderDetail");
+		} else {
+			request.setAttribute("msg", "로그인 후 이용가능합니다.");
+			request.setAttribute("url", "/");
+			mv.setViewName("alert");
+		}
 		return mv;
 	}
 	
