@@ -56,6 +56,65 @@
 		where place_id = #{place_id}
 	</select>
 	
+<!-- 내가 쓴 레시피 -->	
+	<select id="getMyWriteRecipe" parameterType="pagination.SearchDTO" resultType="mypage.board.MyRecipeDTO">
+		select * 
+		from `recipe`
+		where user_id = #{searchType1}
+		<if test="keyword != null and keyword != ''">
+			and recipe_title LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<choose>
+			<when test="searchType2 != null and searchType2 != '' and searchType2 != '전체'">
+				<choose>
+					<when test="searchType3 != null and searchType3 != '' and searchType3 != '전체'">
+						and pet_category = #{searchType2}
+						and main_category = #{searchType3}
+					</when>
+					<otherwise>
+						and pet_category = #{searchType2}
+					</otherwise>
+				</choose>
+			</when>
+			<otherwise>
+				<if test="searchType3 != null and searchType3 != '' and searchType3 != '전체'">
+					and main_category = #{searchType3}
+				</if>
+			</otherwise>
+		</choose>
+		order by `recipe_created_at` desc
+		limit #{pagination.limitStart}, #{recordSize}
+	</select>
 	
+	<select id="getMyWriteRecipeCount" parameterType="pagination.SearchDTO" resultType="int">
+		select count(*)
+		from `recipe`
+		where user_id = #{searchType1}
+		<if test="keyword != null and keyword != ''">
+			and recipe_title LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<choose>
+			<when test="searchType2 != null and searchType2 != '' and searchType2 != '전체'">
+				<choose>
+					<when test="searchType3 != null and searchType3 != '' and searchType3 != '전체'">
+						and pet_category = #{searchType2}
+						and main_category = #{searchType3}
+					</when>
+					<otherwise>
+						and pet_category = #{searchType2}
+					</otherwise>
+				</choose>
+			</when>
+			<otherwise>
+				<if test="searchType3 != null and searchType3 != '' and searchType3 != '전체'">
+					and main_category = #{searchType3}
+				</if>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<delete id="deleteMyWriteRecipe" parameterType="String">
+		delete from `recipe` where recipe_id = #{recipe_id};
+	</delete>
 	
 </mapper>

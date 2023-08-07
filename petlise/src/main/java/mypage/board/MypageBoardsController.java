@@ -46,4 +46,23 @@ public class MypageBoardsController {
 		mv.setViewName("/mypage/myPetPlace");
 		return mv;
 	}
+
+	@GetMapping("/mypage/mywriterecipe")
+	public ModelAndView mywriterecipe(@ModelAttribute SearchDTO searchdto, HttpSession session) {
+		String userId = (String)session.getAttribute("user_id");
+		searchdto.setSearchType1(userId);
+		PagingResponse<MyRecipeDTO> response = service.getMyWriteRecipe(searchdto);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("response", response);
+		mv.setViewName("/mypage/myWriteRecipe");
+		return mv;
+	}
+	
+	@PostMapping("/mypage/deletemywriterecipe")
+	@ResponseBody
+	public String deletemywriterecipe(String recipe_id) {
+		int result = service.deleteMyWriteRecipe(recipe_id);
+		return "{\"result\":\""+result+"\"}";
+	}
 }
