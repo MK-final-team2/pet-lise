@@ -11,15 +11,14 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
-@ComponentScan(basePackages = {"mypage", "shop", "user", "recipe", "admin", "upload", "board", "home"})
-@MapperScan(basePackages = {"mypage", "shop", "user", "recipe", "admin","board", "home"})
+@ComponentScan(basePackages = {"mypage", "shop", "user", "recipe", "admin", "upload", "board", "home", "notice"})
+@MapperScan(basePackages = {"mypage", "shop", "user", "recipe", "admin","board", "home", "notice"})
 
 public class PetliseApplication {
 
 	@PostConstruct
     public void started() {
 		TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
-//        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
     }
 	
 	public static void main(String[] args) {

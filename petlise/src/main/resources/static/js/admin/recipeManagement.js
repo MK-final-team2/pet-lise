@@ -48,7 +48,7 @@ function ajaxData(keyword, page) {
           	<tr ${recipe_category == '전문가레시피'? `class="expert"` : ``}>
               <td><input type="checkbox" id="${el?.recipe_id}" onclick="addCheck(this)" ${el?.recipe_of_the_month == true ? 'checked' : ''} ></td>
               <td>${el?.main_category}${el?.main_category == '기타' ? '' : ` [${el?.sub_category}]`}</td>
-              <td id="${el?.recipe_id}">${el?.recipe_title}</td>
+              <td><a href="/recipedetail?recipeid=${el?.recipe_id}">${el?.recipe_title}</a></td>
               <td>${el?.name}</td>
               <td>${getDate(el?.recipe_created_at)}</td>
               ${recipe_category == '전문가레시피'
