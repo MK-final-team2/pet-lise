@@ -14,14 +14,14 @@ pageEncoding="UTF-8"%>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   </head>
   <body>
-  	<jsp:include page="../header.jsp" />
-  	
+    <jsp:include page="../header.jsp" />
+
     <main class="container">
       <div class="dogImage">
         <a href="/signin">
           <img src="/images/login-logo.png" alt="로고" />
         </a>
-        <img src="/images/dogs.svg" alt="강아지" />
+        <img src="/images/dogncat.svg" alt="강아지" />
       </div>
       <div class="loginWrapper">
         <div class="tabMenu">

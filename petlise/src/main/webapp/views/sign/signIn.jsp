@@ -13,13 +13,13 @@ pageEncoding="UTF-8"%>
   </head>
   <body>
     <jsp:include page="../header.jsp" />
-    
+
     <main class="container">
       <div class="dogImage">
-        <a href="/signin">
+        <!-- <a href="/signin">
           <img src="/images/login-logo.png" alt="로고" />
-        </a>
-        <img src="/images/dogs.svg" alt="강아지" />
+        </a> -->
+        <img src="/images/dogncat.svg" alt="강아지" />
       </div>
       <div class="loginWrapper">
         <form method="post" class="loginform" name="loginform" id="form">
@@ -54,7 +54,7 @@ pageEncoding="UTF-8"%>
         </div>
       </div>
     </main>
-    
+
     <script src="/js/sign/checkLoginForm.js"></script>
   </body>
 </html>

@@ -14,20 +14,25 @@ pageEncoding="UTF-8"%>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   </head>
   <body>
-  	<jsp:include page="../header.jsp" />
-  	
+    <jsp:include page="../header.jsp" />
+
     <main class="container">
       <div class="dogImage">
         <a href="/signin">
           <img src="/images/login-logo.png" alt="로고" />
         </a>
-        <img src="/images/dogs.svg" alt="강아지" />
+        <img src="/images/dogncat.svg" alt="강아지" />
       </div>
       <div class="loginWrapper">
         <div class="tabMenu">
           <a href="/searchuser">비밀번호 찾기</a>
         </div>
-        <form method="post" action="findpw" class="searchform" name="searchform">
+        <form
+          method="post"
+          action="findpw"
+          class="searchform"
+          name="searchform"
+        >
           <div class="divWrapper">
             <div class="inputWrapper">
               <p>이름</p>
@@ -37,7 +42,7 @@ pageEncoding="UTF-8"%>
                 name="name"
                 placeholder="이름 입력"
               />
-			  <div class="emp"></div>
+              <div class="emp"></div>
               <p>이메일 주소</p>
               <div class="checkEmail">
                 <input
