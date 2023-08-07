@@ -2,8 +2,8 @@ const table = document.querySelectorAll('table');
 
 table[0].innerHTML += `
   <thead>
-    <tr ${title == "펫플레이스" ? 'class="petplace"':""}>
-      ${title == "펫플레이스" ? '<th>게시글 제목</th>':""}
+    <tr ${title == '펫플레이스' ? 'class="petplace"' : ''}>
+      ${title == '펫플레이스' ? '<th>카테고리</th>' : ''}
       <th>게시글 제목</th>
       <th>작성자</th>
       <th>댓글수</th>
@@ -15,7 +15,7 @@ table[0].innerHTML += `
   </thead>
   <tbody id="tbody"></tbody>
 `;
-  
+
 table[1].innerHTML += `
   <thead>
     <tr>
@@ -30,7 +30,7 @@ table[1].innerHTML += `
   </thead>
   <tbody id="reportBoardTbody"></tbody>
   `;
-  
+
 table[2].innerHTML += `
   <thead>
     <tr>

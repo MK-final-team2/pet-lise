@@ -11,31 +11,24 @@ function pagination(page, totalCount) {
 	  <div class="first prevArrow"></div>
 	  <div class="first prevArrow"></div>
 	</div>
-	${startPage <= 10 ? `<div class="prev">` : `<div class="prev" id="prevActive">`}
+	${startPage <= 10 
+	  ? `<div class="prev">` 
+	  : `<div class="prev" id="prevActive">`}
 	  <div class="prevArrow"></div>
 	</div>
 	${new Array(10).fill(1).map((_, index) =>
       index + startPage <= lastPage
-        ? `
-	  	<div class="pageNumber${index + startPage == page ? ' active' : ''}" id="${
-            index + startPage
-          }">
-			${`${index + startPage}`}
-		</div>`
+        ? `<div class="pageNumber${index + startPage == page ? ' active' : ''}" id="${index + startPage}">${`${index + startPage}`}</div>`
         : ''
     ).join('')}
-	${
-    startPage + 10 < lastPage
+	${startPage + 10 <= lastPage
       ? `<div class="next" id="nextActive">`
-      : `<div class="next">`
-  }
+      : `<div class="next">`}
 	  <div class="nextArrow"></div>
 	</div>
-	${
-    startPage + 10 < lastPage
+	${startPage + 10 <= lastPage
       ? `<div class="next" id="lastActive">`
-      : `<div class="next">`
-  }
+      : `<div class="next">`}
 	  <div class="last nextArrow"></div>
 	  <div class="last nextArrow"></div>
 	</div>
@@ -64,7 +57,7 @@ function pagination(page, totalCount) {
 
   if (prev) {
     prev.addEventListener('click', () => {
-      page = Math.floor(page / 10 - 1) * 10;
+      page = Math.floor(page / 10);
       keyword = searchInput.value;
 
       ajaxData(keyword, page);
