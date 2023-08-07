@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,11 +30,14 @@ public class RecipeDetailController {
 		
 		ModelAndView mv = new ModelAndView();
 		UserDTO userInfo = service.getUserInfoRecipe(user_id);
+		UserDTO userProfile = service.getUserProfile(recipe_id);
 		RecipeDTO recipeDetail = service.getRecipeDetail(recipe_id);
 		List<RecipeCommentDTO> recipeComment = service.getRecipeComment(recipe_id);
+		service.incrementViewCount(recipe_id);
 		mv.addObject("userInfo", userInfo);
 		mv.addObject("recipeDetail", recipeDetail);
 		mv.addObject("recipeComment", recipeComment);
+		mv.addObject("userProfile", userProfile);
 		mv.setViewName("/recipe/recipeDetail");
 		return mv;
 	}
@@ -42,6 +46,13 @@ public class RecipeDetailController {
 	@ResponseBody
 	public String writeRecipeComment(@RequestBody RecipeCommentDTO dto) {
 		int result = service.writeRecipeComment(dto);
+		return "{\"result\":\"" + result + "\"}";
+	}
+	
+	@PostMapping("/deleterecipecomment")
+	@ResponseBody
+	public String deleteRecipeComment(@RequestParam("comment_id") String comment_id) {
+		int result = service.deleteRecipeComment(comment_id);
 		return "{\"result\":\"" + result + "\"}";
 	}
 	

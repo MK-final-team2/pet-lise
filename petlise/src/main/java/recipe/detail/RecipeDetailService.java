@@ -20,9 +20,6 @@ public class RecipeDetailService {
 	public List<RecipeCommentDTO> getRecipeComment(String recipe_id){
 		return dao.getRecipeComment(recipe_id);
 	}
-	public List<RecipeCommentDTO> getReply(String comment_id){
-		return dao.getReply(comment_id);
-	}
 	public int writeRecipeComment(RecipeCommentDTO dto) {
 		return dao.writeRecipeComment(dto);
 	}
@@ -46,5 +43,14 @@ public class RecipeDetailService {
 	}
 	public int recipeLike(RecipeDTO dto) {
 		return dao.recipeLike(dto);
+	}
+	public UserDTO getUserProfile(String recipe_id) {
+		return dao.getUserProfile(recipe_id);
+	}
+	public int deleteRecipeComment(String comment_id) {
+		return dao.deleteRecipeComment(comment_id);
+	}
+	public void incrementViewCount(String recipe_id) {
+		dao.incrementViewCount(recipe_id);
 	}
 }

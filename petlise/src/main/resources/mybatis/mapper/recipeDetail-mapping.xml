@@ -8,19 +8,28 @@
 		SELECT * FROM `user` WHERE `user_id` = #{user_id};
 	</select>
 	
+	<!-- 유저 이름 호출 -->
+	<select id="getUserProfile" resultType="userdto">
+		SELECT * FROM `user` 
+		WHERE  `user_id` = (
+		          SELECT `user_id` 
+		          FROM   `recipe`
+		          WHERE  `recipe_id` = #{recipe_id}
+				);
+	</select>
+	
 	<!-- 레시피 게시글 불러오기 -->
-	<select id="getRecipeDetail" resultType="recipedto" parameterType="String">
+	<select id="getRecipeDetail" parameterType="String">
 		SELECT * FROM `recipe` WHERE `recipe_id` = #{recipe_id};
 	</select>
-
+	
 	<!-- 해당 레시피 댓글 불러오기 -->
-	<select id="getRecipeComment" resultType="recipecommentdto" parameterType="String">
-		SELECT * FROM `recipeComment` WHERE `recipe_id` = #{recipe_id} AND `parent_id` IS NULL;
-	</select>
-
-	<!-- 대댓글 불러오기 -->
-	<select id="getReply" resultType="recipecommentdto" parameterType="String">
-		SELECT * FROM `recipeComment` WHERE `parent_id` = #{comment_id};
+	<select id="getRecipeComment" parameterType="String">
+		SELECT rc.*, u.* 
+		FROM recipeComment rc 
+		JOIN user u ON rc.user_id = u.user_id 
+		WHERE rc.recipe_id = #{recipe_id}
+		ORDER BY rc.comment_created_at DESC;
 	</select>
 	
 	<!-- 댓글 작성하기 -->
@@ -35,6 +44,11 @@
 		SET    `comment_contents` = #{comment_contents}, comment_image = #{comment_image} 
 		WHERE  `user_id` = #{user_id} AND `recipe_id` = #{recipe_id};
 	</update>
+	
+	<!-- 댓글 삭제하기 -->
+	<delete id="deleteRecipeComment" parameterType="String">
+		DELETE FROM `recipeComment` WHERE `comment_id` = #{comment_id};
+	</delete>
 	
 	<!-- 좋아요 레코드 확인 -->
 	<select id="checkLike" resultType="boolean">
@@ -68,5 +82,12 @@
 		SET    `likes` = #{likes}
 		WHERE  `recipe_id` = #{recipe_id};
 	</update>	
+	
+	<!-- 조회수 카운트 -->
+	<update id="incrementViewCount" parameterType="String">
+		UPDATE `recipe`
+		SET    `view_cnt` = `view_cnt` + 1
+		WHERE  `recipe_id` = #{recipe_id};
+	</update>
 	
 </mapper>

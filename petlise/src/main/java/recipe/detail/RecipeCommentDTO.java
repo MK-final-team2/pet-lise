@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class RecipeCommentDTO {
 	
-	String comment_id, recipe_id, user_id, comment_contents, comment_image, parent_id;
+	String comment_id, recipe_id, user_id, comment_contents, comment_image, parent_id, profile_image, name;
 	Date comment_created_at;
 	
 	public String getComment_id() {
@@ -48,6 +48,18 @@ public class RecipeCommentDTO {
 	}
 	public void setComment_created_at(Date comment_created_at) {
 		this.comment_created_at = comment_created_at;
+	}
+	public String getProfile_image() {
+		return profile_image;
+	}
+	public void setProfile_image(String profile_image) {
+		this.profile_image = profile_image;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}	
 	
 }

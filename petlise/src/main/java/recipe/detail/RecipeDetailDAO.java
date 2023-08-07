@@ -7,13 +7,13 @@ import org.springframework.stereotype.Repository;
 
 import recipe.RecipeDTO;
 import user.UserDTO;
+
 @Mapper
 @Repository
 public interface RecipeDetailDAO {
 
 	RecipeDTO getRecipeDetail(String recipe_id);
 	List<RecipeCommentDTO> getRecipeComment(String recipe_id);
-	List<RecipeCommentDTO> getReply(String comment_id);
 	int writeRecipeComment(RecipeCommentDTO dto);
 	int editComment(RecipeCommentDTO dto);
 	UserDTO getUserInfoRecipe(String user_id);
@@ -22,4 +22,7 @@ public interface RecipeDetailDAO {
 	int likeCount(RecipeLikeDTO dto); 
 	int updateLike(RecipeLikeDTO dto);
 	int recipeLike(RecipeDTO dto);
+	UserDTO getUserProfile(String recipe_id);
+	int deleteRecipeComment(String comment_id);
+	void incrementViewCount(String recipe_id);
 }
