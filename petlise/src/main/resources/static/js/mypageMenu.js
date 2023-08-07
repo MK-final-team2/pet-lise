@@ -26,7 +26,7 @@ document.getElementById('mypageMenu').innerHTML += `
         LiSe Shop
       </div>
       <ul>
-        <li><a href="#">주문목록</a></li>
+        <li><a href="/orderlist">주문목록</a></li>
         <li><a href="/mypage/review">구매상품 후기</a></li>
       </ul>
     </div>
