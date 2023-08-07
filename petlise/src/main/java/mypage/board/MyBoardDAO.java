@@ -26,4 +26,6 @@ public interface MyBoardDAO {
 	Integer getMyWriteRecipeCount(SearchDTO dto);
 	int deleteMyWriteRecipe(String recipe_id);
 	
+	List<MyRecipeLikeDTO> getMyLikeRecipe(SearchDTO dto);
+	Integer getMyLikeRecipeCount(SearchDTO dto);
 }
