@@ -93,43 +93,37 @@ public class PetPlaceController {
 		return mv;
 	}
 
-	/* model.addAttribute("petplaceInfo", petplaceInfo); */
-//상세페이지 리스트
 	@RequestMapping("/getpetplace")
-	public ModelAndView petplaceDetail(Model model, String place_id,@RequestParam("seq") int seq, HttpSession session,
-			@ModelAttribute SearchDTO searchdto) {
-		service.viewCnt(seq);
+	public ModelAndView petplaceDetail(Model model, String place_id, @RequestParam("seq") int seq, HttpSession session,
+	        @ModelAttribute SearchDTO searchdto) {
+	    service.viewCnt(seq);
 	    PetPlaceDTO petplaceInfo = service.findpetplace(seq);
-	    
-	    
+	    session.setAttribute("place_id", place_id);
+
 	    searchdto.setSearchType1(place_id);
-		searchdto.setRecordSize(10);
+	    searchdto.setRecordSize(5);
 	    PagingResponse<PetPlaceCommentDTO> comment = service.getAllCommentPaging(searchdto);
-	    model.addAttribute("comment", comment);
+
+	    // 후기 좋아요 여부
+	    String user_id = (String) session.getAttribute("user_id");
+
 		/*
-		 * // 후기 좋아요 여부 String user_id = (String) session.getAttribute("user_id");
-		 * 
-		 * // Null check for PetPlaceLike if (petplaceInfo.getPetplacelike() != null) {
-		 * if (user_id != null) { if (service.isLikeReview(user_id,
+		 * // Null check for PetPlaceLike if (petplaceInfo.getPetplacelike() != null &&
+		 * user_id != null) { if (service.isLikeReview(user_id,
 		 * petplaceInfo.getPetplacelike().getPlace_id()) > 0) {
 		 * petplaceInfo.getPetplacelike().setIs_like(true); } else {
-		 * petplaceInfo.getPetplacelike().setIs_like(false); } } }
+		 * petplaceInfo.getPetplacelike().setIs_like(false); } }
 		 */
-
 	    ModelAndView mv = new ModelAndView();
 	    mv.addObject("petplaceInfo", petplaceInfo);
 	    mv.addObject("response", comment);
 	    mv.setViewName("board/petplaceDetail");
-	    model.addAttribute("petplaceInfo", petplaceInfo);
 
 	    model.addAttribute("seq", seq);
 	    session.setAttribute("seq", seq);
 
-		return mv;
-	  
-	   
+	    return mv;
 	}
-
 
 	
 	// update

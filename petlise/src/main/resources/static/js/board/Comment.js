@@ -1,54 +1,67 @@
-$(document).ready(function(){
-    if ("${searchdto.searchType2}" == "comment") {
-        $('html').animate({scrollTop: $('#comment_statistic').offset().top}, 0);
-    }
+\// 페이지 이동
+function movePage(page, placeId) {
+  const url = new URL(window.location.href);
+  const queryParams = new URLSearchParams(url.search);
+  queryParams.set('page', page || 1);
+  queryParams.set('place_id', placeId);
 
-    // 숫자 페이징 버튼
-    $(".pageNumber").on('click', function() {
-        const page = $(this).text();
-        const queryParams = {
-            page: page,
-            place_id: "${petplaceInfo.place_id}"
-        };
-        location.href = location.pathname + '?' + new URLSearchParams(queryParams).toString();
-    });
+  url.search = queryParams.toString();
+  window.location.href = url.toString();
+}
 
-    // 첫 페이지 버튼
-    $(".pagefirst").on('click', function() {
-        const queryParams = {
-            page: 1,
-            place_id: "${petplaceInfo.place_id}"
-        };
-        location.href = location.pathname + '?' + new URLSearchParams(queryParams).toString();
-    });
+// 숫자 페이징 버튼
+$(".pageNumber").on('click', function() {
+  const page = $(this).text();
+  const placeId = "${petplaceInfo.place_id}"; // petplaceInfo.place_id 값 가져오기
 
-    // 이전 페이지 버튼
-    $(".prev").on('click', function() {
-        const page = $(this).attr("id");
-        const queryParams = {
-            page: page,
-            place_id: "${petplaceInfo.place_id}"
-        };
-        location.href = location.pathname + '?' + new URLSearchParams(queryParams).toString();
-    });
+  movePage(page, placeId); // place_id 값도 함께 전달
+});
 
-    // 다음 페이지 버튼
-    $(".next").on('click', function() {
-        const page = $(this).attr("id");
-        const queryParams = {
-            page: page,
-            place_id: "${petplaceInfo.place_id}"
-        };
-        location.href = location.pathname + '?' + new URLSearchParams(queryParams).toString();
-    });
+// 첫 페이지 버튼
+$(".pagefirst").on('click', function() {
+  const placeId = "${petplaceInfo.place_id}"; // petplaceInfo.place_id 값 가져오기
 
-    // 마지막 페이지 버튼
-    $(".pagelast").on('click', function() {
-        const page = $(this).attr("id");
-        const queryParams = {
-            page: page,
-            place_id: "${place.place_id}"
-        };
-        location.href = location.pathname + '?' + new URLSearchParams(queryParams).toString();
-    });
+  movePage(1, placeId);
+});
+
+// 이전 페이지 버튼
+$(".prev").on('click', function() {
+  const page = $(this).attr("id");
+  const placeId = "${petplaceInfo.place_id}"; // petplaceInfo.place_id 값 가져오기
+
+  movePage(page, placeId);
+});
+
+// 다음 페이지 버튼
+$(".next").on('click', function() {
+  const page = $(this).attr("id");
+  const placeId = "${petplaceInfo.place_id}"; // petplaceInfo.place_id 값 가져오기
+
+  movePage(page, placeId);
+});
+
+// 마지막 페이지 버튼
+$(".pagelast").on('click', function() {
+  const page = $(this).attr("id");
+  const placeId = "${petplaceInfo.place_id}"; // petplaceInfo.place_id 값 가져오기
+
+  movePage(page, placeId);
+});
+
+// 카테고리 값 가져오기
+
+// 검색창 엔터키 이벤트
+$("#keyword").on("keyup", function(key) {
+  if (key.keyCode == 13) {
+    $("#searchbtn").click();
+  }
+});
+
+// 검색 버튼
+$("#searchbtn").on('click', function() {
+  const queryParams = {
+    page: 1,
+    keyword: $("#keyword").val()
+  };
+  location.href = location.pathname + '?' + new URLSearchParams(queryParams).toString();
 });

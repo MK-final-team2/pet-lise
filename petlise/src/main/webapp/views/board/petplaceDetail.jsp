@@ -167,7 +167,7 @@ $(document).on('click', '.comment_likebtn_active', function() {
 
 		<!-- 댓글작성 -->
 		<div class="cmt_write_input">
-			<img src="${petplaceInfo.user.profile_image}">
+			<img style="width: 50px; height: 50px;"   src="${fn:length(petplaceInfo.user.profile_image) != 0 ? ('https://storage.googleapis.com/' += petplaceInfo.user.profile_image) :''}">
 			<textarea class="cmt_textarea" id="comment-input"
 				name='comment_contents' placeholder="이 곳에 댓글 내용을 입력해주세요."
 				oninput="countCharacters()"></textarea>
@@ -205,9 +205,9 @@ $(document).on('click', '.comment_likebtn_active', function() {
 						<div class="cmt_info">
 							<div class="user_profile">
 								<img style="width: 50px; height: 50px;" class="profile"
-									src="${comment.user.profile_image}">
-
-							</div>
+                  src="${fn:length(comment.user.profile_image) != 0 ? ('https://storage.googleapis.com/' += comment.user.profile_image) :''}"
+                  onerror="this.onerror=null; this.src='/images/default-profile.svg';" />
+                  		</div>
 							<div class="cmt_left">
 								<span class="cmt_nick">${comment.user.name}</span> 
 							<div class="comment_contents">
@@ -305,7 +305,10 @@ $(document).on('click', '.comment_likebtn_active', function() {
 			</c:if>
 		</div>
 		<!-- pagination -->
+<div>
 
+<jsp:include page="../footer.jsp" />
+</div>
 		<script>
     $(document).ready(function() {
       // 지도를 생성합니다    
@@ -361,7 +364,7 @@ $(document).on('click', '.comment_likebtn_active', function() {
   
 		<script src="/js/board/DeletePetplace.js"></script>
 		<script src="/js/board/editComments.js"></script>
-		<script src="/js/board/Comment.js"></script>
+	<!-- 	<script src="/js/board/Comment.js"></script> -->
 
 		<script>
     // user_id 값을 JavaScript로 가져와서 변수에 할당합니다.
@@ -377,5 +380,71 @@ $(document).on('click', '.comment_likebtn_active', function() {
 			}
 		};
 	</script>
+	<script>
+	function movePage(page) {
+	  const url = new URL(window.location.href);
+	  const queryParams = new URLSearchParams(url.search);
+	  queryParams.set('page', page || 1);
+	place_id : "${petplaceInfo.place_id}"
+	
+	  url.search = queryParams.toString();
+	  window.location.href = url.toString();
+	}
+	
+	// 숫자 페이징 버튼
+	$(".pageNumber").on('click', function() {
+	  const page = $(this).text();
+	  
+	  movePage(page);
+	});
+	
+	// 첫 페이지 버튼
+	$(".pagefirst").on('click', function() {
+	 
+	  movePage(1);
+	});
+	
+	// 이전 페이지 버튼
+	$(".prev").on('click', function() {
+	  const page = $(this).attr("id");
+	
+	  movePage(page);
+	});
+	
+	// 다음 페이지 버튼
+	$(".next").on('click', function() {
+	  const page = $(this).attr("id");
+	 
+	  movePage(page);
+	});
+	
+	// 마지막 페이지 버튼
+	$(".pagelast").on('click', function() {
+	  const page = $(this).attr("id");
+	 
+	  movePage(page);
+	});
+	
+	// 카테고리 값 가져오기
+	
+	// 검색창 엔터키 이벤트
+	$("#keyword").on("keyup", function(key) {
+	  if (key.keyCode == 13) {
+	    $("#searchbtn").click();
+	  }
+	});
+	
+	// 검색 버튼
+	$("#searchbtn").on('click', function() {
+	  const queryParams = {
+	    page: 1,
+	    keyword: $("#keyword").val()
+	  };
+	  location.href = location.pathname + '?' + new URLSearchParams(queryParams).toString();
+	});
+
+
+
+</script>
 </body>
 </html>
