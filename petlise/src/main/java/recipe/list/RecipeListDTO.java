@@ -15,13 +15,19 @@ public class RecipeListDTO {
 	private String recipe_of_the_month_registration_date;
 	private Timestamp recipe_created_at, recipe_updated_at;
 	private boolean is_like;
+	private String limitedContent;
 	
 	
 	private UserDTO user;
 	
 		
 
-	
+	public String getLimitedContent() {
+		return limitedContent;
+	}
+	public void setLimitedContent(String limitedContent) {
+		this.limitedContent = limitedContent;
+	}
 	public boolean isRecipe_of_the_month() {
 		return recipe_of_the_month;
 	}

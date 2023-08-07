@@ -58,49 +58,7 @@ public class RecipeController {
         int result = recipeService.likeDown(user_id, recipe_id);
         return "{\"result\":\"" + result + "\"}";
     }
-//
-//    @PostMapping("/likeUp")
-//    public ResponseEntity<?> likeUp(HttpServletRequest request, @RequestParam String recipe_id) {
-//        // 현재 로그인한 사용자의 user_id를 세션에서 가져옴
-//        String user_id = (String) request.getSession().getAttribute("user_id");
-//        if (user_id == null) {
-//            // 로그인되지 않은 경우
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-//        }
-//
-//        // recipe_id와 user_id로 중복 클릭 여부 확인
-//        boolean isIs_like = recipeService.isRecipeLiked(user_id, recipe_id);
-//        if (isIs_like) {
-//            // 이미 좋아요를 누른 경우
-//            return ResponseEntity.status(HttpStatus.CONFLICT).build();
-//        }
-//
-//        // 좋아요 버튼 누름
-//        int result = recipeService.likeUp(user_id, recipe_id);
-//        return ResponseEntity.ok(result);
-//    }
-//
-//    @PostMapping("/likeDown")
-//    public ResponseEntity<?> likeDown(HttpServletRequest request, @RequestParam String recipe_id) {
-//        // 현재 로그인한 사용자의 user_id를 세션에서 가져옴
-//        String user_id = (String) request.getSession().getAttribute("user_id");
-//        if (user_id == null) {
-//            // 로그인되지 않은 경우
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-//        }
-//
-//        // recipe_id와 user_id로 중복 클릭 여부 확인
-//        boolean isIs_like = recipeService.isRecipeLiked(user_id, recipe_id);
-//        if (!isIs_like) {
-//            // 아직 좋아요를 누르지 않은 경우
-//            return ResponseEntity.status(HttpStatus.CONFLICT).build();
-//        }
-//
-//        // 좋아요 버튼 취소
-//        int result = recipeService.likeDown(user_id, recipe_id);
-//        return ResponseEntity.ok(result);
-//    }
-//    
+
 //    @PatchMapping("/recipedetail")
 //    public String showRecipeDetail(@RequestParam("recipe_id") String recipe_id, Model model) {
 //        // 조회수 증가를 위해 RecipeService의 recipeViewCount 메서드를 호출

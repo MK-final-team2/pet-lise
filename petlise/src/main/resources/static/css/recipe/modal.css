@@ -5,6 +5,7 @@
 	top:0;
 	left:0;	
 	display:none;
+	background: rgba(0,0,0,0.2);
 }
 
 .modal_contents{
@@ -12,9 +13,8 @@
 	height: 250px;
 	position:relative; top:50%; left:50%;
 	margin-top:-125px; margin-left:-200px;
-	
 	border-radius: 5px;
-	border: 3px solid var(--light-point, #8A6F4E);
+	border: 3px solid var(--light-main);
 	background: var(--gray-white, #FFF);
 
 }
@@ -24,11 +24,21 @@
 	height: 170px;
 	color: var(--light-text, #1F1F1F);
 	font:var(--button16);
-	text-align: center;
-	
+	text-align: center;	
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.alert{
+	font:var(--button12);
+	width:100%;	
+	color: var(--light-point);
+	text-align: center;	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
 }
 
 .modal_btn{

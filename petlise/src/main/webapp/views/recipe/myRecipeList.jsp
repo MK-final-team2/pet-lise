@@ -142,9 +142,8 @@
 								<span>${recipe.recipe_title}</span>
 							</div>
 							<div class="info_content">
-								<span class="recipe_content">${recipe.recipe_contents}</span>
-
-							</div>
+									<span class="recipe_content">${recipe.limitedContent}</span>
+								</div>
 							<div id="info_bottom">
 								<div class="info_writer">
 									<span>${recipe.user.name}</span>
