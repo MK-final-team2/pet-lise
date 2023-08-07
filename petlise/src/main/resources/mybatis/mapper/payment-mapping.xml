@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="payment">
+<mapper namespace="shop.payment.ShopPaymentDAO">
 
 <!-- 선택된 주문목록 불러오기 -->
 	<select id="getOrderList" resultType="orderproductdto">
-		SELECT * FROM `orderproduct` WHERE `user_id` = #{user_id} AND `order_id` IS NULL;
+		SELECT * FROM `orderProduct` WHERE `user_id` = #{user_id} AND `order_id` IS NULL;
 	</select>
 
 <!-- 회원정보 불러오기 -->
@@ -22,7 +22,7 @@
 	
 <!-- 주문번호 부여 -->	
 	<update id="orderConfirm" parameterType="orderproductdto">
-		UPDATE `orderproduct` 
+		UPDATE `orderProduct` 
 		SET    `order_id` = (SELECT `order_id` FROM `order` WHERE `user_id` = #{user_id} ORDER BY `order_id` DESC LIMIT 1) 
 		WHERE  `user_id` = #{user_id} AND `order_id` IS NULL;
 	</update>
@@ -43,8 +43,15 @@
 	    UPDATE `products` 
 	    SET    `sales` = (
 	           SELECT SUM(`quantity`) 
-	           FROM `orderproduct` 
+	           FROM `orderProduct` 
 	           WHERE `product_id` = #{product_id})
 	    WHERE  `product_id` = #{product_id};
 	</update>
+	
+<!-- 주문완료 후 포인트 업데이트 -->
+	<update id="updatePointPayment" parameterType="String">
+		UPDATE `user` 
+		SET    `point` = #{point}
+		WHERE  `user_id` = #{user_id};
+	</update>	
 </mapper>
