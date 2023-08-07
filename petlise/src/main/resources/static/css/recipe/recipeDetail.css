@@ -138,10 +138,6 @@
   font: var(--button14);
 }
 
-#post_like button img {
-  margin-bottom: 3px; 
-}
-
 #post_like button:hover {
   background-color: var(--light-sub-hover);
   cursor: pointer;
@@ -229,11 +225,10 @@
   gap: 5px;
 }
 
-#picture {
-  width: 70px;
-  height: 35px;
+#imgUrl {
+  width: 60px;
+  height: 30px;
   font: var(--button14);
-  gap: 5px;
   margin-left: 20px;
 }
 

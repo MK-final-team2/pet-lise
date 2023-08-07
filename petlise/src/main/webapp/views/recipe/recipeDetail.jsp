@@ -14,7 +14,17 @@
 <link rel="stylesheet" href="/css/recipe/recipePage.css" />
 <link rel="stylesheet" href="/css/nav/nav.css" />
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
+	rel="stylesheet" />
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script src="/js/imageUpload.js"></script>
+<script>
+	//파라미터 값 가져오기
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+	const recipe_id = urlParams.get('recipe_id');
+	console.log(recipe_id);
+</script>
 <title>PetLiSe</title>
 </head>
 <script>
@@ -23,7 +33,7 @@
 	  var isLiked = false;
 	
 	  $("#like_btn").on("click", function() {
-	    var recipe_id = $("#session_recipe_id").val();
+
 	    var user_id = $("#session_user_id").val();
 	
 	    isLiked = !isLiked;
@@ -164,7 +174,7 @@
 		$("#cmt_save").on("click", function() {
 			var recipe_id = $("#recipe_id").text();
 			var user_id = $("#user_id").text();
-			var profile_image = $("#profile_image").text();
+			var cmtImage = $("#imageValue").val();
 			var cmtContents = $("#cmt_input").val();
 
 			$.ajax({
@@ -175,6 +185,7 @@
 				data : JSON.stringify({
 					recipe_id : recipe_id,
 					user_id : user_id,
+					comment_image: cmtImage,
 					comment_contents : cmtContents
 				}),
 				success : function(response) {
@@ -310,11 +321,14 @@
 				<button class="deleteButton" id="deleteButton">삭제</button>
 			</div>
 			<div class="contents" style="text-align: center;">
-				<span><img src="${recipeDetail.image}"></span><br> <span>${recipeDetail.recipe_contents}</span>
+				<span><img
+					src="https://storage.googleapis.com/${recipeDetail.image}"></span><br>
+				<span>${recipeDetail.recipe_contents}</span>
 			</div>
 			<div id="post_like">
 				<button id="like_btn">
-					<img src="/images/recipe/heart.svg"><p id="recipe_likes_count">${recipeDetail.likes}</p>
+					<img src="/images/recipe/heart.svg">
+					<p id="recipe_likes_count">${recipeDetail.likes}</p>
 					좋아요
 				</button>
 			</div>
@@ -341,9 +355,13 @@
 			</div>
 			<div class="cmt_write_input_bottom">
 				<div class="cmt_actions">
-					<button type="submit" id="picture">
-						<img src="/images/recipe/picture.svg">사진
-					</button>
+					<img src="/images/recipe/picture.svg"
+						onerror="this.onerror=null; this.src='/images/recipe/picture.svg';"
+						id="imgUrl" />
+					<input type="hidden" id="imageValue" />
+					<label for="file"></label>
+					<input type="file" id="file"
+						accept="image/*" onchange="imageUpload()"/>
 					<button id="cmt_save">등록</button>
 				</div>
 			</div>
@@ -354,20 +372,20 @@
 			<c:forEach var="recipeComment" items="${recipeComment}" begin="0"
 				end="9">
 				<div class="cmt_unit">
-				<div style="display: none;">${recipeComment.comment_id}</div>
-				<div style="display: none;">${recipeComment.recipe_id}</div>
+					<div style="display: none;">${recipeComment.comment_id}</div>
+					<div style="display: none;">${recipeComment.recipe_id}</div>
 					<div class="cmt_user">
 						<img src="${userInfo.profile_image}"
 							style="width: 35px; height: 35px;"> <span
-							class="cmt_user_id">${recipeComment.user_id}</span> 
+							class="cmt_user_id" style="display:none;">${recipeComment.user_id}</span>
+							<span class="cmt_user_name">${userInfo.name}</span>
 						<div class="cmt_btns">
 							<button class="cmt_edit"
 								onclick="toggleEdit(${recipeComment.comment_id})">수정</button>
-							<span>ㆍ</span>	
+							<span>ㆍ</span>
 							<button class="cmt_delete">삭제</button>
-						</div>						
-							<span
-							class="cmt_date"><fmt:formatDate
+						</div>
+						<span class="cmt_date"><fmt:formatDate
 								value="${recipeComment.comment_created_at}" pattern="yyyy.MM.dd" /></span>
 						<div class="cmt_util">
 							<button class="reply_writing">
@@ -385,7 +403,7 @@
 						id="cmt_content_box_${recipeComment.comment_id}">
 						<c:if test="${recipeComment.comment_image != null}">
 							<div class="cmt_img">
-								<img src="${recipeComment.comment_image}"
+								<img src="https://storage.googleapis.com/${recipeComment.comment_image}"
 									style="width: 70px; height: 70px;">
 							</div>
 						</c:if>
