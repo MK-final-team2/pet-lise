@@ -35,8 +35,7 @@ document.getElementById('mypageMenu').innerHTML += `
         <span class="material-symbols-outlined">forum</span> 문의사항
       </div>
       <ul>
-        <li><a href="#">내가 남긴 문의</a></li>
-        <li><a href="#">상품 문의</a></li>
+        <li><a href="/mypage/qna">내가 남긴 문의</a></li>
       </ul>
     </div>
   </div>

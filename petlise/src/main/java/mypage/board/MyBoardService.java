@@ -19,7 +19,7 @@ public class MyBoardService {
 	@Autowired
 	MyBoardDAO dao;
 	
-	//Pagination-board
+//Pagination-board
 	public PagingResponse<MyBoardDTO> getMyBoard(SearchDTO dto) {
         // 조건에 해당하는 데이터가 없는 경우, 응답 데이터에 비어있는 리스트와 null을 담아 반환
         int count = dao.getMyBoardCount(dto);
@@ -45,7 +45,7 @@ public class MyBoardService {
 		return dao.deleteMyBoard(board_id);
 	}
 
-	//Pagination-petplace
+//Pagination-petplace
 	public PagingResponse<MyPetPlaceDTO> getMyPetPlace(SearchDTO dto) {
 		// 조건에 해당하는 데이터가 없는 경우, 응답 데이터에 비어있는 리스트와 null을 담아 반환
 		int count = dao.getMyPetPlaceCount(dto);
@@ -71,7 +71,7 @@ public class MyBoardService {
 		return dao.deleteMyPetPlace(place_id);
 	}
 
-	//Pagination-myWriteRecipe
+//Pagination-myWriteRecipe
 	public PagingResponse<MyRecipeDTO> getMyWriteRecipe(SearchDTO dto) {
 		// 조건에 해당하는 데이터가 없는 경우, 응답 데이터에 비어있는 리스트와 null을 담아 반환
 		int count = dao.getMyWriteRecipeCount(dto);
@@ -93,7 +93,7 @@ public class MyBoardService {
 		return dao.deleteMyWriteRecipe(recipe_id);
 	}
 	
-	//Pagination-myLikeRecipe
+//Pagination-myLikeRecipe
 	public PagingResponse<MyRecipeLikeDTO> getMyLikeRecipe(SearchDTO dto) {
 		// 조건에 해당하는 데이터가 없는 경우, 응답 데이터에 비어있는 리스트와 null을 담아 반환
 		int count = dao.getMyLikeRecipeCount(dto);
@@ -109,5 +109,32 @@ public class MyBoardService {
 		List<MyRecipeLikeDTO> list = dao.getMyLikeRecipe(dto);
 		
 		return new PagingResponse<>(list, pagination);
+	}
+
+//Pagination-myQnA
+	public PagingResponse<MyQnADTO> getMyQnA(SearchDTO dto) {
+		// 조건에 해당하는 데이터가 없는 경우, 응답 데이터에 비어있는 리스트와 null을 담아 반환
+		int count = dao.getMyQnACount(dto);
+		if (count < 1) {
+			return new PagingResponse<>(Collections.emptyList(), null);
+		}
+		
+		// Pagination 객체를 생성해서 페이지 정보 계산 후 SearchDto 타입의 객체인 params에 계산된 페이지 정보 저장
+		Pagination pagination = new Pagination(count, dto);
+		dto.setPagination(pagination);
+		
+		// 계산된 페이지 정보의 일부(limitStart, recordSize)를 기준으로 리스트 데이터 조회 후 응답 데이터 반환
+		List<MyQnADTO> list = dao.getMyQnA(dto);
+		
+		// 답변여부확인
+		for(MyQnADTO qna : list) {
+			qna.setIs_answer(dao.is_myQnaAnswer(qna.getNotice_id()));
+		}
+		
+		return new PagingResponse<>(list, pagination);
+	}
+	
+	int deleteMyQna(String notice_id) {
+		return dao.deleteMyQna(notice_id);
 	}
 }
