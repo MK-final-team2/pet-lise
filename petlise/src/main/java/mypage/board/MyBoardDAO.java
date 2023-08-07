@@ -25,6 +25,7 @@ public interface MyBoardDAO {
 	List<MyRecipeDTO> getMyWriteRecipe(SearchDTO dto);
 	Integer getMyWriteRecipeCount(SearchDTO dto);
 	int deleteMyWriteRecipe(String recipe_id);
+	int deleteMyWriteRecipelike(String recipe_id);
 	
 	List<MyRecipeLikeDTO> getMyLikeRecipe(SearchDTO dto);
 	Integer getMyLikeRecipeCount(SearchDTO dto);
@@ -33,4 +34,6 @@ public interface MyBoardDAO {
 	Integer getMyQnACount(SearchDTO dto);
 	Boolean is_myQnaAnswer(String notice_id);
 	int deleteMyQna(String notice_id);
+	
+	int pointDown(String user_id);
 }

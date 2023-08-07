@@ -123,7 +123,7 @@
 
 #boardtable thead tr {
 	display: grid;
-	grid-template-columns: 100px 100px 100px 250px 150px 90px 90px 70px;
+	grid-template-columns: 80px 80px 80px 250px 140px 80px 80px 90px 70px;
 }
 
 #boardtable thead th {
@@ -139,7 +139,7 @@
 
 #boardtable tbody tr {
 	display: grid;
-	grid-template-columns: 100px 100px 100px 250px 150px 90px 90px 70px;
+	grid-template-columns: 80px 80px 80px 250px 140px 80px 80px 90px 70px;
 	border-bottom: 1px solid var(--light-point);
 }
 
@@ -151,6 +151,10 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 #boardtable tbody td:first-of-type, #boardtable tbody td:last-of-type {

@@ -36,6 +36,7 @@ public class OrderService {
         for(OrderDTO order : list) {
         	if(dao.getOrderDetail(order.getOrder_id())!=null) {
         		order.setOrderproducts(dao.getOrderDetail(order.getOrder_id()));
+        		order.setTotal_product_count(dao.getOrderDetail(order.getOrder_id()).size());
         	}
         }
         return new PagingResponse<>(list, pagination);

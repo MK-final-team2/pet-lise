@@ -91,7 +91,8 @@
 							<th>제목</th>
 							<th>작성일</th>
 							<th>조회수</th>
-							<th>좋아요수</th>
+							<th>좋아요</th>
+							<th>이달의레시피</th>
 							<th>삭제</th>
 						</tr>
 					</thead>
@@ -114,6 +115,11 @@
 								<td><fmt:formatDate	value="${myrecipe.recipe_created_at}" pattern="yyyy.MM.dd H:mm" /></td>
 								<td>${myrecipe.view_cnt}</td>
 								<td><fmt:formatNumber value="${myrecipe.likes}" pattern="#,###"/></td>
+								<td>
+									<c:if test="${myrecipe.recipe_of_the_month!=0}"><img src="/images/recipe/crown.png" style="width:25px"></c:if>
+									<c:if test="${myrecipe.recipe_of_the_month==0}">-</c:if>
+									<input type="hidden" id="isbest" value="${myrecipe.recipe_of_the_month}">
+								</td>
 								<td class="recipedelete" id="${myrecipe.recipe_id}">삭제</td>
 							</tr>
 						</c:forEach>
@@ -193,6 +199,18 @@
 			<div class="modal_contents">
 				<div class="modal_text">
 				레시피가 삭제되었습니다.
+				</div>
+				<div class="modal_btn">
+					<button class="modal_okaybtn">확인</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal" id="delete_no_modal">
+			<div class="modal_contents">
+				<div class="modal_text">
+				이달의 레시피로 지정된 레시피는<br>
+				삭제하실 수 없습니다.
 				</div>
 				<div class="modal_btn">
 					<button class="modal_okaybtn">확인</button>

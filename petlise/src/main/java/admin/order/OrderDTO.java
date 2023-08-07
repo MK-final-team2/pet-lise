@@ -12,6 +12,7 @@ public class OrderDTO {
 	private int available_point,total_product,total_payment;
 	private UserDTO user;
 	private List<OrderProductDTO> orderproducts;
+	private int total_product_count;
 	
 	public UserDTO getUser() {
 		return user;
@@ -103,6 +104,13 @@ public class OrderDTO {
 	public void setOrderproducts(List<OrderProductDTO> orderproducts) {
 		this.orderproducts = orderproducts;
 	}
+	public int getTotal_product_count() {
+		return total_product_count;
+	}
+	public void setTotal_product_count(int total_product_count) {
+		this.total_product_count = total_product_count;
+	}
+	
 	
 	
 }

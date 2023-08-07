@@ -2,6 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mypage.board.MyBoardDAO">
+	<update id="pointDown" parameterType="String">
+		UPDATE `user`
+		SET point = point-100
+		where user_id = #{user_id}
+	</update>
+
 <!-- 자유게시판 -->		
 	<select id="getMyBoard" parameterType="pagination.SearchDTO" resultType="mypage.board.MyBoardDTO">
 		select * 
@@ -127,6 +133,10 @@
 	
 	<delete id="deleteMyWriteRecipe" parameterType="String">
 		delete from `recipe` where recipe_id = #{recipe_id};
+	</delete>
+
+	<delete id="deleteMyWriteRecipelike" parameterType="String">
+		delete from `recipelike` where recipe_id = #{recipe_id};
 	</delete>
 
 <!-- 좋아요 레시피 -->	

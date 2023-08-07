@@ -109,11 +109,11 @@
 									<td>${order.user.email}</td>
 									<td>${order.user.name}</td>
 									<td>${order.name}</td>
-									<td>2개</td>
+									<td>${order.total_product_count}개</td>
 									<td><fmt:formatNumber value="${order.total_payment}" pattern="#,###" />p</td>
 									<td><fmt:parseDate value="${order.date}" var="reg"
 											pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate
-											value="${reg}" pattern="yyyy-MM-dd HH:mm" /></td>
+											value="${reg}" pattern="yyyy.MM.dd HH:mm" /></td>
 									<td>${order.status}</td>
 								</tr>
 								<tr class="orderinfo" style="border-bottom: 1px solid var(--light-point);">
