@@ -80,7 +80,7 @@
 								<td><fmt:formatDate	value="${board.board_created}" pattern="yyyy.MM.dd H:mm" /></td>
 								<td>${board.board_view}</td>
 								<td><fmt:formatNumber value="${board.likes}" pattern="#,###"/></td>
-								<td>삭제</td>
+								<td class="deletebtns" id="${board.board_id}">삭제</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -142,15 +142,15 @@
 		<div class="modal" id="delete_alert_modal">
 			<div class="modal_contents">
 				<div class="modal_text">
-				<img src="images/mypage/warning.svg">
-				후기 삭제 시 후기 복구 및 <br>
-				해당 상품 후기 재작성이 불가합니다.<br>
-				정말 후기를 삭제하시겠습니까?
+				<img src="/images/mypage/warning.svg">
+				게시글 삭제 시 복구가 불가하며<br>
+				게시글 작성 포인트는 회수됩니다.<br>
+				정말 게시글을 삭제하시겠습니까?
 				</div>
 				<div class="modal_btn">
 					<button class="modal_cancelbtn">취소</button>
 					<button class="modal_deletebtn">삭제</button>
-					<input type="hidden" id="delete_review_id" value=""/>
+					<input type="hidden" id="delete_id" value=""/>
 				</div>
 			</div>
 		</div>
@@ -158,7 +158,7 @@
 		<div class="modal" id="delete_okay_modal">
 		<div class="modal_contents">
 			<div class="modal_text">
-			후기가 삭제되었습니다.
+			게시글이 삭제되었습니다.
 			</div>
 			<div class="modal_btn">
 				<button class="modal_okaybtn">확인</button>
@@ -170,6 +170,7 @@
 	<jsp:include page="../footer.jsp" />
 
 	<script src="/js/mypageMenu.js"></script>
+	<script src="/js/mypage/myBoard.js"></script>
 	
 	<script>
 		//검색버튼

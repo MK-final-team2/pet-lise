@@ -6,7 +6,7 @@
 	<select id="getMyBoard" parameterType="pagination.SearchDTO" resultType="mypage.board.MyBoardDTO">
 		select * 
 		from `board`
-		where user_id = #{searchType1}
+		where user_id = #{searchType1} and deleted_at is null
 		<if test="keyword != null and keyword != ''">
 			and board_title LIKE CONCAT('%', #{keyword}, '%')
 		</if>
@@ -17,7 +17,7 @@
 	<select id="getMyBoardCount" parameterType="pagination.SearchDTO" resultType="int">
 		select count(*)
 		from `board`
-		where user_id = #{searchType1}
+		where user_id = #{searchType1} and deleted_at is null
 		<if test="keyword != null and keyword != ''">
 			and board_title LIKE CONCAT('%', #{keyword}, '%')
 		</if>
@@ -28,12 +28,18 @@
 		from `boardlike`
 		where board_id = #{board_id}
 	</select>
+
+	<update id="deleteMyBoard" parameterType="String">
+		UPDATE `board`
+		SET deleted_at = now()
+		where board_id = #{board_id}
+	</update>
 	
 <!-- 펫플레이스 -->	
 	<select id="getMyPetPlace" parameterType="pagination.SearchDTO" resultType="mypage.board.MyPetPlaceDTO">
 		select * 
 		from `petPlace`
-		where user_id = #{searchType1}
+		where user_id = #{searchType1} and deleted_at is null
 		<if test="keyword != null and keyword != ''">
 			and title LIKE CONCAT('%', #{keyword}, '%')
 		</if>
@@ -44,7 +50,7 @@
 	<select id="getMyPetPlaceCount" parameterType="pagination.SearchDTO" resultType="int">
 		select count(*)
 		from `petPlace`
-		where user_id = #{searchType1}
+		where user_id = #{searchType1} and deleted_at is null
 		<if test="keyword != null and keyword != ''">
 			and title LIKE CONCAT('%', #{keyword}, '%')
 		</if>
@@ -55,6 +61,12 @@
 		from `petplacelike`
 		where place_id = #{place_id}
 	</select>
+	
+	<update id="deleteMyPetPlace" parameterType="String">
+		UPDATE `petPlace`
+		SET deleted_at = now()
+		where place_id = #{place_id}
+	</update>
 	
 <!-- 내가 쓴 레시피 -->	
 	<select id="getMyWriteRecipe" parameterType="pagination.SearchDTO" resultType="mypage.board.MyRecipeDTO">
