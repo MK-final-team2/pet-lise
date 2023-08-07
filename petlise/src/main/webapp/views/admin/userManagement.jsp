@@ -52,5 +52,6 @@ pageEncoding="UTF-8"%>
     <script src="/js/pagination.js"></script>
     <script src="/js/admin/getDate.js"></script>
     <script src="/js/admin/search.js"></script>
+    <script src="/js/admin/updatePoint.js"></script>
   </body>
 </html>

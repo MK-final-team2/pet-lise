@@ -32,7 +32,7 @@ function ajaxData(keyword, page) {
             <td>${el.name}</td>
             <td>${el.email}</td>
             <td>${el.address.split(",").join(" ")}</td>
-            <td>${el.point ? el.point.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") : 0}</td>
+            <td><span id="${el?.user_id}" onclick="clickModal('${el?.user_id}','${el?.point}')">${el.point ? el.point.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") : 0}</span></td>
             <td>${getDate(el.created_at)}</td>
             <td>${el.deleted_at ? getDate(el.deleted_at) : '0000. 00. 00'}</td>
           </tr>`
