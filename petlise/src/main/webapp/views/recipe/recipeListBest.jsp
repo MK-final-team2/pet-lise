@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
@@ -12,8 +12,8 @@
 <link rel="apple-touch-icon" href="/images/favicon.ico" />
 <link rel="stylesheet" href="/css/recipe/recipeList.css" />
 <link rel="stylesheet" href="/css/style.css" />
-<link rel="stylesheet" href="/css/recipe/recipePage.css" />
-<link rel="stylesheet" href="/css/nav/nav.css" />
+<link rel="stylesheet" href="css/shop/pagination_shop.css" />
+<link rel="stylesheet" href="css/recipe/modal_main.css" />
 
 <title>PetLiSe</title>
 <script src="/js/jquery-3.6.4.min.js"></script>
@@ -24,70 +24,34 @@
 	</script>
 </head>
 <body>
+<jsp:include page="../header.jsp" />
    	<div class="wrap">
-		<jsp:include page="../header.jsp" />
 		<div id="board_title">
-			<input type="hidden" id="recipeType" value="${param.recipeType}" />
-			<input type="hidden" id="searchType1" value="${param.searchType1}" />
-			<input type="hidden" id="searchType2" value="${param.searchType2}" />
-			<input type="hidden" id="searchType3" value="${param.searchType3}" />
-			
+			<input type="hidden" id="recipeType" value="${param.recipeType}" />			
 			
 			
 			<div class="pet_icon">
-				<c:if test="${param.searchType1 == '강아지'}">
-					<div class="dog_icon">
-						<img src="/images/recipe/dog_icon.svg">
-					</div>
-				</c:if>
-				<c:if test="${param.searchType1 == '고양이'}">
-					<div class="cat_icon">
-			   			<img src="/images/recipe/cat_icon.svg" style="margin-left: 5px;">
-			   		</div>
-				</c:if>
+				<div class="dog_icon">
+					<img src="/images/recipe/crown.png">
+				</div>
 			</div>
 
 			<div class="title_recipe">			
-				<span>${param.recipeType}</span>			
+				<c:if test="${param.recipeType == '전문가레시피'}">
+					<span>전문가 레시피</span>
+				</c:if>
+				<c:if test="${param.recipeType == '나만의레시피'}">
+					<span>나만의 레시피</span>
+				</c:if>		
 			</div>
 			<div class="subtitle_recipe">
-				<span>${param.searchType2}</span>
+				<span>이달의 레시피</span>
 			</div>
 		</div>
 
 		<div id="search_container">
 			
-			<div class="category">
-				<c:if test="${param.searchType2 == '건강식'}">
-					<a class="${param.searchType3 eq '전체' ? 'on' : ''}"
-						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=전체">전체</a>
-					<a class="${param.searchType3 eq '다이어트식' ? 'on' : ''}"
-						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=다이어트식">다이어트식</a>
-					<a class="${param.searchType3 eq '병원식' ? 'on' : ''}"
-						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=병원식">병원식</a>
-					<a	class="${param.searchType3 eq '영양식' ? 'on' : ''}"
-						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=영양식">영양식</a>
-				</c:if>
-				<c:if test="${param.searchType2 == '일반식'}">
-					<a class="${param.searchType3 eq '전체' ? 'on' : ''}"
-						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=전체">전체</a>
-					<a class="${param.searchType3 eq '습식' ? 'on' : ''}"
-						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=습식">습식</a>
-					<a class="${param.searchType3 eq '건식' ? 'on' : ''}"
-						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=건식">건식</a>
-				</c:if>
-				<c:if test="${param.searchType2 == '간식'}">
-					<a class="${param.searchType3 eq '전체' ? 'on' : ''}"
-						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=전체">전체</a>
-					<a class="${param.searchType3 eq '건조간식' ? 'on' : ''}"
-						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=건조간식">건조간식</a>
-					<a class="${param.searchType3 eq '화식간식' ? 'on' : ''}"
-						href="recipelist?recipeType=${param.recipeType}&searchType1=${param.searchType1}&searchType2=${param.searchType2}&searchType3=화식간식">화식간식</a>
-				</c:if>
-				<c:if test="recipeType=${param.recipeType}&searchType1=${param.searchType1}&${param.searchType2 == '기타'}">					
-				</c:if>
-			</div>
-			<div id="searchdiv">
+			<div id="searchdiv" style="margin-left: 1036px;">
 				<c:choose>
 					<c:when test="${param.keyword == '' || param.keyword eq null}">
 						<input type="text" id="keyword" placeholder="'레시피제목' 검색" />
@@ -103,95 +67,60 @@
 		</div>
 
 		<div id="recipe_container">
-			
+
 
 			<div class="recipe-line">
 				<c:if test="${fn:length(response.list) == 0}">
 					<div id="noresult">해당하는 레시피가 없습니다.</div>
 				</c:if>
 				<c:forEach var="recipe" items="${response.list}">
-					<div class="recipe" id="${recipe.recipe_id}">
-						<div class="recipe_img"
-							style="background-image: url(https://storage.googleapis.com/${recipe.image});">
-
-
-							<c:if test="${!recipe.is_like}">
-								<div class="recipe_cover">
-									<button class="like-button"
-										data-recipe-id="${recipe.recipe_id}">
-										<div class="likes_num">${recipe.likes}</div>
-									</button>
-								</div>
-							</c:if>
-							<c:if test="${recipe.is_like}">
-								<div class="recipe_cover active"> 
-									<button class="like-button"
-										data-recipe-id="${recipe.recipe_id}">
-										<div class="likes_num">${recipe.likes}</div>
-									</button>
-								</div>
-							</c:if>
-						</div>
-
-						<div id="recipe_info">
-							<div class="info_title">
-								<span>${recipe.recipe_title}</span>
+					<c:if test="${recipe.recipe_of_the_month}">
+						<div class="recipe" id="${recipe.recipe_id}">
+							<div class="recipe_img"
+								style="background-image: url(https://storage.googleapis.com/${recipe.image});">
+								<c:if test="${!recipe.is_like}">
+									<div class="recipe_cover">
+										<button class="like-button"
+											data-recipe-id="${recipe.recipe_id}">
+											<div class="likes_num">${recipe.likes}</div>
+										</button>
+									</div>
+								</c:if>
+								<c:if test="${recipe.is_like}">
+									<div class="recipe_cover active">
+										<button class="like-button"
+											data-recipe-id="${recipe.recipe_id}">
+											<div class="likes_num">${recipe.likes}</div>
+										</button>
+									</div>
+								</c:if>
 							</div>
-							<div class="info_content">
-								<span class="recipe_content">${recipe.recipe_contents}</span>
-
-							</div>
-							<div id="info_bottom">
-								<div class="info_writer">
-									<span>${recipe.user.name}</span>
+							<div id="recipe_info">
+								<div class="info_title">
+									<span>${recipe.recipe_title}</span>
 								</div>
-								<div class="info_date">
-									<span style="margin-right: 10px;"><fmt:formatDate
-											value="${recipe.recipe_created_at}" pattern="yyyy.MM.dd" /></span>
-									<span style="margin-right: 5px;">조회수 ${recipe.view_cnt}</span>									
+								<div class="info_content">
+									<span class="recipe_content">${recipe.recipe_contents}</span>
+								</div>
+								<div id="info_bottom">
+									<div class="info_writer">
+										<span>${recipe.user.name}</span>
+									</div>
+									<div class="info_date">
+										<span style="margin-right: 10px;"><fmt:formatDate
+												value="${recipe.recipe_created_at}" pattern="yyyy.MM.dd" /></span>
+										<span style="margin-right: 5px;">조회수 ${recipe.view_cnt}</span>
+									</div>
 								</div>
 							</div>
 						</div>
-
-					</div>
+					</c:if>
 				</c:forEach>
 			</div>
+
 		</div>
+
 		
-		
-
-<script>
-  // 세션에서 user_id 값을 가져와서 JavaScript 변수에 할당
-  var user_id = '<%= session.getAttribute("user_id") %>';
-
-
-  // user_id 값을 확인하기 위해 JavaScript에서 출력
-  console.log('user_id:', user_id);
-
-  function checkLoginAndGoToWrite() {
-    if (user_id =='null') {
-      alert('로그인이 필요합니다. 로그인 페이지로 이동합니다.');
-      window.location.href = '/signin'; // 로그인 페이지로 이동
-      // 글쓰기 기능 막기
-      return; // 이동을 막기 위해 return 추가
-    }
-
-    else{// user_id가 존재하면 글쓰기 페이지로 이동
-    window.location.href = '/recipecreate';
-  }
-  }
-</script>
-		<!-- 글쓰기 -->
-
-		<c:if test="${param.recipeType eq '나만의레시피'}">
-			<div id="recipe_write">				
-					<div class="write">
-						<button onclick="checkLoginAndGoToWrite()">글쓰기</button>
-					</div>
-				</a>
-			</div>
-		</c:if>
-
 		<div class="page">
 			<div id="pagination">
 				<c:if test="${fn:length(response.list) != 0}">
@@ -385,6 +314,6 @@ $(".modal_loginbtn").on('click',function(){
 	location.href = "/signin";
 });
 </script>
-<script src="/js/recipe/nav.js"></script>
 <script src="/js/recipe/recipeList.js"></script>
+
 </html>

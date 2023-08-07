@@ -2,12 +2,9 @@ package recipe;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.servlet.http.HttpSession;
@@ -26,11 +23,7 @@ public class RecipeController {
     public String showRecipeCreateForm() {
         return "recipe/recipeCreate";
     }
-
-    @GetMapping("/recipelistbest")
-    public String recipeListBest() {
-        return "recipe/recipeListBest";
-    }
+  
 
     @PostMapping("/recipecreate")
     public String createRecipe(RecipeDTO recipeDTO, HttpSession session) {

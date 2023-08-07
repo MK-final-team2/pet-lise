@@ -17,6 +17,7 @@
 		<result column="likes" property="likes" />
   		<result column="comments" property="comments" />
   		<result column="view_cnt" property="view_cnt" />
+  		<result column="recipe_of_the_month" property="recipe_of_the_month" />
 		<result column="sub_category" property="sub_category" />
 		<result column="recipe_of_the_month_registration_date"
 			property="recipe_of_the_month_registration_date" />
@@ -53,9 +54,8 @@
     INSERT INTO recipeLike
     (user_id, recipe_id, is_like)
     VALUES (#{user_id}, #{recipe_id}, true)
-    ON DUPLICATE KEY UPDATE is_like = true;
+    ON DUPLICATE KEY UPDATE is_like = true;  
 	</insert>
-
 
 	<!-- 좋아요 등록 -1 -->
 	<update id="likeDown" parameterType="String">
@@ -98,4 +98,8 @@
         FROM recipe
         WHERE recipe_id = #{recipeId}
     </select>
+    
+    
+
+    
 </mapper>

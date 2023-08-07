@@ -3,7 +3,6 @@ package recipe;
 import java.util.HashMap;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Update;
 import org.springframework.data.repository.query.Param;
 
 @Mapper
@@ -25,6 +24,6 @@ public interface RecipeDAO {
     void recipeViewCount(@Param("recipe_id") String recipe_id);
     RecipeDTO getRecipeDetailById(String recipe_id);
 
-   	
+    
    
 }

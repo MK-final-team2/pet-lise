@@ -163,27 +163,33 @@
 		</div>
 
 
-<script>
-  // 세션에서 user_id 값을 가져와서 JavaScript 변수에 할당
-  var user_id = '<%= session.getAttribute("user_id") %>';
+		<script>
+			var user_id = '<%=session.getAttribute("user_id")%>';
 
+			//user_id 값을 확인하기 위해 JavaScript에서 출력
+			console.log('user_id:', user_id);
 
-  // user_id 값을 확인하기 위해 JavaScript에서 출력
-  console.log('user_id:', user_id);
+			function checkLoginAndGoToWrite() {
+				if (user_id === 'null') {
+					// 모달 띄우기
+					document.getElementById('login_modal').style.display = 'block';
+				} else {
+					// user_id가 존재하면 글쓰기 페이지로 이동
+					window.location.href = '/recipecreate';
+				}
+			}
 
-  function checkLoginAndGoToWrite() {
-    if (user_id =='null') {
-      alert('로그인이 필요합니다. 로그인 페이지로 이동합니다.');
-      window.location.href = '/signin'; // 로그인 페이지로 이동
-      // 글쓰기 기능 막기
-      return; // 이동을 막기 위해 return 추가
-    }
+			function closeModal() {
+				// 모달 닫기
+				document.getElementById('login_modal').style.display = 'none';
+			}
 
-    else{// user_id가 존재하면 글쓰기 페이지로 이동
-    window.location.href = '/recipecreate';
-  }
-  }
-</script>
+			function goToLoginPage() {
+				// 모달 닫고 로그인 페이지로 이동
+				closeModal();
+				window.location.href = '/signin';
+			}
+		</script>
 		<!-- 글쓰기 -->
 
 		<c:if test="${param.recipeType eq '나만의레시피'}">
@@ -387,6 +393,8 @@ $(".modal_cancelbtn").on('click',function(){
 $(".modal_loginbtn").on('click',function(){
 	location.href = "/signin";
 });
+
+
 </script>
 
 

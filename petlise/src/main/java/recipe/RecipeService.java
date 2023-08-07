@@ -4,10 +4,13 @@ package recipe;
 
 import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import recipe.list.RecipeListDTO;
 
 
 @Service
@@ -80,6 +83,9 @@ public class RecipeService {
     public void recipeViewCount(String recipe_id) {
         recipeDAO.recipeViewCount(recipe_id);
     }
+    
+   
+
   	 
 }
 
