@@ -40,16 +40,6 @@
 	});
 
 
-//주문날짜 표현
-	var today = new Date();
-	var year = today.getFullYear();
-	var month = (today.getMonth() + 1).toString().padStart(2, '0');
-	var day = today.getDate();
-	var order_date = year + "." + month + "." + day;
-	
-	document.getElementById("order_date").textContent = order_date;
-
-
 //상품 전체 Point 계산
 	var productPrices = document.getElementsByClassName("product_price");
 	var productQuantities = document.getElementsByClassName("product_quantity");
@@ -76,11 +66,13 @@
 
 
 // 잔여 Point 계산
-	calcChange = 45000 - calcTotalPayment;
-	
-	var formattedChange = calcChange.toLocaleString();
-	var change = document.getElementById("change");
-	change.innerText = formattedChange;
+  var userPointValue = document.getElementById("userPoint").textContent.replace(/,/g, "");
+  var userPoint = parseInt(userPointValue);
+  var calcChange = userPoint - calcTotalPayment;
+
+  var formattedChange = calcChange.toLocaleString();
+  var change = document.getElementById("change");
+  change.innerText = formattedChange;
 
 
 // 결제하기 버튼
@@ -192,10 +184,31 @@ function updateSales() {
             product_ids: product_ids
         },
         success: function(response) {
-            location.href = "/orderend";
+        	updatePointPayment();
         },
         error: function(xhr, status, error) {
             console.log("판매량 업데이트 에러:", error);
         }
     });
+}
+
+//포인트 업데이트 함수
+function updatePointPayment(user_id){
+	var point = calcChange;
+	
+	$.ajax({
+	    url: '/updatepointpayment',
+	    type: 'POST',
+	    dataType: 'json',
+	    data: {
+	        user_id: user_id,
+	        point: point
+	    },
+	    success: function(response) {
+	        location.href = "/orderend";
+	    },
+	    error: function(xhr, status, error) {
+	        console.log("판매량 업데이트 에러:", error);
+	    }
+	});
 }

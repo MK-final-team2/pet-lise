@@ -2,23 +2,15 @@ package mypage.orderlist;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import shop.payment.ShopOrderInfoDTO;
 
+@Mapper
 @Repository
-public class OrderListDAO {
+public interface OrderListDAO {
 	
-	@Autowired
-	SqlSession session;
-	
-	public List<ShopOrderInfoDTO> getMyOrder(String user_id){
-		return session.selectList("getMyOrder", user_id);
-	}
-	
-	public int cancelOrder(String order_id) {
-		return session.update("cancelOrder", order_id);
-	}
+	List<ShopOrderInfoDTO> getMyOrder(String user_id);
+	int cancelOrder(String order_id);
 }

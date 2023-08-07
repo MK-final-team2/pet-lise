@@ -25,12 +25,10 @@ public class ShopPaymentController {
 	@GetMapping("/payment")
 	public ModelAndView payment(HttpSession session) throws Exception {
 		ProductDTO ProductDTO = new ProductDTO();
-
-		session.setAttribute("user_id", "petlise");		
 		String user_id = session.getAttribute("user_id").toString();
 
 		List<ShopOrderProductDTO> orderProduct = service.getOrderList(user_id);
-		List<UserDTO> userInfo = service.getUserInfo(user_id);
+		UserDTO userInfo = service.getUserInfo(user_id);
 		List<ProductDTO> products = service.getProducts(ProductDTO);
 
 		ModelAndView mv = new ModelAndView();
@@ -73,6 +71,13 @@ public class ShopPaymentController {
 		for (int product_id : productIds) {
 			result += service.updateSales(product_id);
 		}
+		return "{\"result\":\"" + result + "\"}";
+	}
+	
+	@PostMapping("/updatepointpayment")
+	@ResponseBody
+	public String updatePointPayment(String user_id) {
+		int result = service.updatePointPayment(user_id);
 		return "{\"result\":\"" + result + "\"}";
 	}
 }

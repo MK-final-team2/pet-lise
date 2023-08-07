@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="orderEnd">
+<mapper namespace="shop.payment.OrderEndDAO">
 
 <!-- 배송정보 불러오기 -->
 	<select id="getOrderInfo" resultType="orderinfodto">
-		SELECT * FROM `order` WHERE `user_id` = #{user_id} ORDER BY `order_id` DESC LIMIT 1;
+		SELECT * FROM `order` WHERE `user_id` = #{user_id} ORDER BY `order_id` ASC LIMIT 1;
 	</select>
 
 </mapper>

@@ -2,17 +2,12 @@ package shop.payment;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+@Mapper
 @Repository
-public class OrderEndDAO {
+public interface OrderEndDAO {
 	
-	@Autowired
-	SqlSession session;
-	
-	public List<ShopOrderInfoDTO> getOrderInfo(String user_id){
-		return session.selectList("getOrderInfo", user_id);
-	}
+	List<ShopOrderInfoDTO> getOrderInfo(String user_id);
 }

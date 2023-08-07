@@ -21,7 +21,6 @@ public class OrderListController {
 	
 	@GetMapping("/orderlist")
 	public ModelAndView getMyOrder(HttpSession session) {
-		session.setAttribute("user_id", "petlise");
 		String user_id = session.getAttribute("user_id").toString();
 
 		ModelAndView mv = new ModelAndView();

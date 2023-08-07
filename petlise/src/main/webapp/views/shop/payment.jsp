@@ -86,7 +86,6 @@
 		</div>
 			<div class="order_Detail">
 				<div class="order_Info">
-					<c:forEach var="userInfo" items="${userInfo}">
 						<div class="member_Info_Title">회원 정보</div>
 							<table class="member_Info">
 								<tr class="Else">
@@ -114,7 +113,7 @@
 									<td class="col_2"></td>
 								</tr>																
 							</table>
-					</c:forEach>
+
 						<div class="delivery_Info_Title">배송 정보<span id="address_Check"><input type="checkbox" id="address_CheckBox"><label for="address_CheckBox">회원 정보 동일</label></span></div>
 							<table class="delivery_Info">
 								<tr>
@@ -166,7 +165,7 @@
 							</div>																
 							<div class="receipt_Col_2">
 								<div class="receipt_Row_0">
-									<p id="order_date"></p>
+									<p id="order_date"><fmt:formatDate value="<%= new java.util.Date() %>" pattern="yyyy.MM.dd" /></p>
 								</div>
 								<div class="receipt_Row_1">
 									<p><img src="/images/mypage/coin2.svg" id="point_Icon"><span id="totalPoint"></span></p>
@@ -174,7 +173,7 @@
 								</div>
 								<div class="receipt_Row_2">
 									<p><img src="/images/mypage/coin2.svg" id="point_Icon"><span id="totalPayment"></span></p>
-									<p><img src="/images/mypage/coin2.svg" id="point_Icon">45,000</p>
+									<p><img src="/images/mypage/coin2.svg" id="point_Icon"><span id="userPoint"><fmt:formatNumber value="${userInfo.point}" pattern="#,###" /></span></p>
 								</div>
 								<div class="receipt_Row_3">
 									<p><img src="/images/mypage/coin2.svg" id="point_Icon"><span id="change"></span></p>
