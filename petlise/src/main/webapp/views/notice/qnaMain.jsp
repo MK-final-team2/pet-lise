@@ -67,5 +67,6 @@ uri="http://java.sun.com/jsp/jstl/core"%>
     <script src="/js/notice/qnaMain.js"></script>
     <script src="/js/admin/getDate.js"></script>
     <script src="/js/pagination.js"></script>
+    <script src="/js/notice/search.js"></script>
   </body>
 </html>
