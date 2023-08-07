@@ -22,12 +22,11 @@ public class ShopCartController {
 	ShopCartService service;
 
 	@GetMapping("/shopcart")
-	public ModelAndView cartList(HttpSession session) throws Exception {
+	public ModelAndView cartList(HttpSession session) {
 		ShopCartDTO dto = new ShopCartDTO();
 		ModelAndView mv = new ModelAndView();
-		session.setAttribute("user_id", "petlise");
 		String user_id = session.getAttribute("user_id").toString();
-		List<ShopCartDTO> cart = service.getCartList(dto);
+		List<ShopCartDTO> cart = service.getCartList(user_id);
 		
 		dto.setUser_id(user_id);
 		mv.addObject("cart", cart);
@@ -46,11 +45,11 @@ public class ShopCartController {
 	    return response;
 	}
 
-	@GetMapping("/deletecartlist")
+	@PostMapping("/deletecartlist")
 	@ResponseBody
 	public String cartDelete(@RequestParam("product_name") String product_name) {
-		service.deleteCartList(product_name);
-		return "";
+		int result = service.deleteCartList(product_name);
+		return "{\"result\":\"" + result + "\"}";
 	}
 
 	@PostMapping("/savecartlist")

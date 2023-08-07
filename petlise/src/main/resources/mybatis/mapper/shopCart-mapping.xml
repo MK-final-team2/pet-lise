@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="shopCart">
+<mapper namespace="shop.cart.ShopCartDAO">
 
 <!-- 장바구니 목록 불러오기 -->
 	<select id="getCartList" resultType="cartdto">
-		SELECT * FROM cart;
-<!--  	WHERE user_id = #{user_id}; -->
+		SELECT * FROM `cart` WHERE `user_id` = #{user_id};
 	</select>
 
 <!-- 장바구니 목록 삭제 -->
-	<select id="deleteCartList" resultType="int">
-		DELETE FROM cart WHERE product_name = #{product_name};
-<!--  	WHERE user_id = #{user_id}; -->
-	</select>
+	<delete id="deleteCartList" parameterType="String">
+		DELETE FROM `cart` WHERE `product_name` = #{product_name};
+	</delete>
 
 <!-- 선택된 장바구니 상품 주문하기 -->
 	<insert id="saveCartList" parameterType="cartdto">
