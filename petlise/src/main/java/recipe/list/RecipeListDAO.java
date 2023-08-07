@@ -1,6 +1,5 @@
 package recipe.list;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -17,5 +16,9 @@ public interface RecipeListDAO {
     //Pagination
     List<RecipeListDTO> getAllRecipePaging(SearchDTO dto);
     Integer getCount(SearchDTO dto); 
+    
+    List<RecipeListDTO> getRecipeOfTheMonth(SearchDTO dto);
+    Integer getRecipeOfTheMonthCount(SearchDTO dto); 
+    
     
 }

@@ -21,18 +21,20 @@ public class RecipeListDTO {
 	
 		
 
-	public boolean isIs_like() {
-		return is_like;
-	}
-	public void setIs_like(boolean is_like) {
-		this.is_like = is_like;
-	}
+	
 	public boolean isRecipe_of_the_month() {
 		return recipe_of_the_month;
 	}
 	public void setRecipe_of_the_month(boolean recipe_of_the_month) {
 		this.recipe_of_the_month = recipe_of_the_month;
 	}
+	public boolean isIs_like() {
+		return is_like;
+	}
+	public void setIs_like(boolean is_like) {
+		this.is_like = is_like;
+	}
+
 	public int getLikes() {
 		return likes;
 	}

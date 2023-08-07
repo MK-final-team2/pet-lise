@@ -38,15 +38,14 @@
 
 #search_container{
   display: flex; 
-  justify-content: space-between;
-  margin-right: 130px;
+  justify-content: space-between;  
   z-index: 92;
-  
+  margin: 0 auto;
+  width:1240px;
+  min-width:1240px;  
 }
 
-.category {
-  margin-left: 260px;
-  
+.category { 
 
   > a {
     
@@ -54,6 +53,7 @@
     border-radius: 25px;
     font: var(--button14);
     padding: 8px 20px;
+    transition: background-color 0.4s;
   }
 
   >a:hover {
@@ -87,7 +87,7 @@
 
 
 #searchdiv{
-  margin-right: 130px;
+
   position: relative;
   
   
@@ -270,9 +270,9 @@
 #recipe_write {
   display: flex;
   justify-content: flex-end;
-  margin-top: 10px;
-  margin-right: 270px;
-  margin-bottom: 40px;
+  margin: 0 auto;
+width:1240px;
+min-width:1240px;
 }
 
 .write button {
@@ -288,6 +288,7 @@
   font: var(--button16);
   color: var(--light-text);
   transition: color 0.3s;
+  margin-top: 10px;
 }
 
 .write button:hover {

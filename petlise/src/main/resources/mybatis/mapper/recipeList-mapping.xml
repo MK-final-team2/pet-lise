@@ -19,7 +19,7 @@
     <result column="sub_category" property="sub_category" />
     <result column="likes" property="likes" />
     <result column="comments" property="comments" />
-    <result column="recipe_of_the_month_registration_date" property="recipe_of_the_month_registration_date" />
+    <result column="recipe_of_the_month" property="recipe_of_the_month" />
     <collection property="user" resultMap="user" />
 </resultMap>
 
@@ -43,6 +43,30 @@
 	recipe_created_at DESC;
 </select>
 
+	<select id="getRecipeOfTheMonth" resultMap="recipelistdtomap"
+		parameterType="pagination.SearchDTO">
+	    SELECT *
+	    FROM recipe r
+	    JOIN user u ON r.user_id = u.user_id AND r.recipe_category = #{recipeType}
+	    WHERE r.recipe_of_the_month = true
+	    <if test="keyword != null and keyword != ''">
+			AND r.recipe_title LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		ORDER BY r.recipe_created_at DESC
+		LIMIT #{pagination.limitStart}, #{recordSize}
+	</select>
+	
+	<select id="getRecipeOfTheMonthCount" resultType="int"
+		parameterType="pagination.SearchDTO">
+	    SELECT count(*)
+	    FROM recipe r
+	    JOIN user u ON r.user_id = u.user_id AND r.recipe_category = #{recipeType}
+	    WHERE r.recipe_of_the_month = true
+	    <if test="keyword != null and keyword != ''">
+			AND r.recipe_title LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+	</select>
+	
 
 
 	<!-- ▼▼▼▼Pagination▼▼▼▼ -->
@@ -78,7 +102,8 @@
 	<!-- ▲▲▲▲Pagination▲▲▲▲ -->
 	
 
-	
+
+
 
 </mapper>
 
