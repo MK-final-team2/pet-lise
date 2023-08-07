@@ -239,13 +239,13 @@ $(document).ready(function() {
 				<a href="/noticeMain">공지사항</a>
 			</div>
 			<div class="header-list-title">
-				<a href="">문의사항</a>
-			</div>
-			<div class="header-list-title">
 				<a href="">이벤트</a>
 			</div>
 			<div class="header-list-title">
-				<a href="">임시보호소안내</a>
+				<a href="/qna">문의사항</a>
+			</div>
+			<div class="header-list-title">
+				<a href="/findfamily">가족찾기</a>
 			</div>
 		</div>
 	</div>
