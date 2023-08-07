@@ -5,13 +5,13 @@
 	<!-- Retrieve a list of pet places by category -->
 	<select id="getNoticeList" resultType="board.notice.NoticeDTO">
 		SELECT *
-		FROM petlise.noticeboard
+		FROM noticeBoard
 	</select>
 
 	<!-- Pagination -->
 	<select id="getAllNoticePaging" resultType="board.notice.NoticeDTO" parameterType="pagination.SearchDTO">
 		SELECT *
-		FROM petlise.noticeboard
+		FROM noticeBoard
 		
 			<if test="keyword != null and keyword != ''">
 				AND title LIKE CONCAT('%', #{keyword}, '%')
@@ -22,7 +22,7 @@
 
 	<select id="getCount" resultType="int" parameterType="pagination.SearchDTO">
 		SELECT COUNT(*)
-		FROM petlise.noticeboard
+		FROM noticeBoard
 		
 			<if test="keyword != null and keyword != ''">
 				AND title LIKE CONCAT('%', #{keyword}, '%')
