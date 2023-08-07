@@ -16,6 +16,9 @@ public class AdminUserServiceImpl implements AdminUserService {
 	public List<AdminUserResponseDTO> findJoinUser(){
 		return dao.findJoinUser();
 	}
+	public void updateUserPoint(int point, String id) {
+		dao.updateUserPoint(point, id);
+	}
 	public int findTodayOrder() {
 		return dao.findTodayOrder();		
 	}

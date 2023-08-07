@@ -60,7 +60,25 @@ table tbody td {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+table tbody td:nth-of-type(4) span { cursor: pointer; }
 table tbody td:first-of-type,
 table tbody td:last-of-type {
   padding: 0 10px;
+}
+
+#pointInput {
+  width: 100%;
+  height: 45px;
+  border: 1px solid var(--gray4);
+  border-radius: 8px;
+  padding: 0 15px;
+}
+#pointInput:focus {
+  border-color: var(--light-main);
+}
+#pointInput::-webkit-outer-spin-button,
+#pointInput::-webkit-inner-spin-button {
+	appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
 }

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -46,11 +45,7 @@ pageEncoding="UTF-8"%>
                 placeholder="제목 or 작성자"
               />
             </div>
-            <a
-              href="/admin/createexpertrecipe${pet_category == '고양이' ? '-cat' : ''}"
-              class="editButton"
-              >등록</a
-            >
+            <a href="/admin/createexpertrecipe${pet_category == '고양이' ? '-cat' : ''}" class="editButton" >등록</a>
           </div>
 
           <div class="tableWrap">
