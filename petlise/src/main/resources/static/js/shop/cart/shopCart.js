@@ -25,7 +25,7 @@ $(document).ready(function(){
         
         $.ajax({
             url: 'deletecartlist',
-            type: 'GET',
+            type: 'POST',
             data: { product_name: productName },
             success: function(response) {
                 container.remove();
@@ -45,7 +45,7 @@ $(document).ready(function(){
             
             $.ajax({
                 url: 'deletecartlist',
-                type: 'GET',
+                type: 'POST',
                 data: { product_name: container.find('.cart_info a').text().trim() },
                 success: function(response) {
                     container.remove();
@@ -141,5 +141,5 @@ $(document).ready(function(){
 
 // 모두선택, 선택삭제 버튼 표시
 function shop_button(){
-	location.href = '#';
+	location.href = '/shop';
 } // empty_shop 버튼

@@ -60,7 +60,7 @@
 						<label for="product_check_${cart }"></label>
 					</div>
 					<div style="width: 460px;" class="cart_info">
-						<img class="cart_product_image" src="${cart.product_image }" alt="product_img">
+						<img class="cart_product_image" src="https://storage.googleapis.com/${cart.product_image }" alt="product_img">
 						<div>
 							<a href="#">${cart.product_name }</a>
 						</div>

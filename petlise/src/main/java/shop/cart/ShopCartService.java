@@ -11,8 +11,8 @@ public class ShopCartService {
 	@Autowired
 	ShopCartDAO dao;
 
-	public List<ShopCartDTO> getCartList(ShopCartDTO dto){
-		return dao.getCartList(dto);
+	public List<ShopCartDTO> getCartList(String user_id){
+		return dao.getCartList(user_id);
 	}
 
 	public int deleteCartList(String product_name) {

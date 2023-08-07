@@ -2,26 +2,14 @@ package shop.cart;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+@Mapper
 @Repository
-public class ShopCartDAO {
+public interface ShopCartDAO {
 
-	@Autowired
-	SqlSession session;
-
-	public List<ShopCartDTO> getCartList(ShopCartDTO dto){
-		return session.selectList("getCartList", dto);
-	}
-
-	public int deleteCartList(String product_name) {
-		return session.delete("deleteCartList", product_name);
-	}
-	
-	public int saveCartList(ShopCartDTO dto){
-		return session.insert("saveCartList", dto);
-	}
-	
+	List<ShopCartDTO> getCartList(String user_id);
+	int deleteCartList(String product_name);
+	int saveCartList(ShopCartDTO dto);
 }
