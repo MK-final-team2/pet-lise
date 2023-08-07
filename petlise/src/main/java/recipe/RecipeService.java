@@ -18,8 +18,7 @@ public class RecipeService {
     public RecipeService(RecipeDAO recipeDAO) {
         this.recipeDAO = recipeDAO;
     }
-    
-    
+        
     public void insertRecipe(RecipeDTO recipeDTO, String user_id) {
         recipeDTO.setRecipe_id(UUID.randomUUID().toString());  // 게시글 ID 설정 (UUID 사용)
         recipeDTO.setRecipe_created_at(new Timestamp(System.currentTimeMillis()));  // 게시글 생성 시간 설정
@@ -38,8 +37,6 @@ public class RecipeService {
         
         // 레시피 등록시 사용자 포인트 업데이트
         recipeDAO.updateUserPoint(user_id, 100); // 100 포인트 추가
-
-
         recipeDAO.insertRecipe(recipeDTO);  // 게시글 등록
     }
     
@@ -51,6 +48,12 @@ public class RecipeService {
   		
   		int result1 = recipeDAO.likeUp(recipe_id);
   		int result2 = recipeDAO.insertLike(map);
+  		
+  	// likes컬럼 20을 넘으면 recipe_of_the_month 값 1로 변환
+  	    int likes = recipeDAO.likeCntRecipe(recipe_id);
+  	    if (likes > 29) {
+  	        updateRecipeOfMonth(recipe_id, 1);
+  	    }
   		
   		return result1+result2;
   	};
@@ -80,9 +83,10 @@ public class RecipeService {
     public void recipeViewCount(String recipe_id) {
         recipeDAO.recipeViewCount(recipe_id);
     }
-    
-   
-
+        
+    public int updateRecipeOfMonth(String recipe_id, int value) {
+        return recipeDAO.updateRecipeOfMonth(recipe_id, value);
+    }
   	 
 }
 
