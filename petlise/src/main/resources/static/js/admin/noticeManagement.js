@@ -88,7 +88,7 @@ function ajaxData(keyword, page) {
             el => `
           	<tr>
               <td>${el?.category}</td>
-              <td id="${el?.notice_id}">${el?.title}</td>
+              <td onclick="location.href='qnadetail?id=${el?.notice_id}">${el?.title}</td>
               <td>${el?.name}</td>
               <td>${getDate(el?.created_at)}</td>
               <td>${el?.view_count == undefined ? 0 : el?.view_count}</td>
