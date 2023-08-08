@@ -20,7 +20,7 @@
 	  $('#address_CheckBox').click(function() {
 	    if ($(this).is(':checked')) {
 	      
-	      var memberAddress = $('#member_Address').text();
+	      var memberAddress = $('#user_address').val();
 	      var addressParts = memberAddress.split(',');
 	      
 	      $('#sample6_postcode').val(addressParts[0]);
