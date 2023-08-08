@@ -9,6 +9,7 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <link rel="stylesheet" href="css/shop/shopCart.css" />
 <link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/shop/modal_main.css" />
 <link rel="icon" href="/images/favicon.ico" />
 <link rel="apple-touch-icon" href="/images/favicon.ico" />
 <title>Pet LiSe</title>
@@ -53,16 +54,16 @@
 						<p class="Else" data-user_id="${cart.user_id}">${cart.user_id}</p>
 					</div>
 					<div>
-						<p class="Else" data-product_id="${cart.product_id }"></p>
+						<p class="Else" data-product_id="${cart.product_id}"></p>
 					</div>					
 					<div style="width: 100px;">
 						<input type="checkbox" id="product_check_${cart }" class="product_check">
 						<label for="product_check_${cart }"></label>
 					</div>
 					<div style="width: 460px;" class="cart_info">
-						<img class="cart_product_image" src="https://storage.googleapis.com/${cart.product_image }" alt="product_img">
+						<img class="cart_product_image" src="https://storage.googleapis.com/${cart.product_image}" alt="product_img">
 						<div>
-							<a href="#">${cart.product_name }</a>
+							<a href="/shopdetail?product_id=${cart.product_id}">${cart.product_name}</a>
 						</div>
 					</div>
 					<div style="width: 130px;" class="cart_quantity" data-quantity="${cart.quantity }">${cart.quantity }</div>
@@ -102,8 +103,20 @@
                 <img src="/images/shop/shopdetail/pawprint_black.svg" style="width: 25px;">
             </button>
         </div>
-
     </div><!--layout end-->
+    
+    <div class="modal" id="confirm_modal">
+		<div class="modal_contents">
+			<div class="modal_text">
+			구매하실 상품을 선택해 주세요
+			</div>
+			<div class="modal_btn">
+				<button class="modal_cancelbtn">확인</button>
+			</div>
+		</div>
+	</div>
+    
+    
 	<jsp:include page="../footer.jsp" />    
 	<script src="/js/shop/cart/shopCart.js"></script>    
 </body>    

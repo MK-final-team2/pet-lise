@@ -67,19 +67,19 @@ $(document).ready(function() {
 			</div>
 			<div class="bestrecipes" style="background-image: url(https://storage.googleapis.com/${expertRecipes[0].image})">
 				<div class="recipe_rank" style="margin-left: 10px;">1</div>
-				<a href="/shop" class="recipe_cover">
+				<a href="/recipedetail?recipe_id=${expertRecipes[0].recipe_id}" class="recipe_cover">
 					<span>${expertRecipes[0].recipe_title}</span>
 					<span>${expertRecipes[0].user.name}</span>
 				</a>
 			</div>
 			<div class="bestrecipes" style="background-image: url(https://storage.googleapis.com/${expertRecipes[1].image})">
-				<a href="/shop" class="recipe_cover" >
+				<a href="/recipedetail?recipe_id=${expertRecipes[1].recipe_id}" class="recipe_cover" >
 					<span>${expertRecipes[1].recipe_title}</span>
 				</a>
 				<div class="recipe_rank">2</div>
 			</div>
 			<div class="bestrecipes" style="background-image: url(https://storage.googleapis.com/${expertRecipes[2].image})">
-				<a href="/shop" class="recipe_cover">
+				<a href="/recipedetail?recipe_id=${expertRecipes[2].recipe_id}" class="recipe_cover">
 					<span>${expertRecipes[2].recipe_title}</span>
 				</a>
 				<div class="recipe_rank">3</div>
@@ -92,20 +92,20 @@ $(document).ready(function() {
 				<span>나만의 레시피 Top3</span>
 			</div>
 			<div class="bestrecipes" style="background-image: url(https://storage.googleapis.com/${myRecipes[0].image})">
-				<a href="/shop" class="recipe_cover">
+				<a href="/recipedetail?recipe_id=${myRecipes[0].recipe_id}" class="recipe_cover">
 					<span>${myRecipes[0].recipe_title}</span>
 					<span>${myRecipes[0].user.name}</span>
 				</a>
 				<div class="recipe_rank" style="margin-left: 10px;">1</div>
 			</div>
 			<div class="bestrecipes" style="background-image: url(https://storage.googleapis.com/${myRecipes[2].image})">
-				<a href="/shop" class="recipe_cover">
+				<a href="/recipedetail?recipe_id=${myRecipes[2].recipe_id}" class="recipe_cover">
 					<span>${myRecipes[2].recipe_title}</span>
 				</a>
 				<div class="recipe_rank">3</div>
 			</div>
 			<div class="bestrecipes" style="background-image: url(https://storage.googleapis.com/${myRecipes[1].image})">
-				<a href="/shop" class="recipe_cover">
+				<a href="/recipedetail?recipe_id=${myRecipes[1].recipe_id}" class="recipe_cover">
 					<span>${myRecipes[1].recipe_title}</span>
 				</a>
 				<div class="recipe_rank">2</div>

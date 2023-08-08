@@ -92,65 +92,82 @@ $(document).ready(function(){
     
     // 주문하러가기 버튼
 	$('#order_button').click(function() {
-		//이전 주문목록 남아있는것 지우기
-		$.ajax({
-	        url: '/clearnonpeyment',
-	        type: 'post',
-	        dataType: 'json',
-	        success: function(response) {},
-	        error: function(xhr, status, error) {
-	            console.error(error);
-	        }
-	    });
+		if($("input:checkbox[class='product_check']:checked").length==0){
+			$("#confirm_modal").css("top", $(window).scrollTop()+"px");
+			$("#confirm_modal").css('display', 'block');
+			
+			$('#confirm_modal').on('scroll touchmove mousewheel', function(event) {
+				event.preventDefault();
+				event.stopPropagation();
+				return false;
+			});
+		}
+		else{
+			//이전 주문목록 남아있는것 지우기
+			$.ajax({
+		        url: '/clearnonpeyment',
+		        type: 'post',
+		        dataType: 'json',
+		        success: function(response) {},
+		        error: function(xhr, status, error) {
+		            console.error(error);
+		        }
+		    });
+			
+		    $.ajax({
+		        url: '/getUserId',
+		        type: 'GET',
+		        dataType: 'json',
+		        success: function(response) {
+		            var user_id = response.user_id;
+					
+		            $('.product_check:checked').each(function() {
+		                var container = $(this).closest('.cart_product_container');
+		                var product_id = container.find('[data-product_id]').data('product_id');
+		                var product_name = container.find('.cart_info a').text().trim();
+		                var product_image = container.find('.cart_product_image').attr('src');
+		                var product_price = parseInt(container.find('[data-product_price]').data('product_price'));
+		                var quantity = parseInt(container.find('.cart_quantity').text().trim());
+		                var price_total = parseInt(container.find('[data-price_total]').data('price_total'));
 		
-		
-	    $.ajax({
-	        url: '/getUserId',
-	        type: 'GET',
-	        dataType: 'json',
-	        success: function(response) {
-	            var user_id = response.user_id;
-	
-	            $('.product_check:checked').each(function() {
-	                var container = $(this).closest('.cart_product_container');
-	                var product_id = container.find('[data-product_id]').data('product_id');
-	                var product_name = container.find('.cart_info a').text().trim();
-	                var product_image = container.find('.cart_product_image').attr('src');
-	                var product_price = parseInt(container.find('[data-product_price]').data('product_price'));
-	                var quantity = parseInt(container.find('.cart_quantity').text().trim());
-	                var price_total = parseInt(container.find('[data-price_total]').data('price_total'));
-	
-	                $.ajax({
-	                    url: '/savecartlist',
-	                    type: 'POST',
-	                    contentType: 'application/json',
-	                    data: JSON.stringify({
-	                        user_id: user_id,
-	                        product_id: product_id,
-	                        product_name: product_name,
-	                        product_image: product_image,
-	                        product_price: product_price,
-	                        quantity: quantity,
-	                        price_total: price_total
-	                    }),
-	                    success: function(response) {
-	                        location.href = "/payment";
-	                    },
-	                    error: function(xhr, status, error) {
-	                        console.error(error);
-	                    }
-	                });
-	            });
-	        },
-	        error: function(xhr, status, error) {
-	            console.error(error);
-	        }
-	    });
+		                $.ajax({
+		                    url: '/savecartlist',
+		                    type: 'POST',
+		                    contentType: 'application/json',
+		                    data: JSON.stringify({
+		                        user_id: user_id,
+		                        product_id: product_id,
+		                        product_name: product_name,
+		                        product_image: product_image,
+		                        product_price: product_price,
+		                        quantity: quantity,
+		                        price_total: price_total
+		                    }),
+		                    success: function(response) {
+		                        location.href = "/payment";
+		                    },
+		                    error: function(xhr, status, error) {
+		                        console.error(error);
+		                    }
+		                });
+		            });
+		        },
+		        error: function(xhr, status, error) {
+		            console.error(error);
+		        }
+		    });
+		}//else
 	});
 
 }); // ready
 
-// 모두선택, 선택삭제 버튼 표시
+// ----- 모달이벤트(모달 내 취소버튼) -----
+$(".modal_cancelbtn").on('click',function(){
+	$(this).parents(".modal").css('display', 'none');
+});
+
+
+// 샵 이동버튼
 function shop_button(){
 	location.href = '/shop';
 } // empty_shop 버튼

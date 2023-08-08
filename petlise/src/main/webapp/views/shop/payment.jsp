@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
@@ -40,13 +41,9 @@
 				</div>
 			</div>
 		<div>
-			<c:forEach var="products" items="${products}">
-				<div class="Else">
-					<div class="product_id">${products.product_id}</div>
-					<div id="product_name">${products.product_name}</div>
-				</div>
-			</c:forEach>
 			<c:forEach var="orderProduct" items="${orderProduct}">
+				<input type="hidden" class="orderProduct_id" value ="${orderProduct.product_id}">
+				<input type="hidden" class="orderProduct_quantity" value ="${orderProduct.quantity}">
 			    <div class="table_Column">
 			    	<div class="Else">
 			    		<p id="product_User_Id" class="Else">${orderProduct.user_id}</p>
@@ -56,14 +53,14 @@
 			    	</div>			    	
 			        <div id="table_Product_Img">
 			            <p>
-			                <a href="#">
+			                <a href="/shopdetail?product_id=${orderProduct.product_id}">
 			                    <img class="product_image" src="${orderProduct.product_image}">
 			                </a>
 			            </p>
 			        </div>
 			        <div id="table_Product_Info">
 			            <p>
-			                <a href="#">
+			                <a href="/shopdetail?product_id=${orderProduct.product_id}">
 			                    <span class="product_name">${orderProduct.product_name}</span>				
 			                </a>
 			            </p>
@@ -102,7 +99,7 @@
 								</tr>						
 								<tr>
 									<td class="col_1">주소</td>
-									<td class="col_2" id="member_Address">${userInfo.address}</td>
+									<td class="col_2" id="member_Address">${fn:replace(userInfo.address, ',', ' ')}</td>
 								</tr>
 								<tr class="Else">
 									<td class="col_1"></td>
