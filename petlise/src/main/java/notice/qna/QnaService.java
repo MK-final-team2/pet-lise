@@ -16,4 +16,6 @@ public interface QnaService {
 	public List<CommentResponseDTO> findAllComment(String notice_id);
 	public void insertComment(String notice_id, String content);
 	public void deleteComment(String comment_id);
+	public void deleteAllComment(String notice_id);
+	public String selectInsertQna(String user_id);
 }

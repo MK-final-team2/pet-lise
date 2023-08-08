@@ -36,10 +36,10 @@ function ajaxData(page) {
 	              </p>
               	</div>
               	<div class="cate">
-		          <p>${el?.age}</p>
+		          <p>${el?.age.split("(년생)")[0]}년생</p>
 		          <p>${el?.colorCd}</p>
-		          <p>${el?.weight}</p>
-			      <p>${el?.processState}</p>
+		          <p>${el?.weight.split("(")[0]}kg</p>
+			      <p>${el?.processState.split("(")[0]}</p>
 		        </div>
               	<div class="address">
 	              <p>${el?.careAddr}</p>

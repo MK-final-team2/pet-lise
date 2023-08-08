@@ -83,7 +83,7 @@
 	margin: 0 auto;
 }
 .commentInfoWrap {
-	border: 1px solid var(--gray3);
+	border: 2px solid var(--light-stroke);
 	border-radius: 10px;
 	padding: 30px;
 	margin-bottom: 20px;

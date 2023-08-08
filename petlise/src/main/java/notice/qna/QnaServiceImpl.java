@@ -12,9 +12,9 @@ public class QnaServiceImpl implements QnaService {
 	
 	public List<QnAResponseDTO> findAllQna(String keyword, int page){
 		return dao.findAllQna(keyword, page);
-	}
+	} 
 	public void insertQna(QnaRequestDTO dto) {
-		dao.insertQna(dto);
+		dao.insertQna(dto); 
 	}
 	public QnaRequestDTO findQna (String notice_id) {
 		return dao.findQna(notice_id);
@@ -36,5 +36,11 @@ public class QnaServiceImpl implements QnaService {
 	}
 	public void deleteComment(String comment_id) {
 		dao.deleteComment(comment_id);
+	}
+	public void deleteAllComment(String notice_id) {
+		dao.deleteAllComment(notice_id);   
+	} 
+	public String selectInsertQna(String user_id) {
+		return dao.selectInsertQna(user_id);
 	}
 }
