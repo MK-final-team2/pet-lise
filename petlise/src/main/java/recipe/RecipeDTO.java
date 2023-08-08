@@ -15,7 +15,7 @@ public class RecipeDTO {
 	Timestamp recipe_created_at, recipe_updated_at;
 	boolean is_like;
 	
-	private UserDTO point;
+	private UserDTO point; 
 	
 	
 	
