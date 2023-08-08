@@ -31,8 +31,8 @@ function edit() {
   // 등록 전 유효성 검사
   let recipe_title = document.getElementById("recipeTitle").value;
   let pet_category = document.querySelector("input[name='pet_category']:checked");
-  let main_category = document.querySelector("#dropdown .select span").textContent; // 수정된 부분
-  let sub_category = document.querySelector("#dropdown2 .select span").textContent; // 수정된 부분
+  let main_category = document.querySelector("#dropdown .select span").textContent; 
+  let sub_category = document.querySelector("#dropdown2 .select span").textContent; 
   let recipe_contents = quill.root.innerHTML;
   let imageValue = $('#imageValue').val();
   let image = imageValue.length == 0 ? '' : imageValue;
@@ -82,6 +82,7 @@ function edit() {
 
   // 데이터 서버로 전송
   let formData = new FormData();
+  formData.append("recipe_id", $("#recipe_id").val());
   formData.append("recipe_title", recipe_title);
   formData.append("recipe_contents", recipe_contents);
   formData.append("main_category", main_category);
@@ -100,25 +101,9 @@ function edit() {
       console.log("레시피가 성공적으로 저장되었습니다.");
       
 
-      // 리다이렉션 처리
-      let petCategory = "강아지";
-      if (pet_category.value === "고양이") {
-        petCategory = "고양이";
-      }
-      let redirectUrl;
-      if (main_category === "일반식") {
-        redirectUrl = "recipelist";
-      } else if (main_category === "건강식") {
-        redirectUrl = "recipelist";
-      } else if (main_category === "간식") {
-        redirectUrl = "recipelist";
-      } else {
-        redirectUrl = "recipelist";
-      }
-      redirectUrl = `recipelist?recipeType=나만의레시피&searchType1=${petCategory}&searchType2=${main_category}&searchType3=전체`;
-      window.location.replace(redirectUrl);
-    },
-    
+       // 모달 띄우기
+      showEditModal(pet_category, main_category);
+    },    
     error: function(error) {
       // 저장 중 오류가 발생했을 때 처리
       console.log(error);
@@ -129,6 +114,34 @@ function edit() {
 
 }
 
+// 모달 띄우기
+function showEditModal(pet_category, main_category) {
+  var modal = document.getElementById("edit_modal");
+  modal.style.display = "block";
+
+  // 모달 확인 버튼 클릭 시 리다이렉션 처리
+  $("#edit_modal .edit_modal_okbtn").on('click', function() {
+    let petCategory = "강아지";
+    if (pet_category && pet_category.value === "고양이") {
+      petCategory = "고양이";
+    }
+    let redirectUrl;
+    if (main_category === "일반식") {
+      redirectUrl = "recipelist";
+    } else if (main_category === "건강식") {
+      redirectUrl = "recipelist";
+    } else if (main_category === "간식") {
+      redirectUrl = "recipelist";
+    } else {
+      redirectUrl = "recipelist";
+    }
+    redirectUrl = `recipelist?recipeType=나만의레시피&searchType1=${petCategory}&searchType2=${main_category}&searchType3=전체`;
+    window.location.replace(redirectUrl);
+
+    // 모달 닫기
+    modal.style.display = "none";
+  });
+}
 
 //-----제목 글자 수 제한-----
 document.addEventListener("DOMContentLoaded", function() {

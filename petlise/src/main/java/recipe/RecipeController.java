@@ -59,11 +59,4 @@ public class RecipeController {
         return "{\"result\":\"" + result + "\"}";
     }
 
-//    @PatchMapping("/recipedetail")
-//    public String showRecipeDetail(@RequestParam("recipe_id") String recipe_id, Model model) {
-//        // 조회수 증가를 위해 RecipeService의 recipeViewCount 메서드를 호출
-//        recipeService.recipeViewCount(recipe_id);
-//
-//        return "recipe/recipeDetail";
-//   }
 }

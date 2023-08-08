@@ -9,5 +9,5 @@ import recipe.RecipeDTO;
 @Repository
 public interface RecipeEditDAO {
 	RecipeDTO getRecipeEdit(String recipe_id);
-	int updateLastRecipe(String recipe_id);
+	int updateLastRecipe(RecipeDTO dto);
 }

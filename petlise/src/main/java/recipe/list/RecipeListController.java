@@ -16,37 +16,34 @@ public class RecipeListController {
     RecipeListService service;
   
 
-    // 상품목록페이지
-
-    // 상품목록페이지
     @GetMapping("/recipelist")
     public ModelAndView recipelist(String recipe_id, @ModelAttribute SearchDTO searchdto, HttpSession session) {
         searchdto.setRecordSize(12);
         PagingResponse<RecipeListDTO> recipelist = service.getAllRecipePaging(searchdto, true);
 
-     // 본문 길이 제한 처리
+        String userId = (String) session.getAttribute("user_id");
         for (RecipeListDTO recipe : recipelist.getList()) {
             String originalContent = recipe.getRecipe_contents();
             String strippedContent = originalContent.replaceAll("\\<[^>]*>", ""); // 정규식으로 태그 제거
 
-            int maxLength = 60;
+            int maxLength = 55;
             if (strippedContent.length() > maxLength) {
                 recipe.setLimitedContent(strippedContent.substring(0, maxLength) + "...");
             } else {
                 recipe.setLimitedContent(strippedContent);
             }
-        }       
 
-        String userId = (String) session.getAttribute("user_id");
-        for (RecipeListDTO recipe : recipelist.getList()) {
             recipe.setIs_like(service.recipeService.isRecipeLiked(userId, recipe.getRecipe_id()));
+  
         }
 
         ModelAndView mv = new ModelAndView();
         mv.addObject("response", recipelist);
         mv.setViewName("recipe/myRecipeList");
+
         return mv;
     }
+
 
     
     
@@ -63,7 +60,7 @@ public class RecipeListController {
             String originalContent = recipe.getRecipe_contents();
             String strippedContent = originalContent.replaceAll("<[^>]*>", ""); // 정규식으로 태그 제거
 
-            int maxLength = 60;
+            int maxLength = 55;
             if (strippedContent.length() > maxLength) {
                 recipe.setLimitedContent(strippedContent.substring(0, maxLength) + "...");
             } else {

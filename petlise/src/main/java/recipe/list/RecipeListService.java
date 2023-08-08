@@ -42,28 +42,6 @@ public class RecipeListService {
 		return new PagingResponse<>(list, pagination);
 	}
 
-	
-	//이달의레시피 페이지
-//	public List<RecipeListDTO> getRecipeOfTheMonth(SearchDTO dto, boolean includeRecipeOfTheMonth) {
-//		List<RecipeListDTO> list = new ArrayList<>();
-//		
-//		// 이달의 레시피 가져오기
-//		if (includeRecipeOfTheMonth) {
-//			List<RecipeListDTO> recipeOfTheMonthList = dao.getRecipeOfTheMonth();
-//			list.addAll(recipeOfTheMonthList);
-//		}
-//		// 전체 레시피 가져오기 (페이지네이션 적용)
-//		int count = dao.getCount(dto);
-//		if (count < 1) {
-//			Pagination pagination = new Pagination(count, dto);
-//			 
-//			dto.setPagination(pagination);
-//			list.addAll(dao.getAllRecipePaging(dto));
-//		}
-//
-//		return list;
-//	}
-
 	//이달의레시피 페이지
 	public PagingResponse<RecipeListDTO> getRecipeOfTheMonth(SearchDTO dto) {
 		int count = dao.getRecipeOfTheMonthCount(dto);

@@ -149,6 +149,7 @@
 								<div class="info_date">
 									<span style="margin-right: 10px;"><fmt:formatDate
 											value="${recipe.recipe_created_at}" pattern="yyyy.MM.dd" /></span>
+									<span style="margin-right: 5px;">댓글수 ${recipe.comments}</span>	
 									<span style="margin-right: 5px;">조회수 ${recipe.view_cnt}</span>									
 								</div>
 							</div>
@@ -297,7 +298,7 @@
 	</div>
 	
 	<jsp:include page="../footer.jsp" />
-	<jsp:include page="../topButton.jsp" />	
+	<jsp:include page="../topButton.jsp" />
 	
 </body>
 
