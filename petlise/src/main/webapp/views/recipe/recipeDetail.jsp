@@ -12,22 +12,25 @@
 <link rel="stylesheet" href="/css/style.css" />
 <link rel="stylesheet" href="/css/recipe/recipeDetail.css" />
 <link rel="stylesheet" href="/css/recipe/recipePage.css" />
-<link rel="stylesheet" href="/css/nav/nav.css" />
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
 	rel="stylesheet" />
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-<script src="/js/imageUpload.js"></script>
+<title>PetLiSe</title>
+</head>
+<jsp:include page="../header.jsp" />
 <script>
 	//파라미터 값 가져오기
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
 	const recipe_id = urlParams.get('recipe_id');
 	console.log(recipe_id);
-</script>
-<title>PetLiSe</title>
-</head>
-<script>
+	
+	//레시피 수정
+    function redirectToRecipeEdit() {
+        window.location.href = "recipeedit?recipe_id=" + recipe_id;
+    }
+	
 	//좋아요 수 업데이트(recipeLike)
 	$(document).ready(function() {
 	  var isLiked = false;
@@ -169,6 +172,45 @@
 	  
 	});
 	
+	//댓글 파일 업로드
+	$("#file").change(function() {
+		const file = document.getElementById("file");
+		const url = file.files[0];
+
+		if (!url) {
+			alert("파일이 없습니다");
+			return;
+		}
+
+		const maxSize = 5 * 1024 * 1024;
+		const fileSize = url.size;
+
+		if (fileSize > maxSize) {
+			alert("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.");
+			$(this).val('');
+			return false;
+		}
+
+		let formData = new FormData();
+		formData.append("image", url)
+
+		$.ajax({
+			url: "/api/image-upload",
+			type: "post",
+			data: formData,
+			enctype: 'multipart/form-data',
+			contentType: false,
+			processData: false,
+			success: function(url) {
+				$("#imgUrl").attr("src", `https://storage.googleapis.com/${url}`);
+				$("#imageValue").val(url);
+			},
+			error: function(error) {
+				console.log(error);
+			}
+		})
+	});
+	
 	//댓글작성	
 	$(document).ready(function() {
 		$("#cmt_save").on("click", function() {
@@ -189,7 +231,7 @@
 					comment_contents : cmtContents
 				}),
 				success : function(response) {
-					location.href = "/recipedetail";
+					location.href = "/recipedetail?recipe_id=" + recipe_id;
 					console.log("댓글작성성공");
 				},
 				error : function() {
@@ -198,9 +240,27 @@
 			});
 		});
 	});
-
+	
+	//댓글 삭제
+	$(document).ready(function(){
+	    $('.cmt_delete').click(function(){
+	        var comment_id = $(this).closest('.cmt_unit').find('.comment_id').text();
+	        $.ajax({
+	            url: '/deleterecipecomment',
+	            type: 'POST',
+	            data: { comment_id: comment_id },
+	            success: function(response) {
+	                location.href = "/recipedetail?recipe_id=" + recipe_id;
+	            },
+	            error: function(xhr, status, error) {
+	                console.error(error);
+	            }
+	    	}); 
+	    });
+	});
+	
 	//댓글 편집모드 실행
-	function toggleEdit(comment_id) {
+	function cmtEdit(comment_id) {
 	  const cmtContentBox = document.getElementById(`cmt_content_box_${comment_id}`);
 	  const cmtContentsElement = cmtContentBox.querySelector('.cmt_contents');
 	  const editMode = cmtContentBox.querySelector('.edit_mode');
@@ -241,7 +301,6 @@
 				comment_contents : editContents
 			}),
 			success : function(response) {
-				location.href = "/recipedetail";
 				console.log("댓글수정성공");
 			},
 			error : function() {
@@ -278,6 +337,7 @@
 </script>
 
 <body>
+
 	<input type="hidden" id="session_recipe_id"
 		value="${sessionScope.recipe_id}" />
 	<input type="hidden" id="session_user_id"
@@ -288,7 +348,6 @@
 	<input type="hidden" id="recipe_likes" value="${recipeDetail.likes}" />
 
 	<div class="wrap">
-		<div id="nav"></div>
 		<div id="board_title">
 
 			<div class="title_recipe">
@@ -298,31 +357,30 @@
 					</div>
 					<!-- <div class="cat_icon"><img src="/images/recipe/cat_icon.svg"></div> -->
 				</div>
-				<span>전문가 레시피</span>
+				<span>${recipeDetail.recipe_category}</span>
 			</div>
 		</div>
 
-		<div class="idx_top">
-			<div class="main_top_category">${recipeDetail.main_category}|
+		<div class="idx_top" style="background-image: url(https://storage.googleapis.com/${recipeDetail.image});">
+			<div class="main_top_category">${recipeDetail.main_category} |
 				${recipeDetail.sub_category}</div>
 			<div class="main_top_title">${recipeDetail.recipe_title}</div>
 			<div class="main_bottom">
-				<div class="main_top_writer">${recipeDetail.user_id}</div>
-				<div class="main_top_date">${recipeDetail.recipe_created_at}</div>
+				<div class="main_top_writer">${userProfile.name}</div>
+				<div class="main_top_date"><fmt:formatDate value="${recipeDetail.recipe_created_at}" pattern="yyyy.MM.dd" /></div>
+				<div class="view_cnt" style="margin-left: 10px;">조회수 : ${recipeDetail.view_cnt}</div>
 			</div>
 		</div>
 	</div>
 	<div class="board_body">
 		<div class="board_body_inside">
 			<div class="post_actions">
-				<button class="editButton" id="editButton">
-					<a href="#">수정</a>
+				<button class="recipe_edit_btn" onclick="redirectToRecipeEdit()">
+					<p>수정</p>
 				</button>
-				<button class="deleteButton" id="deleteButton">삭제</button>
+				<button class="recipe_delete_btn">삭제</button>
 			</div>
 			<div class="contents" style="text-align: center;">
-				<span><img
-					src="https://storage.googleapis.com/${recipeDetail.image}"></span><br>
 				<span>${recipeDetail.recipe_contents}</span>
 			</div>
 			<div id="post_like">
@@ -338,13 +396,6 @@
 
 	<div class="board_body_inside">
 
-		<div id="cmtPosition">
-			<div class="comment_header_bar">
-				<span>댓글</span> <span class="cmt_count">5</span> <img
-					src="/images/recipe/reply.svg">
-			</div>
-		</div>
-
 		<!-- 댓글작성 -->
 		<div id="cmt_writing_box">
 			<div class="cmt_write_input">
@@ -355,13 +406,12 @@
 			</div>
 			<div class="cmt_write_input_bottom">
 				<div class="cmt_actions">
+					<label for="file">
 					<img src="/images/recipe/picture.svg"
-						onerror="this.onerror=null; this.src='/images/recipe/picture.svg';"
 						id="imgUrl" />
+					</label>
+					<input type="file" id="file" />
 					<input type="hidden" id="imageValue" />
-					<label for="file"></label>
-					<input type="file" id="file"
-						accept="image/*" onchange="imageUpload()"/>
 					<button id="cmt_save">등록</button>
 				</div>
 			</div>
@@ -372,25 +422,23 @@
 			<c:forEach var="recipeComment" items="${recipeComment}" begin="0"
 				end="9">
 				<div class="cmt_unit">
-					<div style="display: none;">${recipeComment.comment_id}</div>
+					<div style="display: none;" class="comment_id">${recipeComment.comment_id}</div>
 					<div style="display: none;">${recipeComment.recipe_id}</div>
 					<div class="cmt_user">
-						<img src="${userInfo.profile_image}"
-							style="width: 35px; height: 35px;"> <span
-							class="cmt_user_id" style="display:none;">${recipeComment.user_id}</span>
-							<span class="cmt_user_name">${userInfo.name}</span>
-						<div class="cmt_btns">
+						<img src="https://storage.googleapis.com/${recipeComment.profile_image}" 
+							onerror="this.onerror=null; this.src='/images/recipe/profile.svg';"
+							style="width: 35px; height: 35px; border-radius: 50%; border: solid 1px var(--light-sub); margin-right: 10px;"> 
+						<span class="cmt_user_id" style="display:none;">${recipeComment.user_id}</span>
+							<span class="cmt_user_name" style="margin-top: 5px;">${recipeComment.name}</span>
+						<div class="cmt_btns" style="margin-top: 5px;">
 							<button class="cmt_edit"
-								onclick="toggleEdit(${recipeComment.comment_id})">수정</button>
+								onclick="cmtEdit('${recipeComment.comment_id}')">수정</button>
 							<span>ㆍ</span>
 							<button class="cmt_delete">삭제</button>
+							<span class="cmt_date" style="font-size: 14px; margin-left: 5px;"><fmt:formatDate
+									value="${recipeComment.comment_created_at}" pattern="yyyy.MM.dd" /></span>
 						</div>
-						<span class="cmt_date"><fmt:formatDate
-								value="${recipeComment.comment_created_at}" pattern="yyyy.MM.dd" /></span>
 						<div class="cmt_util">
-							<button class="reply_writing">
-								<img src="/images/recipe/reply.svg">댓글
-							</button>
 							<button class="cmt_like">
 								<img src="/images/recipe/heart.svg">좋아요
 							</button>
@@ -401,22 +449,20 @@
 					</div>
 					<div class="cmt_content_box"
 						id="cmt_content_box_${recipeComment.comment_id}">
-						<c:if test="${recipeComment.comment_image != null}">
+						<div style="display: flex; align-items: center;">
 							<div class="cmt_img">
 								<img src="https://storage.googleapis.com/${recipeComment.comment_image}"
-									style="width: 70px; height: 70px;">
+									onerror="this.onerror=null; this.src='/images/recipe/picture.svg';"
+									style="width: 50px; height: 50px; margin-right: 10px;">
 							</div>
-						</c:if>
-						<div class="cmt_contents">${recipeComment.comment_contents}</div>
-
+							<div class="cmt_contents" style="width:1300px;">${recipeComment.comment_contents}</div>
+						</div>
 						<div class="edit_mode" style="display: none;">
 							<textarea class="edit_comment_content">${recipeComment.comment_contents}</textarea>
-							<c:if test="${recipeComment.comment_image != null}">
-								<a href="${recipeComment.comment_image}"></a>
-							</c:if>
+								<img src="${recipeComment.comment_image}" />
 							<div class="edit_btns">
 								<button onclick="saveChanges(${recipeComment.comment_id})">수정</button>
-								<button onclick="toggleEdit(${recipeComment.comment_id})">취소</button>
+								<button onclick="cmtEdit(${recipeComment.comment_id})">취소</button>
 							</div>
 						</div>
 
@@ -426,7 +472,6 @@
 		</div>
 
 	</div>
-
 
 	<div class="blank_space"></div>
 
@@ -444,5 +489,4 @@
 
 	<jsp:include page="../footer.jsp" />
 </body>
-<script src="/js/recipe/nav.js"></script>
 </html>
