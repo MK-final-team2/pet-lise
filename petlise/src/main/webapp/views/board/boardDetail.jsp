@@ -70,6 +70,7 @@ $(document).ready(function() {
 
   <div class="board_title">
     <a href="/boardMain">자유게시판</a> 
+    </div>
   <div class="containers">
     <div class="contents">
       <div class="detail_title">${boardInfo.board_title}</div>
@@ -82,10 +83,10 @@ $(document).ready(function() {
     <div class="detail_content">
   ${boardInfo.board_contents}
   
+</div>
  <div class="post_like">
           <button><img src="/images/recipe/heart.svg">좋아요</button>
         </div>
-</div>
 <div id=UD>
   <div class="post_actions" id="postActions" style=" display:none;" >
   <a class="editButton" id="editButton" href="/getUpdateboard?seq=${boardInfo.seq}">수정</a>

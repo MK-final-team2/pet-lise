@@ -29,7 +29,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
      
 
         <div class="board_title">
-        <p>자유게시판 등록</p>
+        <a href="/boardMain">자유게시판 등록</a>
 		</div>
 		<p>제목</p>
      
@@ -37,12 +37,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     	<input type="text" placeholder="제목" name="board_title"
 			size="80%"  maxlength="50"	style="font-size: 24px;" value="${board.board_title}" />
 			        </div>
-   <footer>
-	<div>
-
-		<jsp:include page="../footer.jsp" />
-	</div>
-	</footer>
+  
           
           
   
@@ -54,7 +49,12 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 				<button class="writeButton" onclick="return edit()">등록하기</button>
 			</div>
         </div>
-    
+     <footer>
+	<div>
+
+		<jsp:include page="../footer.jsp" />
+	</div>
+	</footer>
     <script src="/js/board/editBoard.js"></script>
  <script src="/js/editor.js"></script>
 
