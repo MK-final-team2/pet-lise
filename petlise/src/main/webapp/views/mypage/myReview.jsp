@@ -75,7 +75,7 @@
 							<img src="/images/mypage/logo_rotate.svg">
 						</div>
 						<div class="product_img">
-							<img src="https://storage.googleapis.com/${op.product_image}">
+							<img src="${op.product_image}">
 						</div>
 						<div class="orderproduct_info">
 							<div><span>상품명</span><span>${op.product_name}</span></div>

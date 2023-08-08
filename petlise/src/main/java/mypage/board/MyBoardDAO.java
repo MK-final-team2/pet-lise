@@ -28,4 +28,9 @@ public interface MyBoardDAO {
 	
 	List<MyRecipeLikeDTO> getMyLikeRecipe(SearchDTO dto);
 	Integer getMyLikeRecipeCount(SearchDTO dto);
+
+	List<MyQnADTO> getMyQnA(SearchDTO dto);
+	Integer getMyQnACount(SearchDTO dto);
+	Boolean is_myQnaAnswer(String notice_id);
+	int deleteMyQna(String notice_id);
 }

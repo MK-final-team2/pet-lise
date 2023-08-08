@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -22,15 +23,21 @@ public class ShopCartController {
 	ShopCartService service;
 
 	@GetMapping("/shopcart")
-	public ModelAndView cartList(HttpSession session) {
-		ShopCartDTO dto = new ShopCartDTO();
+	public ModelAndView cartList(HttpSession session, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		String user_id = session.getAttribute("user_id").toString();
-		List<ShopCartDTO> cart = service.getCartList(user_id);
-		
-		dto.setUser_id(user_id);
-		mv.addObject("cart", cart);
-		mv.setViewName("/shop/shopCart");
+		if (session.getAttribute("user_id") != null) {
+			ShopCartDTO dto = new ShopCartDTO();
+			String user_id = session.getAttribute("user_id").toString();
+			List<ShopCartDTO> cart = service.getCartList(user_id);
+			
+			dto.setUser_id(user_id);
+			mv.addObject("cart", cart);
+			mv.setViewName("/shop/shopCart");
+		} else {
+			request.setAttribute("msg", "로그인 후 이용가능합니다.");
+			request.setAttribute("url", "/");
+			mv.setViewName("alert");
+		}
 		return mv;
 	}
 	

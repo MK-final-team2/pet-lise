@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import admin.shop.ProductDTO;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import user.UserDTO;
 
@@ -23,19 +24,25 @@ public class ShopPaymentController {
 	ShopPaymentService service;
 
 	@GetMapping("/payment")
-	public ModelAndView payment(HttpSession session) throws Exception {
-		ProductDTO ProductDTO = new ProductDTO();
-		String user_id = session.getAttribute("user_id").toString();
-
-		List<ShopOrderProductDTO> orderProduct = service.getOrderList(user_id);
-		UserDTO userInfo = service.getUserInfo(user_id);
-		List<ProductDTO> products = service.getProducts(ProductDTO);
-
+	public ModelAndView payment(HttpSession session, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("userInfo", userInfo);
-		mv.addObject("orderProduct", orderProduct);
-		mv.addObject("products", products);
-		mv.setViewName("/shop/payment");
+		if (session.getAttribute("user_id") != null) {
+			ProductDTO ProductDTO = new ProductDTO();
+			String user_id = session.getAttribute("user_id").toString();
+			
+			List<ShopOrderProductDTO> orderProduct = service.getOrderList(user_id);
+			UserDTO userInfo = service.getUserInfo(user_id);
+			List<ProductDTO> products = service.getProducts(ProductDTO);
+			
+			mv.addObject("userInfo", userInfo);
+			mv.addObject("orderProduct", orderProduct);
+			mv.addObject("products", products);
+			mv.setViewName("/shop/payment");
+		} else {
+			request.setAttribute("msg", "로그인 후 이용가능합니다.");
+			request.setAttribute("url", "/");
+			mv.setViewName("alert");
+		}
 		return mv;
 	}
 

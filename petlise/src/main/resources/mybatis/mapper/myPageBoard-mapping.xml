@@ -219,4 +219,43 @@
 			</otherwise>
 		</choose>
 	</select>
+	
+<!-- 내가 쓴 문의 -->		
+	<select id="getMyQnA" parameterType="pagination.SearchDTO" resultType="mypage.board.MyQnADTO">
+		select * 
+		from `qnaboard`
+		where user_id = #{searchType1}
+		<if test="searchType2 != null and searchType2 != '' and searchType2 != '전체'">
+			and category = #{searchType2}
+		</if>
+		<if test="keyword != null and keyword != ''">
+			and title LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		order by `qna_created` desc
+		limit #{pagination.limitStart}, #{recordSize}
+	</select>
+	
+	<select id="getMyQnACount" parameterType="pagination.SearchDTO" resultType="int">
+		select count(*)
+		from `qnaboard`
+		where user_id = #{searchType1}
+		<if test="searchType2 != null and searchType2 != '' and searchType2 != '전체'">
+			and category = #{searchType2}
+		</if>
+		<if test="keyword != null and keyword != ''">
+			and title LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+	</select>
+
+	<select id="is_myQnaAnswer" parameterType="String" resultType="boolean">
+		select count(*)
+		from `qnacomment`
+		where notice_id = #{notice_id}
+	</select>
+
+	<delete id="deleteMyQna" parameterType="String">
+		delete from `qnaboard` where notice_id = #{notice_id}
+	</delete>
+	
+	
 </mapper>

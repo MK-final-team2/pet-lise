@@ -1,8 +1,5 @@
 package mypage.board;
 
-import java.util.HashMap;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,12 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import admin.order.OrderDTO;
-import board.BoardDTO;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import pagination.PagingResponse;
 import pagination.SearchDTO;
-import shop.detail.ProductReviewDTO;
 
 @Controller
 public class MypageBoardsController {
@@ -24,14 +19,21 @@ public class MypageBoardsController {
 	MyBoardService service;
 	
 	@GetMapping("/mypage/board")
-	public ModelAndView myboard(@ModelAttribute SearchDTO searchdto, HttpSession session) {
-		String userId = (String)session.getAttribute("user_id");
-		searchdto.setSearchType1(userId);
-		PagingResponse<MyBoardDTO> response = service.getMyBoard(searchdto);
-		
+	public ModelAndView myboard(@ModelAttribute SearchDTO searchdto, HttpSession session, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("response", response);
-		mv.setViewName("/mypage/myBoard");
+		
+		if (session.getAttribute("user_id") != null) {
+			String userId = (String)session.getAttribute("user_id");
+			searchdto.setSearchType1(userId);
+			PagingResponse<MyBoardDTO> response = service.getMyBoard(searchdto);
+			
+			mv.addObject("response", response);
+			mv.setViewName("/mypage/myBoard");
+		} else {
+			request.setAttribute("msg", "로그인 후 이용가능합니다.");
+			request.setAttribute("url", "/");
+			mv.setViewName("alert");
+		}
 		return mv;
 	}
 	
@@ -43,14 +45,21 @@ public class MypageBoardsController {
 	}
 
 	@GetMapping("/mypage/petplace")
-	public ModelAndView mypetplace(@ModelAttribute SearchDTO searchdto, HttpSession session) {
-		String userId = (String)session.getAttribute("user_id");
-		searchdto.setSearchType1(userId);
-		PagingResponse<MyPetPlaceDTO> response = service.getMyPetPlace(searchdto);
-		
+	public ModelAndView mypetplace(@ModelAttribute SearchDTO searchdto, HttpSession session, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("response", response);
-		mv.setViewName("/mypage/myPetPlace");
+		
+		if (session.getAttribute("user_id") != null) {
+			String userId = (String)session.getAttribute("user_id");
+			searchdto.setSearchType1(userId);
+			PagingResponse<MyPetPlaceDTO> response = service.getMyPetPlace(searchdto);
+			
+			mv.addObject("response", response);
+			mv.setViewName("/mypage/myPetPlace");
+		} else {
+			request.setAttribute("msg", "로그인 후 이용가능합니다.");
+			request.setAttribute("url", "/");
+			mv.setViewName("alert");
+		}
 		return mv;
 	}
 	
@@ -62,14 +71,21 @@ public class MypageBoardsController {
 	}
 
 	@GetMapping("/mypage/mywriterecipe")
-	public ModelAndView mywriterecipe(@ModelAttribute SearchDTO searchdto, HttpSession session) {
-		String userId = (String)session.getAttribute("user_id");
-		searchdto.setSearchType1(userId);
-		PagingResponse<MyRecipeDTO> response = service.getMyWriteRecipe(searchdto);
-		
+	public ModelAndView mywriterecipe(@ModelAttribute SearchDTO searchdto, HttpSession session, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("response", response);
-		mv.setViewName("/mypage/myWriteRecipe");
+		
+		if (session.getAttribute("user_id") != null) {
+			String userId = (String)session.getAttribute("user_id");
+			searchdto.setSearchType1(userId);
+			PagingResponse<MyRecipeDTO> response = service.getMyWriteRecipe(searchdto);
+			
+			mv.addObject("response", response);
+			mv.setViewName("/mypage/myWriteRecipe");
+		} else {
+			request.setAttribute("msg", "로그인 후 이용가능합니다.");
+			request.setAttribute("url", "/");
+			mv.setViewName("alert");
+		}
 		return mv;
 	}
 	
@@ -81,15 +97,46 @@ public class MypageBoardsController {
 	}
 
 	@GetMapping("/mypage/mylikerecipe")
-	public ModelAndView mylikerecipe(@ModelAttribute SearchDTO searchdto, HttpSession session) {
-		String userId = (String)session.getAttribute("user_id");
-		searchdto.setSearchType1(userId);
-		PagingResponse<MyRecipeLikeDTO> response = service.getMyLikeRecipe(searchdto);
-		
+	public ModelAndView mylikerecipe(@ModelAttribute SearchDTO searchdto, HttpSession session, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("response", response);
-		mv.setViewName("/mypage/myLikeRecipe");
+		if (session.getAttribute("user_id") != null) {
+			String userId = (String)session.getAttribute("user_id");
+			searchdto.setSearchType1(userId);
+			PagingResponse<MyRecipeLikeDTO> response = service.getMyLikeRecipe(searchdto);
+			
+			mv.addObject("response", response);
+			mv.setViewName("/mypage/myLikeRecipe");
+		} else {
+			request.setAttribute("msg", "로그인 후 이용가능합니다.");
+			request.setAttribute("url", "/");
+			mv.setViewName("alert");
+		}
 		return mv;
+	}
+
+	@GetMapping("/mypage/qna")
+	public ModelAndView myqna(@ModelAttribute SearchDTO searchdto, HttpSession session, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		if (session.getAttribute("user_id") != null) {
+			String userId = (String)session.getAttribute("user_id");
+			searchdto.setSearchType1(userId);
+			PagingResponse<MyQnADTO> response = service.getMyQnA(searchdto);
+			
+			mv.addObject("response", response);
+			mv.setViewName("/mypage/myQnA");
+		} else {
+			request.setAttribute("msg", "로그인 후 이용가능합니다.");
+			request.setAttribute("url", "/");
+			mv.setViewName("alert");
+		}
+		return mv;
+	}
+	
+	@PostMapping("/mypage/deletemyqna")
+	@ResponseBody
+	public String deleteMyQnA(String notice_id) {
+		int result = service.deleteMyQna(notice_id);
+		return "{\"result\":\""+result+"\"}";
 	}
 	
 }

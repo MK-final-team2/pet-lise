@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import shop.payment.ShopOrderInfoDTO;
 
@@ -20,13 +21,19 @@ public class OrderListController {
 	OrderListService service;
 	
 	@GetMapping("/orderlist")
-	public ModelAndView getMyOrder(HttpSession session) {
-		String user_id = session.getAttribute("user_id").toString();
-
+	public ModelAndView getMyOrder(HttpSession session, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		List<ShopOrderInfoDTO> myOrder = service.getMyOrder(user_id);
-		mv.addObject("myOrder", myOrder);
-		mv.setViewName("/mypage/orderList");
+		if (session.getAttribute("user_id") != null) {
+			String user_id = session.getAttribute("user_id").toString();
+			
+			List<ShopOrderInfoDTO> myOrder = service.getMyOrder(user_id);
+			mv.addObject("myOrder", myOrder);
+			mv.setViewName("/mypage/orderList");
+		} else {
+			request.setAttribute("msg", "로그인 후 이용가능합니다.");
+			request.setAttribute("url", "/");
+			mv.setViewName("alert");
+		}
 		return mv;
 	}
 	
