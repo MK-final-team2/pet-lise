@@ -114,6 +114,12 @@ public class RecipeDTO {
 	public void setLikes(int likes) {
 		this.likes = likes;
 	}
+	public int getComments() {
+		return comments;
+	}
+	public void setComments(int comments) {
+		this.comments = comments;
+	}
 	public UserDTO getPoint() {
 		return point;
 	}
@@ -126,5 +132,6 @@ public class RecipeDTO {
 	public void setIs_like(boolean is_like) {
 		this.is_like = is_like;
 	}
+
 	
 }

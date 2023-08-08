@@ -26,14 +26,22 @@ public class RecipeDetailController {
 	
 	@GetMapping("/recipedetail")
 	public ModelAndView recipeDetail(HttpSession session, String recipe_id) {
-		String user_id = session.getAttribute("user_id").toString();
+		service.incrementViewCount(recipe_id);
+		service.commentCnt(recipe_id);
+		String user_id = (String) session.getAttribute("user_id");
+		
+		if(user_id == null) {
+			user_id = "guest";
+		} else {
+			user_id = user_id.toString();
+		}
 		
 		ModelAndView mv = new ModelAndView();
 		UserDTO userInfo = service.getUserInfoRecipe(user_id);
 		UserDTO userProfile = service.getUserProfile(recipe_id);
 		RecipeDTO recipeDetail = service.getRecipeDetail(recipe_id);
 		List<RecipeCommentDTO> recipeComment = service.getRecipeComment(recipe_id);
-		service.incrementViewCount(recipe_id);
+		
 		mv.addObject("userInfo", userInfo);
 		mv.addObject("recipeDetail", recipeDetail);
 		mv.addObject("recipeComment", recipeComment);
@@ -44,16 +52,25 @@ public class RecipeDetailController {
 	
 	@PostMapping("/writerecipecomment")
 	@ResponseBody
-	public String writeRecipeComment(@RequestBody RecipeCommentDTO dto) {
+	public String writeRecipeComment(@RequestBody RecipeCommentDTO dto, String recipe_id) {
 		int result = service.writeRecipeComment(dto);
+		return "{\"result\":\"" + result + "\"}";
+	}
+	
+	@PostMapping("/deletemyrecipe")
+	@ResponseBody
+	public String deleteMyRecipe(@RequestParam("recipe_id") String recipe_id,
+								 @RequestParam("user_id") String user_id) {
+		int result = service.deleteMyRecipe(recipe_id, user_id);
 		return "{\"result\":\"" + result + "\"}";
 	}
 	
 	@PostMapping("/deleterecipecomment")
 	@ResponseBody
-	public String deleteRecipeComment(@RequestParam("comment_id") String comment_id) {
-		int result = service.deleteRecipeComment(comment_id);
-		return "{\"result\":\"" + result + "\"}";
+	public String deleteRecipeComment(@RequestParam("comment_id") String comment_id,
+									  @RequestParam("user_id") String user_id) {
+	int result = service.deleteRecipeComment(comment_id, user_id);
+	return "{\"result\":\"" + result + "\"}";
 	}
 	
 	@PostMapping("/editcomment")
@@ -100,7 +117,7 @@ public class RecipeDetailController {
 	
 	@PostMapping("/recipelike")
 	@ResponseBody
-	public String decreasLikse(@RequestBody RecipeDTO dto) {
+	public String recipeLike(@RequestBody RecipeDTO dto) {
 		int result = service.recipeLike(dto);
 		return "{\"result\":\"" + result + "\"}";
 	}
