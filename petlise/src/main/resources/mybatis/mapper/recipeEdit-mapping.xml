@@ -9,7 +9,7 @@
 	</select>
 	
 	<!-- 레시피 내용 편집 -->
-	<update id="updateLastRecipe" parameterType="String">
+	<update id="updateLastRecipe" parameterType="recipedto">
 		UPDATE `recipe`
 		SET    `recipe_title` = #{recipe_title}, `recipe_contents` = #{recipe_contents},
 			   `main_category` = #{main_category}, `pet_category` = #{pet_category},

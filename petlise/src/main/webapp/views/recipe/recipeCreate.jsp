@@ -122,6 +122,7 @@
 	</div>
 
 	<jsp:include page="../footer.jsp" />
+	<jsp:include page="../topButton.jsp" />	
 		
 		<script src="/js/editor.js"></script>
 		<script src="/js/recipe/recipeCategory.js"></script>		

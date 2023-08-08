@@ -14,7 +14,7 @@ public class RecipeEditService {
 	public RecipeDTO getRecipeEdit(String recipe_id){
 		return dao.getRecipeEdit(recipe_id);
 	}
-	public int updateLastRecipe(String recipe_id) {
-		return dao.updateLastRecipe(recipe_id);
+	public int updateLastRecipe(RecipeDTO dto) {
+		return dao.updateLastRecipe(dto);
 	}
 }

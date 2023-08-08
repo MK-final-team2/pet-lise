@@ -337,7 +337,6 @@
 </script>
 
 <body>
-
 	<input type="hidden" id="session_recipe_id"
 		value="${sessionScope.recipe_id}" />
 	<input type="hidden" id="session_user_id"
@@ -488,5 +487,6 @@
 	</div>
 
 	<jsp:include page="../footer.jsp" />
+	<jsp:include page="../topButton.jsp" />	
 </body>
 </html>
