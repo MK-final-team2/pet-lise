@@ -115,7 +115,7 @@ public class ShopDetailController {
 		ShopOrderProductDTO orderproductdto = new ShopOrderProductDTO();
 		orderproductdto.setUser_id(user_id);
 		orderproductdto.setProduct_id(product.getProduct_id());
-		orderproductdto.setProduct_image(product.getImage_main());
+		orderproductdto.setProduct_image("https://storage.googleapis.com/"+product.getImage_main());
 		orderproductdto.setProduct_name(product.getProduct_name());
 		orderproductdto.setQuantity(quantity);
 		orderproductdto.setProduct_price(product.getPrice());

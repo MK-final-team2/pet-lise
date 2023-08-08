@@ -264,6 +264,17 @@
 				});
    			}//if
    			else{
+	   			//이전 주문목록 남아있는것 지우기
+   				$.ajax({
+   			        url: '/clearnonpeyment',
+   			        type: 'post',
+   			        dataType: 'json',
+   			        success: function(response) {},
+   			        error: function(xhr, status, error) {
+   			            console.error(error);
+   			        }
+   			    });
+   				
    				//주문상품 신규등록
 				$.ajax({
 					type : 'post',

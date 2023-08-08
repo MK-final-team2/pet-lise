@@ -47,7 +47,7 @@
 	</select>
 	
 	<select id="getBestProducts" resultType="home.HomeProductDTO">
-		select * from products where isvisible is true and reg_date <![CDATA[<=]]> now() order by sales desc;
+		select * from products where isvisible is true and reg_date <![CDATA[<=]]> now() order by sales desc limit 5;
 	</select>
 
 	<select id="getReviewAvgs" parameterType="String" resultType="Double">

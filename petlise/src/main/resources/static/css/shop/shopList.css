@@ -329,7 +329,7 @@
 
 .products {
 	width: 290px;
-	height: 300px;
+	height: 350px;
 	margin-left: 10px;
 	margin-bottom: 20px;
 	border-radius: 10px;
@@ -339,12 +339,12 @@
 .product_img {
 	position: relative;
 	width: 270px;
-	height: 230px;
+	height: 270px;
 	border-radius: 5px;
 	border: 1px solid var(--light-point, #8A6F4E);
 	margin: 10px auto;
 	background-color: #ffffff;
-	background-size: contain;
+	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
 }
@@ -381,7 +381,7 @@
 
 #product_info {
 	width: 270px;
-	height: 30px;
+	height: 40px;
 	margin: 0px 10px;
 	padding: 0px 10px;
 	display: flex;
