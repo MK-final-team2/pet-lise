@@ -69,7 +69,7 @@
 	
 	<!-- 주문상품 상품등록 -->
 	<insert id="insertOrderProduct" parameterType="shop.detail.ShopOrderProductDTO">
-		INSERT INTO orderproduct(
+		INSERT INTO orderProduct(
 			user_id, product_id, product_image,
 			product_name, quantity, product_price, price_total
 		)
