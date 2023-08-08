@@ -1,7 +1,5 @@
 package recipe.list;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +22,20 @@ public class RecipeListController {
     @GetMapping("/recipelist")
     public ModelAndView recipelist(String recipe_id, @ModelAttribute SearchDTO searchdto, HttpSession session) {
         searchdto.setRecordSize(12);
-               
         PagingResponse<RecipeListDTO> recipelist = service.getAllRecipePaging(searchdto, true);
+
+     // 본문 길이 제한 처리
+        for (RecipeListDTO recipe : recipelist.getList()) {
+            String originalContent = recipe.getRecipe_contents();
+            String strippedContent = originalContent.replaceAll("\\<[^>]*>", ""); // 정규식으로 태그 제거
+
+            int maxLength = 60;
+            if (strippedContent.length() > maxLength) {
+                recipe.setLimitedContent(strippedContent.substring(0, maxLength) + "...");
+            } else {
+                recipe.setLimitedContent(strippedContent);
+            }
+        }       
 
         String userId = (String) session.getAttribute("user_id");
         for (RecipeListDTO recipe : recipelist.getList()) {
@@ -37,28 +47,29 @@ public class RecipeListController {
         mv.setViewName("recipe/myRecipeList");
         return mv;
     }
+
     
     
     
 
     @GetMapping("/recipelistbest")
     public ModelAndView recipeListBest(String recipe_id, @ModelAttribute SearchDTO searchdto, HttpSession session) {
-    	searchdto.setRecordSize(12);
+        searchdto.setRecordSize(12);
 
         PagingResponse<RecipeListDTO> recipeListBest = service.getRecipeOfTheMonth(searchdto);
-        
-//        // 이달의 레시피 가져올 때 나만의 레시피인지만 필터링
-//        if ("나만의레시피".equals(searchdto.getRecipeType())) {
-//            List<RecipeListDTO> recipeOfTheMonthList = service.getRecipeOfTheMonth(searchdto, true);
-//            recipeListBest.getList().addAll(recipeOfTheMonthList);
-//        } 
-//            else {
-//            // 전문가 레시피의 이달의 레시피를 가져올 때는 recipe_category가 "전문가레시피"인 레시피만 가져오도록 설정
-//            SearchDTO expertSearchDTO = new SearchDTO();       
-//            expertSearchDTO.setRecipeType("전문가레시피");
-//            List<RecipeListDTO> expertRecipeOfTheMonthList = service.getRecipeOfTheMonth(expertSearchDTO, true);
-//            recipeListBest.getList().addAll(expertRecipeOfTheMonthList);
-//        } <-틀린코드
+
+        // 본문 길이 제한 처리
+        for (RecipeListDTO recipe : recipeListBest.getList()) {
+            String originalContent = recipe.getRecipe_contents();
+            String strippedContent = originalContent.replaceAll("<[^>]*>", ""); // 정규식으로 태그 제거
+
+            int maxLength = 60;
+            if (strippedContent.length() > maxLength) {
+                recipe.setLimitedContent(strippedContent.substring(0, maxLength) + "...");
+            } else {
+                recipe.setLimitedContent(strippedContent);
+            }
+        }
 
         String userId = (String) session.getAttribute("user_id");
         for (RecipeListDTO recipe : recipeListBest.getList()) {
@@ -67,7 +78,7 @@ public class RecipeListController {
 
         ModelAndView mv = new ModelAndView();
         mv.addObject("response", recipeListBest);
-        mv.setViewName("recipe/recipeListBest"); 
+        mv.setViewName("recipe/recipeListBest");
         return mv;
     }
 

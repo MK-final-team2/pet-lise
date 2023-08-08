@@ -101,21 +101,21 @@ $(".pagelast").on('click', function() {
 
 
 // -----레시피 리스트 info 본문 노출 60자 제한, 태그제외, 제한함수에서 태그 길이 제외-----
-document.addEventListener("DOMContentLoaded", function() {
-  var recipeContentsElements = document.querySelectorAll(".recipe_content");
-
-  recipeContentsElements.forEach(function(element) {
-    // 정규식으로 태그를 제거
-    var strippedContent = element.textContent;
-
-    var maxLength = 60;
-    if (strippedContent.length > maxLength) {
-      element.textContent = strippedContent.substring(0, maxLength) + "...";
-    } else {
-      element.textContent = strippedContent;
-    }
-  });
-});
+//document.addEventListener("DOMContentLoaded", function() {
+//  var recipeContentsElements = document.querySelectorAll(".recipe_content");
+//
+//  recipeContentsElements.forEach(function(element) {
+//    // 정규식으로 태그를 제거
+//    var strippedContent = element.textContent;
+//
+//    var maxLength = 60;
+//    if (strippedContent.length > maxLength) {
+//      element.textContent = strippedContent.substring(0, maxLength) + "...";
+//    } else {
+//      element.textContent = strippedContent;
+//    }
+//  });
+//});
 
 
 

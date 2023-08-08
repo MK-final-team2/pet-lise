@@ -4,13 +4,10 @@ package recipe;
 
 import java.sql.Timestamp;
 import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import recipe.list.RecipeListDTO;
 
 
 @Service
@@ -40,7 +37,7 @@ public class RecipeService {
         recipeDTO.setRecipe_contents(recipeContents);
         
         // 레시피 등록시 사용자 포인트 업데이트
-        recipeDAO.updateUserPoint(user_id, 500); // 50 포인트 추가, 필요에 따라 조정
+        recipeDAO.updateUserPoint(user_id, 100); // 100 포인트 추가
 
 
         recipeDAO.insertRecipe(recipeDTO);  // 게시글 등록

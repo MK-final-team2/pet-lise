@@ -88,18 +88,40 @@
 
 				
 		</div>
-		
-		<!-- 경고창 -->
-		<div class="modal" id="alertmodal">
-			<div class="modal_contents">
-				<div class="modal_text">
-					<div></div>
+
+	<!-- 경고창 -->
+	<div class="modal" id="alertmodal">
+		<div class="modal_contents">
+			<div class="modal_text">
+				<div>
+					<img src="/images/logo-icon.png"
+						style="margin-bottom: 10px; width: 25px;" /><br>
 				</div>
-				<div class="modal_btn"><button class="okaybtn">확인</button></div>
+			</div>
+			<div class="modal_btn">
+				<button class="okaybtn">확인</button>
 			</div>
 		</div>
-		
-		<jsp:include page="../footer.jsp" />
+	</div>
+
+	<div class="modal" id="success_modal">
+		<div class="modal_contents">
+			<div class="modal_text">
+				<div>
+					<img src="/images/logo-icon.png"
+						style="margin-bottom: 10px; width: 25px;" />
+						<br> 소중한 레시피 공유 감사합니다. <br>100 point를 획득하셨습니다.<br>
+						<div class="alert">※등록한 레시피를 삭제할 시 100 point가 차감됩니다.<br>
+						※이달의 레시피 선정시 해당 레시피는 삭제가 불가합니다.</div>
+				</div>
+			</div>
+			<div class="modal_btn">
+				<button class="success_modal_okbtn">확인</button>
+			</div>
+		</div>
+	</div>
+
+	<jsp:include page="../footer.jsp" />
 		
 		<script src="/js/editor.js"></script>
 		<script src="/js/recipe/recipeCategory.js"></script>		
