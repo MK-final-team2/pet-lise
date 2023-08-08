@@ -10,7 +10,7 @@ import user.UserDTO;
 public class RecipeDTO {
 	String recipe_id, user_id, recipe_title, recipe_contents, image, recipe_category, pet_category, main_category,
 			sub_category;
-	int view_cnt, recipe_of_the_month, likes, comments;
+	int view_cnt, recipe_of_the_month, likes;
 	String recipe_of_the_month_registration_date;
 	Timestamp recipe_created_at, recipe_updated_at;
 	boolean is_like;
@@ -18,12 +18,7 @@ public class RecipeDTO {
 	private UserDTO point;
 	
 	
-	public int getComments() {
-		return comments;
-	}
-	public void setComments(int comments) {
-		this.comments = comments;
-	}
+	
 	public String getRecipe_id() {
 		return recipe_id;
 	}
