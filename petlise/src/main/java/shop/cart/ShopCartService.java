@@ -23,4 +23,8 @@ public class ShopCartService {
 		return dao.saveCartList(dto);
 	}
 	
+	int deleteNonPayment(String user_id) {
+		return dao.deleteNonPayment(user_id);
+	}
+	
 }

@@ -65,4 +65,12 @@ public class ShopCartController {
 		int result = service.saveCartList(dto);
 		return "{\"result\":\"" + result + "\"}";
 	}
+
+	@PostMapping("/clearnonpeyment")
+	@ResponseBody
+	public String clearnonpeyment(HttpSession session) {
+		String user_id = (String) session.getAttribute("user_id");
+		int result = service.deleteNonPayment(user_id);
+		return "{\"result\":\"" + result + "\"}";
+	}
 }

@@ -20,12 +20,12 @@ public class OrderDetailDAO {
 		return session.selectList("myOrderProduct", order_id);
 	}
 	
-	public List<UserDTO> myUserInfo(String user_id){
-		return session.selectList("myUserInfo", user_id);
+	public UserDTO myUserInfo(String user_id){
+		return session.selectOne("myUserInfo", user_id);
 	}
 	
-	public List<ShopOrderInfoDTO> myDeliveryInfo(String order_id){
-		return session.selectList("myDeliveryInfo", order_id);
+	public ShopOrderInfoDTO myDeliveryInfo(String order_id){
+		return session.selectOne("myDeliveryInfo", order_id);
 	}
 	public int cancelOrderDetail(String order_id) {
 		return session.update("cancelOrderDetail", order_id);

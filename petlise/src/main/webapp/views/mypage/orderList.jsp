@@ -7,7 +7,9 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>주문목록</title>
+    <title>Pet LiSe</title>
+    <link rel="icon" href="/images/favicon.ico" />
+	<link rel="apple-touch-icon" href="/images/favicon.ico" />
     <link rel="stylesheet" href="/css/mypage/orderList.css" />
     <link rel="stylesheet" href="/css/mypage/myPageForm.css" />
     <link rel="stylesheet" href="/css/style.css" />
@@ -30,7 +32,12 @@
               <p id="table_Header_Price">총포인트</p>
               <p id="table_Header_Status">주문현황</p>
             </div>
-			<c:forEach var="myOrder" items="${myOrder}">
+			<c:if test="${fn:length(myOrder) == 0}">
+				<div class="table_Column nolist">
+					구매하신 상품이 없습니다.
+				</div>
+			</c:if>
+			<c:forEach var="myOrder" items="${myOrder}">			
             <div class="table_Column">
               <div style="display: none;" class="user_id">${myOrder.user_id}</div>
               <div style="display: none;" class="order_id">${myOrder.order_id}</div>
@@ -38,7 +45,7 @@
                 <p><fmt:formatDate value="${myOrder.date}" pattern="yyyy.MM.dd" /></p>
 	            <c:set var="truncatedOrderId" value="${fn:substring(myOrder.order_id, 0, 20)}" />
                 <p>${truncatedOrderId }</p>
-              <c:if test="${myOrder.status ne '주문취소'}">
+              <c:if test="${myOrder.status ne '주문취소' && myOrder.status ne '배송처리완료'}">
                 <input type="button" class="cancel_Btn" value="주문취소" onclick="cancelOrder('${myOrder.order_id}')" />
               </c:if>
               </div>
