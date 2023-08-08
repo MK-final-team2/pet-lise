@@ -6,7 +6,9 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>주문상세</title>
+    <title>Pet LiSe</title>
+    <link rel="icon" href="/images/favicon.ico" />
+	<link rel="apple-touch-icon" href="/images/favicon.ico" />
     <link rel="stylesheet" href="/css/mypage/orderDetail.css" />
     <link rel="stylesheet" href="/css/mypage/myPageForm.css" />
     <link rel="stylesheet" href="/css/style.css" />
@@ -42,7 +44,7 @@
           </div>
           <div id="table_Product_Info">
             <p>
-              <a href="#">
+              <a href="/shopdetail?product_id=${myOrderProduct.product_id}">
                 <span>${myOrderProduct.product_name}</span>
               </a>
             </p>
@@ -63,9 +65,8 @@
             <div class="member_Info_Title">회원 정보</div>
             <table class="member_Info">
               <tr id="member_Name">
- 			  <c:forEach var="myUserInfo" items="${myUserInfo}">
 			  <div style="display: none;">${myUserInfo.user_id}</div>
-                <td class="col_1">이름</td>
+                <td class="col_1">닉네임</td>
                 <td class="col_2">${myUserInfo.name}</td>
               </tr>
               <tr id="member_Email">
@@ -73,10 +74,9 @@
                 <td class="col_2">${myUserInfo.email}</td>
               </tr>
             </table>
-			</c:forEach>
             <div class="delivery_Info_Title">배송 정보</div>
+            
             <table class="delivery_Info">
-            <c:forEach var="myDeliveryInfo" items="${myDeliveryInfo}">
             <div id="order_id" style="display: none;">${myDeliveryInfo.order_id}</div>
               <tr id="delivery_Name">
                 <td class="col_1">받는분 성함</td>
@@ -103,7 +103,6 @@
               ※ 배송지 정보는 주문 완료시 수정이 불가능하므로 정보를 꼭
               확인해주시기 바랍니다.
             </p>
-            </c:forEach>
           </div>
 
           <div class="receipt">
@@ -114,7 +113,6 @@
               </div>
               <div class="receipt_Contents">
                 <div class="receipt_Col_1">
-                <c:forEach var="myDeliveryInfo" items="${myDeliveryInfo}">
                   <div class="receipt_Row_0">
                     <p>주문날짜</p>
                   </div>
@@ -151,30 +149,31 @@
                     </p>
                     <p>
                       <img src="/images/mypage/coin2.svg" id="point_Icon" />
-                      <span id="affordable"><fmt:formatNumber value="45000" pattern="#,###"/></span>
+                      <span id="affordable"><fmt:formatNumber value="${myDeliveryInfo.available_point}" pattern="#,###"/></span>
                     </p>
                   </div>
                   <div class="receipt_Row_3">
                     <p>
                       <img src="/images/mypage/coin2.svg" id="point_Icon" />
-                      <span id="change"></span>
+                      <span id="change"><fmt:formatNumber value="${myDeliveryInfo.available_point-myDeliveryInfo.total_payment}" pattern="#,###"/></span>
                     </p>
                   </div>
                 </div>
-                </c:forEach>
                 <div id="logo"><img src="/images/logo.png" /></div>
               </div>
             </div>
           </div>
         </div>
         <div class="Btn">
-          <input
-            type="button"
-            value="주문목록"
-            id="orderList_Btn"
-            onclick="redirectToOrderList()"
-          />
-          <input type="button" value="주문취소" id="cancel_Btn" onclick="cancelOrderDetail()" />
+          <input type="button"  value="주문목록" id="orderList_Btn" onclick="redirectToOrderList()" />
+	      <c:choose>
+	      	<c:when test="${myDeliveryInfo.status eq '주문취소' || myDeliveryInfo.status eq '배송처리완료'}">
+			      <input type="button" value="주문취소" id="cancel_Btn_no" />
+	      	</c:when>
+	      	<c:otherwise>
+			      <input type="button" value="주문취소" id="cancel_Btn" onclick="cancelOrderDetail()" />
+	      	</c:otherwise>
+	      </c:choose>
         </div>
       </div>
     </div>

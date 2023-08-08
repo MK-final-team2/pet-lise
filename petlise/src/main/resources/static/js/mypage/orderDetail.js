@@ -16,7 +16,6 @@
   const change = affordable - totalPayment;
 
   const changeElement = document.getElementById('change');
-  changeElement.innerText = change.toLocaleString(); 
 
 //주문목록 버튼  
 function redirectToOrderList() {
@@ -24,9 +23,8 @@ function redirectToOrderList() {
 }
 
 //주문취소 버튼
-function cancelOrderDetail() {
+function cancelOrderDetail(status) {
   var order_id = $('#order_id').text();
-
   $.ajax({
     url: "/cancelorderdetail",
     method: "POST", 

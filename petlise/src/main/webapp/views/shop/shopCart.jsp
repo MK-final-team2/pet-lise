@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="css/style.css" />
 <link rel="icon" href="/images/favicon.ico" />
 <link rel="apple-touch-icon" href="/images/favicon.ico" />
-<title> 장바구니 </title>
+<title>Pet LiSe</title>
 <script src="/js/jquery-3.6.4.min.js"></script>
 </head>
 <body>

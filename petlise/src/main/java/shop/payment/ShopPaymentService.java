@@ -1,5 +1,6 @@
 package shop.payment;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,11 +39,11 @@ public class ShopPaymentService {
 		return dao.getProducts(dto);
 	}
 	
-	public int updateSales(int product_id) {
-		return dao.updateSales(product_id);
+	public int updateSales(HashMap<String, Integer> map) {
+		return dao.updateSales(map);
 	}
 	
-	public int updatePointPayment(String user_id) {
-		return dao.updatePointPayment(user_id);
+	public int updatePointPayment(HashMap<String, String> map) {
+		return dao.updatePointPayment(map);
 	}
 }

@@ -13,10 +13,6 @@
 	function numberWithCommas(number) {
 	  return number.toLocaleString();
 	}
-
-	
-
-	
 	
 //회원 정보 동일 버튼
 	$(document).ready(function() {
@@ -56,7 +52,6 @@
 	var totalPoint = document.getElementById("totalPoint");
 	totalPoint.innerText = formattedTotalPoint;
 
-
 // 총 결제 Point 계산
 	calcTotalPayment = calcTotalPoint + 3000;
 	
@@ -75,10 +70,9 @@
   change.innerText = formattedChange;
 
 
+	var user_id = $('#member_User_Id').text();
 // 결제하기 버튼
 $('#order_Btn').click(function() {
-    var user_id = $('#member_User_Id').text();
-
     if ($('#check_Delivery').is(':checked') && $('#check_Order').is(':checked')) {
         let inputName = $('#input_Name').val();
         let inputPhone = $('#input_Phone').val();
@@ -92,6 +86,18 @@ $('#order_Btn').click(function() {
         // 전화번호 확인
         if (inputPhone.trim() === '') {
             alert('전화번호를 입력하세요.');
+            return false;
+        }
+        
+        // 주소 확인
+        if ($('#sample6_postcode').val().trim() === '' || $('#sample6_address').val().trim() === '') {
+            alert('배송지를 입력하세요.');
+            return false;
+        }
+        
+        // 포인트 금액 확인
+        if (calcChange < 0) {
+            alert('보유 포인트가 부족합니다.');
             return false;
         }
 
@@ -109,6 +115,7 @@ $('#order_Btn').click(function() {
                         + $('#sample6_address').val() + ", "
                         + $('#sample6_detailAddress').val(),
                     require: $('#input_Require').val(),
+                    available_point: userPointValue,
                     total_product: calcTotalPoint,
                     total_payment: calcTotalPoint + 3000,
                     status: "주문완료"
@@ -141,7 +148,6 @@ function orderConfirm(user_id) {
         success: function(response) {
             // 주문번호 확인 성공
             deleteCart(user_id); // 주문완료 후 장바구니 비우기
-            updateSales(); // 판매량 업데이트
         },
         error: function(xhr, status, error) {
             console.log("주문번호 저장 에러:", error);
@@ -167,12 +173,18 @@ function deleteCart(user_id) {
     });
 }
 
-// 판매량 업데이트 함수
+// 판매량/재고 업데이트 함수
 function updateSales() {
     var product_ids = [];
     $('.product_id').each(function() {
         var product_id = parseInt($(this).text());
         product_ids.push(product_id);
+    });
+    
+    var product_sales = [];
+    $('.product_quantity').each(function() {
+        var product_sale = parseInt($(this).text());
+        product_sales.push(product_sale);
     });
 
     $.ajax({
@@ -181,10 +193,11 @@ function updateSales() {
         dataType: 'json',
         traditional: true,
         data: {
-            product_ids: product_ids
+            product_ids: product_ids,
+            product_sales: product_sales
         },
         success: function(response) {
-        	updatePointPayment();
+        	updatePointPayment(user_id);
         },
         error: function(xhr, status, error) {
             console.log("판매량 업데이트 에러:", error);
@@ -208,7 +221,7 @@ function updatePointPayment(user_id){
 	        location.href = "/orderend";
 	    },
 	    error: function(xhr, status, error) {
-	        console.log("판매량 업데이트 에러:", error);
+	        console.log("포인트 업데이트 에러:", error);
 	    }
 	});
 }

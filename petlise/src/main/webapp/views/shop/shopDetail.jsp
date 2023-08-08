@@ -461,8 +461,7 @@
 										style="width:${totalCnt==0?0:scores[5-vs.index-1]/totalCnt*100}%;"></div>
 								</div>
 								<div class="score_cnt">${scores[5-vs.index-1]}건(<fmt:formatNumber
-										value="${totalCnt==0?0:scores[5-vs.index-1]/totalCnt*100}" pattern="#" />
-									%)
+										value="${totalCnt==0?0:scores[5-vs.index-1]/totalCnt*100}" pattern="#" />%)
 								</div>
 							</div>
 						</c:forEach>
@@ -508,7 +507,7 @@
 						<c:if test="${review.review_img == '' || review.review_img eq null}">style="width:1130px"</c:if>>
 						<div class="user_info">
 							<div class="box" style="background: #BDBDBD;">
-								<img class="profile" src="${review.user.profile_image}">
+								<img class="profile" src="https://storage.googleapis.com/${review.user.profile_image}">
 							</div>
 							<span>${review.user.name}</span>
 							<span>${review.created_at}</span>

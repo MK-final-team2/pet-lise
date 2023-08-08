@@ -12,4 +12,5 @@ public interface ShopCartDAO {
 	List<ShopCartDTO> getCartList(String user_id);
 	int deleteCartList(String product_name);
 	int saveCartList(ShopCartDTO dto);
+	int deleteNonPayment(String user_id);
 }

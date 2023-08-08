@@ -1,5 +1,6 @@
 package shop.payment;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -73,18 +74,25 @@ public class ShopPaymentController {
 
 	@PostMapping("/updatesales")
 	@ResponseBody
-	public String updateSales(@RequestParam("product_ids") List<Integer> productIds) {
+	public String updateSales(@RequestParam("product_ids") List<Integer> productIds, @RequestParam("product_sales") List<Integer> productSales) {
 		int result = 0;
-		for (int product_id : productIds) {
-			result += service.updateSales(product_id);
+		HashMap<String, Integer> map = null;
+		for (int i=0; i<productIds.size(); i++) {
+			map = new HashMap<>();
+			map.put("product_id", productIds.get(i));
+			map.put("sales", productSales.get(i));
+			result += service.updateSales(map);
 		}
 		return "{\"result\":\"" + result + "\"}";
 	}
 	
 	@PostMapping("/updatepointpayment")
 	@ResponseBody
-	public String updatePointPayment(String user_id) {
-		int result = service.updatePointPayment(user_id);
+	public String updatePointPayment(String user_id, String point) {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("user_id", user_id);
+		map.put("point", point);
+		int result = service.updatePointPayment(map);
 		return "{\"result\":\"" + result + "\"}";
 	}
 }
