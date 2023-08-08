@@ -14,6 +14,8 @@
 <link rel="stylesheet" href="css/shop/shopDetail.css" />
 <link rel="stylesheet" href="css/shop/pagination_shop.css" />
 <link rel="stylesheet" href="css/shop/modal_main.css" />
+<link rel="stylesheet" href="/css/style.css" />
+
 <link rel="icon" href="/images/favicon.ico" />
 <link rel="apple-touch-icon" href="/images/favicon.ico" />
 <title>Pet LiSe</title>
@@ -314,7 +316,7 @@
 	
 	<div id='layout'>
 		<div id="categorys">
-			<p>라이스샵 > ${product.pet_type} > ${product.category}</p>
+			<p style="margin-left: 7px;">라이스샵 > ${product.pet_type} > ${product.category}</p>
 		</div>
 		<!-- categorys -->
 

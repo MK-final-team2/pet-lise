@@ -10,6 +10,7 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/sign/signIn.css" />
     <title>Pet LiSe</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   </head>
   <body>
     <jsp:include page="../header.jsp" />

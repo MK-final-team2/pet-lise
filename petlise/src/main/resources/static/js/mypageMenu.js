@@ -17,7 +17,6 @@ document.getElementById('mypageMenu').innerHTML += `
         <li><a href="/mypage/mylikerecipe">좋아요 레시피</a></li>
         <li><a href="/mypage/mywriterecipe">내가 쓴 레시피</a></li>
         <li><a href="/mypage/board">내가 쓴 게시글</a></li>
-        <li><a href="#">내가 쓴 댓글</a></li>
       </ul>
     </div>
     <div class="menu_Shop">

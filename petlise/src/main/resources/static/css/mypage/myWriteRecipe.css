@@ -167,12 +167,12 @@
 }
 
 .no_data_msg {
-	grid-column: 1/9;
+	grid-column: 1/10;
 	height: auto;
 }
 
 .no_data_msg td {
-	grid-column: 1/9;
+	grid-column: 1/10;
 	height: 200px;
 }
 

@@ -25,7 +25,7 @@
 <!-- 주문상품정보 불러오기 -->
 	<select id="getMyOrderDetail" parameterType="pagination.SearchDTO" resultMap="myproductdtos">
 		select * 
-		from `orderproduct` as op
+		from `orderProduct` as op
 		inner join `order` as o on o.order_id = op.order_id
 		where op.user_id = #{searchType1}
 		<if test="searchType2 == '후기미작성상품'">
@@ -46,7 +46,7 @@
 	
 	<select id="getCount" parameterType="pagination.SearchDTO" resultType="int">
 		select count(*)
-		from `orderproduct` as op
+		from `orderProduct` as op
 		inner join `order` as o on o.order_id = op.order_id
 		where op.user_id = #{searchType1}
 		<if test="searchType2 == '후기미작성상품'">
@@ -76,7 +76,7 @@
 	</insert>
 	
 	<update id="updateIsReviewTrue" parameterType="String">
-		UPDATE `orderproduct`
+		UPDATE `orderProduct`
 		SET isreview=true
 		WHERE order_detail_id=#{order_detail_id}
 	</update>

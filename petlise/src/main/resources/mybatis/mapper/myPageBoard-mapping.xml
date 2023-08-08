@@ -136,7 +136,7 @@
 	</delete>
 
 	<delete id="deleteMyWriteRecipelike" parameterType="String">
-		delete from `recipelike` where recipe_id = #{recipe_id};
+		delete from `recipeLike` where recipe_id = #{recipe_id};
 	</delete>
 
 <!-- 좋아요 레시피 -->	
@@ -176,7 +176,7 @@
 			r.recipe_created_at, r.recipe_updated_at,
 			l.like_id,l.recipe_id,l.user_id as l_user_id,
 			l.comment_id,l.like_type,l.is_like
-		from `recipelike` l join recipe r on r.recipe_id = l.recipe_id
+		from `recipeLike` l join recipe r on r.recipe_id = l.recipe_id
 		where l.user_id = #{searchType1} and is_like is true
 		<if test="keyword != null and keyword != ''">
 			and r.recipe_title LIKE CONCAT('%', #{keyword}, '%')
@@ -205,7 +205,7 @@
 	
 	<select id="getMyLikeRecipeCount" parameterType="pagination.SearchDTO" resultType="int">
 		select count(*)
-		from `recipelike` l join recipe r on r.recipe_id = l.recipe_id
+		from `recipeLike` l join recipe r on r.recipe_id = l.recipe_id
 		where l.user_id = #{searchType1} and is_like is true
 		<if test="keyword != null and keyword != ''">
 			and r.recipe_title LIKE CONCAT('%', #{keyword}, '%')
