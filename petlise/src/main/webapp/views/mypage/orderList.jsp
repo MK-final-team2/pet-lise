@@ -12,6 +12,7 @@
 	<link rel="apple-touch-icon" href="/images/favicon.ico" />
     <link rel="stylesheet" href="/css/mypage/orderList.css" />
     <link rel="stylesheet" href="/css/mypage/myPageForm.css" />
+    <link rel="stylesheet" href="/css/shop/pagination_shop.css" />
     <link rel="stylesheet" href="/css/style.css" />
 	<script src="/js/jquery-3.6.4.min.js"></script>
   </head>
@@ -32,12 +33,12 @@
               <p id="table_Header_Price">총포인트</p>
               <p id="table_Header_Status">주문현황</p>
             </div>
-			<c:if test="${fn:length(myOrder) == 0}">
+			<c:if test="${fn:length(response.list) == 0}">
 				<div class="table_Column nolist">
 					구매하신 상품이 없습니다.
 				</div>
 			</c:if>
-			<c:forEach var="myOrder" items="${myOrder}">			
+			<c:forEach var="myOrder" items="${response.list}">			
             <div class="table_Column">
               <div style="display: none;" class="user_id">${myOrder.user_id}</div>
               <div style="display: none;" class="order_id">${myOrder.order_id}</div>
@@ -68,10 +69,102 @@
             </c:forEach>
           </div>
         </div>
-      </div>
+			<div id="pagination">
+				<c:if test="${fn:length(response.list) != 0}">
+					<div class="pagefirst"
+						<c:if test="${!response.pagination.existPrevPage}"> style="visibility: hidden;" </c:if>>
+						<div class="prevArrow"></div>
+						<div class="prevArrow" style="margin-left: -3px"></div>
+					</div>
+					<div class="prev" id="${response.pagination.startPage-1}"
+						<c:if test="${!response.pagination.existPrevPage}"> style="visibility: hidden;" </c:if>>
+						<div class="prevArrow"></div>
+					</div>
+
+					<c:choose>
+						<c:when test="${param.page eq null}">
+							<c:forEach begin="1" end="${response.pagination.endPage}"
+								varStatus="vs">
+								<c:if test="${vs.index == 1}">
+									<div class="pageNumber active">${vs.index}</div>
+								</c:if>
+								<c:if test="${vs.index != 1}">
+									<div class="pageNumber">${vs.index}</div>
+								</c:if>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<c:forEach begin="${response.pagination.startPage}"
+								end="${response.pagination.endPage}" varStatus="vs">
+								<c:if test="${vs.index == param.page}">
+									<div class="pageNumber active">${vs.index}</div>
+								</c:if>
+								<c:if test="${vs.index != param.page}">
+									<div class="pageNumber">${vs.index}</div>
+								</c:if>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+
+					<div class="next" id="${response.pagination.endPage+1}"
+						<c:if test="${!response.pagination.existNextPage}"> style="visibility: hidden;" </c:if>>
+						<div class="nextArrow"></div>
+					</div>
+					<div class="pagelast" id="${response.pagination.totalPageCount}"
+						<c:if test="${!response.pagination.existNextPage}"> style="visibility: hidden;" </c:if>>
+						<div class="nextArrow"></div>
+						<div class="nextArrow" style="margin-left: -6px"></div>
+					</div>
+				</c:if>
+			</div>
+			<!-- pagination -->
+		</div>
+      
     </div>
 	<jsp:include page="../footer.jsp" />
     <script src="/js/mypage/orderList.js"></script>
     <script src="/js/mypageMenu.js"></script>
+    
+    <script>
+		//숫자 페이징버튼 
+		$(".pageNumber").on('click', function() {
+			const queryparamsPage = {
+				page: $(this).text()
+			}
+			location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
+		});
+		
+		//첫페이지버튼 
+		$(".pagefirst").on('click', function() {
+			const queryparamsPage = {
+				page: 1
+			}
+			location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
+		});
+		
+		//이전페이지버튼
+		$(".prev").on('click', function() {
+			const queryparamsPage = {
+		    	page: $(this).attr("id")
+			}
+			location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
+		});
+		
+		//다음페이지버튼
+		$(".next").on('click', function() {
+			const queryparamsPage = {
+				page: $(this).attr("id")
+			}
+			location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
+		});
+		
+		//마지막페이지버튼
+		$(".pagelast").on('click', function() {
+			const queryparamsPage = {
+				page: $(this).attr("id")
+			}
+			location.href = location.pathname + '?' + new URLSearchParams(queryparamsPage).toString();
+		});
+	</script>
   </body>
 </html>

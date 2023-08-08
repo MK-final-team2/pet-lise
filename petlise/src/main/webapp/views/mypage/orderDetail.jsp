@@ -84,7 +84,7 @@
               </tr>
               <tr id="delivery_Address">
                 <td class="col_1">배송 주소</td>
-                <td class="col_2">${myDeliveryInfo.address}</td>
+                <td class="col_2">${fn:replace(myDeliveryInfo.address, ',', ' ')}</td>
               </tr>
               <tr id="delivery_Phone">
                 <td class="col_1">연락처</td>

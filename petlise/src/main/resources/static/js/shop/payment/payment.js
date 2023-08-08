@@ -21,7 +21,7 @@
 	    if ($(this).is(':checked')) {
 	      
 	      var memberAddress = $('#member_Address').text();
-	      var addressParts = memberAddress.split(', ');
+	      var addressParts = memberAddress.split(',');
 	      
 	      $('#sample6_postcode').val(addressParts[0]);
 	      $('#sample6_address').val(addressParts[1]);
@@ -68,7 +68,6 @@
   var formattedChange = calcChange.toLocaleString();
   var change = document.getElementById("change");
   change.innerText = formattedChange;
-
 
 	var user_id = $('#member_User_Id').text();
 // 결제하기 버튼
@@ -176,14 +175,18 @@ function deleteCart(user_id) {
 // 판매량/재고 업데이트 함수
 function updateSales() {
     var product_ids = [];
-    $('.product_id').each(function() {
-        var product_id = parseInt($(this).text());
+    $('.orderProduct_id').each(function() {
+		console.log("상품아이디");
+		console.log($(this).val());
+        var product_id = parseInt($(this).val());
         product_ids.push(product_id);
     });
     
     var product_sales = [];
-    $('.product_quantity').each(function() {
-        var product_sale = parseInt($(this).text());
+    $('.orderProduct_quantity').each(function() {
+		console.log("판매량");
+		console.log($(this).val());
+        var product_sale = parseInt($(this).val());
         product_sales.push(product_sale);
     });
 

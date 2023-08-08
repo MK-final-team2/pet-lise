@@ -58,13 +58,13 @@
 		          <div class="info_contents">
 		            <div>배송주소</div>
 		            <div style="height: 70px">
-		              ${orderInfo.address}
+		            	${fn:replace(orderInfo.address, ',', ' ')}
 		            </div>
 		          </div>
 		          <div class="info_contents">
 		            <div>배송요청사항</div>
 		            <div style="height: 70px">
-		              ${orderInfo.require}
+		              ${orderInfo.require eq ''?'-':orderInfo.require}
 		            </div>
 		          </div>
 	          </c:forEach>
@@ -140,7 +140,7 @@
 	                alt="coin"
 	                style="width: 20px; margin-right: 5px"
 	              />
-	              <span class="change"></span><fmt:formatNumber value="${orderInfo.available_point-orderInfo.total_payment}" pattern="#,###"/>
+	              <span class="change"><fmt:formatNumber value="${orderInfo.available_point-orderInfo.total_payment}" pattern="#,###"/></span>
 	            </div>
 	          </div>
 	          <div>

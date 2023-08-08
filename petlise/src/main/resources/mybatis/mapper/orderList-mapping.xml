@@ -2,13 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mypage.orderlist.OrderListDAO">
-	<select id="getMyOrder" resultMap="orderInfoResultMap">
+	<select id="getMyOrder" resultMap="orderInfoResultMap" parameterType="pagination.SearchDTO">
 	    SELECT o.*, 
 	        (SELECT op.product_name FROM orderProduct op WHERE o.order_id = op.order_id LIMIT 1) AS product_name,
 	        (SELECT op.product_image FROM orderProduct op WHERE o.order_id = op.order_id LIMIT 1) AS product_image
 	    FROM `order` o
-	    WHERE o.`user_id` = #{user_id} 
-	    ORDER BY o.order_id DESC;
+	    WHERE o.`user_id` = #{searchType1} 
+	    ORDER BY o.`date` DESC;
+	</select>
+	
+	<select id="getMyOrderCount" parameterType="pagination.SearchDTO" resultType="int">
+		SELECT count(*)
+		FROM `order` o
+	    WHERE o.`user_id` = #{searchType1} 
 	</select>
 	
 	<resultMap id="orderInfoResultMap" type="orderinfodto">

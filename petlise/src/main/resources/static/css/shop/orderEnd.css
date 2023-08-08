@@ -176,7 +176,7 @@ p {
         display: flex;
         align-items: center;
         justify-content: end;
-        width: 50px;
+        min-width: 60px;
       }
     }
 

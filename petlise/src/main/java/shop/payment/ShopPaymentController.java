@@ -28,16 +28,13 @@ public class ShopPaymentController {
 	public ModelAndView payment(HttpSession session, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		if (session.getAttribute("user_id") != null) {
-			ProductDTO ProductDTO = new ProductDTO();
 			String user_id = session.getAttribute("user_id").toString();
 			
 			List<ShopOrderProductDTO> orderProduct = service.getOrderList(user_id);
 			UserDTO userInfo = service.getUserInfo(user_id);
-			List<ProductDTO> products = service.getProducts(ProductDTO);
 			
 			mv.addObject("userInfo", userInfo);
 			mv.addObject("orderProduct", orderProduct);
-			mv.addObject("products", products);
 			mv.setViewName("/shop/payment");
 		} else {
 			request.setAttribute("msg", "로그인 후 이용가능합니다.");
