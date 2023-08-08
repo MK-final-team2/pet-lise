@@ -77,7 +77,7 @@
 						<c:forEach items="${response.list}" var="qna">
 							<tr class="list_tr">
 								<td>${qna.category}</td>
-								<td><a href="http://localhost:8070/qnadetail?id=${qna.notice_id}">${qna.title}</a></td>
+								<td><a href="/qnadetail?id=${qna.notice_id}">${qna.title}</a></td>
 								<td><fmt:formatDate	value="${qna.qna_created}" pattern="yyyy.MM.dd H:mm" /></td>
 								<td>${qna.view_count}</td>
 								<td>
