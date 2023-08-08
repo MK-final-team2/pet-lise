@@ -78,6 +78,5 @@
     <jsp:include page="../footer.jsp" />
 
     <script src="/js/notice/detailQna.js"></script>
-    <script src="/js/notice/getDate.js"></script>
   </body>
 </html>

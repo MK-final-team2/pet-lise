@@ -55,8 +55,12 @@ function ajaxData(keyword, page) {
               <td>${el?.name}</td>
               <td>${getDate(el?.created_at)}</td>
               <td>${el?.view_count == undefined ? 0 : el?.view_count}</td>
-              <td><a href="/admin/getnotice?id=${el?.notice_id}">수정</span></td>
-              <td><span id="${el?.notice_id}" onclick="clickModal(this)">삭제</span></td>
+              <td><a href="/admin/getnotice?id=${
+                el?.notice_id
+              }">수정</span></td>
+              <td><span id="${
+                el?.notice_id
+              }" onclick="clickModal(this)">삭제</span></td>
             </tr>`
           )
           .join('');
@@ -88,12 +92,16 @@ function ajaxData(keyword, page) {
             el => `
           	<tr>
               <td>${el?.category}</td>
-              <td onclick="location.href='qnadetail?id=${el?.notice_id}">${el?.title}</td>
+              <td><span onclick="location.href='/qnadetail?id=${
+                el?.notice_id
+              }'">${el?.title}</span></td>
               <td>${el?.name}</td>
               <td>${getDate(el?.created_at)}</td>
               <td>${el?.view_count == undefined ? 0 : el?.view_count}</td>
               <td>${el?.like == undefined ? 0 : el?.like}</td>
-              <td><span id="${el?.notice_id}" onclick="clickModal(this)">삭제</span></td>
+              <td><span id="${
+                el?.notice_id
+              }" onclick="clickModal(this)">삭제</span></td>
             </tr>`
           )
           .join('');
@@ -108,11 +116,19 @@ function ajaxData(keyword, page) {
     editBtn.style.display = 'none';
 
     var xhr = new XMLHttpRequest();
-    var url = 'http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic';
-    var queryParams = '?' + encodeURIComponent('serviceKey') + '=' + '5kTczAnUCFz4l%2BW%2BMvfc2YntVC36c4UOTxbpLzEPG1N1DQ5qStpMlahJjdq71by6HZo3ez8kwe1kFCs3TBlNWw%3D%3D';
-    queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10');
-    queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent(page);
-    queryParams += '&' + encodeURIComponent('_type') + '=' + encodeURIComponent('json');
+    var url =
+      'http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic';
+    var queryParams =
+      '?' +
+      encodeURIComponent('serviceKey') +
+      '=' +
+      '5kTczAnUCFz4l%2BW%2BMvfc2YntVC36c4UOTxbpLzEPG1N1DQ5qStpMlahJjdq71by6HZo3ez8kwe1kFCs3TBlNWw%3D%3D';
+    queryParams +=
+      '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10');
+    queryParams +=
+      '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent(page);
+    queryParams +=
+      '&' + encodeURIComponent('_type') + '=' + encodeURIComponent('json');
     xhr.open('GET', url + queryParams);
     xhr.onreadystatechange = function () {
       if (this.readyState == 4) {
@@ -124,7 +140,8 @@ function ajaxData(keyword, page) {
 
         let tbody = document.getElementById('familyTbody');
         tbody.innerHTML = item
-          .map(el => `
+          .map(
+            el => `
           	<tr>
               <td>${el?.kindCd.split('] ')[0]}]</td>
               <td><img src="${el?.popfile}" /></td>
@@ -135,7 +152,8 @@ function ajaxData(keyword, page) {
               <td>${el?.weight}</td>
               <td>${el?.processState}</td>
             </tr>`
-          ).join('');
+          )
+          .join('');
       }
     };
 
