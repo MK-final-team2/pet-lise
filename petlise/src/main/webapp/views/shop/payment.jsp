@@ -81,6 +81,7 @@
 			    </div>
 			</c:forEach>
 		</div>
+			<input type="hidden" id="user_address" value="${userInfo.address}">
 			<div class="order_Detail">
 				<div class="order_Info">
 						<div class="member_Info_Title">회원 정보</div>
