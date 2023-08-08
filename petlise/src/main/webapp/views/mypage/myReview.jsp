@@ -79,17 +79,28 @@
 						</div>
 						<div class="orderproduct_info">
 							<div><span>상품명</span><span>${op.product_name}</span></div>
-							<div><span>구매일</span><span>${op.orderdto.date}</span></div>
+							<div><span>구매일</span><span>
+							<fmt:parseDate value = "${op.orderdto.date}" pattern = "yyyy-MM-dd HH:mm:ss" var = "date"/>
+							<fmt:formatDate value="${date}" pattern="yyyy.MM.dd HH:mm" />
+							</span></div>
 							<div><span>주문현황</span><span>${op.orderdto.status}</span></div>
 						</div>
 						<div class="review_btns">
 							<c:choose>
 								<c:when test="${op.reviewdto eq null}">
-									<img src="/images/mypage/pen.svg">
-									<button class="editbtn">후기작성하기</button>
-									<input type="hidden" class="di" value="${op.order_detail_id}"/>
-									<input type="hidden" class="pi" value="${op.product_id}"/>
-									<input type="hidden" class="pn" value="${op.product_name}"/>
+									<c:choose>
+										<c:when test="${op.orderdto.status == '주문완료'}">
+											<img src="/images/logo-icon-gray.svg">
+											<button class="hidebtn">배송대기중</button>
+										</c:when>
+										<c:otherwise>
+											<img src="/images/mypage/pen.svg">
+											<button class="editbtn">후기작성하기</button>
+											<input type="hidden" class="di" value="${op.order_detail_id}"/>
+											<input type="hidden" class="pi" value="${op.product_id}"/>
+											<input type="hidden" class="pn" value="${op.product_name}"/>
+										</c:otherwise>
+									</c:choose>
 								</c:when>
 								<c:otherwise>
 									<c:choose>
@@ -203,7 +214,7 @@
 		<div class="modal" id="delete_alert_modal">
 			<div class="modal_contents">
 				<div class="modal_text">
-				<img src="images/mypage/warning.svg">
+				<img src="/images/mypage/warning.svg">
 				후기 삭제 시 후기 복구 및 <br>
 				해당 상품 후기 재작성이 불가합니다.<br>
 				정말 후기를 삭제하시겠습니까?

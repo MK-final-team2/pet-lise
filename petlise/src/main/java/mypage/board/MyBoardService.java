@@ -90,6 +90,7 @@ public class MyBoardService {
 	}
 	
 	int deleteMyWriteRecipe(String recipe_id) {
+		dao.deleteMyWriteRecipelike(recipe_id);
 		return dao.deleteMyWriteRecipe(recipe_id);
 	}
 	
@@ -137,4 +138,9 @@ public class MyBoardService {
 	int deleteMyQna(String notice_id) {
 		return dao.deleteMyQna(notice_id);
 	}
+	
+//포인트
+	int pointDown(String user_id) {
+		return dao.pointDown(user_id);
+	};
 }

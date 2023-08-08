@@ -10,7 +10,6 @@
 <link rel="apple-touch-icon" href="/images/favicon.ico" />
 <link rel="stylesheet" href="/css/style.css" />
 <link rel="stylesheet" href="/css/footer.css" />
-<script src="/js/jquery-3.6.4.min.js"></script>
 <title>Pet LiSe</title>
 <script>
 $(document).ready(function() {

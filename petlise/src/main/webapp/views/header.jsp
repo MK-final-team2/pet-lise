@@ -10,7 +10,6 @@
 <link rel="apple-touch-icon" href="/images/favicon.ico" />
 <link rel="stylesheet" href="/css/style.css" />
 <link rel="stylesheet" href="/css/header.css" />
-<script src="/js/jquery-3.6.4.min.js"></script>
 <title>Pet LiSe</title>
 <script>
 $(document).ready(function() {
@@ -50,7 +49,6 @@ $(document).ready(function() {
 	$("#header_gomypage").click(function(){ location.href = "/mypage"; })
 	$("#header_gomycart").click(function(){ location.href = "/shopcart"; })
 	$("#header_logout").click(function(){ location.href = "/logout"; })
-	
 })
 </script>
 </head>

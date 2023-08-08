@@ -39,7 +39,9 @@ public class MypageBoardsController {
 	
 	@PostMapping("/mypage/deletemyboard")
 	@ResponseBody
-	public String getMyBoardDelete(String board_id) {
+	public String getMyBoardDelete(String board_id, HttpSession session) {
+		String userId = (String)session.getAttribute("user_id");
+		service.pointDown(userId);
 		int result = service.deleteMyBoard(board_id);
 		return "{\"result\":\""+result+"\"}";
 	}
@@ -65,7 +67,9 @@ public class MypageBoardsController {
 	
 	@PostMapping("/mypage/deletemypetplace")
 	@ResponseBody
-	public String deletemypetplace(String place_id) {
+	public String deletemypetplace(String place_id, HttpSession session) {
+		String userId = (String)session.getAttribute("user_id");
+		service.pointDown(userId);
 		int result = service.deleteMyPetPlace(place_id);
 		return "{\"result\":\""+result+"\"}";
 	}
@@ -91,7 +95,9 @@ public class MypageBoardsController {
 	
 	@PostMapping("/mypage/deletemywriterecipe")
 	@ResponseBody
-	public String deletemywriterecipe(String recipe_id) {
+	public String deletemywriterecipe(String recipe_id, HttpSession session) {
+		String userId = (String)session.getAttribute("user_id");
+		service.pointDown(userId);
 		int result = service.deleteMyWriteRecipe(recipe_id);
 		return "{\"result\":\""+result+"\"}";
 	}
