@@ -1,41 +1,41 @@
 .title {
-	font: var(--heading24);
-	margin: 80px 0 100px;
-	text-align: center;
-} 
+  font: var(--heading24);
+  margin: 80px 0 100px;
+  text-align: center;
+}
 .container {
-	min-width: 1200px;
-	width: 1200px;
-	margin: 0 auto;
-	padding-bottom: 50px;
+  min-width: 1200px;
+  width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 50px;
 }
 .category:nth-of-type(3) {
-	background: var(--light-sub);
+  background: var(--light-sub);
 }
 .topWrap {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .createBtn {
-	width: 140px;
-	height: 43px;
-	text-align:center;
-	border-radius: 20px;
-	border: 1px solid var(--light-sub);
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  width: 140px;
+  height: 43px;
+  text-align: center;
+  border-radius: 20px;
+  border: 1px solid var(--light-sub);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.createBtn:hover {	
-	background-color: var(--light-sub);
+.createBtn:hover {
+  background-color: var(--light-sub);
 }
 
 .inputWrap {
   width: 240px;
   height: 40px;
-  border: 1px solid var(--light-point);
+  border: 1px solid var(--light-stroke);
   border-radius: 40px;
   padding: 5px 15px;
   display: flex;
@@ -54,7 +54,7 @@
 }
 
 main {
-	padding-bottom: 50px;
+  padding-bottom: 50px;
 }
 .table {
   min-width: calc(100% - 250px - 60px);
@@ -62,7 +62,7 @@ main {
   margin: 50px 0;
 }
 .table > div:first-of-type {
-  height: 60px;
+  height: 50px;
   background: var(--dark-point);
   border-radius: 10px;
   display: grid;
@@ -70,7 +70,7 @@ main {
 }
 .table > div:first-of-type p {
   font: var(--highlight16);
-  line-height: 60px;
+  line-height: 50px;
   text-align: center;
 }
 .table #tbody > div {
@@ -86,7 +86,7 @@ main {
 }
 .table #tbody p {
   font: var(--body14);
-  padding: 20px 5px;
+  padding: 15px 5px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -94,9 +94,8 @@ main {
 }
 .table #tbody p:first-of-type,
 .table #tbody p:last-of-type {
-  padding: 20px 10px;
+  padding: 15px 10px;
 }
 .table #tbody p:last-of-type span {
   cursor: pointer;
 }
-

@@ -34,40 +34,45 @@ function clickCommentModal(event) {
 
 const today = new Date();
 function deleteBoard(event) {
-	$.ajax({
-		url: url = `/admin/${title == "자유게시판" ? 'deleteboard' : 'deletepetplace'}`,
-		type: 'post',
-		data: {
-			deleted_at: today,
-			board_id: event.id
-		},
-		success: function() {
-			alert("삭제되었습니다.")
-			location.reload();
-		},
-		error: function(error) {
-			console.log(error);
-		}
-	})
+  $.ajax({
+    url: (url = `/admin/${
+      title == '자유게시판' ? 'deleteboard' : 'deletepetplace'
+    }`),
+    type: 'post',
+    data: {
+      deleted_at: today,
+      board_id: event.id
+    },
+    success: function () {
+      alert('삭제되었습니다.');
+      location.reload();
+    },
+    error: function (error) {
+      console.log(error);
+    }
+  });
 }
 function deleteComment(event) {
-	$.ajax({
-		url: `/admin/${title == "자유게시판" ? 'updatecommentdeleted' : 'updatepetplacecommentdeleted'}`,
-		type: 'post',
-		data: {
-			deleted_at: today,
-			comment_id: event.id
-		},
-		success: function() {
-			alert("삭제되었습니다.")
-			location.reload();
-		},
-		error: function(error) {
-			console.log(error);
-		}
-	})
+  $.ajax({
+    url: `/admin/${
+      title == '자유게시판'
+        ? 'updatecommentdeleted'
+        : 'updatepetplacecommentdeleted'
+    }`,
+    type: 'post',
+    data: {
+      deleted_at: today,
+      comment_id: event.id
+    },
+    success: function () {
+      alert('삭제되었습니다.');
+      location.reload();
+    },
+    error: function (error) {
+      console.log(error);
+    }
+  });
 }
-
 
 function cancel() {
   modal.classList.remove('active');

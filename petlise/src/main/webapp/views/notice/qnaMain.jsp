@@ -24,14 +24,22 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 
       <div class="topWrap">
         <div class="categoryWrap">
-         <div class="category">
-          <a class="${param.searchType1 == '공지' ? 'on' : ''}" href="noticeMain?page=1&searchType1=공지${param.keyword ? '&keyword=' + param.keyword : ''}">
-          공지사항</a>
-        </div>
-        <div class="category">
-       <a class="${param.searchType1 == '이벤트' ? 'on' : ''}" href="noticeMain?page=1&searchType1=이벤트${param.keyword ? '&keyword=' + param.keyword : ''}">
-          이벤트</a>
-        </div>
+          <div class="category">
+            <a
+              class="${param.searchType1 == '공지' ? 'on' : ''}"
+              href="noticeMain?page=1&searchType1=공지${param.keyword ? '&keyword=' + param.keyword : ''}"
+            >
+              공지사항</a
+            >
+          </div>
+          <div class="category">
+            <a
+              class="${param.searchType1 == '이벤트' ? 'on' : ''}"
+              href="noticeMain?page=1&searchType1=이벤트${param.keyword ? '&keyword=' + param.keyword : ''}"
+            >
+              이벤트</a
+            >
+          </div>
           <div class="category">
             <a href="/qna">문의사항</a>
           </div>
@@ -41,7 +49,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         </div>
         <div class="inputWrap">
           <object data="/images/search.svg"></object>
-          <input type="text" id="searchInput" placeholder="제목 or 작성자" />
+          <input type="text" id="searchInput" placeholder="검색" />
         </div>
 
         <c:if test="${user_id ne null}">
