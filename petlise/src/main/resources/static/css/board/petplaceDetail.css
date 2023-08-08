@@ -313,7 +313,7 @@ text-align: right;
 	display: inline-block;
 	width: 60%;
 	text-align: left;
-	padding-top: 5px;
+	padding-top: 20px;
 }
 .commentUl{
 	 border: 2px solid var(--light-stroke);
@@ -429,10 +429,11 @@ text-align: right;
 }
 	
 .tud{
-	width:15%;
+	width:18%;
 	display: flex;
   justify-content: flex-end;
 	padding-top: 48px;
+	gap:10px;
 }
 
   

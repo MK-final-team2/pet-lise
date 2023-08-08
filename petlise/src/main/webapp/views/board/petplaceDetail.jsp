@@ -249,14 +249,14 @@ $(document).ready(function() {
 									src="${fn:length(comment.user.profile_image) != 0 ? ('https://storage.googleapis.com/' += comment.user.profile_image) :''}"
 									onerror="this.onerror=null; this.src='/images/default-profile.svg';" />
 							</div>
-							<span style="margin-left: 25px;" class="cmt_nick">${comment.user.name}</span>
+							<span style="margin-left: 15px;" class="cmt_nick">${comment.user.name}</span>
 						</div>
 							<div class="comment_contents">
 								<p>${comment.comment_contents}</p>
 							</div>
 						
 						<div class="tud">
-					
+							<p>작성날짜 : </p>
 							<fmt:formatDate value="${comment.comment_created_at}"
 								pattern="yyyy-MM-dd H:mm" />
 						</div>

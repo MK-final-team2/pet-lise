@@ -60,7 +60,7 @@ function getSearchType() {
       return '이벤트';
     }
    
-    }
+    
     return searchType;
   }
   return '';

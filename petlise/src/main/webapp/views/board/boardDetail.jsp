@@ -114,6 +114,7 @@ $(document).ready(function() {
 			<img style="width: 50px; height: 50px;"
 				src="${fn:length(userInfo.profile_image) != 0 ? ('https://storage.googleapis.com/' += userInfo.profile_image) :''}"
 				onerror="this.onerror=null; this.src='/images/default-profile.svg';">
+				
 			<textarea class="cmt_textarea" id="comment-input"
 				name='comment_contents' boardholder="이 곳에 댓글 내용을 입력해주세요."></textarea>
 			<div class="character-count" id="characterCount">0/1000</div>
@@ -155,14 +156,14 @@ $(document).ready(function() {
 									src="${fn:length(comment.user.profile_image) != 0 ? ('https://storage.googleapis.com/' += comment.user.profile_image) :''}"
 									onerror="this.onerror=null; this.src='/images/default-profile.svg';" />
 							</div>
-							<span style="margin-left: 25px;" class="cmt_nick">${comment.user.name}</span>
+							<span style="margin-left: 15px;" class="cmt_nick">${comment.user.name}</span>
 						</div>
 							<div class="comment_contents">
 								<p>${comment.comment_contents}</p>
 							</div>
 						
 						<div class="tud">
-					
+							<p>작성날짜 : </p>
 							<fmt:formatDate value="${comment.comment_created_at}"
 								pattern="yyyy-MM-dd H:mm" />
 						</div>
