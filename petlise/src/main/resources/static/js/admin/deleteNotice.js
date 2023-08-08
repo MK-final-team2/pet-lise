@@ -1,7 +1,7 @@
 const modal = document.getElementById('modal');
-let select_category = $('.isOn').children('a').text();
-  
+
 function clickModal(event) {
+  let select_category = $('.isOn').children('a').text();
   modal.classList.add('active');
   let id = event.id;
   modal.innerHTML = `
@@ -18,22 +18,24 @@ function clickModal(event) {
 }
 
 function deleteNotice(event) {
-	$.ajax({
-		url: `/admin/${select_category == '문의사항' ? 'deleteqna' : 'deletenotice'}`,
-		type: 'post',
-		data: {
-			notice_id: event.id
-		},
-		success: function() {
-			alert("삭제되었습니다.")
-			location.reload();
-		},
-		error: function(error) {
-			console.log(error);
-		}
-	})
+  let select_category = $('.isOn').children('a').text();
+  $.ajax({
+    url: `/admin/${
+      select_category == '문의사항' ? 'deleteqna' : 'deletenotice'
+    }`,
+    type: 'post',
+    data: {
+      notice_id: event.id
+    },
+    success: function () {
+      alert('삭제되었습니다.');
+      location.reload();
+    },
+    error: function (error) {
+      console.log(error);
+    }
+  });
 }
-
 
 function cancel() {
   modal.classList.remove('active');

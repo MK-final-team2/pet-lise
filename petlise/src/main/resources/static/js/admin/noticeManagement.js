@@ -22,7 +22,10 @@ function ajaxData(keyword, page) {
   else category = select_category;
 
   const editBtn = document.getElementById('edit');
+  const inputWrap = document.getElementsByClassName('inputWrap');
   if (category == '공지' || category == '이벤트') {
+    inputWrap[0].style.display = 'flex';
+    editBtn.style.display = 'block';
     editBtn.innerHTML = `<a href="/admin/createnotice" class="editButton">등록</a>`;
 
     let formData = new FormData();
@@ -51,7 +54,7 @@ function ajaxData(keyword, page) {
             el => `
           	<tr>
               <td>${el?.category}</td>
-              <td id="${el?.notice_id}">${el?.title}</td>
+              <td><span onclick="location.href='/noticeDetail?notice_id=${el?.notice_id}'">${el?.title}</span></td>
               <td>${el?.name}</td>
               <td>${getDate(el?.created_at)}</td>
               <td>${el?.view_count == undefined ? 0 : el?.view_count}</td>
@@ -71,6 +74,7 @@ function ajaxData(keyword, page) {
     });
   } else if (category == '문의사항') {
     editBtn.style.display = 'none';
+    inputWrap[0].style.display = 'flex';
 
     $.ajax({
       url: `/admin/qnamanagement`,
@@ -110,8 +114,7 @@ function ajaxData(keyword, page) {
         console.log(error);
       }
     });
-  } else {
-    const inputWrap = document.getElementsByClassName('inputWrap');
+  } else if (category == '가족찾기') {
     inputWrap[0].style.display = 'none';
     editBtn.style.display = 'none';
 

@@ -3,10 +3,18 @@ package notice.qna;
 import java.util.Date;
 
 public class QnaRequestDTO {
-	String user_id, name, title, contents, category;
+	String notice_id, user_id, name, title, contents, category;
 	Date created_at;
 	int view_count;
 
+	public String getNotice_id() {
+		return notice_id;
+	}
+	
+	public void setNotice_id(String notice_id) {
+		this.notice_id = notice_id;
+	}
+	
 	public String getUser_id() {
 		return user_id;
 	}

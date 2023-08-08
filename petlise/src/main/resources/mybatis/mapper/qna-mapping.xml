@@ -24,10 +24,18 @@
 		LIMIT 10 OFFSET #{page};
 	</select>
 
-	<insert id="insertQna" parameterType="qnarequestdto">
+	<insert id="insertQna" parameterType="qnarequestdto" useGeneratedKeys="true" keyProperty="notice_id">
 		INSERT INTO qnaBoard ( user_id, title, contents, category, view_count )
 		VALUES ( #{user_id}, #{title}, #{contents}, #{category}, 0 )
 	</insert>
+	
+	<select id="selectInsertQna" parameterType="string" resultType="string">
+		SELECT notice_id
+		FROM qnaBoard
+		WHERE user_id=#{user_id}
+		ORDER BY qna_created DESC
+		LIMIT 1 OFFSET 0;
+	</select>
 	
 	<update id="updateQna" parameterType="Map">
 		UPDATE qnaBoard SET
@@ -69,6 +77,10 @@
 	<delete id="deleteComment" parameterType="string">
 		DELETE FROM qnaComment
 		WHERE comment_id=#{comment_id}
+	</delete>
+	<delete id="deleteAllComment" parameterType="string">
+		DELETE FROM qnaComment
+		WHERE notice_id=#{notice_id}
 	</delete>
 
 </mapper>

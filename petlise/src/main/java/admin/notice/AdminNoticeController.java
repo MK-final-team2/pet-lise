@@ -13,14 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import admin.notice.AdminEditNoticeRequestDTO;
-import admin.notice.AdminFindAllNoticeRequestDTO;
-import admin.notice.AdminNoticeRequestDTO;
-import admin.notice.AdminNoticeResponseDTO;
-import admin.notice.AdminNoticeService;
-import admin.notice.AdminQnAResponseDTO;
-import admin.recipe.AdminEditRecipeRequestDTO;
-import admin.recipe.AdminRecipeRequestDTO;
 import jakarta.servlet.http.HttpSession;
 
 @Controller

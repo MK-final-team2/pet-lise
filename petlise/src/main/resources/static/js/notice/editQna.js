@@ -28,11 +28,12 @@ function edit() {
 		url: `/${check == '등록' ? 'createqna' : 'editqna'}`,
 		type: "post",
 		data: formData,
+		dataType: 'text',
 		contentType: false,
 		processData: false,
 		success: function(data) {
 			alert(`${check}이 완료되었습니다.`)
-			//location.href = `/admin/noticemanagement`;
+			location.href = `/qnadetail?id=${data}`;
 		},
 		error: function(error) {
 			console.log(error);

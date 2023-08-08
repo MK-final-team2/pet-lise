@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -39,19 +38,28 @@ public class QnaController {
 		return qna_list;
 	}
 	
-	@RequestMapping("/createqna")
-	public String createQnA(Model model, HttpSession session, QnaRequestDTO dto) {
+	@GetMapping("/createqna")
+	public String getCreateQnA(Model model, HttpSession session, QnaRequestDTO dto) {
 		model.addAttribute("title", "문의사항 등록");
 		model.addAttribute("check", "등록");
 		
+		return "notice/editQna";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/createqna")
+	public String createQnA(Model model, HttpSession session, QnaRequestDTO dto) {
+		String notice_id = "";
 		if (session.getAttribute("user_id") != null && dto.getTitle() != null) {
 			String user_id = session.getAttribute("user_id").toString();
 
 			dto.setUser_id(user_id);
 			service.insertQna(dto);
+			
+			notice_id = service.selectInsertQna(user_id);
 		}
-		
-		return "notice/editQna";
+	
+		return notice_id;
 	}
 	
 	@GetMapping("/qnadetail")
@@ -79,15 +87,17 @@ public class QnaController {
 		return "notice/editQna";
 	}
 	
+	@ResponseBody
 	@RequestMapping("/editqna")
-	public ResponseEntity<Void> editQnA(EditQnaRequestDTO dto) {
+	public String editQnA(EditQnaRequestDTO dto) {
 		service.updateQna(dto);
 		
-		return new ResponseEntity(HttpStatus.OK);
+		return dto.getNotice_id();
 	}
 	
 	@RequestMapping("/deleteqna")
 	public ResponseEntity<Void> deleteQnA(String id) {
+		service.deleteAllComment(id);
 		service.deleteQna(id);
 		
 		return new ResponseEntity(HttpStatus.OK);
