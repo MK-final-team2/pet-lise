@@ -131,13 +131,19 @@
 						<span class="cmt_user_id" style="display:none;">${recipeComment.user_id}</span>
 							<span class="cmt_user_name" style="margin-top: 5px;">${recipeComment.name}</span>
 						<div class="cmt_btns" style="margin-top: 5px;">
+						
+						<!-- 
 							<button class="cmt_edit"
 								onclick="cmtEdit('${recipeComment.comment_id}')">수정</button>
 							<span>ㆍ</span>
+						 -->
+						 
 							<button class="cmt_delete">삭제</button>
 							<span class="cmt_date" style="font-size: 14px; margin-left: 5px;"><fmt:formatDate
 									value="${recipeComment.comment_created_at}" pattern="yyyy.MM.dd" /></span>
 						</div>
+						
+						<!--
 						<div class="cmt_util">
 							<button class="cmt_like">
 								<img src="/images/recipe/heart.svg">좋아요
@@ -146,17 +152,27 @@
 								<img src="/images/recipe/siren.svg" class="icon_siren">신고
 							</button>
 						</div>
+						-->
+						
 					</div>
 					<div class="cmt_content_box"
 						id="cmt_content_box_${recipeComment.comment_id}">
 						<div style="display: flex; align-items: center;">
+						<div class="cmt_img">
+							<img src="/images/reply.svg" />
+						</div>
+						
+						<!-- 
 							<div class="cmt_img">
 								<img src="https://storage.googleapis.com/${recipeComment.comment_image}"
 									onerror="this.onerror=null; this.src='/images/recipe/picture.svg';"
 									style="width: 50px; height: 50px; margin-right: 10px;">
 							</div>
+						 -->
 							<div class="cmt_contents" style="width:1300px;">${recipeComment.comment_contents}</div>
 						</div>
+						
+						<!-- 
 						<div class="edit_mode" style="display: none;">
 							<textarea class="edit_comment_content">${recipeComment.comment_contents}</textarea>
 								<img src="${recipeComment.comment_image}" />
@@ -165,6 +181,7 @@
 								<button onclick="cmtEdit(${recipeComment.comment_id})">취소</button>
 							</div>
 						</div>
+						 -->
 
 					</div>
 				</div>
@@ -193,7 +210,7 @@
 <script>
 //레시피 수정
 function redirectToRecipeEdit() {
-    window.location.href = "recipeedit?recipe_id=" + recipe_id;
+	    window.location.href = "recipeedit?recipe_id=" + recipe_id;
 }
 
 //레시피 삭제
@@ -209,7 +226,9 @@ $(document).ready(function(){
             	user_id: "${sessionScope.user_id}"
             },
             success: function(response) {
-            	location.href = "/recipelist?recipeType=나만의레시피&searchType1=강아지&searchType2=건강식&searchType3=다이어트식";
+            	if(confirm("정말로 삭제하시겠습니까?")){
+            		location.href = "/recipelist?recipeType=나만의레시피&searchType1=강아지&searchType2=건강식&searchType3=다이어트식";
+            	}
             },
             error: function(xhr, status, error) {
             	alert("본인 이외에는 삭제가 불가합니다.");
@@ -363,7 +382,7 @@ $(document).ready(function() {
 });
 
 //댓글 파일 업로드
-$("#file").change(function() {
+$("#file1").change(function() {
 	const file = document.getElementById("file1");
 	const url = file.files[0];
 
@@ -394,6 +413,7 @@ $("#file").change(function() {
 		success: function(url) {
 			$("#fileimg1").attr("src", 'https://storage.googleapis.com/${url}');
 			$("#imageValue1").val(url);
+			console.log(url);
 		},
 		error: function(error) {
 			console.log(error);
@@ -437,7 +457,9 @@ $(document).ready(function(){
             	user_id: "${sessionScope.user_id}"
             },
             success: function(response) {
-                location.href = "/recipedetail?recipe_id=" + recipe_id;
+            	if(confirm("삭제하시겠습니까?")){
+	                location.href = "/recipedetail?recipe_id=" + recipe_id;            		
+            	}
             },
             error: function(xhr, status, error) {
             	alert("본인 이외에는 삭제가 불가합니다.");
@@ -447,6 +469,7 @@ $(document).ready(function(){
     });
 });
 
+/*
 //댓글 편집모드 실행
 function cmtEdit(comment_id) {
   const cmtContentBox = document.getElementById(`cmt_content_box_${comment_id}`);
@@ -500,6 +523,9 @@ function cmtEdit(comment_id) {
    document.getElementById(`cmt_content_box_${comment_id}`).querySelector('.edit_mode').style.display = 'none';
    document.getElementById(`cmt_content_box_${comment_id}`).querySelector('.cmt_contents').style.display = 'block';
  }
+ 
+*/ 
+ 
 
 //댓글 입력 글자수
 $(document).ready(function() {
