@@ -80,5 +80,13 @@
 		DELETE FROM recipe
 		WHERE recipe_id=#{recipe_id}
 	</delete>
+	<delete id="deleteAllRecipeLike" parameterType="string">
+		DELETE FROM recipeLike
+		WHERE recipe_id=#{recipe_id}
+	</delete>
+	<delete id="deleteAllRecipeComment" parameterType="string">
+		DELETE FROM recipeComment
+		WHERE recipe_id=#{recipe_id}
+	</delete>
 
 </mapper>
