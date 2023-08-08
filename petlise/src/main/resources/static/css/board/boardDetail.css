@@ -4,6 +4,8 @@
 	position:relative;
 	border-radius: 20px;
 border: 1px solid var(--light-stroke, #DED4C7);
+min-height: 1000px; 
+height: auto;
 }
 .board_title{
 	color: var(--light-text, #1F1F1F);

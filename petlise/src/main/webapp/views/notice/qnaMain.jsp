@@ -24,12 +24,14 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 
       <div class="topWrap">
         <div class="categoryWrap">
-          <div class="category">
-            <a href="/noticeMain">공지사항</a>
-          </div>
-          <div class="category">
-            <a href="/eventMain">이벤트</a>
-          </div>
+         <div class="category">
+          <a class="${param.searchType1 == '공지' ? 'on' : ''}" href="noticeMain?page=1&searchType1=공지${param.keyword ? '&keyword=' + param.keyword : ''}">
+          공지사항</a>
+        </div>
+        <div class="category">
+       <a class="${param.searchType1 == '이벤트' ? 'on' : ''}" href="noticeMain?page=1&searchType1=이벤트${param.keyword ? '&keyword=' + param.keyword : ''}">
+          이벤트</a>
+        </div>
           <div class="category">
             <a href="/qna">문의사항</a>
           </div>

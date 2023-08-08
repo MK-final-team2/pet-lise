@@ -3,7 +3,8 @@
   margin: 0 auto;
   position: relative;
   width: 1240px;
-  height: 80%;
+  min-height: 1000px; 
+height: auto;
 }
 p {
 	margin-bottom: 5px;

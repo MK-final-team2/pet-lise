@@ -233,10 +233,12 @@ $(document).ready(function() {
 			<c:otherwise>style="margin-right: 50px;"</c:otherwise>
 		</c:choose> >
 			<div class="header-list-title">
-				<a href="/noticeMain">공지사항</a>
+				<a class="${param.searchType1 == '공지' ? 'on' : ''}" href="noticeMain?page=1&searchType1=공지${param.keyword ? '&keyword=' + param.keyword : ''}">
+          공지사항</a>
 			</div>
 			<div class="header-list-title">
-				<a href="">이벤트</a>
+				<a class="${param.searchType1 == '이벤트' ? 'on' : ''}" href="noticeMain?page=1&searchType1=이벤트${param.keyword ? '&keyword=' + param.keyword : ''}">
+          이벤트</a>
 			</div>
 			<div class="header-list-title">
 				<a href="/qna">문의사항</a>
