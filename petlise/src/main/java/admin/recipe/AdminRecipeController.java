@@ -82,12 +82,6 @@ public class AdminRecipeController {
 		
 		return new ResponseEntity(HttpStatus.OK);
 	}
-	@RequestMapping("/deleterecipe")
-	public ResponseEntity<Void> deleteRecipe(String recipe_id) {
-		service.deleteRecipe(recipe_id);
-
-		return new ResponseEntity(HttpStatus.OK);
-	}
 
 	@RequestMapping("/createexpertrecipe-cat")
 	public String editExpertRecipeCat(Model model, HttpSession session, AdminRecipeRequestDTO dto) {
@@ -146,4 +140,13 @@ public class AdminRecipeController {
 		return "admin/myRecipeManagement";
 	}
 
+
+	@RequestMapping("/deleterecipe")
+	public ResponseEntity<Void> deleteRecipe(String recipe_id) {
+		service.deleteAllRecipeLike(recipe_id);
+		service.deleteAllRecipeComment(recipe_id);
+		service.deleteRecipe(recipe_id);
+
+		return new ResponseEntity(HttpStatus.OK);
+	}
 }
