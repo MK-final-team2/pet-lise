@@ -27,16 +27,18 @@ pageEncoding="UTF-8"%>
     <div id = "container">
         <!-- 본문 -->
         <div class="notice_wrap">
-            <div class="notice_title">
-                공지사항	  
+            <div  class="notice_title">
+                <a href="/noticeMain">공지사항</a>	  
             </div> 
           
                <div class="categoryWrap">
         <div class="category">
-          <a href="/noticeMain">공지사항</a>
+          <a class="${param.searchType1 == '공지' ? 'on' : ''}" href="noticeMain?page=1&searchType1=공지${param.keyword ? '&keyword=' + param.keyword : ''}">
+          공지사항</a>
         </div>
         <div class="category">
-          <a href="/eventMain">이벤트</a>
+           <a class="${param.searchType1 == '이벤트' ? 'on' : ''}" href="noticeMain?page=1&searchType1=이벤트${param.keyword ? '&keyword=' + param.keyword : ''}">
+          이벤트</a>
         </div>
         <div class="category">
           <a href="/qna">문의사항</a>
@@ -98,7 +100,7 @@ pageEncoding="UTF-8"%>
 						</td>
 						<td class="writer" style="padding-left: 12px;"> ${notices.name}</td>
 						<td class="date" style="padding-right:  65px">
-							<fmt:formatDate value="${notices.notice_created}" pattern="yyyy-MM-dd :mm" />
+							<fmt:formatDate value="${notices.notice_created}" pattern="yyyy-MM-dd H:mm" />
 						</td>
 						<td class="view" style="padding-right:180px">${notices.view_count}</td>
 						
