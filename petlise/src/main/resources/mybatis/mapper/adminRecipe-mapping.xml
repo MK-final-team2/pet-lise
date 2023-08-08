@@ -72,7 +72,7 @@
 	</select>
 	
 	<update id="updateRecipeOfTheMonth" parameterType="map">
-		UPDATE recipe SET recipe_of_the_month=#{recipe_of_the_month}, recipe_of_the_month_ registration_date=NOW()
+		UPDATE recipe SET recipe_of_the_month=#{recipe_of_the_month}
 		where recipe_id=#{recipe_id}
 	</update>
 	

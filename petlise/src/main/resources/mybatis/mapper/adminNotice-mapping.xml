@@ -57,7 +57,7 @@
 				WHERE (title like CONCAT('%', #{keyword}, '%')
 				OR u.name like CONCAT('%', #{keyword}, '%'))
 			</if> ) as 'count',
-		q.notice_id, q.category, q.title, q.qna_created as created_at, q.view_count, u.name, q.like
+		q.notice_id, q.category, q.title, q.qna_created as created_at, q.view_count, u.name
 		FROM qnaBoard q
 		LEFT JOIN user u
 		ON q.user_id = u.user_id

@@ -3,8 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mypage.user.MypageDAO">
 
-	<select id="userInfo" parameterType="string"
-		resultType="mypagedto">
+	<select id="userInfo" parameterType="string" resultType="mypagedto">
 		select * from user where user_id=#{id}
 	</select>
 
@@ -35,8 +34,6 @@
 		deleted_at=#{deleted_at}
 		where user_id=#{id}
 	</update>
-	
-	
 
 	<select id="orderCount" parameterType="string" resultType="int">
 		select count(op.user_id) from orderProduct op

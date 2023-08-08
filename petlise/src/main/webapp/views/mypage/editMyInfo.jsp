@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -17,7 +17,7 @@
   </head>
   <body>
     <jsp:include page="../header.jsp" />
-    
+
     <p class="title">마이페이지</p>
 
     <div class="container">
@@ -36,7 +36,12 @@
                   onerror="this.onerror=null; this.src='/images/default-profile.svg';"
                   id="imgUrl"
                 />
-                <input type="hidden" id="imageValue" name="profile_image" value="${my_info.profile_image}" />
+                <input
+                  type="hidden"
+                  id="imageValue"
+                  name="profile_image"
+                  value="${my_info.profile_image}"
+                />
               </div>
               <label for="file">사진변경</label>
               <input
@@ -49,9 +54,15 @@
 
             <div class="nameWrap">
               <div id="nameTextWrap">
-                <span id="nameText">${my_info.name}</span> <span>님</span> <button onclick="changeInput()">이름변경</button>
+                <span id="nameText">${my_info.name}</span> <span>님</span>
+                <button onclick="changeInput()">이름변경</button>
               </div>
-              <input type="text" value="${my_info.name}" style="display: none;" id="nameInput">
+              <input
+                type="text"
+                value="${my_info.name}"
+                style="display: none"
+                id="nameInput"
+              />
               <p>${my_info.email}</p>
             </div>
           </div>
@@ -63,11 +74,14 @@
                 <input
                   type="text"
                   name="address"
+                  id="sample6_postcode"
                   placeholder="우편번호"
                   value="${fn:split(my_info.address, ',')[0]}"
                   readonly
                 />
-                <button onclick="sample6_execDaumPostcode()">우편번호 검색</button>
+                <button onclick="sample6_execDaumPostcode()">
+                  우편번호 검색
+                </button>
               </div>
               <input
                 type="text"
@@ -151,7 +165,13 @@
 
           <div class="inputWrap">
             <p>반려동물 나이</p>
-            <input type="text" class="petAge" maxlength="2" value="${my_info.pet_age}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+            <input
+              type="text"
+              class="petAge"
+              maxlength="2"
+              value="${my_info.pet_age}"
+              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+            />
           </div>
         </div>
         <p class="deleteUser" onclick="clickModal()">회원탈퇴하기</p>
@@ -160,7 +180,7 @@
     </div>
 
     <div id="modal"></div>
-    
+
     <jsp:include page="../footer.jsp" />
 
     <script src="/js/mypageMenu.js"></script>

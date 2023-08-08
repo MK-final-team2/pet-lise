@@ -3,7 +3,7 @@ package admin.notice;
 import java.util.Date;
 
 public class AdminQnAResponseDTO {
-	int count, view_count, like;
+	int count, view_count;
 	String notice_id, title, category, name;
 	Date created_at;
 	
@@ -18,12 +18,6 @@ public class AdminQnAResponseDTO {
 	}
 	public void setView_count(int view_count) {
 		this.view_count = view_count;
-	}
-	public int getLike() {
-		return like;
-	}
-	public void setLike(int like) {
-		this.like = like;
 	}
 	public String getNotice_id() {
 		return notice_id;

@@ -1,6 +1,6 @@
 const table = document.getElementsByClassName('table');
 
- table[0].innerHTML += `
+table[0].innerHTML += `
   <thead>
     <tr>
       <th>구분</th>
@@ -44,7 +44,7 @@ table[2].innerHTML += `
   </thead>
   <tbody id="qnaTbody"></tbody>
  `;
- 
+
 table[3].innerHTML += `
   <thead class="family">
     <tr>
