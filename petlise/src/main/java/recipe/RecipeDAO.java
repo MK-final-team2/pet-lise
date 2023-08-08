@@ -21,6 +21,6 @@ public interface RecipeDAO {
     void recipeViewCount(@Param("recipe_id") String recipe_id);
     RecipeDTO getRecipeDetailById(String recipe_id);
 
-    
+     
    
 }

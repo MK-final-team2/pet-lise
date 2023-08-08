@@ -98,7 +98,7 @@
 		UPDATE recipe
 		SET view_cnt = view_cnt + 1
 		WHERE recipe_id = #{recipeId}
-	</update>
+	</update> 
 
 	<!-- 레시피 상세 정보 가져오기 -->
 	<select id="getRecipeDetailById" parameterType="string"
