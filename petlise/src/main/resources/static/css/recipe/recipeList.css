@@ -168,18 +168,13 @@
       background-size: cover;
       background-repeat: no-repeat;
       
-      
       >img {
   		width: 55px;
  		height: 55px; 	
  		margin: 10px 0 0 10px;
- 		
- 		
 	  }      
    }
    
-  
-
   .recipelist_cover{
       visibility:hidden;
       width: 290px;
