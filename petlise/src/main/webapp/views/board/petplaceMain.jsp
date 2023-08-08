@@ -136,7 +136,7 @@
 							</td>
 							<td class="view">${petPlace.view_count}</td>
 							<td class="like">
-								${petPlace.seq}
+								${petPlace.petplacelike.likes}
 							</td>
 						</tr>
 					</c:forEach>
