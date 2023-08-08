@@ -72,7 +72,7 @@
     FROM petplaceComment c
     INNER JOIN petPlace p ON p.place_id = c.place_id
     INNER JOIN user u ON c.user_id = u.user_id
-	where c.place_id=#{searchType1} 
+	where c.place_id=#{searchType1} and c.deleted_at IS NULL
     ORDER BY c.comment_created_at DESC
     LIMIT #{pagination.limitStart}, #{recordSize}
 </select>
@@ -81,7 +81,7 @@
     SELECT COUNT(*)
     FROM petplaceComment c
     INNER JOIN petPlace p ON p.place_id = c.place_id
- 	where c.place_id=#{searchType1} 
+ 	where c.place_id=#{searchType1} and c.deleted_at IS NULL 
 </select>
 
 <select id="getListWithPage" resultMap="petplacedto">
@@ -94,6 +94,7 @@
         SELECT *
         FROM petPlace p
          inner JOIN user u ON p.user_id = u.user_id
+         
         <where>
             <choose>
                 <when test="searchType1 != null and searchType1 != ''">
@@ -114,6 +115,7 @@
             <if test="keyword != null and keyword != ''">
                 AND title LIKE CONCAT('%', #{keyword}, '%')
             </if>
+             AND p.deleted_at IS NULL
         </where>
         ORDER BY petplace_created DESC
         LIMIT #{pagination.limitStart}, #{recordSize}
@@ -121,7 +123,7 @@
 
     <select id="getCount" resultType="int" parameterType="pagination.SearchDTO">
         SELECT COUNT(*)
-        FROM petPlace
+        FROM petPlace p
         <where>
             <choose>
                 <when test="searchType1 != null and searchType1 != ''">
@@ -147,6 +149,7 @@
             <if test="keyword != null and keyword != ''">
                 AND title LIKE CONCAT('%', #{keyword}, '%')
             </if>
+             AND p.deleted_at IS NULL
         </where>
     </select>
 
@@ -186,7 +189,7 @@ VALUES (0, #{user_id}, #{title}, #{category}, #{petplace_address},  #{petplace_c
     FROM petPlace p
     LEFT JOIN user u ON p.user_id = u.user_id
     LEFT JOIN petplaceLike l ON p.place_id = l.place_id
-    WHERE seq = #{seq}
+    WHERE seq = #{seq}  AND p.deleted_at IS NULL
 </select>
 
 

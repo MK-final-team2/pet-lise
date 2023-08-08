@@ -92,8 +92,8 @@ public class PetPlaceServiceImpl implements PetPlaceService {
 
 
 
-	public void deletepetplace( int seq , String place_id) {
-		dao.deleteAllComment(place_id);
+	public void deletepetplace( int seq ) {
+	
 		 dao.deletepetplace(seq);
 	}
 
@@ -122,11 +122,6 @@ public class PetPlaceServiceImpl implements PetPlaceService {
 
 
 
-	@Override
-	public void deletepetplace(int seq) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	/*
 	 * @Override public void insertComment(PetPlaceCommentDTO petplacecommentdto) {

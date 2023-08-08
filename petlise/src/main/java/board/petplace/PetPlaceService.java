@@ -25,7 +25,7 @@ public interface PetPlaceService {
 
 	public int updatepetplace(PetPlaceDTO dto);
 
-	public void deletepetplace(int seq);
+	public void deletepetplace(int seq );
 	int deleteComment(String comment_id);
 	UserDTO getUserInfoPetplace(String user_id);
 	
