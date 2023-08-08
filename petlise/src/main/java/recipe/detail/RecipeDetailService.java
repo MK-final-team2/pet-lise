@@ -1,6 +1,8 @@
 package recipe.detail;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,12 @@ public class RecipeDetailService {
 	public int editComment(RecipeCommentDTO dto) {
 		return dao.editComment(dto);
 	}
+	public int deleteMyRecipe(String recipe_id, String user_id) {
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("recipe_id", recipe_id);
+		parameters.put("user_id", user_id);
+		return dao.deleteMyRecipe(parameters);
+	}
 	public UserDTO getUserInfoRecipe(String user_id){
 		return dao.getUserInfoRecipe(user_id);
 	}
@@ -47,10 +55,16 @@ public class RecipeDetailService {
 	public UserDTO getUserProfile(String recipe_id) {
 		return dao.getUserProfile(recipe_id);
 	}
-	public int deleteRecipeComment(String comment_id) {
-		return dao.deleteRecipeComment(comment_id);
+	public int deleteRecipeComment(String comment_id, String user_id) {
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("comment_id", comment_id);
+		parameters.put("user_id", user_id);
+		return dao.deleteRecipeComment(parameters);
 	}
 	public void incrementViewCount(String recipe_id) {
 		dao.incrementViewCount(recipe_id);
+	}
+	public void commentCnt(String recipe_id) {
+		dao.commentCnt(recipe_id);
 	}
 }
