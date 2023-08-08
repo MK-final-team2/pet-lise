@@ -31,7 +31,7 @@
 
 	<select id="getMyBoardlike" parameterType="String" resultType="int">
 		select count(*)
-		from `boardlike`
+		from `boardLike`
 		where board_id = #{board_id}
 	</select>
 
@@ -64,7 +64,7 @@
 	
 	<select id="getMyPetPlacelike" parameterType="String" resultType="int">
 		select count(*)
-		from `petplacelike`
+		from `petplaceLike`
 		where place_id = #{place_id}
 	</select>
 	
