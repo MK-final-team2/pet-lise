@@ -65,7 +65,7 @@
 			<div id="outer_container">
 				<c:if test="${fn:length(response.list) == 0}">
 					<div id="nolist">
-						해당되는 상품이 없습니다.
+						구매하신 상품이 없습니다.
 					</div>
 				</c:if>
 			

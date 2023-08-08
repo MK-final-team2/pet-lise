@@ -27,7 +27,7 @@ public interface PetPlaceDAO {
     int insertComment(PetPlaceCommentDTO dto) ;
     public void updatepetplace(PetPlaceDTO dto);
     
-    public int deletepetplace(int seq);
+    public void deletepetplace(int seq );
     
 	public PetPlaceDTO findpetplace (int seq);
 	

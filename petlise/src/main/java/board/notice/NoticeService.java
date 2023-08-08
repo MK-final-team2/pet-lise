@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import pagination.Pagination;
 import pagination.PagingResponse;
 import pagination.SearchDTO;
+import user.UserDTO;
 
 
 
@@ -44,6 +45,16 @@ public class NoticeService {
 	public int updateNotice(NoticeDTO dto) {
 		return dao.updateNotice(dto);
 	};
+	
+	public UserDTO getUserInfoNoticeboard(String user_id) {
+		return dao.getUserInfoNoticeboard(user_id);
+	}
+	
+	public NoticeDTO findnotice (String noitce_id) {
+		return dao.findnotice(noitce_id);
+	}
+	
+	
 	
 	//Pagination
 	public PagingResponse<NoticeDTO> getAllNoticePaging(SearchDTO dto) {

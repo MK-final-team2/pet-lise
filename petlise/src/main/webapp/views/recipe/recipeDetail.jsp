@@ -188,6 +188,7 @@
 	</div>
 
 	<jsp:include page="../footer.jsp" />
+	<jsp:include page="../topButton.jsp" />	
 </body>
 <script>
 //레시피 수정

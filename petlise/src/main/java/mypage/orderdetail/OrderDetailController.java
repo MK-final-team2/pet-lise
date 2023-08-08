@@ -28,8 +28,8 @@ public class OrderDetailController {
 		ModelAndView mv = new ModelAndView();
 		if (session.getAttribute("user_id") != null) {
 			List<ShopOrderProductDTO> myOrderProduct = service.myOrderProduct(order_id);
-			List<UserDTO> myUserInfo = service.myUserInfo(user_id);
-			List<ShopOrderInfoDTO> myDeliveryInfo = service.myDeliveryInfo(order_id);
+			UserDTO myUserInfo = service.myUserInfo(user_id);
+			ShopOrderInfoDTO myDeliveryInfo = service.myDeliveryInfo(order_id);
 			
 			mv.addObject("myOrderProduct", myOrderProduct);
 			mv.addObject("myUserInfo", myUserInfo);

@@ -51,12 +51,12 @@ public class PetPlaceController {
 	
 	@RequestMapping("/petplaceCommentform")
 	public ResponseEntity<Integer> insertComment(HttpSession session, PetPlaceDTO dto,PetPlaceCommentDTO comment, Model model) {
-		if (session.getAttribute("user_id") != null && dto.getTitle() != null) {
+		if (session.getAttribute("user_id") != null ) {
 			String user_id = session.getAttribute("user_id").toString();
 			dto.setUser_id(user_id);
+			int seq = service.insertComment(comment);; // 새로 생성된 seq를 얻어옵니다.
 		}
-		int seq = service.insertComment(comment);; // 새로 생성된 seq를 얻어옵니다.
-			
+			int seq = dto.getSeq(); 
 		return new ResponseEntity<Integer>(seq, HttpStatus.OK);
 			}
 

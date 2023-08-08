@@ -23,4 +23,10 @@
 					#{product_name}, #{product_price}, #{quantity}, #{price_total});	
 	</insert>
 	
+<!-- 주문완료되지않은 주문상품들 비우기 -->
+	<delete id="deleteNonPayment" parameterType="String">
+		DELETE FROM `orderProduct` 
+		WHERE `user_id` = #{user_id} and `order_id` is null;
+	</delete>
+	
 </mapper>

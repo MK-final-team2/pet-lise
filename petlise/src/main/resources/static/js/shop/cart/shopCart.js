@@ -92,7 +92,18 @@ $(document).ready(function(){
     
     // 주문하러가기 버튼
 	$('#order_button').click(function() {
-	    
+		//이전 주문목록 남아있는것 지우기
+		$.ajax({
+	        url: '/clearnonpeyment',
+	        type: 'post',
+	        dataType: 'json',
+	        success: function(response) {},
+	        error: function(xhr, status, error) {
+	            console.error(error);
+	        }
+	    });
+		
+		
 	    $.ajax({
 	        url: '/getUserId',
 	        type: 'GET',

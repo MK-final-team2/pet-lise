@@ -165,13 +165,15 @@
       border: 1px solid var(--light-point);
       margin: -1px -1px;
       background-color: #ffffff;
-      background-size: contain;
+      background-size: cover;
       background-repeat: no-repeat;
+      
       
       >img {
   		width: 55px;
  		height: 55px; 	
  		margin: 10px 0 0 10px;
+ 		
  		
 	  }      
    }

@@ -19,11 +19,11 @@ public class OrderDetailService {
 		return dao.myOrderProduct(order_id);
 	}
 	
-	public List<UserDTO> myUserInfo(String user_id){
+	public UserDTO myUserInfo(String user_id){
 		return dao.myUserInfo(user_id);
 	}
 	
-	public List<ShopOrderInfoDTO> myDeliveryInfo(String order_id){
+	public ShopOrderInfoDTO myDeliveryInfo(String order_id){
 		return dao.myDeliveryInfo(order_id);
 	}
 	public int cancelOrderDetail(String order_id) {

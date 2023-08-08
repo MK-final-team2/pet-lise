@@ -257,6 +257,12 @@
   	text-align: right;
 }
 
+.Btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap:20px;	
+}
 #orderList_Btn,
 #cancel_Btn {
 	width: 200px;
@@ -271,14 +277,22 @@
 #cancel_Btn:hover {
 	background: var(--light-sub, #FBC252);
 	font-weight: 700;
+	cursor: pointer;
+}
+
+#cancel_Btn_no{
+	width: 200px;
+	height: 45px;
+	border-radius: 5px;
+	border: 1px solid var(--gray5);
+	background: var(--gray5);
+	color:var(--gray4);
+	font: var(--highlight16);
+	margin-top: 20px;
 }
 
 #logo {
 	text-align: center;
 	width: 100%;
 	margin-top: -20px;
-}
-
-.Btn {
-	text-align: center;
 }

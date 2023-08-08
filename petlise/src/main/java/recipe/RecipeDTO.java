@@ -18,6 +18,12 @@ public class RecipeDTO {
 	private UserDTO point;
 	
 	
+	public int getComments() {
+		return comments;
+	}
+	public void setComments(int comments) {
+		this.comments = comments;
+	}
 	public String getRecipe_id() {
 		return recipe_id;
 	}

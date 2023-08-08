@@ -16,12 +16,18 @@ public class RecipeListDTO {
 	private Timestamp recipe_created_at, recipe_updated_at;
 	private boolean is_like;
 	private String limitedContent;
-	
+	private String limitedTitle;
 	
 	private UserDTO user;
 	
 		
-
+	
+	public String getLimitedTitle() {
+		return limitedTitle;
+	}
+	public void setLimitedTitle(String limitedTitle) {
+		this.limitedTitle = limitedTitle;
+	}
 	public String getLimitedContent() {
 		return limitedContent;
 	}

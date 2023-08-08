@@ -79,10 +79,7 @@ public class RecipeService {
         return recipeDAO.getRecipeDetailById(recipe_id);
     }
   	 
-  	 // 레시피 조회수 증가 메소드
-    public void recipeViewCount(String recipe_id) {
-        recipeDAO.recipeViewCount(recipe_id);
-    }
+  	
         
     public int updateRecipeOfMonth(String recipe_id, int value) {
         return recipeDAO.updateRecipeOfMonth(recipe_id, value);

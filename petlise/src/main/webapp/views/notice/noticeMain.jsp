@@ -1,26 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core" %>
+pageEncoding="UTF-8"%> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/board/noticeMain.css">
+    <link rel="stylesheet" href="/css/notice/noticeMain.css">
     <link rel="stylesheet" href="/css/style.css" /> 
-    <link rel="stylesheet" href="/css/nav/nav.css" /> 
+   
+
     <title>공지사항메인</title>
     <script src="/js/jquery-3.6.4.min.js"></script>
         <script>
       $(document).ready(function () {});
     </script>  
 </head>
-<header>
- <div id="nav">
-<script src="/js/recipe/nav.js"></script>
-</div>
-</header>
+ <header>
+		<jsp:include page="../header.jsp" />
+	</header>
 <body>
     
     <div id = "container">
@@ -29,11 +30,25 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <div class="notice_title">
                 공지사항	  
             </div> 
-            
-           
-              
+          
+               <div class="categoryWrap">
+        <div class="category">
+          <a href="/noticeMain">공지사항</a>
+        </div>
+        <div class="category">
+          <a href="/eventMain">이벤트</a>
+        </div>
+        <div class="category">
+          <a href="/qna">문의사항</a>
+        </div>
+        <div class="category">
+          <a href="/findfamily">가족찾기</a>
+        </div>
+      </div>
 		<!-- searchdiv -->
             <div class="search-container">
+             
+           
 			<div class="searchbox">
 				<button id="searchbtn">
 					<img src="/images/board/Vector.png" alt="검색">
@@ -76,16 +91,16 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
 				<c:forEach var="notices" items="${response.list}">
 					<tr>
-						<td class="title">
-							<a href="noticeDetail.jsp?title=${notices.title}">
+						<td class="title" >
+							<a href="noticeDetail?notice_id=${notices.notice_id}">
 								${notices.title}
 							</a>
 						</td>
-						<td class="writer">${notices.user_id}</td>
-						<td class="date">
+						<td class="writer" style="padding-left: 12px;"> ${notices.name}</td>
+						<td class="date" style="padding-right:  65px">
 							<fmt:formatDate value="${notices.notice_created}" pattern="yyyy-MM-dd :mm" />
 						</td>
-						<td class="view">${notices.view_count}</td>
+						<td class="view" style="padding-right:180px">${notices.view_count}</td>
 						
 				</c:forEach>
 			</table>
@@ -143,6 +158,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 </div>
 </div>
 </div>
+<footer>
+<jsp:include page="../footer.jsp" />
+</footer>
 <!-- pagination -->
 	<script src="/js/board/Notice.js"></script>
 </body>

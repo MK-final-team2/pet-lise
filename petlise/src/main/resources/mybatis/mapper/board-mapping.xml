@@ -66,7 +66,7 @@
     FROM boardComment c
     INNER JOIN board b ON b.board_id = c.board_id
     INNER JOIN user u ON c.user_id = u.user_id
-	where c.board_id=#{searchType1} 
+	where c.board_id=#{searchType1} and c.deleted_at IS NULL
     ORDER BY c.comment_created_at DESC
     LIMIT #{pagination.limitStart}, #{recordSize}
 </select>
@@ -75,7 +75,7 @@
     SELECT COUNT(*)
     FROM boardComment c
     INNER JOIN board b ON b.board_id = c.board_id
- 	where c.board_id=#{searchType1} 
+ 	where c.board_id=#{searchType1} and c.deleted_at IS NULL
 </select>
     
     
@@ -90,14 +90,16 @@
             <if test="keyword != null and keyword != ''">
                 AND board_title LIKE CONCAT('%', #{keyword}, '%')
             </if>
+            and b.deleted_at IS NULL
         </where>
+        
         ORDER BY board_created DESC
         LIMIT #{pagination.limitStart}, #{recordSize}
     </select>
 
     <select id="getCount" resultType="int" parameterType="pagination.SearchDTO">
         SELECT COUNT(*)
-        FROM board
+        FROM board b
         <where>
             <choose>
                 
@@ -108,6 +110,7 @@
             <if test="keyword != null and keyword != ''">
                 AND board_title LIKE CONCAT('%', #{keyword}, '%')
             </if>
+            and b.deleted_at IS NULL
         </where>
     </select>
 

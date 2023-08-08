@@ -12,7 +12,8 @@ function edit() {
     formData.append("comment_contents", comment_contents);
     formData.append("user_id", user_id);
     formData.append("place_id", place_id);
-
+if (user_id != 'null') {
+    
     $.ajax({
         url: "petplaceCommentform",
         type: "post",
@@ -28,12 +29,13 @@ function edit() {
     
 },
         error: function (xhr, status, error) {
-           if (user_id == 'null') {
-						alert('로그인이 필요합니다. 로그인 페이지로 이동합니다.');
-						window.location.href = '/signin'; // 로그인 페이지로 이동/ Redirect to the login page
-            } else {
                 alert('등록이 실패했습니다.');
-            }
+            
         }
     });
+
+}else{ alert('로그인이 필요합니다. 로그인 페이지로 이동합니다.');
+						window.location.href = '/signin';
+						 // 로그인 페이지로 이동/ Redirect to the login page
+						 }
 }

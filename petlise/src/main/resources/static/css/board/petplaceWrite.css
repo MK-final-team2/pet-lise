@@ -1,8 +1,8 @@
 #container {
 	margin: 0 auto;
-	position: relative;
+	
 	width: 1040px;
-	height: 115%;
+	height: 100%;
 }
 
 p {
@@ -170,4 +170,8 @@ margin-bottom : 10px;
 	font: var(--button14);
 	margin: 0 auto;
 
+}
+
+footer{
+	margin-top: 400px;
 }

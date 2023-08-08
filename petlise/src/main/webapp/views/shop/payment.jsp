@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" href="/images/favicon.ico" />
 <link rel="apple-touch-icon" href="/images/favicon.ico" />
-<title>주문/결제</title>
+<title>Pet LiSe</title>
 <script src="/js/jquery-3.6.4.min.js"></script>
 </head>
 <body>
@@ -46,7 +46,7 @@
 					<div id="product_name">${products.product_name}</div>
 				</div>
 			</c:forEach>
-			<c:forEach var="orderProduct" items="${orderProduct}" begin="0" end="2">
+			<c:forEach var="orderProduct" items="${orderProduct}">
 			    <div class="table_Column">
 			    	<div class="Else">
 			    		<p id="product_User_Id" class="Else">${orderProduct.user_id}</p>
@@ -118,26 +118,26 @@
 							<table class="delivery_Info">
 								<tr>
 									<td class="col_1">받는분 성함</td>
-									<td class="col_2" id="delivery_Name"><input type="text" id="input_Name"></td>
+									<td class="col_2" id="delivery_Name"><input type="text" id="input_Name" placeholder="실명(필수)" ></td>
 								</tr>
 								<tr>
 									<td class="col_1">연락처</td>
-									<td class="col_2" id="delivery_Phone"><input type="text" id="input_Phone"></td>
+									<td class="col_2" id="delivery_Phone"><input type="text" id="input_Phone" placeholder="연락처(필수)"></td>
 								</tr>
 								<tr>
 									<td class="col_1">배송주소</td>
 									<td class="col_2" id="delivery_Address">
-										<input type="text" id="sample6_postcode" style="width:150px" />
+										<input type="text" id="sample6_postcode" placeholder="우편번호(필수)" style="width:150px" />
 										  <button type="button" id="find_ZipCode" onclick="sample6_execDaumPostcode()">
 										    우편번호
 										  </button>
-										<input type="text" id="sample6_address" />
-										<input type="text" id="sample6_detailAddress" />
+										<input type="text" id="sample6_address" placeholder="주소(필수)" />
+										<input type="text" id="sample6_detailAddress" placeholder="상세주소(선택)" />
 									</td>
 								</tr>
 								<tr>
 									<td class="col_1">배송 요청사항</td>
-									<td class="col_2" id="delivery_Require"><input type="text" id="input_Require"></td>					
+									<td class="col_2" id="delivery_Require"><input type="text" id="input_Require" placeholder="배송시 요청사항(선택)"></td>					
 								</tr>
 							</table>
 					<p id="delivery_Caption">※ 배송지 정보는 주문 완료시 수정이 불가능하므로 정보를 꼭 확인해주시기 바랍니다.</p>
@@ -196,6 +196,8 @@
 		</div>
 	</div>
 	<jsp:include page="../footer.jsp" />
+	
+	
 <script src="/js/shop/payment/payment.js"></script>
 <script src="/js/postcode.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

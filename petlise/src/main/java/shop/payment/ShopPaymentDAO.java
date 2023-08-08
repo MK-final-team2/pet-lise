@@ -1,5 +1,6 @@
 package shop.payment;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -18,6 +19,6 @@ public interface ShopPaymentDAO {
 	int orderConfirm(String user_id);
 	int deleteCart(String user_id);
 	List<ProductDTO> getProducts(ProductDTO dto);
-	int updateSales(int product_id);
-	int updatePointPayment(String user_id);
+	int updateSales(HashMap<String, Integer> map);
+	int updatePointPayment(HashMap<String, String> map);
 }

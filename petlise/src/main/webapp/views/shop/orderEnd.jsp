@@ -13,7 +13,7 @@
 	<link rel="apple-touch-icon" href="/images/favicon.ico" />
     <link rel="stylesheet" href="css/shop/orderEnd.css" />
     <link rel="stylesheet" href="/css/style.css" />
-    <title>주문완료</title>
+    <title>Pet LiSe</title>
     <script src="/js/jquery-3.6.4.min.js"></script>
   </head>
   <body>
@@ -128,7 +128,7 @@
 	                alt="coin"
 	                style="width: 20px; margin-right: 5px"
 	              />
-	              <span class="affordable"><fmt:formatNumber value="45000" pattern="#,###"/></span>
+	              <span class="affordable"><fmt:formatNumber value="${orderInfo.available_point}" pattern="#,###"/></span>
 	            </div>
 	          </div>
 	          <hr class="dotline" />
@@ -140,7 +140,7 @@
 	                alt="coin"
 	                style="width: 20px; margin-right: 5px"
 	              />
-	              <span class="change"></span>
+	              <span class="change"></span><fmt:formatNumber value="${orderInfo.available_point-orderInfo.total_payment}" pattern="#,###"/>
 	            </div>
 	          </div>
 	          <div>
