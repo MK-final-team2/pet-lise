@@ -2,11 +2,13 @@ package board;
 
 import java.util.Date;
 
+
 import user.UserDTO;
 public class BoardDTO {
     private String board_id;
     private String user_id;
-    private String board_title;
+
+	private String board_title;
     private String board_contents;
     private Date board_created;
     private Date board_updated;
@@ -15,7 +17,24 @@ public class BoardDTO {
     private int comments;
     private int seq;
     private UserDTO user;
+    private BoardLikeDTO boardlike;
+    private BoardCommentDTO boardcomment;
     
+    public BoardCommentDTO getBoardcomment() {
+    	return boardcomment;
+    }
+    
+    public BoardLikeDTO getBoardlike() {
+		return boardlike;
+	}
+
+	public void setBoardlike(BoardLikeDTO boardlike) {
+		this.boardlike = boardlike;
+	}
+
+	public void setBoardcomment(BoardCommentDTO boardcomment) {
+    	this.boardcomment = boardcomment;
+    }
     public String getBoard_id() {
 		return board_id;
 	}

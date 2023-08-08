@@ -21,7 +21,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <title>자유게시판 등록</title>
       
 </head>
-
+<header>
+	<jsp:include page="../header.jsp" />
+</header>
 <body>
     <div id="container">
      
@@ -35,7 +37,12 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     	<input type="text" placeholder="제목" name="board_title"
 			size="80%"  maxlength="50"	style="font-size: 24px;" value="${board.board_title}" />
 			        </div>
-   
+   <footer>
+	<div>
+
+		<jsp:include page="../footer.jsp" />
+	</div>
+	</footer>
           
           
   

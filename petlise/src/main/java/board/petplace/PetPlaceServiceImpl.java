@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import pagination.Pagination;
 import pagination.PagingResponse;
 import pagination.SearchDTO;
+import user.UserDTO;
 
 @Service
 public class PetPlaceServiceImpl implements PetPlaceService {
@@ -91,8 +92,40 @@ public class PetPlaceServiceImpl implements PetPlaceService {
 
 
 
+	public void deletepetplace( int seq , String place_id) {
+		dao.deleteAllComment(place_id);
+		 dao.deletepetplace(seq);
+	}
+
+
+
+	@Override
+	public int deleteComment(String comment_id) {
+		
+		return dao.deleteComment(comment_id);
+	}
+
+
+
+	@Override
+	public UserDTO getUserInfoPetplace(String user_id) {
+		return dao.getUserInfoPetplace(user_id);
+	}
+
+
+
+	@Override
+	public int deleteAllComment(String place_id) {
+		return dao.deleteAllComment(place_id);
+		
+	}
+
+
+
+	@Override
 	public void deletepetplace(int seq) {
-		dao.deletepetplace(seq);
+		// TODO Auto-generated method stub
+		
 	}
 
 	/*

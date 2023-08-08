@@ -20,7 +20,9 @@
 <title>자유게시판 수정</title>
 
 </head>
-
+<header>
+	<jsp:include page="../header.jsp" />
+</header>
 <body>
 	<div id="container">
 
@@ -46,7 +48,12 @@
 			<button class="writeButton" onclick="return edit()">수정하기</button>
 		</div>
 	</div>
+<footer>
+	<div>
 
+		<jsp:include page="../footer.jsp" />
+	</div>
+	</footer>
 	<script src="/js/board/UpdateBoard.js"></script>
 	<script src="/js/editor.js"></script>
 

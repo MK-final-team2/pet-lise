@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import pagination.PagingResponse;
 import pagination.SearchDTO;
+import user.UserDTO;
 
 @Service
 public interface PetPlaceService {
@@ -25,6 +26,10 @@ public interface PetPlaceService {
 	public int updatepetplace(PetPlaceDTO dto);
 
 	public void deletepetplace(int seq);
+	int deleteComment(String comment_id);
+	UserDTO getUserInfoPetplace(String user_id);
+	
+	public int deleteAllComment(String place_id);
 
 
 

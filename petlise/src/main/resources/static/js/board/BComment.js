@@ -3,7 +3,7 @@
 			const url = new URL(window.location.href);
 			const queryParams = new URLSearchParams(url.search);
 			queryParams.set('page', page || 1);
-			place_id: "${petplaceInfo.place_id}"
+			place_id: "${boardInfo.board_id}"
 
 			url.search = queryParams.toString();
 			window.location.href = url.toString();

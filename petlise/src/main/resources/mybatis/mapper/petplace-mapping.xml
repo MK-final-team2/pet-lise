@@ -10,7 +10,6 @@
     <result property="title" column="title"/>
     <result property="category" column="category"/>
     <result property="petplace_address" column="petplace_address"/>
-    <result property="p_detailaddress" column="p_detailaddress"/>
     <result property="petplace_contents" column="petplace_contents"/>
     <result property="petplace_created" column="petplace_created"/>
     <result property="view_count" column="view_count"/>
@@ -56,6 +55,7 @@
     <result property="comment_created_at" column="comment_created_at" />
     <result property="comment_updated" column="comment_updated" />
     <result property="deleted_at" column="deleted_at" />
+    
      <association property="petPlace" resultMap="petplacedto" />
      <association property="user" resultMap="userResultMap" />
     <!-- 다른 필드들도 필요하다면 추가 -->
@@ -72,7 +72,7 @@
     FROM petplaceComment c
     INNER JOIN petPlace p ON p.place_id = c.place_id
     INNER JOIN user u ON c.user_id = u.user_id
-    WHERE p.deleted_at is null
+	where c.place_id=#{searchType1} 
     ORDER BY c.comment_created_at DESC
     LIMIT #{pagination.limitStart}, #{recordSize}
 </select>
@@ -81,7 +81,7 @@
     SELECT COUNT(*)
     FROM petplaceComment c
     INNER JOIN petPlace p ON p.place_id = c.place_id
-    WHERE p.deleted_at is null
+ 	where c.place_id=#{searchType1} 
 </select>
 
 <select id="getListWithPage" resultMap="petplacedto">
@@ -186,7 +186,7 @@ VALUES (0, #{user_id}, #{title}, #{category}, #{petplace_address},  #{petplace_c
     FROM petPlace p
     LEFT JOIN user u ON p.user_id = u.user_id
     LEFT JOIN petplaceLike l ON p.place_id = l.place_id
-    WHERE seQ = #{seQ}
+    WHERE seq = #{seq}
 </select>
 
 
@@ -202,15 +202,16 @@ VALUES (0, #{user_id}, #{title}, #{category}, #{petplace_address},  #{petplace_c
         WHERE seq=#{seq}
     </delete>
 
-  
-<select id="selectCommentList" resultType="board.petplace.PetPlaceCommentDTO">
-    SELECT pc.*
-    FROM petplacecomment pc
-    JOIN petPlace pp ON pc.place_id = pp.place_id
-    WHERE pc.comment_id = #{comment_id}
-</select>
+  <update id="deleteComment" parameterType="String">
+	 DELETE FROM petplaceComment
+		
+		WHERE comment_id=#{comment_id} 
+	</update>
 
-
+<update id="deleteAllComment" parameterType="String">
+	 DELETE FROM petplaceComment
+		where place_id=#{place_id}
+	</update>
 
 
 <select id="getPetplaceComments" parameterType="pagination.SearchDTO" resultMap="petplacecommentResultMap">
@@ -226,7 +227,9 @@ VALUES (0, #{user_id}, #{title}, #{category}, #{petplace_address},  #{petplace_c
 	</select>
 	
 	
-
+<select id="getUserInfoPetplace" resultType="userdto">
+		SELECT * FROM `user` WHERE `user_id` = #{user_id};
+	</select>
 
 
 <update id="updateDeleteAtCommnet" parameterType="String">
