@@ -169,7 +169,7 @@
 <!-- 주문상품정보 불러오기 -->
 	<select id="getOrderDetail" parameterType="String" resultType="admin.order.OrderProductDTO">
 		select * 
-		from `orderproduct`
+		from `orderProduct`
 		where order_id=#{order_id};
 	</select>
 	

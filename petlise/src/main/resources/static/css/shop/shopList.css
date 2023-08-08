@@ -247,15 +247,16 @@
 	height: 35px;
 	display:flex;
 	align-items: center;
-	margin-right:20px;
 }
 
 #searchdiv:hover {
 	border: 1.5px solid var(--light-main);
 }
 
-#searchdiv:focus {
-	border: 1.5px solid var(--light-point);
+#searchimg {
+	width: 20px;
+	height: 20px;
+	margin-left:10px;
 }
 
 #keyword{
@@ -264,12 +265,17 @@
 }
 
 #searchbtn{
-	width: 40px;
-	height: 40px;
+	width: 70px;
+	height: 35px;
 	display:flex;
 	align-items: center;
 	justify-content: center;
-	margin-left:3px;
+	margin-left:10px;
+	border: 1px solid var(--light-main);
+	border-radius: 20px;
+	background-color: var(--light-sub);
+	font: var(--button14);
+	margin-right:10px;
 }
 
 #searchbtn img{

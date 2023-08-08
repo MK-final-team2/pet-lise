@@ -202,19 +202,28 @@ table tbody td:last-of-type {
 	border: 1.5px solid var(--light-point);
 }
 
+#searchimg{
+	width:25px;
+	margin-left: 10px;
+}
+
 #keyword{
 	width: 205px;
 	height: 45px;
-	padding: 10px 5px;
+	padding: 20px 5px;
 }
 
 #searchbtn{
-	width: 40px;
-	height: 40px;
+	width: 70px;
+ 	height:43px;
 	display:flex;
 	align-items: center;
 	justify-content: center;
-	margin-left: 3px;
+	border: 1px solid var(--light-point);
+	background-color: var(--light-stroke);
+	border-radius: 5px;
+	margin-left: 10px;
+	font:var(--button14);
 }
 
 #searchbtn img{

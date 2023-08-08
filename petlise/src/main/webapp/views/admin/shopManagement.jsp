@@ -102,9 +102,7 @@
 						</div>
 
 						<div id="searchdiv">
-							<button id="searchbtn">
-								<img src="/images/admin/search.svg">
-							</button>
+							<img id="searchimg" src="/images/admin/search.svg">
 							<c:choose>
 								<c:when test="${param.keyword == '' || param.keyword eq null}">
 									<input type="text" id="keyword" name="keyword" placeholder="상품명 검색" />
@@ -114,6 +112,7 @@
 								</c:otherwise>
 							</c:choose>
 						</div>
+						<button id="searchbtn">조회</button>
 						<!-- searchdiv -->
 					</div> <!-- categoryWrap -->
 					</form>

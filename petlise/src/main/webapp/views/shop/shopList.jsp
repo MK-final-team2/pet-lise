@@ -114,9 +114,7 @@
 				</div>
 				<!-- checkboxdiv -->
 				<div id="searchdiv">
-					<button id="searchbtn">
-						<img src="/images/shop/shoplist/search_main.svg">
-					</button>
+					<img id="searchimg" src="/images/shop/shoplist/search_main.svg">
 					<c:choose>
 						<c:when test="${param.keyword == '' || param.keyword eq null}">
 							<input type="text" id="keyword" placeholder="상품명 검색" />
@@ -127,6 +125,7 @@
 					</c:choose>
 				</div>
 				<!-- searchdiv -->
+				<button id="searchbtn">검색</button>
 
 			</div>
 		</div>
@@ -146,11 +145,6 @@
 					<div class="products" id="${product.product_id}">
 						<div class="product_img"
 							style="background-image: url(https://storage.googleapis.com/${product.image_main});">
-							<!-- <div class="product_img_cover">
-								<button class="cartbtn">
-									<img src="/images/shop/shoplist/cart_yellow.svg" alt="cart" />
-								</button> 
-							</div>-->
 						</div>
 						<div id="product_info">
 							<span> ${product.product_name} </span> 
