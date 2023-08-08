@@ -5,29 +5,48 @@
 	<!-- Retrieve a list of pet places by category -->
 	<select id="getNoticeList" resultType="board.notice.NoticeDTO">
 		SELECT *
-		FROM noticeBoard
+		FROM noticeBoard n
+	
 	</select>
 
 	<!-- Pagination -->
 	<select id="getAllNoticePaging" resultType="board.notice.NoticeDTO" parameterType="pagination.SearchDTO">
 		SELECT *
-		FROM noticeBoard
-		
-			<if test="keyword != null and keyword != ''">
-				AND title LIKE CONCAT('%', #{keyword}, '%')
-			</if>
-	
+		FROM noticeBoard n
+		   LEFT JOIN user u ON n.user_id = u.user_id
+		  <where>
+            
+            <if test="keyword != null and keyword != ''">
+                AND title LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+         
+        </where>
 		LIMIT #{pagination.limitStart}, #{recordSize}
 	</select>
 
 	<select id="getCount" resultType="int" parameterType="pagination.SearchDTO">
 		SELECT COUNT(*)
 		FROM noticeBoard
-		
-			<if test="keyword != null and keyword != ''">
-				AND title LIKE CONCAT('%', #{keyword}, '%')
-			</if>
-		
+		<where>
+            
+            <if test="keyword != null and keyword != ''">
+                AND title LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+   
+        </where>
 	</select>
+
+
+<select id="getUserInfoNoticeboard" resultType="userdto"  parameterType="string">
+		SELECT * FROM `user` WHERE `user_id` = #{user_id};
+	</select>
+<select id="findnotice" parameterType="string" resultType="board.notice.NoticeDTO">
+       SELECT *
+        FROM noticeBoard n 
+        LEFT JOIN user u ON n.user_id = u.user_id
+        WHERE notice_id = #{notice_id}
+    </select>
+
+
 
 </mapper>

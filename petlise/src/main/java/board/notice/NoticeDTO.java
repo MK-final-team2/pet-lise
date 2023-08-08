@@ -2,20 +2,50 @@ package board.notice;
 
 import java.util.Date;
 
+import user.UserDTO;
+
 public class NoticeDTO {
-    int notice_id;
+    String notice_id;
     int view_count;   
     String category;
+    
+   
+	String title;
+    String contents;
     String user_id;
-    String title;
-    Date notice_created;
+    String name;
+	Date notice_created;
     Date notice_updated;
+    private UserDTO user;
 
     
-    public int getNotice_id() {
+    
+    
+    
+    public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+    
+    public String getContents() {
+    	return contents;
+    }
+    public void setContents(String contents) {
+    	this.contents = contents;
+    }
+    
+	public UserDTO getUser() {
+		return user;
+	}
+	public void setUser(UserDTO user) {
+		this.user = user;
+	}
+	public String getNotice_id() {
 		return notice_id;
 	}
-	public void setNotice_id(int notice_id) {
+	public void setNotice_id(String notice_id) {
 		this.notice_id = notice_id;
 	}
 	public int getView_count() {
