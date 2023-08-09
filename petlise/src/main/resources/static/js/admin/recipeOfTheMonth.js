@@ -9,7 +9,7 @@ function addCheck(event) {
       recipe_of_the_month: checkValue
     },
     success: function () {
-      alert('이달의 레시피로 등록되었습니다.');
+      alert('이달의 레시피가 수정되었습니다.');
     },
     error: function (error) {
       console.log(error);
