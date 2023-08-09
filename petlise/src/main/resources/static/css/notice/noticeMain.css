@@ -51,6 +51,10 @@ font: var(--heading24);
 	background-color: #FFE3AB;
 }
   
+ .category a.on {
+	background-color: #fbc252;
+} 
+  
   
   .search-container {
 
