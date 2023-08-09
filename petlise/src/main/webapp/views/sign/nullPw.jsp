@@ -18,9 +18,6 @@ pageEncoding="UTF-8"%>
 
     <main class="container">
       <div class="dogImage">
-        <a href="/signin">
-          <img src="/images/login-logo.png" alt="로고" />
-        </a>
         <img src="/images/dogncat.svg" alt="강아지" />
       </div>
       <div class="loginWrapper">
