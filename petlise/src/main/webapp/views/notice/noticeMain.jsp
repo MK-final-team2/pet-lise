@@ -74,10 +74,11 @@ pageEncoding="UTF-8"%>
         
                     <div class="notice_list">
 			<div class="top">
+				<div class="bcategory">카테고리</div>
 				<div class="title">제목</div>
 				<div class="writer">작성자</div>
-				<div class="date" style="padding-left: 45px">날짜</div>
-				<div class="view" style="padding-left: 53px">조회</div>
+				<div class="date" >작성날짜</div>
+				<div class="view" >조회</div>
 			</div>
 
 			<table style="width: 1240px; margin-top: -14px;" >
@@ -93,16 +94,20 @@ pageEncoding="UTF-8"%>
 
 				<c:forEach var="notices" items="${response.list}">
 					<tr>
+					
+					<td class="bcategory" style="padding-right: 13px;"> ${notices.category}</td>
+						
 						<td class="title" >
 							<a href="noticeDetail?notice_id=${notices.notice_id}">
 								${notices.title}
 							</a>
 						</td>
-						<td class="writer" style="padding-left: 12px;"> ${notices.name}</td>
-						<td class="date" style="padding-right:  65px">
+						
+						<td class="writer" style="padding-right: 12px;" > ${notices.name}</td>
+						<td class="date" >
 							<fmt:formatDate value="${notices.notice_created}" pattern="yyyy-MM-dd H:mm" />
 						</td>
-						<td class="view" style="padding-right:180px">${notices.view_count}</td>
+						<td class="view" >${notices.view_count}</td>
 						
 				</c:forEach>
 			</table>
