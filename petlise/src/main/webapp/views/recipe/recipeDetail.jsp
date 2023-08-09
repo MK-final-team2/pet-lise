@@ -72,10 +72,12 @@
 	<div class="board_body">
 		<div class="board_body_inside">
 			<div class="post_actions">
+			<c:if test="${user_id eq recipeDetail.user_id}">
 				<button class="recipe_edit_btn" onclick="redirectToRecipeEdit()">
 					<p>수정</p>
 				</button>
 				<button class="recipe_delete_btn">삭제</button>
+			</c:if>
 			</div>
 			<div class="contents" style="text-align: center;">
 				<span>${recipeDetail.recipe_contents}</span>
