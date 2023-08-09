@@ -1,9 +1,6 @@
 .container {
   width: 1240px;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin: 50px auto;
   padding: 55px 60px;
   display: flex;
   flex-direction: row;
@@ -14,9 +11,12 @@
   border-radius: 20px;
 }
 
-.dogImage a img:first-of-type {
+.dogImage a img {
   width: 515px;
   margin-bottom: 75px;
+}
+.dogImage img:last-of-type {
+  width: 550px;
 }
 
 .loginWrapper {
@@ -75,7 +75,7 @@
   justify-content: center;
 }
 .loginWrapper .searchform .findWrap > p {
-	margin-bottom: 35px;
+  margin-bottom: 35px;
 }
 .loginWrapper .searchform .findId {
   width: 100%;
@@ -137,10 +137,10 @@
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px
+  gap: 10px;
 }
 .loginWrapper .searchform .buttonWrap a {
-  width: 100%;	
+  width: 100%;
   height: 50px;
   line-height: 50px !important;
   text-align: center;
@@ -148,7 +148,7 @@
   font: var(--button14);
 }
 .loginWrapper .searchform .buttonWrap a:first-of-type {
-  background-color: var(--light-stroke);  
+  background-color: var(--light-stroke);
 }
 .loginWrapper .searchform .buttonWrap a:last-of-type {
   border: 1px solid var(--light-text);
@@ -159,9 +159,9 @@
   font: var(--button14);
 }
 .required {
-	position: relative;
-	/* top: -3px; */
-	padding-left: 5px;
-	color: red;
-	font: var(--body14);
+  position: relative;
+  /* top: -3px; */
+  padding-left: 5px;
+  color: red;
+  font: var(--body14);
 }
